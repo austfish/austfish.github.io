@@ -222,13 +222,13 @@ var _hmt = _hmt || [];
 <p>##<strong>四、注意事项</strong></p>
 <p>然而pjax不等于单纯的分离使用pushstate与ajax，还必须得做一些封装。缘于以下我能想到的注意事项：</p>
 <ul>
-<li>服务器端增加额外处理逻辑<br>服务器端，需要根据请求的参数，作出全页渲染或局部渲染响应<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Accept:</span>text<span class="regexp">/html, */</span>*; q=<span class="number">0.01</span></span><br><span class="line">Accept-<span class="string">Encoding:</span>gzip,deflate,sdch</span><br><span class="line"><span class="string">Connection:</span>keep-alive</span><br><span class="line"><span class="string">Host:</span>qianduannotes.duapp.com</span><br><span class="line">User-<span class="string">Agent:</span>AppleWebKit<span class="regexp">/537.36 (KHTML, like Gecko) Chrome/</span><span class="number">31.0</span><span class="number">.1650</span><span class="number">.63</span> Safari/<span class="number">537.36</span></span><br><span class="line">X-Requested-<span class="string">With:</span>XMLHttpRequest</span><br><span class="line">X-<span class="string">PJAX:</span><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<li>服务器端增加额外处理逻辑<br>服务器端，需要根据请求的参数，作出全页渲染或局部渲染响应<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Accept:text/html, */*; q=0.01</span><br><span class="line">Accept-Encoding:gzip,deflate,sdch</span><br><span class="line">Connection:keep-alive</span><br><span class="line">Host:qianduannotes.duapp.com</span><br><span class="line">User-Agent:AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36</span><br><span class="line">X-Requested-With:XMLHttpRequest</span><br><span class="line">X-PJAX:true</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>比如请求头部可以设定一个X-PAJX:true，用以通知服务器。</p>
 <ul>
 <li><p>浏览器兼容<br>假如浏览器不支持pushstate，提供fallback操作，直接打开需更改url的地址：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.support.pjax = <span class="built_in">window</span>.history &amp;&amp; <span class="built_in">window</span>.history.pushState</span><br><span class="line"><span class="comment">// Fallback</span></span><br><span class="line"><span class="keyword">if</span> ( !$.support.pjax ) &#123;</span><br><span class="line">  $.pjax = <span class="function"><span class="keyword">function</span>(<span class="params"> options </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.location = $.isFunction(options.url) ? options.url() : options.url</span><br><span class="line">  &#125;</span><br><span class="line">  $.fn.pjax = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.support.pjax = window.history &amp;&amp; window.history.pushState</span><br><span class="line">// Fallback</span><br><span class="line">if ( !$.support.pjax ) &#123;</span><br><span class="line">  $.pjax = function( options ) &#123;</span><br><span class="line">    window.location = $.isFunction(options.url) ? options.url() : options.url</span><br><span class="line">  &#125;</span><br><span class="line">  $.fn.pjax = function() &#123; return this &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>本地存储机制<br>无疑pjax与localstorage共同使用可以进一步提升体验，但这一步容易忽略的是数据上报。</p>
 </li>
@@ -489,15 +489,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,18 +517,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
@@ -538,6 +526,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,15 +553,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">药别停</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">药别停</a>
               </li>
              
               <li class="article-tag-list-item">
