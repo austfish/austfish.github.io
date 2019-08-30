@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2017/04/29/%E4%B8%80%E4%B8%83%E5%B9%B4%E5%9B%9B%E6%9C%88%E7%9A%84%E6%95%85%E4%BA%8B%E6%85%A2%E6%85%A2%E8%AF%B4/</loc>
+    <lastmod>2019-08-30</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2019/08/30/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E8%AF%AD%E6%B3%95-%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2and%E5%9C%A8%E7%BA%BFweb%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2019-08-30</lastmod>
   </url>  <url>
