@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2019-08-30T06:20:49.775Z</updated>
+  <updated>2019-09-19T03:53:52.560Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo博客文章发布流程记录</title>
+    <link href="http://austfish.cn/2019/09/19/Hexo%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/"/>
+    <id>http://austfish.cn/2019/09/19/Hexo博客文章发布流程记录/</id>
+    <published>2019-09-19T03:52:04.000Z</published>
+    <updated>2019-09-19T03:53:52.560Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hexo博客发布文章步骤：<br>1.新建文章<br>2.编辑内容<br>3.发布</p><a id="more"></a><h2 id="新建-hello-文件"><a href="#新建-hello-文件" class="headerlink" title="新建 hello 文件"></a>新建 hello 文件</h2><pre><code>hexo new &apos;hello&apos;</code></pre><h2 id="打开-hello-md-文件编辑"><a href="#打开-hello-md-文件编辑" class="headerlink" title="打开 hello.md 文件编辑"></a>打开 hello.md 文件编辑</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">layout: post</span><br><span class="line">title: 标题</span><br><span class="line">date: 时间</span><br><span class="line">tags:</span><br><span class="line">- 标签1</span><br><span class="line">- 标签2</span><br><span class="line">---</span><br><span class="line">摘要区域</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">正文</span><br></pre></td></tr></table></figure><h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><pre><code>$ hexo d -g</code></pre><p>或者使用脚本</p><pre><code>./deploy</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">DIR=`dirname $0`</span><br><span class="line"></span><br><span class="line"># Generate blog</span><br><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">sleep 5</span><br><span class="line"></span><br><span class="line"># Deploy</span><br><span class="line">hexo deploy</span><br><span class="line">sleep 5</span><br><span class="line"></span><br><span class="line"># Push hexo code</span><br><span class="line">git add .</span><br><span class="line">current_date=`date &quot;+%Y-%m-%d %H:%M:%S&quot;`</span><br><span class="line">git commit -m &quot;Blog updated: $current_date&quot;</span><br><span class="line"></span><br><span class="line">sleep 2</span><br><span class="line">git push origin hexo</span><br><span class="line"></span><br><span class="line">echo &quot;=====&gt;Finish!&lt;=====&quot;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hexo博客发布文章步骤：&lt;br&gt;1.新建文章&lt;br&gt;2.编辑内容&lt;br&gt;3.发布&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="记录" scheme="http://austfish.cn/tags/%E8%AE%B0%E5%BD%95/"/>
+    
+  </entry>
   
   <entry>
     <title>搜索引擎语法-网络空间搜索and在线web工具</title>
