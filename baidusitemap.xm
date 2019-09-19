@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2019/09/19/Python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%EF%BC%9A%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83venv%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2019-09-19</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2019/09/19/Hexo%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2019-09-19</lastmod>
   </url>  <url>

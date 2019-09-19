@@ -6,20 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>四月的故事慢慢说 | Fisher&#39;s Blog</title>
+  <title>Python项目管理工具：虚拟环境venv使用方法 | Fisher&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="四月的尾巴敲打着五月的脑门，提醒它要快快努力去完成深蓝的梦想！">
-<meta name="keywords" content="生活,计划">
+  <meta name="description" content="一、引言众所周知，项目的环境管理一直是比较头疼的问题，如果有两个项目，一个用的是 a 库的 v1 版本，一个用的是 a 库的 v2 版本，那么如果 a 库是安装在系统环境下的，就会出现项目所依赖的库文件版本不对的问题。 Python 社区为了解决这个问题，提出了虚拟环境的概念。也就是人为的创建一个虚拟环境供项目运行，而该项目需要什么库文件，则自行在这个虚拟环境中下载安装，而在虚拟环境中下载安装的库">
+<meta name="keywords" content="python,工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="四月的故事慢慢说">
-<meta property="og:url" content="http://austfish.cn/2017/04/29/一七年四月的故事慢慢说/index.html">
+<meta property="og:title" content="Python项目管理工具：虚拟环境venv使用方法">
+<meta property="og:url" content="http://austfish.cn/2019/09/19/Python项目管理工具：虚拟环境venv使用方法/index.html">
 <meta property="og:site_name" content="Fisher&#39;s Blog">
-<meta property="og:description" content="四月的尾巴敲打着五月的脑门，提醒它要快快努力去完成深蓝的梦想！">
+<meta property="og:description" content="一、引言众所周知，项目的环境管理一直是比较头疼的问题，如果有两个项目，一个用的是 a 库的 v1 版本，一个用的是 a 库的 v2 版本，那么如果 a 库是安装在系统环境下的，就会出现项目所依赖的库文件版本不对的问题。 Python 社区为了解决这个问题，提出了虚拟环境的概念。也就是人为的创建一个虚拟环境供项目运行，而该项目需要什么库文件，则自行在这个虚拟环境中下载安装，而在虚拟环境中下载安装的库">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-30T08:39:36.330Z">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvUm5QYjFXRFRndkdNa0N5LnBuZw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvaEw4V1ZhMlMxbnhpckhDLnBuZw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvTUo1Z05kY3NIWXVBeDZTLnBuZw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvZDFmNWNCWVdBQ0RlcXdJLnBuZw?x-oss-process=image/format,png">
+<meta property="og:updated_time" content="2019-09-19T06:40:50.237Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="四月的故事慢慢说">
-<meta name="twitter:description" content="四月的尾巴敲打着五月的脑门，提醒它要快快努力去完成深蓝的梦想！">
+<meta name="twitter:title" content="Python项目管理工具：虚拟环境venv使用方法">
+<meta name="twitter:description" content="一、引言众所周知，项目的环境管理一直是比较头疼的问题，如果有两个项目，一个用的是 a 库的 v1 版本，一个用的是 a 库的 v2 版本，那么如果 a 库是安装在系统环境下的，就会出现项目所依赖的库文件版本不对的问题。 Python 社区为了解决这个问题，提出了虚拟环境的概念。也就是人为的创建一个虚拟环境供项目运行，而该项目需要什么库文件，则自行在这个虚拟环境中下载安装，而在虚拟环境中下载安装的库">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvUm5QYjFXRFRndkdNa0N5LnBuZw?x-oss-process=image/format,png">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s Blog" type="application/atom+xml">
   
@@ -163,43 +168,61 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-一七年四月的故事慢慢说" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Python项目管理工具：虚拟环境venv使用方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      四月的故事慢慢说
+      Python项目管理工具：虚拟环境venv使用方法
     </h1>
   
 
         
-        <a href="/2017/04/29/一七年四月的故事慢慢说/" class="archive-article-date">
-  	<time datetime="2017-04-29T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-29</time>
+        <a href="/2019/09/19/Python项目管理工具：虚拟环境venv使用方法/" class="archive-article-date">
+  	<time datetime="2019-09-19T06:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>四月的尾巴敲打着五月的脑门，提醒它要快快努力去完成深蓝的梦想！</p>
+        <h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>众所周知，项目的环境管理一直是比较头疼的问题，如果有两个项目，一个用的是 a 库的 v1 版本，一个用的是 a 库的 v2 版本，那么如果 a 库是安装在系统环境下的，就会出现项目所依赖的库文件版本不对的问题。</p>
+<p>Python 社区为了解决这个问题，提出了虚拟环境的概念。也就是人为的创建一个虚拟环境供项目运行，而该项目需要什么库文件，则自行在这个虚拟环境中下载安装，而在虚拟环境中下载安装的库文件，是不会影响到系统环境中的库文件的。有了虚拟环境的概念， Python 的项目管理也就不那么麻烦了。</p>
+<p>接下来，我来总结下如何使用 Python 的虚拟环境。</p>
+<p>ps: 以下的讲解都是在 Python3 的前提之下。</p>
 <a id="more"></a>
-<p>五一的假期从昨天就开始了，连续两天去图书馆自习，才发现去图书馆自习的都是情侣。<br>这篇生活博客的初念应该是去年就想写了，一直没有动笔，可能是这个月的故事比较多，怕自己忘了大学青春里最美好的时光。<br>QAQAQA</p>
-<h2 id="学校相关"><a href="#学校相关" class="headerlink" title="学校相关"></a>学校相关</h2><p>四月山南的出租车引起民愤了，黑车猖狂，一波一波的曝光总算有些用，作为纳税人一定要维护自己的权益不受侵犯。</p>
-<p>社联网运部的萌新恶势力也更新了愚人节《团团来巡山》，最逗是视频最后被追着跑的小狗。哈哈&gt;_&lt;</p>
-<p>月初也回家了一趟，和女朋友也是第一次吵架，分手24小时后和好，失去她才知道自己失去了全世界。</p>
-<p>借着网易的微专业的石榴师傅的帮助，拿到刚开的教育平台SRC的邀请码，注册成功后却没有挖到一个属于自己的漏洞，这个目标交给下个月继续奋斗。</p>
-<p>买了一本好贵好贵的手账，记录每天的计划和目标，可惜我的字不咋好看，导致整体美感不够。</p>
-<p>和队友BK一起脑抽京东分期了个AOC的显示器，虽然心疼，但是效果还是很棒，一边码代码一边运行。</p>
-<p>带着小伙伴组织了一场信息安全讲座，是我们EDI社团与合天网络安全实验室合作的，效果还不错。</p>
-<h2 id="技术相关"><a href="#技术相关" class="headerlink" title="技术相关"></a>技术相关</h2><p>个人技术感觉进步不是很大。</p>
-<p>手里的几个项目一直有些处于瘫痪状态。</p>
-<p>中国软件杯的分布式爬虫还处于爬的状态，研究了几天终于搞出一个轻量级的百度百科python爬虫，但是好像没卵用。</p>
-<p>用纪总推荐的织梦CMS帮智慧水团队写了一个网站，感觉好无脑，毕竟没有那么好的设计灵感。</p>
-<p>数据库的课程设计从无脑的校园二手交易平台被宝老师换成他接的开发项目（掌上小强），公司内部的工作管理APP,表示很慌。</p>
-<p>Web安全微专业的课程一直在有条不紊的走着，第三课的web安全工具我终于拿了个95分数，用DWVA的漏洞测试平台加深自己对漏洞的理解。<br>暴力破解走一波。</p>
-<h2 id="生活相关"><a href="#生活相关" class="headerlink" title="生活相关"></a>生活相关</h2><p><strong>看过的书</strong><br>    《白帽子讲Web安全》<br>    《Web安全深度剖析》<br>    《第一行代码安卓（第一版）》（第二版已下单：使用AS作为开发工具的）<br>    《XSS跨站脚本攻击剖析与防御》<br>    《Hadoop实战》<br>    《PHP和MySQL Web开发》<br>    《信息安全数学基础》（这个重要，毕竟马上就要考试了）<br><strong>看过的电影</strong><br>    《嫌疑人X的献身》（好像就这个，心疼自己）<br><strong>去玩过的地方</strong><br>    去南京的夫子庙与总统府（和小公举）<br>    还有马鞍山<br><strong>五月计划</strong><br><strong>要看的书</strong><br>    《第一行代码安卓（第二版）》<br>    《Python核心编程》<br>    《JAVA从入门到精通》<br>    暂定<br><strong>要学的技术</strong><br>    分布式框架<br>    Web安全体系建设<br>    Android开发<br><strong>总结</strong><br>    这学期还是多锻炼写代码的能力，光看不写可不行。<br>    多尝试去做一下完整的项目。<br>    校园微信的项目可以去试试~<br>    毕竟互联网的大咖当年创业都是那么开始的，笑哭~<br>    加油加油加油！</p>
+<h2 id="二、venv"><a href="#二、venv" class="headerlink" title="二、venv"></a>二、venv</h2><p>鉴于 Python3 中以标准库的形式包含了 venv 工具，因此就不再讲解 venv 工具的安装了。</p>
+<p>不过 Ubuntu 环境是需要自行下载安装的，运行命令如下：</p>
+<p>$ sudo apt-get install python3-venv</p>
+<p><strong>1. 创建虚拟环境</strong><br>这里，假定你已经拥有了 venv 工具，我们直接打开命令行工具</p>
+<p>Windows 平台下运行：</p>
+<pre><code>py -3 -m venv venv
+</code></pre><p>MacOS 或者 Linux 平台下运行：</p>
+<pre><code>python3 -m venv venv
+</code></pre><p>运行完这行命令，应该可以在当前目录下看到新建的一个文件夹，名为 venv，其就是虚拟环境的名称，并且以后我们在虚拟环境中所有的操作以及下载的库文件，都会在这个文件夹中。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvUm5QYjFXRFRndkdNa0N5LnBuZw?x-oss-process=image/format,png" alt="20180720185730986.png"></p>
+<p><strong>2. 激活虚拟环境</strong><br>创建了虚拟环境却没有激活的话，你还是处于系统环境中。怎么激活虚拟环境呢？</p>
+<p>Windows 平台下运行：</p>
+<pre><code>venv\Scripts\activate
+</code></pre><p>MacOS 或者 Linux 平台下运行：</p>
+<pre><code>source venv/bin/activate
+</code></pre><p>这里 venv 是你的虚拟环境的名字。运行完之后，自动会刷新命令行界面，以括号内嵌虚拟环境名字的形式提示用户，现在是处于 venv 虚拟环境中。</p>
+<p><strong>3. 使用虚拟环境</strong><br>虚拟环境除了 Python 一些核心的包、pip 工具等等，其他都没有，因此，当前项目需要什么，则使用 pip 工具下载即可。</p>
+<p>其他的使用方法，与系统环境下的使用没有什么不同。</p>
+<p><strong>4. 退出虚拟环境</strong><br>退出虚拟环境很简单，各平台都是一样的：</p>
+<pre><code>deactivate
+</code></pre><p>从虚拟环境中退出到系统环境是很明显的，因为前面的虚拟环境名称提示符消失了。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvaEw4V1ZhMlMxbnhpckhDLnBuZw?x-oss-process=image/format,png" alt="20180720190201469.png"></p>
+<h2 id="三、在-PyCharm-中配置当前项目虚拟环境"><a href="#三、在-PyCharm-中配置当前项目虚拟环境" class="headerlink" title="三、在 PyCharm 中配置当前项目虚拟环境"></a>三、在 PyCharm 中配置当前项目虚拟环境</h2><p>venv 是很好用，但是我们该如何在 PyCharm 中配置当前项目所使用的环境呢？</p>
+<ol>
+<li><p>进入 Project Interpreter 界面<br>我们打开 PyCharm，菜单栏选择 File，点击 Settings，进入到设置界面，然后配置 Project Interpreter<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvTUo1Z05kY3NIWXVBeDZTLnBuZw?x-oss-process=image/format,png" alt="20180720190548991.png"></p>
+</li>
+<li><p>添加虚拟环境<br>在 Project Interpreter 文本框右侧点击齿轮按钮，点击 Add。<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDkvMTkvZDFmNWNCWVdBQ0RlcXdJLnBuZw?x-oss-process=image/format,png" alt="20180720190956776.png"><br>然后，选择 Virtualenv Environment 标签卡，选择 Existing enviroment（选择上面那个应该可以直接新建一个环境，这里为了续接上一节中的环境，则直接选择了已存在的环境），这里，如果 PyCharm 没有找到你新建的环境，则需要你自己去打开文件找到你虚拟环境中的 Scripts 目录下的 python.exe 解释器文件。</p>
+</li>
+<li><p>测试运行<br>最后点击 OK，即可看到环境列表多了一行。这里，我们可以在项目中切换各个环境进行自己当前项目的测试，还是很方便的。</p>
+</li>
+</ol>
+<p>四、总结<br>在系统环境中，使用最基本的 Python 解释器提供虚拟环境 venv 的功能，然后在各个虚拟环境中完成我们的项目，这样是比较好的项目组织方式。</p>
 
       
 
@@ -244,11 +267,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计划</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -304,7 +327,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aQW4bMRAEQP//08rVgJ119wzpKEDtyRAkikUB5Lg5Hx/x8/r0zN65+Ww+wvDBw8PDW0z96/N16LPvnLGTOePh4eHd5j1vxKfOnLMLFx0eeHh4eG/AS4rmWWH9PAIeHh7e/8jLX3me3Nn0AA8PD+9f8fLgYDb1PEp4fufFrAUPDw8v5uWb9fv8feV+Dw8PD29dvLYbbhI9PI+ZvL+YLR4eHt4F3r51IG+3aq+1koWIIgk8PDy8o7xk038eYvbFbbQxiyrw8PDw7vHyS/1i6EWpnRwMUVSBh4eHd423KXnbpqt8u2+bG479r4CHh4cX85LhWkyyBG2xnjeB4eHh4f0mL2+WmhXcefTQNjHg4eHh3eblpe2NErllz5YeDw8P7x6vnW7y9Xkgm0fJbTyBh4eHd483u8RqW6w2sCR0jsJcPDw8vAWvXYlX+STg2cVbFBDj4eHhXeO1TU6nmgxmyzGMIfDw8PAO8dowYn9xlUx6BjuQteDh4eGV90p5SNpe6s8uvTYNDT/8hnh4eHhr3ixWaO+Y2sVqF664f8PDw8Nb8NqwdRYu5LFsXnBHDQp4eHh4F3htm1Qb9eZbfL5kB5oV8PDw8Ba82YV9XuC2RfY+1PhrDIGHh4d3iJe0jbZhxG+2F+QzxMPDwzvLyw+A2XacfLYNIPJjBg8PD+8eL48P2tB2c8AcCHDx8PDwrvE2ocOmeWsfXvywBHh4eHhHea/ymXV1RQHrutz/5rvw8PDwLvBm2+4slm3bs9pjo7gGw8PDw1vz8sMgeaXdrPP1bueGh4eHd5uXl7P7uLZtWTgQSeDh4eG9AS/ZpjfUYy0FeHh4eG/Aa4OGPETIR0tGxsPDw7vNOxVGzALc2RyinwoPDw/vAq+9wm9jiOTgyQv3fcmOh4eHt+D9Act6rJlNkRZGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLklEQVR42u3awW7rSAwEwPz/T2evD8ha7iZlwBqUToFjS1PjA83m/PzE1+8/V/763/f8vV7d7dU7k/vcdmFjY2M/hD17WHKfv1twvTXJs+7aYmxsbOzz2LNlXRezvFxd3zkvq4kFGxsbG3uGyWGbbcLGxsbGztnXi07ulhewpAXCxsbGxk5CpdlIIAmD8jvka7stS8PGxsb+enYe33z/3x+Zb2NjY2N/Mfu3vNpYPy8hOa896PM/a8DGxsY+iJ0XgDyI3yyxLaWb9WNjY2Ofym5DnM0YoF7oJTsPxbCxsbFPYrfHJTchVBLr5wPjzdgYGxsb+yR2WzDysKn9b3vgpo3AsLGxsc9mJw9rj8Xk5WrWCCVfzzBLw8bGxn4UezPoTQaxeTlpW4jVe7CxsbEPZSdl4PrW+ZGd9pV8U4qKjY2NjX0EO8e3MVB7rCdfbr6eN6MObGxs7CPYs2D9rjLThlb7sfGbUAkbGxv74ey8SZiNgfPDPe3W1KNibGxs7OPYmwIzGxVvWoskQnqzxdjY2NgHsduisol78jFDW0pnzQk2Njb2eezNcttf+PvhRNv2YGNjY5/KTpqKNk6atRCzklbPtLGxsbGPY+eM65/+bRi0b2k2QwtsbGzsU9ntT/xZIdl8Kr9+2gsbGxv7sez9gZi7jvjkA+B8dPHyWdjY2NjHsWfhe1vqZkd8Nlv/ciOwsbGxD2LnZaM9+5O3CvuN2wyAsbGxsZ/O3h+IST7bbsSsgBXFEhsbG/tQ9icW3cZAs2FGW1CxsbGxT2LvD+gkDUZbO5KnzApbfeoHGxsb+1Hs9qDkvpjlxWkzQngzEsDGxsY+lL1pSD5XDtvS9eaLwcbGxj6UvQl62vAof8pd68HGxsY+j/1bXndF/7PIKe8j6nNJ2NjY2I9lt8VgFiHNhsHJpuf3aSMtbGxs7Gex26KVB/qz8e3suUmhxcbGxj6bvQ+JZodp8tZiHy0NJ8nY2NjYx7HvGtAmJerehmRVwLCxsbEPYre51H7AMBsDfLAVwcbGxv5K9iwAahuJfHHt09sih42NjX0Su41mkvFti0kakrb4JREYNjY29sPZ/wGTcEoVQd6BPwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -318,18 +341,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/08/22/python完整项目打包Docker入坑记录/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          python完整项目打包Docker入坑记录
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/28/《白帽子讲Web安全》读后感/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">《白帽子讲Web安全》读后感</div>
+    <a href="/2019/09/19/Hexo博客文章发布流程记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo博客文章发布流程记录</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -359,7 +373,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="一七年四月的故事慢慢说" ></div> 
+  <div id="SOHUCS" sid="Python项目管理工具：虚拟环境venv使用方法" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyuoyyRfG"; 
