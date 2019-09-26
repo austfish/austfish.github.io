@@ -6,38 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>python完整项目打包Docker入坑记录 | Fisher&#39;s 安全日记</title>
+  <title>Tag: 漏洞 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一个问题：为什么用docker第二个问题：docker是什么第三个问题：怎么用docker第四个问题：怎么安装docker（linux）第五个问题：将python打包到docker上第六个问题：docker运行项目的相关操作第七个问题：生成镜像报错后的none镜像怎么删除">
-<meta name="keywords" content="python,docker">
-<meta property="og:type" content="article">
-<meta property="og:title" content="python完整项目打包Docker入坑记录">
-<meta property="og:url" content="http://austfish.cn/2019/08/22/python完整项目打包Docker入坑记录/index.html">
+  <meta name="description" content="努力努力再努力，微信公众号：austfish">
+<meta name="keywords" content="学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fisher&#39;s 安全日记">
+<meta property="og:url" content="http://austfish.cn/tags/漏洞/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="第一个问题：为什么用docker第二个问题：docker是什么第三个问题：怎么用docker第四个问题：怎么安装docker（linux）第五个问题：将python打包到docker上第六个问题：docker运行项目的相关操作第七个问题：生成镜像报错后的none镜像怎么删除">
+<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/201812251444200.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-2.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-3.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-4.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-5.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-6.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-7.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-8.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-9.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-10.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-11.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-12.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-13.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-14.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-15.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-16.png">
-<meta property="og:image" content="http://austfish.cn/assets/blogImg/2019-8-22-17.png">
-<meta property="og:updated_time" content="2019-08-22T02:37:27.166Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python完整项目打包Docker入坑记录">
-<meta name="twitter:description" content="第一个问题：为什么用docker第二个问题：docker是什么第三个问题：怎么用docker第四个问题：怎么安装docker（linux）第五个问题：将python打包到docker上第六个问题：docker运行项目的相关操作第七个问题：生成镜像报错后的none镜像怎么删除">
-<meta name="twitter:image" content="http://austfish.cn/assets/blogImg/201812251444200.png">
+<meta name="twitter:title" content="Fisher&#39;s 安全日记">
+<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -181,134 +162,36 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-python完整项目打包Docker入坑记录" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      python完整项目打包Docker入坑记录
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/03/18/基于python爬虫的github-exploitdb漏洞库监控与下载/" class="archive-article-date">
+  	<time datetime="2019-03-18T06:43:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/18/基于python爬虫的github-exploitdb漏洞库监控与下载/">基于python爬虫的github-exploitdb漏洞库监控与下载</a>
     </h1>
   
 
-        
-        <a href="/2019/08/22/python完整项目打包Docker入坑记录/" class="archive-article-date">
-  	<time datetime="2019-08-22T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>第一个问题：为什么用docker<br>第二个问题：docker是什么<br>第三个问题：怎么用docker<br>第四个问题：怎么安装docker（linux）<br>第五个问题：将python打包到docker上<br>第六个问题：docker运行项目的相关操作<br>第七个问题：生成镜像报错后的none镜像怎么删除<br><a id="more"></a></p>
-<h4 id="第一个问题：为什么用docker"><a href="#第一个问题：为什么用docker" class="headerlink" title="第一个问题：为什么用docker"></a>第一个问题：为什么用docker</h4><p>在使用Docker部署安装之前，我们还是先认识下Docker的优点:</p>
-<ul>
-<li>软件构建容易，分发简单</li>
-<li>应用得到隔离，依赖被解除</li>
-<li>可以完美地用于 CI/CD</li>
-<li>快速部署，测试完以后销毁也方便</li>
-</ul>
-<hr>
-<h4 id="第二个问题：docker是什么"><a href="#第二个问题：docker是什么" class="headerlink" title="第二个问题：docker是什么"></a>第二个问题：docker是什么</h4><p>Docker的三个概念<br><strong>镜像（Image）</strong>：类似于虚拟机中的镜像。任何应用程序运行都需要环境，而镜像就是用来提供这种运行环境的。例如一个Ubuntu镜像就是一个包含Ubuntu操作系统环境的模板，同理在该镜像上装上Apache软件，就可以称为Apache镜像。</p>
-<p><strong>容器（Container）</strong>：类似于一个轻量级的沙盒，可以将其看作一个极简的Linux系统环境（包括root权限、进程空间、用户空间和网络空间等），以及运行在其中的应用程序。Docker引擎利用容器来运行、隔离各个应用。容器是镜像创建的应用实例，可以创建、启动、停止、删除容器，各个容器之间是是相互隔离的，互不影响。注意：镜像本身是只读的，容器从镜像启动时，Docker在镜像的上层创建一个可写层，镜像本身不变。</p>
-<p><strong>仓库（Repository）</strong>：类似于代码仓库，这里是镜像仓库，是Docker用来集中存放镜像文件的地方。注意与注册服务器（Registry）的区别：注册服务器是存放仓库的地方，一般会有多个仓库；而仓库是存放镜像的地方，一般每个仓库存放一类镜像，每个镜像利用tag进行区分，比如Ubuntu仓库存放有多个版本（12.04、14.04等）的Ubuntu镜像。</p>
-<hr>
-<h4 id="第三个问题：怎么用docker"><a href="#第三个问题：怎么用docker" class="headerlink" title="第三个问题：怎么用docker"></a>第三个问题：怎么用docker</h4><p>Docker 常用命令确认容器有在运行，可以通过 docker ps 来查看<br>使用 docker stop 容器Name 命令来停止容器<br>查看docker信息 docker info<br>删除镜像：docker rmi imageID<br>停用镜像：docker stop ImageID<br>重启镜像： docker start imageID<br>删除容器: docker rm ID<br>docker inspect 来查看 Docker 的底层信息<br>docker images 查看docker 镜像<br>从 Docker Hub 网站来搜索镜像，Docker Hub 网址为： <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a><br>使用 docker search 命令来搜索镜像。如搜索httpd的镜像。<br>使用命令 docker pull 来下载镜像。<br>命令 docker build ， 从零开始来创建一个新的镜像<br>容器连接：指定容器绑定的网络地址，比如绑定 127.0.0.1。</p>
-<hr>
-<h4 id="第四个问题：怎么安装docker（linux）"><a href="#第四个问题：怎么安装docker（linux）" class="headerlink" title="第四个问题：怎么安装docker（linux）"></a>第四个问题：怎么安装docker（linux）</h4><h6 id="1：禁用selinux（特别重要，不然可能pull失败）"><a href="#1：禁用selinux（特别重要，不然可能pull失败）" class="headerlink" title="1：禁用selinux（特别重要，不然可能pull失败）"></a>1：禁用selinux（特别重要，不然可能pull失败）</h6><p>禁用selinux，因为selinux和LXC有冲突，故而需要禁用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/selinux/config</span><br></pre></td></tr></table></figure></p>
-<p>以下是/etc/selinux/config的内容<br>enforcing - SELinux security policy is enforced.<br>permissive - SELinux prints warnings instead of enforcing.<br>disabled - No SELinux policy is loaded.SELINUX=disabled<br>将SELINUX设为disabled，注意修改后最好重启下机器。</p>
-<h6 id="2：安装yum-源"><a href="#2：安装yum-源" class="headerlink" title="2：安装yum 源"></a>2：安装yum 源</h6><p>直接使用命令: yum install docker-io<br>会报错:No package docker-io available.<br><img src="/assets/blogImg/201812251444200.png" alt> </p>
-<p> 需要先安装yum 源.yum -y install <a href="http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm" target="_blank" rel="noopener">http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</a></p>
-<h6 id="3：安装docker"><a href="#3：安装docker" class="headerlink" title="3：安装docker"></a>3：安装docker</h6><p> 执行：yum install docker-io<br> docker就安装成功了<br> 将docker开机启动：chkconfig docker on<br> 启动docker：service docker start<br> 查看docker版本：docker version<br> 查看docker日志：cat /var/log/docker<br><img src="/assets/blogImg/2019-8-22-2.png" alt><br> 到这里，docker就安装完成了。</p>
-<h6 id="4-卸载docker（不需要卸载的就直接看四，加速配置）"><a href="#4-卸载docker（不需要卸载的就直接看四，加速配置）" class="headerlink" title="4.卸载docker（不需要卸载的就直接看四，加速配置）"></a>4.卸载docker（不需要卸载的就直接看四，加速配置）</h6><p> 列出你安装过的docker：yum list installed | grep docker</p>
-<p><img src="/assets/blogImg/2019-8-22-3.png" alt> </p>
-<p> 删除软件包：yum -y remove docker-io.x86_64<br> 删除镜像/容器等：rm -rf /var/lib/docker</p>
-<h6 id="5-docker加速配置，国外的网可能比较慢，配置国内阿里云源（docker1-7修改方法）"><a href="#5-docker加速配置，国外的网可能比较慢，配置国内阿里云源（docker1-7修改方法）" class="headerlink" title="5.docker加速配置，国外的网可能比较慢，配置国内阿里云源（docker1.7修改方法）"></a>5.docker加速配置，国外的网可能比较慢，配置国内阿里云源（docker1.7修改方法）</h6><p> 执行编辑命令：<code>vi /etc/sysconfig/docker</code></p>
-<p> 加入下面两行<br> other_args=&quot;–registry-mirror=<a href="https://wbtwgo1e.mirror.aliyuncs.com" target="_blank" rel="noopener">https://wbtwgo1e.mirror.aliyuncs.com</a>&quot;<br> OPTIONS=’–registry-mirror=<a href="https://wbtwgo1e.mirror.aliyuncs.com&#39;" target="_blank" rel="noopener">https://wbtwgo1e.mirror.aliyuncs.com&#39;</a><br> 即可</p>
-<h4 id="第五个问题：将python打包到docker上"><a href="#第五个问题：将python打包到docker上" class="headerlink" title="第五个问题：将python打包到docker上"></a>第五个问题：将python打包到docker上</h4><p>步骤如下：</p>
-<h6 id="1：创建一个上传到Linux系统文件夹（文件名任意）"><a href="#1：创建一个上传到Linux系统文件夹（文件名任意）" class="headerlink" title="1：创建一个上传到Linux系统文件夹（文件名任意）"></a>1：创建一个上传到Linux系统文件夹（文件名任意）</h6><p>docker_EF_NFCS是要上传到Linux系统，生成Docker镜像的文件夹<br><img src="/assets/blogImg/2019-8-22-4.png" alt> </p>
-<p> docker_EF_NFCS文件夹下面有两个东东，</p>
-<p> 一个Dockerfile文件（没有后缀名）</p>
-<p> Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。有了 Dockerfile，就可以创建我们所需要的镜像<br> Dockerfile文件内容如下：<br> <img src="/assets/blogImg/2019-8-22-5.png" alt> </p>
-<p> #基于的基础镜像<br> FROM python:3.7</p>
-<p> #代码添加到code文件夹<br> ADD ./EF_NFCS /code</p>
-<p> #设置code文件夹是工作目录<br> WORKDIR /code</p>
-<p> #安装支持<br> RUN pip install -r requirements.txt<br> CMD [&quot;python&quot;, &quot;/code/package/server.py&quot;]</p>
-<hr>
-<p> 最后一条命令，就是说，当启动容器时候，执行server.py程序。<br><u> code目录与requirements.txt 同级目录</u></p>
-<p> 一个EF_NFCS（任意起的名字）文件夹：包含工程的代码，和运行工程所需要的环境列表</p>
-<p> 所以，EF_NFCS文件夹，有两个成员package和requirements.txt</p>
-<p><img src="/assets/blogImg/2019-8-22-6.png" alt> </p>
-<p> package就是Python项目的package（整个源码所在目录）直接复制过来的</p>
-<p> requirements.txt生成方法：<br> cmd命令，进入到【D:\python\EF_NFCS】目录，也就是工程目录，package的同级目录，<br> 执行命令：<br> pip freeze &gt; </p>
-<p> 就在该目录下生成了一个requirements.txt文件：<br> 如下图，可能很大，因为没有配合virtualenv ，就把整个环境中的包都列出来，没关系，我们可以删除我们此工程中，不需要的组件</p>
-<p><img src="/assets/blogImg/2019-8-22-7.png" alt> </p>
-<h6 id="2：上传到linux环境，生成镜像"><a href="#2：上传到linux环境，生成镜像" class="headerlink" title="2：上传到linux环境，生成镜像"></a>2：上传到linux环境，生成镜像</h6><p>  2.1：我们将docker_EF_NFCS文件夹，压缩成zip包，上传到Linux虚拟机系统中的某个路径下面</p>
-<p><img src="/assets/blogImg/2019-8-22-8.png" alt> </p>
-<p>  2.2：解压：执行命令：</p>
-<p>  unzip docker_EF_NFCS.zip</p>
-<p>  2.3：进入docker_EF_NFCS文件夹：</p>
-<p><img src="/assets/blogImg/2019-8-22-9.png" alt> </p>
-<p>  2.4：创建镜像：执行命令：<br>  docker build -t ef_nfcs_img .<br>  ef_nfcs_img 为创建的镜像名称，. 表示当前目录（docker_EF_NFCS）<br><img src="/assets/blogImg/2019-8-22-10.png" alt><br>  查看镜像是否创建成功：执行命令：docker images</p>
-<p><img src="/assets/blogImg/2019-8-22-11.png" alt> </p>
-<p>  可以看到ef_nfcs_img的镜像，已经存在了 </p>
-<h6 id="3：运行镜像，生成并启动容器"><a href="#3：运行镜像，生成并启动容器" class="headerlink" title="3：运行镜像，生成并启动容器"></a>3：运行镜像，生成并启动容器</h6><p>  执行命令：docker run -it -p 9060:9060 –name ef_nfcs ef_nfcs_img</p>
-<p>  -it：表示交互式终端的容器，非启动后立刻结束的容器</p>
-<p>  -p 9060:9060：表示将docker的9060端口，映射到Linux虚拟机的9060端口                        也就是说，访问Linux虚拟机的9060端口，就是在访问docker容器的9060端口</p>
-<p>  –name ef_nfcs：给容器取个名字，嫌麻烦可以省去</p>
-<p>  ef_nfcs_img：容器是用哪个镜像启动的（一个容器，必须依赖一个镜像启动）</p>
-<p><img src="/assets/blogImg/2019-8-22-12.png" alt> </p>
-<p>  和原来用PyCharm启动的效果一致：<br><img src="/assets/blogImg/2019-8-22-13.png" alt><br>   原来访问系统：</p>
-<p><img src="/assets/blogImg/2019-8-22-14.png" alt> </p>
-<hr>
-<h4 id="第六个问题：docker运行项目的相关操作"><a href="#第六个问题：docker运行项目的相关操作" class="headerlink" title="第六个问题：docker运行项目的相关操作"></a>第六个问题：docker运行项目的相关操作</h4><p>一些实用命令<br>退出容器又不关闭容器：Ctrl + P + Q<br>比如这种情况：<br><img src="/assets/blogImg/2019-8-22-15.png" alt><br>直接输入exit 会退出且关闭容器，工程就stop了<br>或者Ctrl + C，会报错KeyboardInterrupt，工程就也stop了<br>再访问就访问不了了：<br><img src="/assets/blogImg/2019-8-22-16.png" alt><br>此时，就需要使用命令：docker start 容器ID，去再启动容器后，就可以继续访问工程了，<br>使用命令：<br>docker exec -it 容器ID /bin/bash<br>或者<br>docker attach  容器ID，重新进入容器后，可查看程序打印的日志<br> 但是，如果使用Ctrl + P + Q退出容器，就不会中断工程，等于退出容器后，还可访问容器的工程，<br> 再进入，也是使用命令：docker attach  容器ID</p>
-<p> ctrl+d 退出容器且关闭, docker ps 查看无</p>
-<p> ctrl+p+q 退出容器但不关闭</p>
-<p> 查看安装的docker：yum list installed | grep docker<br> 查看容器：docker ps -a<br> 查看镜像：docker images<br> 删除容器：docker rm 容器ID<br> 删除镜像：docker rmi 镜像ID/镜像名<br> 安装rz上传，sz下载的命令：yum -y install lrzsz<br> docker inspect 容器ID：返回一个Json文件记录Docker容器的配置和状态信息 </p>
-<p> 将容器导出到容器的镜像文件 ： docker export 容器ID &gt; update.tar<br> 用容器的镜像文件创建一个新静像：docker import - 镜像名 &lt; update.tar<br> 创建完成之后，生成并启动镜像的容器：docker run -it  镜像名<br> 不行就在后面加一个/bin/bash ,然后进入code的package目录，手动启动程序：python server.py<br> 比如报错：Error response from daemon: No command specified<br><img src="/assets/blogImg/2019-8-22-17.png" alt><br>  镜像保存为镜像文件： docker save -o update1.tar update（update是一个已经存在的镜像）<br>  从镜像文件加载生成新镜像：docker load &lt; update1.tar</p>
-<h4 id="第七个问题：生成镜像报错后的none镜像怎么删除"><a href="#第七个问题：生成镜像报错后的none镜像怎么删除" class="headerlink" title="第七个问题：生成镜像报错后的none镜像怎么删除"></a>第七个问题：生成镜像报错后的none镜像怎么删除</h4><p>  删除none的镜像，要先删除镜像中的容器。要删除镜像中的容器，必须先停止容器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br><span class="line">  $ docker rmi $(docker images | grep &amp;quot;none&amp;quot; | awk &apos;&#123;print $3&#125;&apos;)</span><br></pre></td></tr></table></figure>
-<p>  直接删除带none的镜像，直接报错了。提示先停止容器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker stop $(docker ps -a | grep &amp;quot;Exited&amp;quot; | awk &apos;&#123;print $1 &#125;&apos;) //停止容器$ docker rm </span><br><span class="line"> $(docker ps -a | grep &amp;quot;Exited&amp;quot; | awk &apos;&#123;print $1 &#125;&apos;) //删除容器</span><br><span class="line"> $ docker rmi $(docker images | grep &amp;quot;none&amp;quot; | awk &apos;&#123;print $3&#125;&apos;) //删除镜像</span><br></pre></td></tr></table></figure>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -318,128 +201,25 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQY5iMQwFQO5/6W5pViPR0O858YiRKiv0+YRUFoll+/GIx9ef8fzk7+fPT/J5Xr35PP9jY+Dh4eGNlv5qPE/96p12cck/5mt4uR48PDy8Nd77Qzw59G9tWXKFJGvGw8PD+wRe8m3+eXZ54OHh4f1fvHZB7Wa9/y0eHh7ep/Ha1ECeWm2D6fz6uZxrwcPDw4t5bQHsEz4v1vfw8PDwDpKt+YGbv58Xus4HHh4e3gZv1gg1C4tnwXdekHs5Px4eHt5V3kljUxvgJjOcpC1+2Ag8PDy8BV57fBdlp1G4fHIZFLlqPDw8vGNevoi8zJ+Uzc4PfTw8PLx/z0uO2lnbU0uaXUhFFI+Hh4d3lZenDGYH96zE1SKL0hceHh7eJd4MM0tStMFx+y0eHh7eHi8vU91KKMzmby8wPDw8vG1e3nSVL3HWWJDzitnw8PDwrvISWJLkzdO47ZYdUfHw8PAWeHcLUW3qYbYFyVbi4eHh7fGShELeXNUG3G3yt278wsPDw1vj5X+ZL3d29CeluOLywMPDw1vgvT9kkxRtvim3sgf5hYSHh4e3x8tP0TaFMWvqursGPDw8vA1eG0bP/j5PK7RH/y+BOx4eHt4Cb9Zk0DYEtFvWjpMgHg8PDy/n3Tr6T4LskyRvnXrAw8PDu8RrL4a28D9L47az/fArPDw8vAVeWwBLSlNt00B+0A83Dg8PD+8qL29vOk9GXGuiyt/Bw8PDW+bNroH8SdtE1RbAom4yPDw8vGPerQJY0jQwS+/uXSd4eHh4J7xZ6StntLO9vyTq+fHw8PDWeCdFr2RBJynjPA2Nh4eH92m8PK0wS/7msCLUxsPDw/sAXtso0AbcbdPAL7Ph4eHhrfGSZESCnF0bSTjergQPDw9vjzcrgM1SGHmDwoWGADw8PLz7vG+Z0e4Ded5jqQAAAABJRU5ErkJggg==" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/08/29/Python工具库/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python工具库
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/03/18/基于python爬虫的github-exploitdb漏洞库监控与下载/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基于python爬虫的github-exploitdb漏洞库监控与下载</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="python完整项目打包Docker入坑记录" ></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "cyuoyyRfG"; 
-var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
-
-  
+    
 
 
           </div>
@@ -468,9 +248,9 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
