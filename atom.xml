@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Fisher&#39;s Blog</title>
+  <title>Fisher&#39;s 安全日记</title>
   
   <subtitle>初级安全研究员的上分路</subtitle>
   <link href="/atom.xml" rel="self"/>
