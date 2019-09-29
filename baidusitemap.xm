@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2017/04/09/%E6%BC%8F%E6%89%AB%E5%B7%A5%E5%85%B7AWVS%E9%85%8D%E5%90%88sqlmap%E6%B3%A8%E5%85%A5%E7%82%B9%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-09-29</lastmod>
+  </url>  <url>
+    <loc>http://austfish.cn/2017/03/20/URL%E9%87%8D%E5%AE%9A%E5%90%91-%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E%E8%A7%A3%E9%87%8A%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2019-09-29</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2017/10/24/%E5%A4%A9%E4%B8%8B%E6%AD%A6%E5%8A%9F%E5%94%AF%E5%BF%AB%E4%B8%8D%E7%A0%B4-CTF-Web%E9%A2%98WriteUp/</loc>
     <lastmod>2019-09-29</lastmod>
   </url>  <url>

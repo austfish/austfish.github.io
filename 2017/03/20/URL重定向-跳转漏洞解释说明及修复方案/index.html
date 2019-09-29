@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Fisher&#39;s 安全日记</title>
+  <title>URL重定向/跳转漏洞解释说明及修复方案 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="body{ 			background: #fff; 		} 		.bufBox{ 			float: left; 			width: 50px; 			height: 50px; 			background: #ddd; 			border-radius: 5px; 			text-align: center; 			line-height: 50px; 			margin: 0">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/assets/demo/coffee_pc_demo/pro-con.html">
+  <meta name="description" content="由于应用越来越多的需要和其他的第三方应用交互，以及在自身应用内部根据不同的逻辑将用户引向到不同的页面，譬如一个典型的登录接口就经常需要在认证成功之后将用户引导到登录之前的页面，整个过程中如果实现不好就可能导致一些安全问题，特定条件下可能引起严重的安全漏洞。">
+<meta name="keywords" content="web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="URL重定向&#x2F;跳转漏洞解释说明及修复方案">
+<meta property="og:url" content="http://austfish.cn/2017/03/20/URL重定向-跳转漏洞解释说明及修复方案/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="body{ 			background: #fff; 		} 		.bufBox{ 			float: left; 			width: 50px; 			height: 50px; 			background: #ddd; 			border-radius: 5px; 			text-align: center; 			line-height: 50px; 			margin: 0">
+<meta property="og:description" content="由于应用越来越多的需要和其他的第三方应用交互，以及在自身应用内部根据不同的逻辑将用户引向到不同的页面，譬如一个典型的登录接口就经常需要在认证成功之后将用户引导到登录之前的页面，整个过程中如果实现不好就可能导致一些安全问题，特定条件下可能引起严重的安全漏洞。">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
+<meta property="og:updated_time" content="2019-09-29T09:28:33.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="body{ 			background: #fff; 		} 		.bufBox{ 			float: left; 			width: 50px; 			height: 50px; 			background: #ddd; 			border-radius: 5px; 			text-align: center; 			line-height: 50px; 			margin: 0">
+<meta name="twitter:title" content="URL重定向&#x2F;跳转漏洞解释说明及修复方案">
+<meta name="twitter:description" content="由于应用越来越多的需要和其他的第三方应用交互，以及在自身应用内部根据不同的逻辑将用户引向到不同的页面，譬如一个典型的登录接口就经常需要在认证成功之后将用户引导到登录之前的页面，整个过程中如果实现不好就可能导致一些安全问题，特定条件下可能引起严重的安全漏洞。">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -163,68 +163,45 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-URL重定向-跳转漏洞解释说明及修复方案" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      URL重定向/跳转漏洞解释说明及修复方案
+    </h1>
+  
+
+        
+        <a href="/2017/03/20/URL重定向-跳转漏洞解释说明及修复方案/" class="archive-article-date">
+  	<time datetime="2017-03-20T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-	<style type="text/css">
-		body{
-			background: #fff;
-		}
-		.bufBox{
-			float: left;
-			width: 50px;
-			height: 50px;
-			background: #ddd;
-			border-radius: 5px;
-			text-align: center;
-			line-height: 50px;
-			margin: 0 5px;
-			position:relative;
-			overflow: hidden;
-		}
-		.bufCover{
-			width: 100%;
-			height: 0;
-			background: #f0f;
-			border-radius: 5px;
-			position: absolute;
-		}
-		#buf{
-			height: 60px;
-		}
-		#des p{
-			padding: 4px 0;
-			margin: 0;
-			font-size: 14px;
-		}
-		#des .desPro{
-			color: #333;
-			background: #EEE;
-		}
-		#des .desCon{
-			color: #EEE;
-			background: #333;
-		}
-		#des .desSpe{
-			background: #BBB;
-		}
-	</style>
-	<script type="text/javascript" src="../jquery.js"></script>
-</head>
-<body>
-	<button id="produce">生产</button>
-	<button id="consume">消费</button>
-	<div id="buf">
-	</div>
-	<div id="des"><p></p></div>
-	<script type="text/javascript" src="pro-con.js"></script>
-</body>
-</html>
+        <p>由于应用越来越多的需要和其他的第三方应用交互，以及在自身应用内部根据不同的逻辑将用户引向到不同的页面，譬如一个典型的登录接口就经常需要在认证成功之后将用户引导到登录之前的页面，整个过程中如果实现不好就可能导致一些安全问题，特定条件下可能引起严重的安全漏洞。<br><a id="more"></a></p>
+<h2 id="0x00-相关背景介绍"><a href="#0x00-相关背景介绍" class="headerlink" title="0x00 相关背景介绍"></a>0x00 相关背景介绍</h2><p>由于应用越来越多的需要和其他的第三方应用交互，以及在自身应用内部根据不同的逻辑将用户引向到不同的页面，譬如一个典型的登录接口就经常需要在认证成功之后将用户引导到登录之前的页面，整个过程中如果实现不好就可能导致一些安全问题，特定条件下可能引起严重的安全漏洞。</p>
+<h2 id="0x01-成因"><a href="#0x01-成因" class="headerlink" title="0x01 成因"></a>0x01 成因</h2><p>对于URL跳转的实现一般会有几种实现方式：</p>
+<p><strong>META标签内跳转<br>javascript跳转<br>header头跳转</strong></p>
+<p>通过以GET或者POST的方式接收将要跳转的URL，然后通过上面的几种方式的其中一种来跳转到目标URL。一方面，由于用户的输入会进入 Meta，javascript，http头所以都可能发生相应上下文的漏洞，如xss等等，但是同时，即使只是对于URL跳转本身功能方面就存在一个缺 陷，因为会将用户浏览器从可信的站点导向到不可信的站点，同时如果跳转的时候带有敏感数据一样可能将敏感数据泄漏给不可信的第三方。</p>
+<p>譬如一个典型的登录跳转如下：</p>
+<p><code>&lt;?php  $url=$_GET[‘jumpto’];  header(“Location: $url”);  ?&gt;</code><br>如果jumpto没有任何限制，所以恶意用户可以提交</p>
+<p><code>http://www.xxx.net/login.php?jumpto=http://www.evil.com</code><br>来生成自己的恶意链接，安全意识较低的用户很可能会以为该链接展现的内容是<strong><a href="http://www.wooyun.org" target="_blank" rel="noopener">www.wooyun.org</a></strong>从而可能产生欺诈行为，同时由于QQ，淘宝 旺旺等在线IM都是基于URL的过滤，同时对一些站点会一白名单的方式放过，所以导致恶意URL在IM里可以传播，从而产生危害，譬如这里IM会认为 <strong><a href="http://www.2cto.com" target="_blank" rel="noopener">www.2cto.com</a></strong> 都是可信的，但是通过在IM里点击上述链接将导致用户最终访问evil.com。</p>
+<h2 id="0x02-攻击方式及危害"><a href="#0x02-攻击方式及危害" class="headerlink" title="0x02 攻击方式及危害"></a>0x02 攻击方式及危害</h2><p>恶意用户完全可以借用URL跳转漏洞来欺骗安全意识低的用户，从而导致“中奖”之类的欺诈，这对于一些有在线业务的企业如淘宝等，危害较大，同时借 助URL跳转，也可以突破常见的基于“白名单方式”的一些安全限制，如传统IM里对于URL的传播会进行安全校验，但是对于大公司的域名及URL将直接允 许通过并且显示会可信的URL，而一旦该URL里包含一些跳转漏洞将可能导致安全限制被绕过。</p>
+<p>如果引用一些资源的限制是依赖于“白名单方式”，同样可能被绕过导致安全风险，譬如常见的一些应用允许引入可信站点如youku.com的视频，限 制方式往往是检查URL是否是youku.com来实现，如果youku.com内含一个url跳转漏洞，将导致最终引入的资源属于不可信的第三方资源或 者恶意站点，最终导致安全问题。</p>
+<h2 id="0x03-实际案例"><a href="#0x03-实际案例" class="headerlink" title="0x03 实际案例"></a>0x03 实际案例</h2><h3 id="a-WooYun-百度一个URL跳转漏洞"><a href="#a-WooYun-百度一个URL跳转漏洞" class="headerlink" title="a WooYun: 百度一个URL跳转漏洞"></a>a WooYun: 百度一个URL跳转漏洞</h3><p>通过url跳转突破IM的安全校验，从而传播恶意URL</p>
+<h3 id="b-WooYun-第五次遇到利用淘宝网网址跳转的网钓"><a href="#b-WooYun-第五次遇到利用淘宝网网址跳转的网钓" class="headerlink" title="b WooYun: 第五次遇到利用淘宝网网址跳转的网钓"></a>b WooYun: 第五次遇到利用淘宝网网址跳转的网钓</h3><p>通过url跳转欺骗交易用户对URL的信任，从而实现欺诈</p>
+<p>通过URL跳转绕过应用程序对引用资源的限制，从而导致安全漏洞</p>
+<h3 id="d-WooYun-豆瓣电台认证绕过及csrf防范策略绕过漏洞"><a href="#d-WooYun-豆瓣电台认证绕过及csrf防范策略绕过漏洞" class="headerlink" title="d WooYun: 豆瓣电台认证绕过及csrf防范策略绕过漏洞"></a>d WooYun: 豆瓣电台认证绕过及csrf防范策略绕过漏洞</h3><p>借助未验证的URL跳转，可以将应用程序内部敏感的数据传递到不安全的第三方区域</p>
+<h2 id="0x04-修复方案"><a href="#0x04-修复方案" class="headerlink" title="0x04 修复方案"></a>0x04 修复方案</h2><p>理论上讲，url跳转属于CSRF的一种，我们需要对传入的URL做有效性的认证，保证该URL来自于正确的地方，限制的方式同防止csrf一样可以包括：</p>
+<h3 id="1-referer的限制"><a href="#1-referer的限制" class="headerlink" title="1 referer的限制"></a>1 referer的限制</h3><p>###<br>如果确定传递URL参数进入的来源，我们可以通过该方式实现安全限制，保证该URL的有效性，避免恶意用户自己生成跳转链接</p>
+<p>### </p>
+<h3 id="2-加入有效性验证Token"><a href="#2-加入有效性验证Token" class="headerlink" title="2 加入有效性验证Token"></a>2 加入有效性验证Token</h3><p>我们保证所有生成的链接都是来自于我们可信域的，通过在生成的链接里加入用户不可控的Token对生成的链接进行校验，可以避免用户生成自己的恶意链接从而被利用，但是如果功能本身要求比较开放，可能导致有一定的限制。</p>
+
       
 
       
@@ -263,6 +240,17 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -313,7 +301,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3awZKrMAwEwP3/n8677h6gZizyqrCbU4oQcHNQJEs/P/Hx+XVcfXt/ZX7m6ikPHBgYGK9lfG6PdnH5i7i6//35SyoGBsYBjCSM3n9+6sz9/S/PY2BgYAyoSXCfPBcDAwMjSeOSK+9TxiR9xMDAwFhbXLtB1haoX6nFMTAwXshYe/z/+fyV/gYGBsarGJ/yyDf0k28nK/lzTwwMjK0ZeYBLMPMWwmQ9GBgYezMmG/dr4fX+1Tww5IGBgbERo92yv1/uPaAN2UmT4E+Gi4GBcQCjfUCeqK1RiwYABgbGMYw8mOYBd21Eo85tMTAwtmZMUrp207+Nk/lgGQYGxjmMNuDmIbVtc64FdAwMjF0ZayEvH5tYSxnrvwEMDIytGXkDchJk2yvbAhsDA+MERtQmHLQk81K2LXcxMDBOYOSBtd1Ky9PKtYI5KmIxMDA2YuQjFGtNgpza/ra4BQYGxmsZa03HtuxMhsMmYx8YGBjnMCZNxO+x60CMgYGxKaNNv/Lrk5eSB9xiZgQDA+MYRpRFBtd/IwUsAi4GBsZGjKTGnYxtTUbNRuUrBgbGyxmf8shHJfJFtyH4MinEwMDYlNEWrpM0Ln9B81EzDAyM/Rj1xtajwXEt4I46GxgYGK9ltGlfPuz1VBEb9WAxMDAwxq3KtvSts1cMDAyMEpC3FibpIwYGxjmMtQ21JGVcSyXrwQ4MDIytGW3elWOeGjibl74YGBivZfwD65nbGbN5LPMAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQW4bMRAEQP3/0w6QqyOpe4a0BaT2JMgr7tQeSLqHj0d8ff29nn3z9e1K7vx+z/e/vh752IWHh4c3Kv3Z9azE2at5/ZTkFeQ14+Hh4d3mJWUls247Qr6E5PXg4eHhfQ4veeTre/Dw8PD+N14STMy+bxcePDw8vE/gJWHE6yl+H862gcjhrAUPDw8v5s02u7/7+WJ/Dw8PD2/RVW8bY7O49lQ9/6gQDw8P7wIv3y4nrf0EnD8rP1jwZjQ8PDy8o7z2x5v4NR+5bcg9vRMPDw/vGm+2MCSf82Opmybc01eDh4eHd4GXb4JnG/FZUy1ZropK8PDw8C7w8hB21v6fLTB5qFEsb3h4eHhrXrLNbR+WIDcHAoox8fDw8C7wZrFpG7m203r72zd4PDw8vAu8/Wa33Zq3Qe3m4AIeHh7eDd4sSM3vyQ8ftK2yKAjGw8PDu8Zri2sPVLUBRL4wvAHj4eHhHeXlJW5KaQOItoX2pgGGh4eHd42Xt7JmUcWp41ZFGIGHh4d3jTcLBdpDA2dbYskigYeHh3eP125wZ1HsqWCieDoeHh7eBV67wc0n8fa3CXV4GAsPDw/vKG826ecPnm2OZ4FFdGgADw8P7xDvMbqSqGL//SbCwMPDw7vBO9XgP9tO2xwXwMPDw/sZ3mYSz2PWNrCYxROrfToeHh5ezMv/vZ+VmLSpZtN9FAfj4eHhXeO1jav2RdRljQ4WPPLS8fDw8Ea8r/LaF5e/gvz+p5Xg4eHhXeBt2l15iJAvJ+2Yq9wFDw8Pb8HLF4O80ZUfL8in9QNNLzw8PLyjvFlb62yokYzQtu7w8PDwPoGXlJJvwdtWWR1A4OHh4f0qL98Qt2FEyyjiYDw8PLxrvNmxp01Qe2qxOZa14OHh4cW8TQOshW2Wh3bBwMPDw7vA+wM0GnOonXkyWAAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -325,6 +313,20 @@ var _hmt = _hmt || [];
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/04/09/漏扫工具AWVS配合sqlmap注入点测试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          漏扫工具AWVS配合sqlmap注入点测试
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -349,7 +351,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="" ></div> 
+  <div id="SOHUCS" sid="URL重定向-跳转漏洞解释说明及修复方案" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyuoyyRfG"; 
@@ -388,7 +390,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
