@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2017/10/24/%E5%A4%A9%E4%B8%8B%E6%AD%A6%E5%8A%9F%E5%94%AF%E5%BF%AB%E4%B8%8D%E7%A0%B4-CTF-Web%E9%A2%98WriteUp/</loc>
+    <lastmod>2019-09-29</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2017/06/17/%E7%A4%BE%E5%B7%A5%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB%EF%BC%9AQQ%E5%8F%B7%E5%AE%9A%E4%BD%8D/</loc>
     <lastmod>2019-09-29</lastmod>
   </url>  <url>

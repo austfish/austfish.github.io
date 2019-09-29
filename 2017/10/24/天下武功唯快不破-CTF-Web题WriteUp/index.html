@@ -6,20 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Fisher&#39;s 安全日记</title>
+  <title>天下武功唯快不破:CTF-Web题WriteUp | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/assets/demo/jiugongge_demo.html">
+  <meta name="description" content="所需工具  实验吧：http://www.shiyanbar.com/ 题目链接：http://www.shiyanbar.com/ctf/1854 解题链接： http://ctf5.shiyanbar.com/web/10/10.php">
+<meta name="keywords" content="CTF,WP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天下武功唯快不破:CTF-Web题WriteUp">
+<meta property="og:url" content="http://austfish.cn/2017/10/24/天下武功唯快不破-CTF-Web题WriteUp/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
+<meta property="og:description" content="所需工具  实验吧：http://www.shiyanbar.com/ 题目链接：http://www.shiyanbar.com/ctf/1854 解题链接： http://ctf5.shiyanbar.com/web/10/10.php">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20190929/hR4panAiA8nX.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20190929/HEIluRW5JKc1.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20190929/7ybB5yULYNXa.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20190929/SveLxlcdGAfz.gif">
+<meta property="og:updated_time" content="2019-09-29T09:12:22.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
+<meta name="twitter:title" content="天下武功唯快不破:CTF-Web题WriteUp">
+<meta name="twitter:description" content="所需工具  实验吧：http://www.shiyanbar.com/ 题目链接：http://www.shiyanbar.com/ctf/1854 解题链接： http://ctf5.shiyanbar.com/web/10/10.php">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/blog/20190929/hR4panAiA8nX.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -163,164 +168,50 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-天下武功唯快不破-CTF-Web题WriteUp" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      天下武功唯快不破:CTF-Web题WriteUp
+    </h1>
+  
+
+        
+        <a href="/2017/10/24/天下武功唯快不破-CTF-Web题WriteUp/" class="archive-article-date">
+  	<time datetime="2017-10-24T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-24</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-<!DOCTYPE HTML>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-	<meta charset="utf-8">
-	<title>jiugongge_demo</title>
-	<style>
-		*{
-			margin:0;
-			padding: 0;
-		}
-		table{
-			margin: 30px;
-			border-collapse: collapse;
-		}
-		#test0{
-			margin: 30px;
-			width: 200px;
-			height: 200px;
-		}
-		#test0 div{
-			width: 50px;
-			height: 50px;
-			float: left;
-			background: #eee;
-			border: 5px solid #00f;
-			text-align: center;
-			line-height: 50px;
-			color: #090;
-			position: relative;
-		}
-		#test0 .lr_indent{
-			margin-left: -5px;
-			margin-right: -5px;
-		}
-		#test0 .tb_indent{
-			margin-top: -5px;
-			margin-bottom: -5px;
-		}
-		#test0 div:hover{
-			border: 5px solid #f00;
-			z-index: 999;
-			background: #eee;
-		}
-		#test1 td{
-			width: 50px;
-			height: 50px;
-			background: #eee;
-			position: relative;
-			border: 5px solid #00f;
-			text-align: center;
-		}
-		#test1 td span{
-			color: #090;
-			display:block;
-			width: 50px;
-			height: 50px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			line-height: 50px;
-		}
-		#test1 td span:hover{
-			border: 5px solid #f00;
-			margin-top:-5px;
-			margin-left: -5px;
-		}
+        <p><strong>所需工具</strong></p>
+<ol>
+<li>实验吧：<a href="http://www.shiyanbar.com/" target="_blank" rel="noopener">http://www.shiyanbar.com/</a></li>
+<li>题目链接：<a href="http://www.shiyanbar.com/ctf/1854" target="_blank" rel="noopener">http://www.shiyanbar.com/ctf/1854</a></li>
+<li>解题链接： <a href="http://ctf5.shiyanbar.com/web/10/10.php" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/10/10.php</a><a id="more"></a>
+</li>
+</ol>
+<h1 id="天下武功唯快不破-CTF-Web题WriteUp"><a href="#天下武功唯快不破-CTF-Web题WriteUp" class="headerlink" title="天下武功唯快不破:CTF-Web题WriteUp"></a>天下武功唯快不破:CTF-Web题WriteUp</h1><h3 id="实验吧：http-www-shiyanbar-com"><a href="#实验吧：http-www-shiyanbar-com" class="headerlink" title="实验吧：http://www.shiyanbar.com/"></a>实验吧：<a href="http://www.shiyanbar.com/" target="_blank" rel="noopener">http://www.shiyanbar.com/</a></h3><p><img src="http://qiniu.austfish.cn/blog/20190929/hR4panAiA8nX.png?imageslim" alt="mark"></p>
+<h3 id="题目链接：http-www-shiyanbar-com-ctf-1854"><a href="#题目链接：http-www-shiyanbar-com-ctf-1854" class="headerlink" title="题目链接：http://www.shiyanbar.com/ctf/1854"></a>题目链接：<a href="http://www.shiyanbar.com/ctf/1854" target="_blank" rel="noopener">http://www.shiyanbar.com/ctf/1854</a></h3><h3 id="解题链接：-http-ctf5-shiyanbar-com-web-10-10-php"><a href="#解题链接：-http-ctf5-shiyanbar-com-web-10-10-php" class="headerlink" title="解题链接： http://ctf5.shiyanbar.com/web/10/10.php"></a>解题链接： <a href="http://ctf5.shiyanbar.com/web/10/10.php" target="_blank" rel="noopener">http://ctf5.shiyanbar.com/web/10/10.php</a></h3><p>打开链接可以看到：</p>
+<blockquote>
+<p>There is no martial art is indefectible, while the fastest speed is the only way for long success.<br>—-You must do it as fast as you can!—-&lt;&lt;&lt;&lt;&lt;&lt;</p>
+</blockquote>
+<p><strong>从字面理解就是需要最快的速度去提交信息，然后获得flag。<br>题目有个小细节，就是在网页的源码中可以看到注释提示！</strong></p>
+<blockquote>
+<p>There is no martial art is indefectible, while the fastest speed is the only way for long success.<br><br>&gt;&gt;&gt;&gt;&gt;&gt;—-You must do it as fast as you can!—-&lt;&lt;&lt;&lt;&lt;&lt;<br><br><!-- please post what you find with parameter:key --></p>
+</blockquote>
+<h5 id="也就是需要用post去提交一个key值"><a href="#也就是需要用post去提交一个key值" class="headerlink" title="也就是需要用post去提交一个key值"></a>也就是需要用post去提交一个key值</h5><h5 id="抓包找寻题目的信息"><a href="#抓包找寻题目的信息" class="headerlink" title="抓包找寻题目的信息"></a>抓包找寻题目的信息</h5><h5 id="使用Chrome开发者工具查看http头的信息"><a href="#使用Chrome开发者工具查看http头的信息" class="headerlink" title="使用Chrome开发者工具查看http头的信息"></a>使用Chrome开发者工具查看http头的信息</h5><h5 id="刷新网页，在Nerwork中header可以看到报文信息！"><a href="#刷新网页，在Nerwork中header可以看到报文信息！" class="headerlink" title="刷新网页，在Nerwork中header可以看到报文信息！"></a>刷新网页，在Nerwork中header可以看到报文信息！</h5><p><img src="http://qiniu.austfish.cn/blog/20190929/HEIluRW5JKc1.png?imageslim" alt="mark"></p>
+<h5 id="里面有个FLAG的base64加密的字符串，解密一波看看！"><a href="#里面有个FLAG的base64加密的字符串，解密一波看看！" class="headerlink" title="里面有个FLAG的base64加密的字符串，解密一波看看！"></a>里面有个FLAG的base64加密的字符串，解密一波看看！</h5><h5 id="P0ST-THIS-T0-CH4NGE-FL4G-8VWjFNjhN"><a href="#P0ST-THIS-T0-CH4NGE-FL4G-8VWjFNjhN" class="headerlink" title="P0ST_THIS_T0_CH4NGE_FL4G:8VWjFNjhN"></a><strong>P0ST_THIS_T0_CH4NGE_FL4G:8VWjFNjhN</strong></h5><h5 id="并不是题目要求的flag，毕竟不应该这么简单！"><a href="#并不是题目要求的flag，毕竟不应该这么简单！" class="headerlink" title="并不是题目要求的flag，毕竟不应该这么简单！"></a>并不是题目要求的flag，毕竟不应该这么简单！</h5><h5 id="解码的意思应该是让我们post传这个后面的字符串：8VWjFNjhN"><a href="#解码的意思应该是让我们post传这个后面的字符串：8VWjFNjhN" class="headerlink" title="解码的意思应该是让我们post传这个后面的字符串：8VWjFNjhN"></a>解码的意思应该是让我们post传这个后面的字符串：<strong>8VWjFNjhN</strong></h5><h5 id="使用Python几行代码搞定吧"><a href="#使用Python几行代码搞定吧" class="headerlink" title="使用Python几行代码搞定吧"></a>使用Python几行代码搞定吧</h5><p><code>import requests
+import base64
+a = requests.post(&#39;http://ctf5.shiyanbar.com/web/10/10.php&#39;,data={&#39;key&#39;:str(base64.b64decode(requests.get(&#39;http://ctf5.shiyanbar.com/web/10/10.php&#39;).headers[&#39;FLAG&#39;])).split(&#39;:&#39;)[-1].strip(&#39;\&#39;&#39;)})
+a.text</code></p>
+<p> <img src="http://qiniu.austfish.cn/blog/20190929/7ybB5yULYNXa.png?imageslim" alt="mark"></p>
+<h5 id="简单的解释一下就是获取网站中http报文信息的头信息中FLAG并对其解码，"><a href="#简单的解释一下就是获取网站中http报文信息的头信息中FLAG并对其解码，" class="headerlink" title="简单的解释一下就是获取网站中http报文信息的头信息中FLAG并对其解码，"></a>简单的解释一下就是获取网站中http报文信息的头信息中FLAG并对其解码，</h5><h5 id="然后通过中间的：分割字符串并获得后面的关键的字符串8VWjFNjhN，"><a href="#然后通过中间的：分割字符串并获得后面的关键的字符串8VWjFNjhN，" class="headerlink" title="然后通过中间的：分割字符串并获得后面的关键的字符串8VWjFNjhN，"></a>然后通过中间的：分割字符串并获得后面的关键的字符串8VWjFNjhN，</h5><h5 id="然后随手去掉多去的引号。"><a href="#然后随手去掉多去的引号。" class="headerlink" title="然后随手去掉多去的引号。"></a>然后随手去掉多去的引号。</h5><h5 id="把这个字符串作为key的键值通过POST传回去，"><a href="#把这个字符串作为key的键值通过POST传回去，" class="headerlink" title="把这个字符串作为key的键值通过POST传回去，"></a>把这个字符串作为key的键值通过POST传回去，</h5><h5 id="返回了FLAG"><a href="#返回了FLAG" class="headerlink" title="返回了FLAG"></a>返回了FLAG</h5><p> <img src="http://qiniu.austfish.cn/blog/20190929/SveLxlcdGAfz.gif" alt="mark"><br><em>hahahaha~<br>感谢bk帮我解决python上面的问题~</em></p>
 
-		#test2 td{
-			width: 50px;
-			height: 50px;
-			background: #eee;
-			border: 5px solid #00f;
-			text-align: center;
-			vertical-align: top;
-		}
-		#test2 td div{
-			position:relative;
-			width: 50px;
-			height: 50px;
-		}
-		#test2 td div span{
-			color: #090;
-			display:block;
-			width: 50px;
-			height: 50px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			line-height: 50px;
-		}
-		#test2 td div span:hover{
-			border: 5px solid #f00;
-			margin-left: -5px;
-			margin-top: -5px;
-		}
-	</style>
-</head>
-<body>
-	<h2>1) div+负margin实现</h2>
-	<div id="test0">
-		<div>1</div>
-		<div class="lr_indent">2</div>
-		<div>3</div>
-		<div class="tb_indent">4</div>
-		<div class="lr_indent tb_indent">5</div>
-		<div class="tb_indent">6</div>
-		<div>7</div>
-		<div class="lr_indent">8</div>
-		<div>9</div>
-	</div>
-	<h2>2.1) table border-collapse: collapse实现</h2>
-	<div id="test1">
-		<table>
-			<tr>
-				<td><span>1</span></td>
-				<td><span>2</span></td>
-				<td><span>3</span></td>
-			</tr>
-			<tr>
-				<td><span>4</span></td>
-				<td><span>5</span></td>
-				<td><span>6</span></td>
-			</tr>
-			<tr>
-				<td><span>7</span></td>
-				<td><span>8</span></td>
-				<td><span>9</span></td>
-			</tr>
-		</table>
-	</div>
-	<h2>2.2) table思路改进</h2>
-	<div id="test2">
-		<table>
-			<tr>
-				<td><div><span>1</span></div></td>
-				<td><div><span>2</span></div></td>
-				<td><div><span>3</span></div></td>
-			</tr>
-			<tr>
-				<td><div><span>4</span></div></td>
-				<td><div><span>5</span></div></td>
-				<td><div><span>6</span></div></td>
-			</tr>
-			<tr>
-				<td><div><span>7</span></div></td>
-				<td><div><span>8</span></div></td>
-				<td><div><span>9</span></div></td>
-			</tr>
-		</table>
-	</div>
-</body>
-</html>
       
 
       
@@ -359,6 +250,21 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">WP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -409,7 +315,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aSY7jMBAEwP7/pz0PMKTOLLIHEBU8GbJgOngo1MKfn3h9vtb3t99vXr1z/+T7+baFgYHxWMbndl1tcPU52eUef//8koqBgfECxtXG+TstKdkr3xcDAwMjD46zYLp+fBgYGBhJupYUtLP3MTAwMPIiNilN86SwLZ631eIYGBgPZMy2/z+f/2S+gYGB8SjGp1x5gdqGy8/CwsDAOJsxG0C2jbYNBWqSkmJgYBzN2BXy1gvgfHiwLU3EwMB4IGN2PWI2krynJsdRTDkwMDAey0i2nCWF62llcbgYGBhHM9oSMU8NkyczQJEsYmBgHMGYtc/aceMu9nADDAyMIxhJMM3fmaWD+bDzlwwXAwPjOMauqNWG6TYc5609DAyMUxmzpn8elFeOKfllDAyMNzDy1lh75WJ2NLMBKgYGxqmMWeNs9rfaXHV42QIDA+M4Rttpn8W3XWODAoCBgXEQIy8jZ2liO6rcfNkCAwPjCEY7bizaXuW1sOTgouElBgbGCxj5H5oNFdrDKgppDAyMFzCKq1ebCuDNtTgGBsYLGO1AMQ/TM16yb1SRY2BgPJyxcp0iP4J2tJD/ZpR7YmBgPJyxMmhMAm5+5SIP0ytpKwYGxnMZK+2wtsWflKNtqoqBgfEexqwE3Xv9om3nYWBgYLSFazv+bBNBDAwMjOJaQ5neJSljW9ZezjcwMDCOZiRF7F9cRc3bcL+8j4GBcTRjVjrmyF1/YqX0xcDAeCzjH09wiYdTvYIjAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3awW7bMBAE0Pz/T7dATwFayTO7ouMCTydDcCg+GhA3s/z6iq9ff67vn7/fufrm/Z2/x7ka+f6JD1x4eHh4o6lfXVcPuH9YO+b9/dl38PDw8E7z8s0g3xLyjSS/8jnj4eHhfQIvL7tnpXNb1uPh4eH9L7xNsZvAkjACDw8P7xN4T5Wwe/x+HDw8PLzTvE05+1Ofj/f38PDw8EZtqvsXbt7KSorjfBMqZouHh4d3gNdOLg8p8jvt9pPsAl95loyHh4c34j0VKySj5XfaeKLOqvHw8PAWvLbwbRdidlxgNqvLkhoPDw/vUV7bpJ+9vttoIyn62zgDDw8P7xwvYbQv9DxEaLeZojGGh4eHt+a18WgbwrabSnse4AUYDw8P7xhv0+DfHCDYvL2jv8XDw8M7wGsL4hyTR8D5oYFN+w0PDw/vBG/W4krK4vY7+cLVWwIeHh7eQ7z7UjUvZPOp5KFtPpPLGeLh4eG9hZe3x2Yt/zZcaJcDDw8P7z28NuTNY9mkmJ5tEtEc8PDw8B7ltf/279tg7WGCfGn+MQIeHh7eMd6mcTUrpoeN/3iJi5XDw8PDK3mbBlXe2s+DhqcOaeHh4eG9k7dvYu2n3m5CL34qPDw8vMO82STyknrf1soLfTw8PLxzvLwNlje3ZgHuqo+X5y54eHh4C14bGcxaU7Pw4n6JkwsPDw/vNK9tfbUl9Swmni0QHh4e3jnePp5oDwfsF2JWvuPh4eE9xauL1Hiisw0gWeJkQfHw8PDO8fYv37YIbmOLdsupYXh4eHiL1lfevE8GzQvllpePhoeHh3ea92xQuw+F833sRbmPh4eH96O8WSw7K7XzcvzFmHh4eHgfwJs1w5JCOc9OitAZDw8P7xgvDyNmjbHZpNvFvSyp8fDw8B7ltQ2wWYN/diJsBl719/Dw8PDunvIbM0MiFjjXygkAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -421,6 +327,25 @@ var _hmt = _hmt || [];
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2019/03/18/基于python爬虫的github-exploitdb漏洞库监控与下载/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          基于python爬虫的github-exploitdb漏洞库监控与下载
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/17/社工技巧分享：QQ号定位/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">社工技巧分享：QQ号定位</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -445,7 +370,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="" ></div> 
+  <div id="SOHUCS" sid="天下武功唯快不破-CTF-Web题WriteUp" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyuoyyRfG"; 
@@ -484,7 +409,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
