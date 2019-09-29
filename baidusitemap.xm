@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2017/06/17/%E7%A4%BE%E5%B7%A5%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB%EF%BC%9AQQ%E5%8F%B7%E5%AE%9A%E4%BD%8D/</loc>
+    <lastmod>2019-09-29</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2019/03/18/%E5%9F%BA%E4%BA%8Epython%E7%88%AC%E8%99%AB%E7%9A%84github-exploitdb%E6%BC%8F%E6%B4%9E%E5%BA%93%E7%9B%91%E6%8E%A7%E4%B8%8E%E4%B8%8B%E8%BD%BD/</loc>
     <lastmod>2019-09-26</lastmod>
   </url>  <url>
