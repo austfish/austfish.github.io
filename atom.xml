@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2019-10-10T03:40:27.573Z</updated>
+  <updated>2019-10-10T08:52:11.421Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何挖信息泄密漏洞</title>
+    <link href="http://austfish.cn/2019/10/10/%E5%A6%82%E4%BD%95%E6%8C%96%E4%BF%A1%E6%81%AF%E6%B3%84%E5%AF%86%E6%BC%8F%E6%B4%9E/"/>
+    <id>http://austfish.cn/2019/10/10/如何挖信息泄密漏洞/</id>
+    <published>2019-10-10T08:43:41.000Z</published>
+    <updated>2019-10-10T08:52:11.421Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.随缘找信息泄密<br>2.如何构造语法<br>3.指定站点的Google hacking语法<br><a id="more"></a></p><h1 id="正确姿势如下"><a href="#正确姿势如下" class="headerlink" title="正确姿势如下"></a>正确姿势如下</h1><h3 id="1-随缘找信息泄密"><a href="#1-随缘找信息泄密" class="headerlink" title="1.随缘找信息泄密"></a>1.随缘找信息泄密</h3><p>直接用Google hacking语法</p><p>语法如下：<br><strong><br>filetype:txt 登录<br>filetype:xls 登录<br>filetype:doc 登录</strong></p><p>这三条是我经常用的Google hacking语法<br>（后面的”登录”可以替换自己构造的语法，文件类型也是可以的）<br><img src="http://qiniu.austfish.cn/blog/20191010/E0k0kysmFxOl.jpg?imageslim" alt="mark"></p><h3 id="2-如何构造语法"><a href="#2-如何构造语法" class="headerlink" title="2.如何构造语法"></a>2.如何构造语法</h3><blockquote><p>filetype:文件类型 文件内包含的内容</p></blockquote><h3 id="3-指定站点的Google-hacking语法"><a href="#3-指定站点的Google-hacking语法" class="headerlink" title="3.指定站点的Google hacking语法"></a>3.指定站点的Google hacking语法</h3><p>指定站点其实也很简单，就直接在上面的语法前面加个</p><blockquote><p>site:xxx.com</p></blockquote><p><img src="http://qiniu.austfish.cn/blog/20191010/I9qsa9TqRo3G.jpg?imageslim" alt="mark"></p><blockquote><p>site:baidu.com filetype:txt 登录账号</p></blockquote><p>上面那条语法的意思是搜索baidu.com这个域名（包括子域）的txt文件并且文件内容里包含了登录账号这些关键词，可以针对目标站点进行改动。</p><h1 id="eg"><a href="#eg" class="headerlink" title="eg:"></a>eg:</h1><p><img src="http://qiniu.austfish.cn/blog/20191010/s6A7mbyW60id.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20191010/Ofyfpm3kOedP.jpg?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20191010/N91FTIWY0ONx.png?imageslim" alt="mark"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.随缘找信息泄密&lt;br&gt;2.如何构造语法&lt;br&gt;3.指定站点的Google hacking语法&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="挖洞" scheme="http://austfish.cn/tags/%E6%8C%96%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>Git常用操作指南</title>

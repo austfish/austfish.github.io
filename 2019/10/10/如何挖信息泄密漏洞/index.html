@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Archives: 2017/3 | Fisher&#39;s 安全日记</title>
+  <title>如何挖信息泄密漏洞 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力，微信公众号：austfish">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/archives/2017/03/index.html">
+  <meta name="description" content="1.随缘找信息泄密2.如何构造语法3.指定站点的Google hacking语法">
+<meta name="keywords" content="工具,安全,挖洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何挖信息泄密漏洞">
+<meta property="og:url" content="http://austfish.cn/2019/10/10/如何挖信息泄密漏洞/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
+<meta property="og:description" content="1.随缘找信息泄密2.如何构造语法3.指定站点的Google hacking语法">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191010/E0k0kysmFxOl.jpg?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191010/I9qsa9TqRo3G.jpg?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191010/s6A7mbyW60id.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191010/Ofyfpm3kOedP.jpg?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191010/N91FTIWY0ONx.png?imageslim">
+<meta property="og:updated_time" content="2019-10-10T08:52:11.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
+<meta name="twitter:title" content="如何挖信息泄密漏洞">
+<meta name="twitter:description" content="1.随缘找信息泄密2.如何构造语法3.指定站点的Google hacking语法">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/blog/20191010/E0k0kysmFxOl.jpg?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -162,60 +169,208 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-如何挖信息泄密漏洞" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/URL重定向-跳转漏洞解释说明及修复方案/" class="archive-article-date">
-  	<time datetime="2017-03-20T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/URL重定向-跳转漏洞解释说明及修复方案/">URL重定向/跳转漏洞解释说明及修复方案</a>
+    <h1 class="article-title" itemprop="name">
+      如何挖信息泄密漏洞
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/10/10/如何挖信息泄密漏洞/" class="archive-article-date">
+  	<time datetime="2019-10-10T08:43:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.随缘找信息泄密<br>2.如何构造语法<br>3.指定站点的Google hacking语法<br><a id="more"></a></p>
+<h1 id="正确姿势如下"><a href="#正确姿势如下" class="headerlink" title="正确姿势如下"></a>正确姿势如下</h1><h3 id="1-随缘找信息泄密"><a href="#1-随缘找信息泄密" class="headerlink" title="1.随缘找信息泄密"></a>1.随缘找信息泄密</h3><p>直接用Google hacking语法</p>
+<p>语法如下：<br><strong><br>filetype:txt 登录<br>filetype:xls 登录<br>filetype:doc 登录</strong></p>
+<p>这三条是我经常用的Google hacking语法<br>（后面的”登录”可以替换自己构造的语法，文件类型也是可以的）<br><img src="http://qiniu.austfish.cn/blog/20191010/E0k0kysmFxOl.jpg?imageslim" alt="mark"></p>
+<h3 id="2-如何构造语法"><a href="#2-如何构造语法" class="headerlink" title="2.如何构造语法"></a>2.如何构造语法</h3><blockquote>
+<p>filetype:文件类型 文件内包含的内容</p>
+</blockquote>
+<h3 id="3-指定站点的Google-hacking语法"><a href="#3-指定站点的Google-hacking语法" class="headerlink" title="3.指定站点的Google hacking语法"></a>3.指定站点的Google hacking语法</h3><p>指定站点其实也很简单，就直接在上面的语法前面加个</p>
+<blockquote>
+<p>site:xxx.com</p>
+</blockquote>
+<p><img src="http://qiniu.austfish.cn/blog/20191010/I9qsa9TqRo3G.jpg?imageslim" alt="mark"></p>
+<blockquote>
+<p>site:baidu.com filetype:txt 登录账号</p>
+</blockquote>
+<p>上面那条语法的意思是搜索baidu.com这个域名（包括子域）的txt文件并且文件内容里包含了登录账号这些关键词，可以针对目标站点进行改动。</p>
+<h1 id="eg"><a href="#eg" class="headerlink" title="eg:"></a>eg:</h1><p><img src="http://qiniu.austfish.cn/blog/20191010/s6A7mbyW60id.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20191010/Ofyfpm3kOedP.jpg?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20191010/N91FTIWY0ONx.png?imageslim" alt="mark"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">挖洞</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aQXKEMAwEwP3/p8kDdoGRbFKF3T6lEuKlc5hYkj+feB1f6/un10+ePXP2KZ8nFgYGxmsZx+Ua+eAjWAn++ncxMDD2YZy9RBKp108mwZ3vcPp9DAwMjAeembUnBgYGRl6CVovV61DGwMDA6BWxSest+ci8VH6kFsfAwHghI++6///Xj8w3MDAwXsU4iqt3gEsiMg/ZH3tiYGAszcgDLi9c5wZ34X0wMDAWZYxE4XgZnOyfxD0GBsbajOtITY6DeSMsR+bvg4GBsQ9jvBFfLXSrg4HyJBYDA2MhRu9Fk0jtNdHyPW+6hhgYGAsxRi5m5WXwSOutuR0GBsZCjGqhOOsKV698Pd0HAwNjA0Y1/novmpSjvT8TBgbG2oyk+ZUf3fKiNHk+L2sxMDDWZlRb8L0grg4M8jL75v8GBgbGEoxe061wXOu1+OMxw1DvEAMD4yWMo7V6rzX3HhcGBsZujLwpNmu0Wb0KdhO7GBgYSzNGLm89Ean5njflKwYGxtKM6HJD8TyWxGjvcthp4GJgYGzAyA95eWusOlnNox8DA2MfRv5hSYttbkmcxDcGBsaqjN5IYNZQIb+0MXmEiYGB8SpGNeB6hWs+mKxe8sDAwNiHMRKRhSsRA+Vr1LDDwMDYgDESfNVSdqSIjS5bYGBgYMSh3Ivv5hkWAwMD4zJGx4eXvYsa0wIXAwPjJYz8kJe39Xsj0rzxh4GBsQ9j5NyVHASrlzaqwwkMDIylGX8+dUHPB3CIAwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/10/10/Git常用操作指南/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git常用操作指南</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="如何挖信息泄密漏洞" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyuoyyRfG"; 
+var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -244,8 +399,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
