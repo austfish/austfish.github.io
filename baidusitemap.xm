@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2019/10/10/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2019-10-10</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2017/04/09/%E6%BC%8F%E6%89%AB%E5%B7%A5%E5%85%B7AWVS%E9%85%8D%E5%90%88sqlmap%E6%B3%A8%E5%85%A5%E7%82%B9%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2019-09-29</lastmod>
   </url>  <url>
