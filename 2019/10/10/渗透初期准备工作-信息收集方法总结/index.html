@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Tag: 漏洞 | Fisher&#39;s 安全日记</title>
+  <title>渗透初期准备工作-信息收集方法总结 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力，微信公众号：austfish">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/tags/漏洞/index.html">
+  <meta name="description" content="信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。那么具体的信息收集工作应如何实施呢？接下来我会用一此虚构的案例结合原理来进行说明，如有不足之处或有更多更好的信息收集方法或工具，恳请在评论处指正和留下其它信息收集的方法进行技术交流。信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。">
+<meta name="keywords" content="工具,安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透初期准备工作-信息收集方法总结">
+<meta property="og:url" content="http://austfish.cn/2019/10/10/渗透初期准备工作-信息收集方法总结/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
+<meta property="og:description" content="信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。那么具体的信息收集工作应如何实施呢？接下来我会用一此虚构的案例结合原理来进行说明，如有不足之处或有更多更好的信息收集方法或工具，恳请在评论处指正和留下其它信息收集的方法进行技术交流。信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-10T09:05:50.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
+<meta name="twitter:title" content="渗透初期准备工作-信息收集方法总结">
+<meta name="twitter:description" content="信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。那么具体的信息收集工作应如何实施呢？接下来我会用一此虚构的案例结合原理来进行说明，如有不足之处或有更多更好的信息收集方法或工具，恳请在评论处指正和留下其它信息收集的方法进行技术交流。信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -162,64 +163,278 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-渗透初期准备工作-信息收集方法总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/18/基于python爬虫的github-exploitdb漏洞库监控与下载/" class="archive-article-date">
-  	<time datetime="2019-03-18T06:43:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/基于python爬虫的github-exploitdb漏洞库监控与下载/">基于python爬虫的github-exploitdb漏洞库监控与下载</a>
+    <h1 class="article-title" itemprop="name">
+      渗透初期准备工作-信息收集方法总结
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/10/10/渗透初期准备工作-信息收集方法总结/" class="archive-article-date">
+  	<time datetime="2019-10-10T09:04:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。那么具体的信息收集工作应如何实施呢？接下来我会用一此虚构的案例结合原理来进行说明，如有不足之处或有更多更好的信息收集方法或工具，恳请在评论处指正和留下其它信息收集的方法进行技术交流。信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。那么具体的信息收集工作应如何实施呢？接下来我会用一此虚构的案例结合原理来进行说明，如有不足之处或有更多更好的信息收集方法或工具，恳请在评论处指正和留下其它信息收集的方法进行技术交流。</p>
+</blockquote>
+<p>正所谓“知己知彼，百战百胜”，信息收集就像一场战争中的“深入敌后”的一项“情报收集”任务。在开始渗透测试工作之前，我们通过要对目标使用各种工具进行信息收集工作，找出目标的漏洞和弱点，然后利用这些漏洞和弱点进行攻击，使得渗透任务得以顺利地完成。在战争中假如你的情报收集工作出错重大错误，战士们牺牲的就是性命，由此可见，情报收集工作的重要性。</p>
+<p>任何工作、任何任务都是有一定方法去进行实施的，信息收集工作也一样。</p>
+<a id="more"></a>
+<p>在进行这项工作之前，我先对一些信息收集的方法信息收集的方法、区别及作用进行简单的介绍：</p>
+<h2 id="信息收集方法、区别及作用"><a href="#信息收集方法、区别及作用" class="headerlink" title="信息收集方法、区别及作用"></a>信息收集方法、区别及作用</h2><p>(1) 主动收集：相当于通过技术手段去侦察目标的情况，此时目标有可能记录下此次事件的信息。例如：我晚上偷偷摸摸地去小明家里，去查看他家用的是什么品牌保险柜？然后记录下收集到的信息。对于这种情况小明家里可能会有摄像头记录下我的行为。</p>
+<p>(2) 被动收集：相当于通过技术手段去收集目标遗留的信息，此时目标并不能感知事件的发生。例如：小明在某个论坛中留下了自己的生日、年龄、学号等信息，根据收集到的信息生成字典，对小明的保险箱进行密码破解。对于这种情况小明又怎么可能发现我在收集他的信息呢。</p>
+<h2 id="信息收集的具体实施方法"><a href="#信息收集的具体实施方法" class="headerlink" title="信息收集的具体实施方法"></a>信息收集的具体实施方法</h2><h4 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h4><p>子域名枚举/在线子域名枚举扫描：主要是通过工具中的字典，对字典中的二级域名进行轮询查询，从而得出结果，收集到的数据准确性高，但是疏漏洞率也相对较高。</p>
+<p>域传送漏洞：对目标所在的DNS服务器进行漏洞利用，能获取目标所在DNS服务器中的记录，属于很老的漏洞，对于特定的目标几乎很难能找到该漏洞的存在，但在工作中何妨不尝试一下呢？</p>
+<p>DNS数据集平台：基于全网信息持续收集的平台，根据其收录的信息，以快速查找到需要的数据。</p>
+<pre><code>(1) DNSdumpster：https://dnsdumpster.com/ 
+(2) VirusTotal：https://www.virustotal.com/#/home/search 
+</code></pre><p>另外还有，站长工作和搜索引擎所收录到信息进行查找，在此不作详细介绍。</p>
+<p><strong>案例：通过子域名枚举工具，对目标网站进行子域名收集收集，发现一处名为admin.xxx.com的管理后台，并尝试进行弱口令暴力破解攻击成功。进入后台后，发现高危漏洞，getshell成功。 </strong></p>
+<p>####防火墙(waf)识别<br>防火墙识别的原理主要是通过请求中的状态码返回的响应头容、正文内容，进行匹配和判断的。其实跟CMS指纹识别有点类似，只是相对来说规则比较简单，当然也有识别不了的情况，那你就要增加相应的检测规则了。</p>
+<p>当我们在做渗透测试的时候，如果遇到防火墙的话，就通过不断地尝试去绕过他的防火墙规则(黑名单)，或者通过某些方法获得防火墙的源码，去审计规则从而进行绕过；或者根据以前的绕过经验对目标防火墙进行绕过，这个绕过工作需要要足够的时间和耐心才能够完成。    </p>
+<h4 id="端口服务收集"><a href="#端口服务收集" class="headerlink" title="端口服务收集"></a>端口服务收集</h4><p>Nmap是安全相关专业人员使用广泛的安全扫描使用之一，它可以检测目标主机是否在线、端口开放情况、侦测运行的服务类型及版本信息、侦测操作系统与设备类型等信息，甚至还能对主机进行漏洞扫描。</p>
+<p>Nmap的端口服务识别的原理是，通过网络发送请求包到服务器中，利用网络的通信请求建立的握手过程(多种方式)进行服务的状态进行判断，服务版本识别主要是通过发送特定的数据包到目标的端口服务中，通过返回的信息进行识别，例如3306(mysql服务)，nmap通过mysql的网络协议通信过程，与mysql建立连接，mysql返回Handshake packet数据包，其中该包中包含mysql版本号信息，nmap从中获取mysql的具体版本信息。</p>
+<p>由于Nmap所提供的功能和选项及使用思路较多，在此不再作详细介绍，有兴趣的同学请利用搜索引擎搜索相关的知识。</p>
+<p><strong>案例：对某企业进行渗透测试时，发现企业服务器中开放了6379(redis中间件服务)，根据以前的经验，redis服务可能存在未授权访问漏洞，能直接获得服务器权限，从而getshell成功。</strong></p>
+<h4 id="C段IP信息收集"><a href="#C段IP信息收集" class="headerlink" title="C段IP信息收集"></a>C段IP信息收集</h4><p>这里的C段指的是并非网络中的C类地址，而是C类地址中子网掩码为255.255.255.0/24中的IP地址段，共254个。对于某些中大型厂商通过有可能使用的是自建的托管机房，他们的业务通常部署在同一个C类地址子网中，这就给了我们可以利用的空间了。</p>
+<p>就好像我们家里的路由器一样，当我破解了一个邻居的wifi密码后，接收他的网络，这个时候我就能使用监听工具，对他所发出/接收的数据进行拦截监听，从中获取得相关的账号、密码及信息，当然也有其它的方法和思路可以获取目标服务器的数据或权限。例如：C段中的业务系统与目标服务器的业务系统有关联，使用的是同一个数据库，那么就有可能直接获取到目标服务器的信息了。</p>
+<p>能够查询C段的工具有很多，在此不一一介绍，我最常用的还是nmap。假如我们能够查询到目标网络的C段IP都是开放的。这时候我们就得找一此比较薄弱的IP来重新进行信息收集工作了。</p>
+<p><strong>案例：在渗透测试测试中，未能在目标服务器寻找到高危漏洞，然后将思路转变到子网中的其它服务器中，此时我们在获得权限的子网。
+</strong></p>
+<h4 id="旁站信息收集"><a href="#旁站信息收集" class="headerlink" title="旁站信息收集"></a>旁站信息收集</h4><p>旁站指的是，不同的web站点部署在同一台服务器中，在渗透测试的时候，如果目标服务器难以寻找突破点，我们也可以通过旁站入手，寻找弱点，然后再想办法对目标服务器进行跨攻击。例如：通过系统提限、跨目录权限、mysql权限，对目标服务器实施攻击。</p>
+<p>旁站查询主要是通过各大站长平台，基于对以前的收录信息，通过IP进行分组划分，查找其目标的IP来查询相同IP的解释记录而得出的结果，主要的工具有：</p>
+<pre><code>http://dns.aizhan.com
+
+http://s.tool.chinaz.com/same
+
+http://i.links.cn/sameip/
+
+http://www.ip2hosts.com/
+</code></pre><p><strong>案例：在渗透测试工作中，由于未找到目标服务器中的漏洞，继而将思路转变到从旁站入手，先是获到旁站的权限，再是由于系统管理员未对不同的web文件夹权限进行用户权限控制，导致旁站能跨目录写入一句话木马到目标的web文件夹，成功getshell并获取目标服务器的mysql账号及密码。
+</strong></p>
+<h4 id="敏感目录-文件收集"><a href="#敏感目录-文件收集" class="headerlink" title="敏感目录/文件收集"></a>敏感目录/文件收集</h4><p>该信息收集方法利用的是基本广大的安全行业从业者对常见web的敏感危险目录/文件形成一个汇总字典，当然也可以结合自己的经验，将文件加入到字典中，增加字典的范围，然后利用该字典向目标web服务器发出请求，显示返回的状态码，然后我们根据状态码进行人工进行判断分析有没有敏感文件可以进行利用。</p>
+<p>响应码判断：如200代表请求成功。403|401代表无权限，但文件/目录是存在的，500代表服务器出错。其它的响应有状态码请同学们到搜索引擎进行搜索相关知识。</p>
+<p>收集敏感目录/文件的主要工具有：DirBuster、御剑后台等。本人觉得下面图示的工具不太好用。 </p>
+<h4 id="IIS短文件名枚举"><a href="#IIS短文件名枚举" class="headerlink" title="IIS短文件名枚举"></a>IIS短文件名枚举</h4><p>此漏洞利用了windows为了对16位MS-DOS程序兼容处理功能来收集信息的。windows为文件名较长的文件（和文件夹）生成了对应的windows 8.3 短文件名，导致攻击者可利用xxx~1字符实施获取长文件名/目录名的信息。当对方的服务器为IIS，不妨可以尝试一下这个漏洞。</p>
+<p><strong>案例：文件名为xxx_login.php的时候，xxx为有特定含义的字符，由于我们所使用的敏感目录/文件收集工具中没有该文件名的字典，所以未能找出该登录后台的地址。此时我们就可以使用IIS短文件名枚举漏洞进行信息收集，得出的结果为xxx_lo~1.php，此时我们就能猜测到这很可能是一个登录页面了。</strong></p>
+<h4 id="GitHub信息收集"><a href="#GitHub信息收集" class="headerlink" title="GitHub信息收集"></a>GitHub信息收集</h4><p>GitHub是通过Git进行版本控制的软件源代码托管服务平台，当一个项目需要进行协同开发时，就得使用svn或github对代码进行托管及版本控制了。</p>
+<p>GitHub不仅仅是商用的平台，也可以通过该平台对代码进行公开分享并且能获得Star来证明此代码是优秀的。由于此功能的存在，就有可能有部分开发工程师，或者由于公司对代码的管理制度不严谨，造成内部代码公开处理，令攻击者有机可乘。</p>
+<p><strong>案例：某某网站，有部分项目的源代码在github上进行了公开处理，其中，代码中包含敏感的xxx信息，造成重要的信息泄露。
+</strong><br><code>GitHub信息收集工具：https://github.com/MiSecurity/x-patrol</code></p>
+<h4 id="网站资产信息探测"><a href="#网站资产信息探测" class="headerlink" title="网站资产信息探测"></a>网站资产信息探测</h4><p>资产信息，这里指的是服务器用的是什么操作系统、中间件、脚本语言、数据库、CMS等等的信息。那么收集到这些信息之后有什么作用呢？比如说目标服务器用的是php语言开发的网站，那么我们就得利用php的一些漏洞去进行渗透了，比如说php的弱类型漏洞等等。如果目标服务器用的是某个cms的源码开发的网站，那么我们就得去查找该cms曾经暴出来的漏洞去进行利用了。</p>
+<p>在这里主要介绍一下CMS指纹识别的原理：是通过请求检查特定的URL或文件是否存在，这个就像sfz的开头的省市都是有特定意义的，每个CMS系统中都存在与众不同的文件或其它信息，这些信息也是由大量前辈汇总而成的，有一些工具只能检测到部分的CMS，因为他们收集的识别信息太少了，CMS指纹识别就是通过这种方式进行检测的。</p>
+<p>以下是我日常中使用到的工具及收集方法：</p>
+<pre><code>(1)  云悉：http://www.yunsee.cn/info.html
+(2)  查看数据包响应头
+(3)  CMS指纹识别：http://whatweb.bugscaner.com/look/ 
+</code></pre><p>**案例：在某次的渗透测试工作中，先是对网站进行资产信息探测试，发现目标网站使了</p>
+<p>某个开源的CMS系统，然后通过默认的CMS后台管理地址和默认密码进入后台，再利用该CMS的后台高危漏洞，成功上传一句话木马，成功getshell。**</p>
+<h4 id="shodan、fofa、钟馗之眼信息收集"><a href="#shodan、fofa、钟馗之眼信息收集" class="headerlink" title="shodan、fofa、钟馗之眼信息收集"></a>shodan、fofa、钟馗之眼信息收集</h4><p>shodan、fofa、钟馗之眼，他们所提供的功能同样都类似于搜索引擎，都是通过特定的语法去进行信息收集，但与搜索不同的是，web、可见的页面信息进行爬取收录，而他们则是对全网的在线网络设备进行搜索加入其数据库中，例如：各类服务器，数据库，某个系统的端口信息，并提供POC等信息。</p>
+<p>那么我们应该如何使用上述这几个工具呢？对于无指定目标的渗透测试，我们可以将他们当成是一个高级漏洞扫描器来使用，利用他们来获取大量有已知漏洞的主机来进行渗透测试。对于指定目标的渗透测试，我们也可以利用他来做信息收集，此时也需要一定的运气成分，因为他们都是基于全网的搜索，并不一定能够保证收集到网络上的所有机器。</p>
+<p><strong>案例：在某次渗透测试任务中，使用钟馗之眼对目标服务器进行信息收集，发现高危漏洞，并且利用成功，getshell成功。</strong></p>
+<h4 id="寻找真实IP"><a href="#寻找真实IP" class="headerlink" title="寻找真实IP"></a>寻找真实IP</h4><p>为什么要寻找真实IP?，当某个企业使用了CDN/云防线/反向代理等方式对服务进行架构设计时，我们通过ping命令等并不能直接将请求传递到真实的服务器上，而是经过一层设置对该请求进行转向，导致到我们不能获取到真实服务器的开放端口等信息进行收集。</p>
+<p>那么，当我们遇到上述的情况时，我们应该如何才能获取到目标的真实IP呢？下面由我来简述一些比较有趣的方法：</p>
+<p>从子域名入手，一个企业的业务种类繁多，可能只有部分主营业务，访问压力大的域名才使用了CDN，子域名的业务有可能部署在同一台服务器中，或部署在同一个C段中，所以我们就有可能从中找到真实的IP地址。</p>
+<p>历史的DNS平台：<a href="https://dnsdb.io/zh-cn/|" target="_blank" rel="noopener">https://dnsdb.io/zh-cn/|</a> <a href="https://x.threatbook.cn/" target="_blank" rel="noopener">https://x.threatbook.cn/</a><br>通过平台以前收集到的ip与域名绑定历史记录进行查询。 </p>
+<p>邮件原文：通过网站提供的邮件发送功能，如注册时的邮箱验证等，将邮件发送至自己的邮箱中，再查看其邮件原文内容，邮件原文中存在的IP地址有可能就是其真实的IP。</p>
+<p>其它方法在此不一一介绍，有兴趣的同学到搜索引擎去搜索相关的资料吧。</p>
+<p>HTTPS证书查询：工具<a href="https://censys.io/，" target="_blank" rel="noopener">https://censys.io/，</a><br>该工具也是能过全网收集站点的https证书及ip地址，也可以利用该工具进行查找。</p>
+<p><strong>案例：某个企业网站使用了CDN服务，无法对其真正的服务器进行Nessus进行弱点扫描分析，然后通过phpinfo.php的信息泄露漏洞获取到真实的IP地址，然后对其真实的服务器进行弱点扫描分析，发现高危漏洞，并且成功getshell。</strong></p>
+<h4 id="搜索引擎语法"><a href="#搜索引擎语法" class="headerlink" title="搜索引擎语法"></a>搜索引擎语法</h4><p>主要是利用搜索引擎所收录的数据，通过特定的语法进行搜索，可以达到迅速发现目标弱点的效果。</p>
+<p>利用该方法需要一定的经验积累，以下是针定特定目标的信息收集思路。例如：对于不同的业务系统，得想出不同的联想词，例如商城系统，联想词可以为商家系统，对于大型的企业，OA登录、CRM等等的联想词。</p>
+<pre><code>后台：site:xxx.xxx admin|login|system|管理|登录|内部|系统
+
+钓鱼：site:xxx.xxx 邮件|email
+
+社工：site:xxx.xxx qq|群|微信|腾讯
+
+越权：site:xxx.xxx inurl:uid=1|userid=1
+
+包含：site:xxx.xxx inurl:php?include=
+</code></pre><p>还有其它很多很多的方法，在此不在一一列举，有兴趣的同学请找相关的资料来学习。总结一下，对于特定的目标利用该方法去做信息收集，效果并不会特别理想，但对于无指定目标的渗透，将会给我们的渗透工作带来极大的便利，能辅助我们快速找到目标的弱点，进行渗透。</p>
+<p><strong>案例：在某次渗透测试工作中，已经对目标进行子域名收集工作，但未能通过收集到的子域名渗透成功，然后通过利用搜索引擎语法（site:xxx.xxx系统）进行搜索，发一个xxx.xxx/staff/login.html的页面，该页面为员工系统登录页面，接下来使用弱口令进行暴力破解登录成功。 </strong></p>
+<h4 id="爬虫分析"><a href="#爬虫分析" class="headerlink" title="爬虫分析"></a>爬虫分析</h4><p>爬虫分析，是要把整个网站的网页及目录信息结构爬取出来，通过爬取出来的结果去猜测开发工程师的开发思维及逻辑，从中得到某些信息进而利用。</p>
+<p><strong>案例1：通过某个后台，此时已通过某个漏洞进入后台，此时使用爬虫整个后台进行爬虫，其中发现ad/add.php(广告增加)|ad/edit.php(广告编辑)|user/add.php(增加用户)|user/list(会员列表)等等。从中得知开发工程师使用的是有规律、有规范的页面链接命名，那么根据经验，有可能存在admin/add.php等等的页面，有可能存在越权操作漏洞，进而利用。</strong></p>
+<p><strong>案例2：通过爬虫发现，在使用敏感目录/文件进行信息收集时，未发现有危险和可利用的重要信息，但通过爬虫发现了某个重要的后台链接地址，一般来说，开发工程师对于后台的防护较为薄弱，像此类信息也有可能在渗透测试中利用，也需要记录下来。</strong></p>
+<h4 id="AWVS-web弱点扫描"><a href="#AWVS-web弱点扫描" class="headerlink" title="AWVS web弱点扫描"></a>AWVS web弱点扫描</h4><p>Acunetix Web Vulnerability Scanner（简称AWVS）是一款知名的网络漏洞扫描工具，它通过网络爬虫测试你的网站安全，检测流行安全漏洞，如交叉站点脚本,sql 注入等。在被黑客攻击前扫描购物车，表格、安全区域和其他Web应用程序。75% 的互联网攻击目标是基于Web的应用程序。因为他们时常接触机密数据并且被放置在防火墙之前。</p>
+<p>AWVS如上述所示，主要是通过爬虫来测试你的网站安全，来进行安全漏洞检测，操作及使用方法也相对简单，在此不详细介绍。</p>
+<p>AWVS能检测出的漏洞种类繁多，当然也有可能出现误报的现象，这时就需要我们根据AWVS检测来做难，才能确定漏洞是否存在了。</p>
+<p>AWVS能检测出的漏洞确实很多，我们在短期内也很难完全各种漏洞及原理。不过AWVS官网有一个所有漏洞的列表。同学们可以根据列表的内容去学习自己想要知道的漏洞原理。漏洞列表链接为：    <a href="https://www.acunetix.com/vulnerabilities/" target="_blank" rel="noopener">https://www.acunetix.com/vulnerabilities/</a></p>
+<h4 id="Nessus-主机弱点扫描"><a href="#Nessus-主机弱点扫描" class="headerlink" title="Nessus 主机弱点扫描"></a>Nessus 主机弱点扫描</h4><p>Nessus 是目前全世界最多人使用的系统漏洞扫描与分析软件。总共有超过75,000个机构使用Nessus 作为扫描该机构电脑系统的软件。，</p>
+<p>Nessus，系统扫描与分析软件，主要针对的是操作系统及操作系统所安装的软件进行漏洞分析，当然也有很多其它附带的功能，例如:web漏洞安全漏洞检测、简单的信息收集。正所谓，专业的人做专业的事，Nessus针对的是操作系统及操作系统所安装的软件进行漏洞分析，因此我们主要的关注点应该在主机漏洞的严重|高|中级别的漏洞，当然Nessus也有误报的情况，这时也需要我们根据其漏洞的编号、信息去进行难。</p>
+<h4 id="whois信息收集、员工信息、公司名、社工库、云盘搜索"><a href="#whois信息收集、员工信息、公司名、社工库、云盘搜索" class="headerlink" title="whois信息收集、员工信息、公司名、社工库、云盘搜索"></a>whois信息收集、员工信息、公司名、社工库、云盘搜索</h4><p>为什么要将上述几种需要收集的信息放在一起呢？主要是因为以前几种方法针对的通过社工的方法去对目标进行渗透测试。特别需要强调的是云盘搜索，云盘搜索利用原理的是由于企业的管理不善，可能上传了部分的敏感信息资料到云盘中以方便其他员工对需要的资料进行下载，因此我们有可能在这部分的资料中找到一些敏感的信息，从而进行攻击。</p>
+<p><strong>案例：通过信息收集所收集的信息，发展了某个企业的员工系统登录入口，账号为员工的编号，此时我们尚未得知该企业的员工编号规则，然后我们继续通过其它的信息收录方式进行收集，在云盘中发现了该企业曾经上传过一份企业员工基本信息的资料，遂将其下载，并结合自己的所使用的密码字典进行暴力破解，最终成功登录到后台中。</strong></p>
+<h2 id="信息收集总结"><a href="#信息收集总结" class="headerlink" title="信息收集总结"></a>信息收集总结</h2><p>在渗透测试中，信息收集是比较枯燥乏味的一项工作任务，但也是一项很重要的工作，所收集的信息能直接影响到下一步的渗透思路及效果，所以一定要有耐心和准备好持续长期地完成这一项工作任务。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3a0WoCQQwFUP//py30qVBXb5JJtXD2qYi7mzOFmZjkdouv+/d19cn9x3X1ye/P87uuYjh24eHh4bVCz1/8/DX5QiRLUH3Og9jw8PDw1njPA03A+XJMDpU8Zjw8PLxP4OUHQHWxqmk9Hh4e3n/k5YH2UvPnb8HDw8P7BF6SIvfS5fyu5FqsteDh4eHFvEk6+66/F/t7eHh4eIOuerLhVg+VebGjEC0eHh7eAu95spv/4O8VZPMkOP9O9IsBDw8Pb8zrbcdJm79a4OjlxoWn4eHh4W097cCgQLWscGqBRscDHh4eXouXNJmqTf3qc/IYqj8G8PDw8E7xJmMB8xLtqSUrnE54eHh4Y15SVsi36byo2huTyo8oPDw8vG1etTSQb+V5Klz9fnPKDA8PD2/ASzb9SfOpB5s35PDw8PC2eUlBoZfs5mWFyQHTnMPCw8PDa/HyEM+Wbk+VfZszZXh4eHhrvN6mfGqYoDf+VahV4+Hh4Q14+WBTtRGVt8Gqi1s4GPDw8PCO8qqFgN6oVjUVzssNLxYCDw8Pb4G3l6FPZhkmpMIwAR4eHl6Ld3bsaa9xFf1n8tvw8PDwxrxTCWuvDDFJoF98Bw8PD2+BV71tbxOvDrkW3oKHh4e3wDvV6KqOIJSLsK3mGR4eHt5Z3mRcYF6QnQ8ivPhn4OHh4f05rzdAkA8N5CWJXuEYDw8Pb4OXlGJ7za1eMXdSyChMRuDh4eENePfidTZ1PjVcdbnceHh4eAu8SYMq2dzzUYNJMj2C4eHh4bV4SVh5uPmBkWDmMeDh4eHt8fLDIA86aa0lIwjVNtuDkgQeHh7em3hJEKcGC6pFkBdNLzw8PLyP5OVlhWrRNm+bXbbB8PDw8BZ41WJEDk7wp6iXKTUeHh7eUd5GA6x3JFTHBUY9PTw8PLwO7wvepe4DWLjWjgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/10/10/如何挖信息泄密漏洞/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何挖信息泄密漏洞</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="渗透初期准备工作-信息收集方法总结" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyuoyyRfG"; 
+var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -248,9 +463,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
