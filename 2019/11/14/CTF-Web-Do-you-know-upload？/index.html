@@ -19,10 +19,11 @@
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvekNIM3JXV1FiQWN1LnBuZw?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvNHhrTzVtREswZXEzLnBuZw?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvclNDSmtKb1Q3R3dILnBuZw?x-oss-process=image/format,png">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191114/YIcvS0TnJ3j0.png?imageslim">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvRDdyZUF3dG0wR2JqLnBuZw?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvYlljdmtBdm1JZ3JXLnBuZw?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvVkxQZEFvNWV4MUp1LnBuZw?x-oss-process=image/format,png">
-<meta property="og:updated_time" content="2019-11-14T08:10:00.392Z">
+<meta property="og:updated_time" content="2019-11-14T08:13:19.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CTF-Web-Do you know upload？">
 <meta name="twitter:description" content="背景：迫于挖洞挖不dao，练练CTF，复习复习。">
@@ -194,7 +195,7 @@ var _hmt = _hmt || [];
 <h2 id="0×00-背景迫于挖洞挖不dao，练练CTF，复习复习。"><a href="#0×00-背景迫于挖洞挖不dao，练练CTF，复习复习。" class="headerlink" title="0×00 背景迫于挖洞挖不dao，练练CTF，复习复习。"></a>0×00 背景迫于挖洞挖不dao，练练CTF，复习复习。</h2><p>题目地址<br><a href="https://www.ichunqiu.com/battalion?t=1&amp;r=61025" target="_blank" rel="noopener">https://www.ichunqiu.com/battalion?t=1&amp;r=61025</a></p>
 <h2 id="0×01-审题"><a href="#0×01-审题" class="headerlink" title="0×01 审题"></a>0×01 审题</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvekNIM3JXV1FiQWN1LnBuZw?x-oss-process=image/format,png" alt="mark"><br>文件上传<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvNHhrTzVtREswZXEzLnBuZw?x-oss-process=image/format,png" alt="mark"></p>
 <h2 id="0×02-文件上传"><a href="#0×02-文件上传" class="headerlink" title="0×02 文件上传"></a>0×02 文件上传</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAxOTExMTQvclNDSmtKb1Q3R3dILnBuZw?x-oss-process=image/format,png" alt="mark"><br>上传一个图片，成功。然后传php文件，提示文件类型错误，bp抓包，将上传类型改成image/jpeg，上传成功</p>
-<h2 id="0×03-菜刀连接"><a href="#0×03-菜刀连接" class="headerlink" title="0×03 菜刀连接"></a>0×03 菜刀连接</h2><p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-WXCfJPyt-1573718733936)(<a href="http://qiniu.austfish.cn/blog/20191114/TPQcJUqwS5sp.png?imageslim)]" target="_blank" rel="noopener">http://qiniu.austfish.cn/blog/20191114/TPQcJUqwS5sp.png?imageslim)]</a><br>于是上传一句话看看，菜刀连接成功。在html目录下没有文件，但是是空的。于是想到flag可能在数据库中</p>
+<h2 id="0×03-菜刀连接"><a href="#0×03-菜刀连接" class="headerlink" title="0×03 菜刀连接"></a>0×03 菜刀连接</h2><p><img src="http://qiniu.austfish.cn/blog/20191114/YIcvS0TnJ3j0.png?imageslim" alt="mark"><br>于是上传一句话看看，菜刀连接成功。在html目录下没有文件，但是是空的。于是想到flag可能在数据库中</p>
 <h2 id="0×04-连接数据库"><a href="#0×04-连接数据库" class="headerlink" title="0×04 连接数据库"></a>0×04 连接数据库</h2><p>一般情况下配置文件(config.php)中可能保存连接数据库的用户名和密码 ，比如这里的改文件就是:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(<span class="number">0</span>);</span><br><span class="line">session_start();</span><br><span class="line">$servername = <span class="string">"localhost"</span>;</span><br><span class="line">$username = <span class="string">"ctf"</span>;</span><br><span class="line">$password = <span class="string">"ctfctfctf"</span>;</span><br><span class="line">$database = <span class="string">"ctf"</span>;</span><br><span class="line">$conn = mysql_connect($servername,$username,$password) or die(<span class="string">" connect to mysql error"</span>);</span><br><span class="line">mysql_select_db($database);?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>那么用中国菜刀连接网站数据库的格式就是<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt;数据库类型&lt;/T&gt;</span><br><span class="line">&lt;H&gt;服务名称&lt;/H&gt;</span><br><span class="line">&lt;U&gt;用户名&lt;/U&gt;</span><br><span class="line">&lt;P&gt;密码&lt;/P&gt;</span><br></pre></td></tr></table></figure></p>
 <p>换做这道题就是:</p>
@@ -485,15 +486,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">挖洞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,11 +502,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">挖洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+                <a href="javascript:void(0)" class="js-tag color3">计划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
