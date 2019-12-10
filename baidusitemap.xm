@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2019/12/10/%E6%B5%85%E8%B0%88%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</loc>
+    <lastmod>2019-12-10</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2019/11/14/CTF-Web-Do-you-know-upload%EF%BC%9F/</loc>
     <lastmod>2019-11-14</lastmod>
   </url>  <url>
