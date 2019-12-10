@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/8YbizcRz7u96.png?imageslim">
 <meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/jhhRCezHybYw.png?imageslim">
 <meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/4KbAecSSEVzl.png?imageslim">
-<meta property="og:updated_time" content="2019-12-10T03:34:40.035Z">
+<meta property="og:updated_time" content="2019-12-10T03:45:27.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是高并发">
 <meta name="twitter:description" content="高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。">
@@ -203,9 +203,10 @@ var _hmt = _hmt || [];
 <p>在互联网业务发展非常迅猛的早期，如果预算不是问题，强烈建议使用“增强单机硬件性能”的方式提升系统并发能力，因为这个阶段，公司的战略往往是发展业务抢时间，而“增强单机硬件性能”往往是最快的方法。</p>
 <p>不管是提升单机硬件性能，还是提升单机架构性能，都有一个致命的不足：单机性能总是有极限的。所以互联网分布式架构设计高并发终极解决方案还是水平扩展。</p>
 <p>水平扩展：只要增加服务器数量，就能线性扩充系统性能。水平扩展对系统架构设计是有要求的，如何在架构各层进行可水平扩展的设计，以及互联网公司架构各层常见的水平扩展实践，是本文重点讨论的内容。</p>
-<h1 id="三、常见的互联网分层架构"><a href="#三、常见的互联网分层架构" class="headerlink" title="三、常见的互联网分层架构"></a>三、常见的互联网分层架构<img src="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim" alt="mark"></h1><h5 id="常见互联网分布式架构如上，分为："><a href="#常见互联网分布式架构如上，分为：" class="headerlink" title="常见互联网分布式架构如上，分为："></a>常见互联网分布式架构如上，分为：</h5><p>（1）客户端层：典型调用方是浏览器browser或者手机应用APP<br>（2）反向代理层：系统入口，反向代理<br>（3）站点应用层：实现核心应用逻辑，返回html或者json<br>（4）服务层：如果实现了服务化，就有这一层<br>（5）数据-缓存层：缓存加速访问存储<br>（6）数据-数据库层：数据库固化数据存储</p>
+<h1 id="三、常见的互联网分层架构"><a href="#三、常见的互联网分层架构" class="headerlink" title="三、常见的互联网分层架构"></a>三、常见的互联网分层架构</h1><p><img src="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim" alt="mark"></p>
+<h5 id="常见互联网分布式架构如上，分为："><a href="#常见互联网分布式架构如上，分为：" class="headerlink" title="常见互联网分布式架构如上，分为："></a>常见互联网分布式架构如上，分为：</h5><p>（1）客户端层：典型调用方是浏览器browser或者手机应用APP<br>（2）反向代理层：系统入口，反向代理<br>（3）站点应用层：实现核心应用逻辑，返回html或者json<br>（4）服务层：如果实现了服务化，就有这一层<br>（5）数据-缓存层：缓存加速访问存储<br>（6）数据-数据库层：数据库固化数据存储</p>
 <p>整个系统各层次的水平扩展，又分别是如何实施的呢？</p>
-<h1 id="四、分层水平扩展架构实践"><a href="#四、分层水平扩展架构实践" class="headerlink" title="四、分层水平扩展架构实践"></a>四、分层水平扩展架构实践</h1><p>反向代理层的水平扩展<img src="http://qiniu.austfish.cn/blog/20191210/y9IHdqV0Kb6P.png?imageslim" alt="mark"></p>
+<h1 id="四、分层水平扩展架构实践"><a href="#四、分层水平扩展架构实践" class="headerlink" title="四、分层水平扩展架构实践"></a>四、分层水平扩展架构实践</h1><p>反向代理层的水平扩展<br><img src="http://qiniu.austfish.cn/blog/20191210/y9IHdqV0Kb6P.png?imageslim" alt="mark"></p>
 <p>反向代理层的水平扩展，是通过“DNS轮询”实现的：dns-server对于一个域名配置了多个解析ip，每次DNS解析请求来访问dns-server，会轮询返回这些ip。<br>当nginx成为瓶颈的时候，只要增加服务器数量，新增nginx服务的部署，增加一个外网ip，就能扩展反向代理层的性能，做到理论上的无限高并发。</p>
 <h5 id="站点层的水平扩展"><a href="#站点层的水平扩展" class="headerlink" title="站点层的水平扩展"></a>站点层的水平扩展</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/VBJiERQcQWfa.png?imageslim" alt="mark"></p>
 <p>站点层的水平扩展，是通过“nginx”实现的。通过修改nginx.conf，可以设置多个web后端。</p>
@@ -495,15 +496,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">记录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,15 +520,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">WP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">挖洞</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,11 +548,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">WP</a>
+                <a href="javascript:void(0)" class="js-tag color3">记录</a>
               </li>
              
               <li class="article-tag-list-item">
