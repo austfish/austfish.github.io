@@ -6,19 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Tag: 流程 | Fisher&#39;s 安全日记</title>
+  <title>什么是高并发 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力，微信公众号：austfish">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/tags/流程/index.html">
+  <meta name="description" content="高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。">
+<meta name="keywords" content="开发,知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是高并发">
+<meta property="og:url" content="http://austfish.cn/2019/12/10/什么是高并发/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
+<meta property="og:description" content="高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/y9IHdqV0Kb6P.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/VBJiERQcQWfa.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/8YbizcRz7u96.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/jhhRCezHybYw.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/4KbAecSSEVzl.png?imageslim">
+<meta property="og:updated_time" content="2019-12-10T03:34:40.035Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
+<meta name="twitter:title" content="什么是高并发">
+<meta name="twitter:description" content="高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -162,36 +170,107 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-什么是高并发" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/10/浅谈敏捷开发流程/" class="archive-article-date">
-  	<time datetime="2019-12-10T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/10/浅谈敏捷开发流程/">浅谈敏捷开发流程</a>
+    <h1 class="article-title" itemprop="name">
+      什么是高并发
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/12/10/什么是高并发/" class="archive-article-date">
+  	<time datetime="2019-12-10T03:33:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
+<a id="more"></a>
+<h1 id="一、什么是高并发"><a href="#一、什么是高并发" class="headerlink" title="一、什么是高并发"></a>一、什么是高并发</h1><blockquote>
+<p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
+</blockquote>
+<p><strong>高并发相关常用的一些指标有响应时间（Response Time），吞吐量（Throughput），每秒查询率QPS（Query Per Second），并发用户数等。</strong></p>
+<p><strong>响应时间</strong>：系统对请求做出响应的时间。例如系统处理一个HTTP请求需要200ms，这个200ms就是系统的响应时间。<br><strong>吞吐量</strong>：单位时间内处理的请求数量。<br><strong>QPS</strong>：每秒响应请求数。在互联网领域，这个指标和吞吐量区分的没有这么明显。<br><strong>并发用户数</strong>：同时承载正常使用系统功能的用户数量。例如一个即时通讯系统，同时在线量一定程度上代表了系统的并发用户数。&nbsp;</p>
+<h1 id="二、如何提升系统的并发能力"><a href="#二、如何提升系统的并发能力" class="headerlink" title="二、如何提升系统的并发能力"></a>二、如何提升系统的并发能力</h1><p>互联网分布式架构设计，提高系统并发能力的方式，方法论上主要有两种：<strong>垂直扩展（Scale Up）与水平扩展（Scale Out）。</strong></p>
+<h5 id="垂直扩展：提升单机处理能力。垂直扩展的方式又有两种："><a href="#垂直扩展：提升单机处理能力。垂直扩展的方式又有两种：" class="headerlink" title="垂直扩展：提升单机处理能力。垂直扩展的方式又有两种："></a>垂直扩展：提升单机处理能力。垂直扩展的方式又有两种：</h5><p>（1）增强单机硬件性能，例如：增加CPU核数如32核，升级更好的网卡如万兆，升级更好的硬盘如SSD，扩充硬盘容量如2T，扩充系统内存如128G；</p>
+<p>（2）提升单机架构性能，例如：使用Cache来减少IO次数，使用异步来增加单服务吞吐量，使用无锁数据结构来减少响应时间；</p>
+<p>在互联网业务发展非常迅猛的早期，如果预算不是问题，强烈建议使用“增强单机硬件性能”的方式提升系统并发能力，因为这个阶段，公司的战略往往是发展业务抢时间，而“增强单机硬件性能”往往是最快的方法。</p>
+<p>不管是提升单机硬件性能，还是提升单机架构性能，都有一个致命的不足：单机性能总是有极限的。所以互联网分布式架构设计高并发终极解决方案还是水平扩展。</p>
+<p>水平扩展：只要增加服务器数量，就能线性扩充系统性能。水平扩展对系统架构设计是有要求的，如何在架构各层进行可水平扩展的设计，以及互联网公司架构各层常见的水平扩展实践，是本文重点讨论的内容。</p>
+<h1 id="三、常见的互联网分层架构"><a href="#三、常见的互联网分层架构" class="headerlink" title="三、常见的互联网分层架构"></a>三、常见的互联网分层架构<img src="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim" alt="mark"></h1><h5 id="常见互联网分布式架构如上，分为："><a href="#常见互联网分布式架构如上，分为：" class="headerlink" title="常见互联网分布式架构如上，分为："></a>常见互联网分布式架构如上，分为：</h5><p>（1）客户端层：典型调用方是浏览器browser或者手机应用APP<br>（2）反向代理层：系统入口，反向代理<br>（3）站点应用层：实现核心应用逻辑，返回html或者json<br>（4）服务层：如果实现了服务化，就有这一层<br>（5）数据-缓存层：缓存加速访问存储<br>（6）数据-数据库层：数据库固化数据存储</p>
+<p>整个系统各层次的水平扩展，又分别是如何实施的呢？</p>
+<h1 id="四、分层水平扩展架构实践"><a href="#四、分层水平扩展架构实践" class="headerlink" title="四、分层水平扩展架构实践"></a>四、分层水平扩展架构实践</h1><p>反向代理层的水平扩展<img src="http://qiniu.austfish.cn/blog/20191210/y9IHdqV0Kb6P.png?imageslim" alt="mark"></p>
+<p>反向代理层的水平扩展，是通过“DNS轮询”实现的：dns-server对于一个域名配置了多个解析ip，每次DNS解析请求来访问dns-server，会轮询返回这些ip。<br>当nginx成为瓶颈的时候，只要增加服务器数量，新增nginx服务的部署，增加一个外网ip，就能扩展反向代理层的性能，做到理论上的无限高并发。</p>
+<h5 id="站点层的水平扩展"><a href="#站点层的水平扩展" class="headerlink" title="站点层的水平扩展"></a>站点层的水平扩展</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/VBJiERQcQWfa.png?imageslim" alt="mark"></p>
+<p>站点层的水平扩展，是通过“nginx”实现的。通过修改nginx.conf，可以设置多个web后端。</p>
+<p>当web后端成为瓶颈的时候，只要增加服务器数量，新增web服务的部署，在nginx配置中配置上新的web后端，就能扩展站点层的性能，做到理论上的无限高并发。</p>
+<h5 id="服务层的水平扩展"><a href="#服务层的水平扩展" class="headerlink" title="服务层的水平扩展"></a>服务层的水平扩展</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/8YbizcRz7u96.png?imageslim" alt="mark"></p>
+<p>服务层的水平扩展，是通过“服务连接池”实现的。</p>
+<p>站点层通过RPC-client调用下游的服务层RPC-server时，RPC-client中的连接池会建立与下游服务多个连接，当服务成为瓶颈的时候，只要增加服务器数量，新增服务部署，在RPC-client处建立新的下游服务连接，就能扩展服务层性能，做到理论上的无限高并发。如果需要优雅的进行服务层自动扩容，这里可能需要配置中心里服务自动发现功能的支持。</p>
+<h5 id="数据层的水平扩展"><a href="#数据层的水平扩展" class="headerlink" title="数据层的水平扩展"></a>数据层的水平扩展</h5><p>在数据量很大的情况下，数据层（缓存，数据库）涉及数据的水平扩展，将原本存储在一台服务器上的数据（缓存，数据库）水平拆分到不同服务器上去，以达到扩充系统性能的目的。</p>
+<p>互联网数据层常见的水平拆分方式有这么几种，以数据库为例：</p>
+<h5 id="按照范围水平拆分"><a href="#按照范围水平拆分" class="headerlink" title="按照范围水平拆分"></a>按照范围水平拆分</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/jhhRCezHybYw.png?imageslim" alt="mark"></p>
+<h5 id="每一个数据服务，存储一定范围的数据，上图为例："><a href="#每一个数据服务，存储一定范围的数据，上图为例：" class="headerlink" title="每一个数据服务，存储一定范围的数据，上图为例："></a>每一个数据服务，存储一定范围的数据，上图为例：</h5><p>user0库，存储uid范围1-1kw<br>user1库，存储uid范围1kw-2kw</p>
+<h5 id="这个方案的好处是："><a href="#这个方案的好处是：" class="headerlink" title="这个方案的好处是："></a>这个方案的好处是：</h5><p>（1）规则简单，service只需判断一下uid范围就能路由到对应的存储服务；<br>（2）数据均衡性较好；<br>（3）比较容易扩展，可以随时加一个uid[2kw,3kw]的数据服务；</p>
+<h5 id="不足是："><a href="#不足是：" class="headerlink" title="不足是："></a>不足是：</h5><p>（1）请求的负载不一定均衡，一般来说，新注册的用户会比老用户更活跃，大range的服务请求压力会更大；</p>
+<h5 id="按照哈希水平拆分"><a href="#按照哈希水平拆分" class="headerlink" title="按照哈希水平拆分"></a>按照哈希水平拆分</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/4KbAecSSEVzl.png?imageslim" alt="mark"><br>每一个数据库，存储某个key值hash后的部分数据，上图为例：<br>user0库，存储偶数uid数据<br>user1库，存储奇数uid数据</p>
+<h5 id="这个方案的好处是：-1"><a href="#这个方案的好处是：-1" class="headerlink" title="这个方案的好处是："></a>这个方案的好处是：</h5><p>（1）规则简单，service只需对uid进行hash能路由到对应的存储服务；<br>（2）数据均衡性较好；<br>（3）请求均匀性较好；</p>
+<h5 id="不足是：-1"><a href="#不足是：-1" class="headerlink" title="不足是："></a>不足是：</h5><p>（1）不容易扩展，扩展一个数据服务，hash方法改变时候，可能需要进行数据迁移；</p>
+<blockquote>
+<p>这里需要注意的是，通过水平拆分来扩充系统性能，与主从同步读写分离来扩充数据库性能的方式有本质的不同。</p>
+</blockquote>
+<h5 id="通过水平拆分扩展数据库性能："><a href="#通过水平拆分扩展数据库性能：" class="headerlink" title="通过水平拆分扩展数据库性能："></a>通过水平拆分扩展数据库性能：</h5><p>（1）每个服务器上存储的数据量是总量的1/n，所以单机的性能也会有提升；<br>（2）n个服务器上的数据没有交集，那个服务器上数据的并集是数据的全集；<br>（3）数据水平拆分到了n个服务器上，理论上读性能扩充了n倍，写性能也扩充了n倍（其实远不止n倍，因为单机的数据量变为了原来的1/n）；</p>
+<h5 id="通过主从同步读写分离扩展数据库性能："><a href="#通过主从同步读写分离扩展数据库性能：" class="headerlink" title="通过主从同步读写分离扩展数据库性能："></a>通过主从同步读写分离扩展数据库性能：</h5><p>（1）每个服务器上存储的数据量是和总量相同；（2）n个服务器上的数据都一样，都是全集；<br>（3）理论上读性能扩充了n倍，写仍然是单点，写性能不变；</p>
+<p>缓存层的水平拆分和数据库层的水平拆分类似，也是以范围拆分和哈希拆分的方式居多，就不再展开。</p>
+<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
+<p>提高系统并发能力的方式，方法论上主要有两种：垂直扩展（Scale Up）与水平扩展（Scale Out）。前者垂直扩展可以通过提升单机硬件性能，或者提升单机架构性能，来提高并发性，但单机性能总是有极限的，互联网分布式架构设计高并发终极解决方案还是后者：水平扩展。</p>
+<h5 id="互联网分层架构中，各层次水平扩展的实践又有所不同："><a href="#互联网分层架构中，各层次水平扩展的实践又有所不同：" class="headerlink" title="互联网分层架构中，各层次水平扩展的实践又有所不同："></a>互联网分层架构中，各层次水平扩展的实践又有所不同：</h5><p>（1）反向代理层可以通过“DNS轮询”的方式来进行水平扩展；<br>（2）站点层可以通过nginx来进行水平扩展；<br>（3）服务层可以通过服务连接池来进行水平扩展；（4）数据库可以按照数据范围，或者数据哈希的方式来进行水平扩展；</p>
+<p>各层实施水平扩展后，能够通过增加服务器数量的方式来提升系统的性能，做到理论上的性能无限。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,25 +280,119 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">流程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">知识</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3ay27DMAxE0fz/TytAVwUCyzNDJYDJq5XhpLGOF6z4eL3ktf5W5f76t67uX33n2IIBA8ZjGWu7Prd1db3/TXcP+t5gwIAxh7EPmi5jH2pPvSYYMGDA2Ac+5b6yLZ0HAwYMGFnArR8W9VcAAwYMGEoSuy+ZVYp3P83FYcCA8UCG++BfXn+xvwEDBoyHMFa09CJapfFg7AcGDBitGfvHVwYvlEPk/rl66Q0GDBjTGAcCn5m4ZiMaNwEXBgwYjRjKYS4LlNnm3H8DMGDAmMNw00j38foB0T0mwoABYwJD/1F9wKJS+s8aqDBgwJjDcA+I7t9mxTvjUxgwYDRlKC1J91pPd/WRjptnwYABYwwjG6GopKmnBjVgwIAxjaGHQoWnF/LcVsFNwIUBA0YjhtuS1LeeDV64RT0YMGBMYNRbiWcbANl3YMCA0ZuRpa+VEr+erLojHTBgwOjKWMLKGgBZWU0/RErvCQYMGC0YLsYtw1XaA/qCAQPGHEYY5sy4pzdB9aMnDBgwpjH0EJk1L/Vt6Y0KGDBgTGBknU+9ZOa+pgMLBgwYjRhhuhgFWTdwGyU/GDBgtGZUArE+2uWmrO7oBgwYMCYw3BZm1ozURyvcIyYMGDDmMLIQWR+byFoOh+tzMGDAGMZQ7uuDZUrohwEDBgylMZCNpWafSnk2DBgwmjKy8dNv9BPDJBkGDBitGVljICvlZ7zsRcCAAaMF4w2/tbwqK7Z1BwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/12/10/浅谈敏捷开发流程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅谈敏捷开发流程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="什么是高并发" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyuoyyRfG"; 
+var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -248,9 +421,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -338,10 +511,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
@@ -350,7 +519,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">渗透</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">挖洞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -358,7 +531,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">挖洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -367,14 +548,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">WP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">流程</a>
               </li>
              
               <li class="article-tag-list-item">
