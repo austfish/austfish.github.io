@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Archives: 2019/10 | Fisher&#39;s 安全日记</title>
+  <title>docker使用手册 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力，微信公众号：austfish">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/archives/2019/10/index.html">
+  <meta name="description" content="记录一下docker的日常使用命令，本文主要针对linux + mac操作系统而言，window是否适用不太确定，谨慎使用">
+<meta name="keywords" content="工具,手册,docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker使用手册">
+<meta property="og:url" content="http://austfish.cn/2019/12/18/docker使用手册/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
+<meta property="og:description" content="记录一下docker的日常使用命令，本文主要针对linux + mac操作系统而言，window是否适用不太确定，谨慎使用">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-12-18T08:19:48.383Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
+<meta name="twitter:title" content="docker使用手册">
+<meta name="twitter:description" content="记录一下docker的日常使用命令，本文主要针对linux + mac操作系统而言，window是否适用不太确定，谨慎使用">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -162,124 +163,156 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-docker使用手册" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      docker使用手册
+    </h1>
+  
+
+        
+        <a href="/2019/12/18/docker使用手册/" class="archive-article-date">
+  	<time datetime="2019-12-18T07:47:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一下docker的日常使用命令，本文主要针对linux + mac操作系统而言，window是否适用不太确定，谨慎使用</p>
+<a id="more"></a>
+<hr>
+<h2 id="1-docker进程"><a href="#1-docker进程" class="headerlink" title="1. docker进程"></a>1. docker进程</h2><p>docker进程启动、停止、重启，常见的三种case</p>
+<p> <strong>启动docker</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+<p><strong>关机docker</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker stop</span><br></pre></td></tr></table></figure>
+<p><strong>重启docker</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker restart</span><br></pre></td></tr></table></figure>
+<h2 id="2-镜像操作"><a href="#2-镜像操作" class="headerlink" title="2. 镜像操作"></a>2. 镜像操作</h2><p>镜像作为容器执行的前提条件，一般需要掌握的几个命令无非是搜索，下载，删除，创建</p>
+<p><strong>镜像列表</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<p><strong>检索镜像, 从镜像仓库中检索</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search xxx</span><br></pre></td></tr></table></figure>
+<p><strong>下载镜像</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull xxx</span><br></pre></td></tr></table></figure>
+<p><strong>删除镜像</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi xxx</span><br></pre></td></tr></table></figure>
+<p>关于创建镜像，有必要稍微详细一点点</p>
+<p><strong>通过容器创建镜像</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m=&quot;首次提交&quot; -a=&quot;一灰灰Blog&quot; dd85eb055fe8 yh/centos:v0.1</span><br></pre></td></tr></table></figure>
+<p><strong>镜像历史查询</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker history yh/centos</span><br></pre></td></tr></table></figure>
+<p>上面的几个参数进行说明</p>
+<blockquote>
+<p>-m 和git的提交一样，后面跟上描述信息<br>-a 版权声明，这个东西是我创建的，有啥问题，找我 dd85eb055fe8 容器id yhh/quick-os:0.1 创建的镜像名</p>
+</blockquote>
+<h2 id="3-容器操作"><a href="#3-容器操作" class="headerlink" title="3. 容器操作"></a>3. 容器操作</h2><p>接下来就是正菜了，容器的各种操作，启动，关闭，重启，日志查询以及各种进入容器内部搞事情</p>
+<p><strong>a. run</strong><br>万事开头第一步，加载镜像，创建容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run 镜像名:版本</span><br></pre></td></tr></table></figure>
+<p>run后面可以跟很多的参数，比如容器暴露端口指定，存储映射，权限等等，由于参数过多，下面只给出几个不同的例子，来具体的演示参数可以怎么加</p>
+<p><strong>case1: 创建并后台执行</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t -d centos:latest</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其中关键参数为-d，指定容器运行与前台或者后台，不加上时前台</li>
+<li>-i: 打开STDIN，用于控制台交互</li>
+<li>-t: 支持终端登录</li>
+</ul>
+<p><strong>case2: 运行一个带命令在后台不断执行的容器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d centos:latest ping www.baidu.com</span><br></pre></td></tr></table></figure>
+<p><strong>case3: 运行一个在后台不断执行的容器，同时带有命令，程序被终止后还能重启继续跑</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --restart=always centos:latest ping www.baidu.com</span><br></pre></td></tr></table></figure>
+<p><strong>case4: 指定容器名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name=yhh_centos centos:latest</span><br></pre></td></tr></table></figure>
+<p><strong>case5: 暴露容器端口80，并与宿主机端口8080绑定</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name=yhh_centos -p 8080:80 centos:latest</span><br></pre></td></tr></table></figure>
+<p><strong>case6: 指定容器与宿主机目录（/home/yihui/html/www）共享</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name=yhh_centos -v /home/yihui/html/www:/var/www centos:latest</span><br></pre></td></tr></table></figure>
+<p><strong>b. 基操</strong><br>容器创建完毕之后，就是一些基本操作了，启动、停止、重启、删除</p>
+<p><strong>查看容器列表， 列出所有的容器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<p><strong>启动容器，start后面可以跟上容器名，或者容器id</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker start xxx  </span><br><span class="line"># (这里的xxx可以是容器名：yhh_centos 也可以是容器id：f57398ab22c5)</span><br></pre></td></tr></table></figure>
+<p><strong>关闭容器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop xxx</span><br></pre></td></tr></table></figure>
+<p><strong>重启</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart xxx</span><br></pre></td></tr></table></figure>
+<p><strong>删除</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm xxx</span><br></pre></td></tr></table></figure>
+<p>在查看容器列表时，如果某个容器的启动参数特别长，直接使用docker ps -a会发现看不到完整的启动命令，这个时候可以带上参数–no-trunc来显示完整命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a --no-trunc</span><br></pre></td></tr></table></figure>
+<p><strong>c. 进阶</strong><br>接下来进入一些容器的高级操作技巧（实际上也并没有特别酷炫）</p>
+<p>为了演示一些进阶的内容，这里创建一个容器作为测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -d --name=yhhos centos</span><br></pre></td></tr></table></figure>
+<p>容器日志查询</p>
+<p>日志，定位问题的神器</p>
+<p><strong>查询xxx容器的日志</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs yhhos</span><br></pre></td></tr></table></figure>
+<p>基本上不太会直接使用上面的命令，因为上面把所有的日志都打印出来了，可以直接晃瞎我们的钛合金x眼</p>
+<p>一般日志可以加两个参数 -f, -t</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f -t --since=&quot;2019-05-11&quot; --tail=10 yhhos</span><br></pre></td></tr></table></figure>
+<ul>
+<li>–since : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志。</li>
+<li>-f : 查看实时日志<ul>
+<li>-t : 查看日志产生的日期</li>
+<li>–tail=10 : 查看最后的10条日志。</li>
+</ul>
+</li>
+</ul>
+<p><strong>文件拷贝</strong></p>
+<p>将容器的某个文件捞出来；或者强塞，一个cp即可</p>
+<p><strong>将当前目录的test.md文件拷贝到容器的 /tmp 目录下</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp test.md yhhos:/tmp</span><br></pre></td></tr></table></figure>
+<p><strong>将容器的/tmp/test.md目录拷贝到当前目录下</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp yhhos:/tmp/test.md ./out.md</span><br></pre></td></tr></table></figure>
+<p><strong>进入容器</strong></p>
+<p>进入容器内部，然后就可以为所欲为了…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it yhhos /bin/bash</span><br></pre></td></tr></table></figure>
+<p>获取容器所有信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect yhhos</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/渗透初期准备工作-信息收集方法总结/" class="archive-article-date">
-  	<time datetime="2019-10-10T09:04:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/渗透初期准备工作-信息收集方法总结/">渗透初期准备工作-信息收集方法总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/如何挖信息泄密漏洞/" class="archive-article-date">
-  	<time datetime="2019-10-10T08:43:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/如何挖信息泄密漏洞/">如何挖信息泄密漏洞</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">挖洞</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/Git常用操作指南/" class="archive-article-date">
-  	<time datetime="2019-10-10T03:28:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/Git常用操作指南/">Git常用操作指南</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -293,25 +326,119 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3a24rDMAwFwP3/n+6+FpakR1K6YHv8FNJLNC0IWfLPT7xef9b7/av33H/q/c79/ccWBgbGsozqg5NXr8J6xSuPDQMD4xzGVQa7v84TaBJu8qzL+xgYGBitpJmn5uS5GBgYGNWvyzec96HnyRcDAwMjL916RWHevPv6XhwDA2NBRt51///rr8w3MDAwlmL0NqKT0Wb+MxWiwsDA2JqRJ7hq4Zh/Z37/Q0mKgYGxKaPpbm1f8+skWY/+BwwMjKUY1Q9XB43VBlxvOIGBgXECY3Lkotc4yzHN1hsGBsZ2jOpmchJ09dBGYTiKgYGxKSMp/not+zyI+cEODAyM0xi9dn/+qbwcLLTtMDAwtmZ8r6Trpde85VeucDEwMDZlTLaa+Tih2npr1rkYGBjLMnpbx/y4ahJiHsOHGSwGBsYBjGqizCeJvWFn4ZgsBgbG1oy8HMzTa74drabm5sLAwFic0WtvJSm19/7mcAIDA2NrxqSY67XkJoDCf4KBgbEpozponKfRPNCoDYeBgXEAIydNNrp5ms6fjoGBcRqjWjLeM6qhT5qAGBgYuzJexTU/opE37wrPxcDA2JrRS3OTYxaT7esDc1oMDIxlGdUkm4SeF3+ThIuBgXEao5f4qse/8gMZ5YEBBgYGRhzcUwcsyvUsBgYGxqDF32u63ReLD5SGGBgYCzKqI8lqws0DzX84DAyMcxjVrWMhCRaDzkebo/kGBgbGSoxfiJ6TYYMZP7sAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/12/10/什么是高并发/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">什么是高并发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="docker使用手册" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyuoyyRfG"; 
+var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -340,8 +467,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
