@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://austfish.cn/photos/data.json</loc>
+    
+    <lastmod>2019-12-19T08:09:28.067Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://austfish.cn/2019/12/18/docker%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</loc>
     
     <lastmod>2019-12-18T08:19:48.383Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>http://austfish.cn/2019/10/10/%E5%A6%82%E4%BD%95%E6%8C%96%E4%BF%A1%E6%81%AF%E6%B3%84%E5%AF%86%E6%BC%8F%E6%B4%9E/</loc>
     
     <lastmod>2019-10-10T08:52:11.421Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://austfish.cn/photos/data.json</loc>
-    
-    <lastmod>2019-10-08T09:20:44.011Z</lastmod>
     
   </url>
   
@@ -163,6 +163,13 @@
   </url>
   
   <url>
+    <loc>http://austfish.cn/assets/demo/jiugongge_demo.html</loc>
+    
+    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://austfish.cn/assets/demo/hack_demo.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
@@ -177,14 +184,7 @@
   </url>
   
   <url>
-    <loc>http://austfish.cn/assets/demo/jiugongge_demo.html</loc>
-    
-    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://austfish.cn/assets/demo/gift/index.html</loc>
+    <loc>http://austfish.cn/assets/demo/coffee_pc_demo/pro-con.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://austfish.cn/assets/demo/coffee_pc_demo/pro-con.html</loc>
+    <loc>http://austfish.cn/assets/demo/my_news_reader/index.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://austfish.cn/assets/demo/my_news_reader/index.html</loc>
+    <loc>http://austfish.cn/assets/demo/gift/index.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
