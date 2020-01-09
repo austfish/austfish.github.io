@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2020-01-02T02:13:22.138Z</updated>
+  <updated>2020-01-09T08:23:28.218Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>下一代分布式消息队列-Pulsar</title>
+    <link href="http://austfish.cn/2020/01/09/%E4%B8%8B%E4%B8%80%E4%BB%A3%E5%88%86%E5%B8%83%E5%BC%8F%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-Pulsar/"/>
+    <id>http://austfish.cn/2020/01/09/下一代分布式消息队列-Pulsar/</id>
+    <published>2020-01-09T08:22:06.000Z</published>
+    <updated>2020-01-09T08:23:28.218Z</updated>
+    
+    <content type="html"><![CDATA[<p>Apache Pulsar是一个企业级的分布式消息系统，最初由Yahoo开发并在2016年开源，目前正在Apache基金会下孵化。Plusar已经在Yahoo的生产环境使用了三年多，主要服务于Mail、Finance、Sports、 Flickr、 the Gemini Ads platform、 Sherpa以及Yahoo的KV存储。<br><a id="more"></a></p><h2 id="Pulsar简介"><a href="#Pulsar简介" class="headerlink" title="Pulsar简介"></a>Pulsar简介</h2><p>Pulsar之所以能够称为下一代消息队列，主要是因为以下特性:</p><ul><li>Pulsar实例原生支持多集群，能无缝的基于地理位置进行跨集群备份</li><li>非常低的消息发布和端到端的延迟</li><li>无缝扩展到超过百万个topic</li><li>支持Java,Go,Pytho和C++的客户端Topic</li><li>支持多种订阅模式: 独占（exclusive）, 共享（shared）和灾备（failover）</li><li>通过Apache BookKeeper提供的持久化消息存储机制保证消息的送达</li><li>serverless的轻量级计算框架Pulsar Functions提供了原生的流数据处理</li><li>serverless的连接器框架Pulsar IO构建于 Pulsar Functions之上，能够轻松的将数据从Pulsar中移入和移出</li><li>当数据老化时，分层存储将数据从热存储卸载到冷存储（如S3和GCS）</li></ul><h2 id="架构概述"><a href="#架构概述" class="headerlink" title="架构概述"></a>架构概述</h2><p>从最上层来看，一个Plusar单元由若干个集群组成，单元内的集群可以互相之前复制数据, plusar中通常有以下几种组件:</p><ul><li><strong>Broker</strong>:负责处理Producer发来的消息并分发给消费者。通过一个全局的ZK集群来处理多种协作式任务，例如说基于地理位置的复制。并将消息存储到BookKeeper中，同时单个集群内也需要有一套ZK集群，来存储一些元数据。</li><li><strong>BookKeeper集群</strong>: 内部包含多个bookies，用于持久化消息。</li><li><strong>ZooKeeper集</strong><br><img src="http://qiniu.austfish.cn/blog/20200108/eiivIHMeeC4U.png?imageslim" alt="mark"></li></ul><h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>在Kafka和RocketMQ中，Broker负责消息数据的存储以及consumer消费位移的存储等，而Plusar中的broker和他们两个有所不同，plusar中的broker是一个无状态的节点，主要负责三件事情：</p><ul><li>暴露REST接口用于执行管理员的命令以及topic所有者的查询等</li><li>一个用于节点间通讯的异步的TCP服务器，协议目前采用的是Google之前开源的Protocol Buffer</li><li>为了支持地域复制，broker会将自己 集群所在的消息发布到其他可用区。</li></ul><p>消息会被先发布到BookKeeper中，然后会在Broker本地内存中缓存一份，因此一般来说消息的读取都会从从内存中读取，因此第一条中所说的查找topic所有者就是说，因为BookKeeper中的一个ledger只允许一个writer，因此我们可以调用rest接口获取到某一个topic当前的所有者。</p><h3 id="BookKeeper"><a href="#BookKeeper" class="headerlink" title="BookKeeper"></a>BookKeeper</h3><p>BookKeeper是一个可横向扩展的、错误容忍的、低延迟的分布式存储服务，BookKeeper中最基本的单位是记录，实际上就一个字节数组，而记录的数组称之为ledger，BK会将记录复制到多个bookies，存储ledger的节点叫做bookies，从而获得更高的可用性和错误容忍性。从设计阶段BK就考虑到了各种故障，Bookies可以宕机、丢数据、脏数据，但是主要整个集群中有足够的Bookies服务的行为就是正确的。</p><p>在Pulsar中，每个分区topic是由若干个ledger组成的，而ledger是一个append-only的数据结构，只允许单个writer，ledger中的每条记录会被复制到多个bookies中，一个ledger被关闭后(例如broker宕机了或者达到了一定的大小)就只支持读取，而当ledger中的数据不再需要的时候(例如所有的消费者都已经消费了这个ledger中的消息)就会被删除.<br><img src="http://qiniu.austfish.cn/blog/20200108/1DJdy2fmLJfG.png?imageslim" alt="mark"></p><p>Bookkeeper的主要优势在于它可以保证在出现故障时在ledger的读取一致性。因为ledger只能被同时被一个writer写入，因为没有竞争，BK可以更高效的实现写入。在Broker宕机后重启时，Plusar会启动一个恢复的操作，从ZK中读取最后一个写入的Ledger并读取最后一个已提交的记录，然后所有的消费者也都被保证能看到同样的内容。<br><img src="http://qiniu.austfish.cn/blog/20200108/zSXRDnlkktm6.png?imageslim" alt="mark"></p><p>我们知道Kafka在0.8版本之前是将消费进度存储到ZK中的，但是ZK本质上基于单个日志的中心服务，简单来讲，ZK的性能不会随着你增加更多的节点而线性增加，会只会相反减少，因为更多的节点意味着需要将日志同步到更多的节点，性能也会随之下降，因此QPS也会受单机性能影响，因此0.8版本之后就将消费进度存储到了Kafka的Topic中，而RocketMQ最初的版本也类似，有几种不同的实现例如ZK、数据库等，目前版本采用的是存储到本机文件系统中，而Plusar采用了和Kafka类似的思想，Plusar将消费进度也存储到了BK的ledger中。</p><h3 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h3><p>Plusar中的元数据主要存储到ZK中，例如不同可用区相关的配置会存在全局的ZK中，集群内部的ZK用于存储例如某个topic的数据写入到了那些Ledger、Broker目前的一些埋点数据等等</p><h2 id="Plusar核心概念"><a href="#Plusar核心概念" class="headerlink" title="Plusar核心概念"></a>Plusar核心概念</h2><h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>发布订阅系统中最核心的概念是topic，简单来说，topic可以理解为一个管道，producer可以往这个管道丢消息，consumer可以从这个管道的另一端读取消息，但是这里可以有多个consumer同时从这个管道读取消息。<br><img src="http://qiniu.austfish.cn/blog/20200108/OTOBMa8GIMbj.png?imageslim" alt="mark"></p><p>每个topic可以划分为多个分区，同一个topic下的不同分区所包含的消息都是不同的。每个消息在被添加到一个分区后都会分配一个唯一的offset，在同一个分区内消息是有序的，因此客户端可以根据比如说用户ID进行一个哈希取模从而使得整个用户的消息都发往整个分区，从而一定程度上避免race condition的问题。通过分区，将大量的消息分散到不同的节点处理从而获得高吞吐。默认情况下，plusar的topic都是非分区的，但是支持通过cli或者接口创建一定分区数目的topic<br><img src="http://qiniu.austfish.cn/blog/20200108/ggjjtTxiXh8p.png?imageslim" alt="mark"></p><p>默认情况下Plusar会自动均衡Producer和Consumer,但有时候客户端想要根据自己的业务规则也进行路由，Plusar默认支持以下几种规则:单分区、轮询、哈希、自定义(即自己实现相关接口来定制路由规则)</p><h3 id="消费模式"><a href="#消费模式" class="headerlink" title="消费模式"></a>消费模式</h3><p>消费决定了消息具体是如何被分发到消费者的，Plusar支持几种不同的消费模式: exclusive、shared、failover。图示如下:<br><img src="http://qiniu.austfish.cn/blog/20200108/pvR3ccVRrKCy.png?imageslim" alt="mark"></p><ul><li><strong>Exclusive</strong>: 一个topic只能被一个消费者消费。Plusar默认就是这个模式<br><img src="http://qiniu.austfish.cn/blog/20200108/NlCt0330q1dW.png?imageslim" alt="mark"></li><li><strong>Shared</strong>: 共享模式或者叫轮询模式，多个消费者可以连接到同一个topic，消息被依次分发给消费者，当一个消费者宕机或者主动断开连接，那么发到那个消费者的还没有ack的消息会得到重新调度分发给其他消费者。<br><img src="http://qiniu.austfish.cn/blog/20200108/7IHRn8im495s.png?imageslim" alt="mark"></li><li><strong>Failover</strong>: 多个消费者可以连接同一个topic并按照字典序排序，第一个消费者会开始消费消息，称之为master，当master断开连接，所有未ack和队列中剩下的消息会分发给另一个消费者。<br><img src="http://qiniu.austfish.cn/blog/20200108/vvGDAIxetu3f.png?imageslim" alt="mark"></li></ul><p>Plusar目前也支持另一种Reader接口，支持传入一个消息ID，例如说Message.Earliest来从最早的消息开始消费。</p><h2 id="Kafka与Pulsar异同"><a href="#Kafka与Pulsar异同" class="headerlink" title="Kafka与Pulsar异同"></a>Kafka与Pulsar异同</h2><p>pulsar和kafka最显而易见的区别是，pulsar支持多租户，有着资产和命名空间的概念，资产代表系统里的租户。假设有一个Pulsar集群用于支持多个应用程序（就像Yahoo那样），集群里的每个资产可以代表一个组织的团队、一个核心的功能或一个产品线。一个资产可以包含多个命名空间，一个命名空间可以包含任意个主题。</p><p><img src="http://qiniu.austfish.cn/blog/20200108/rSiJQ640PaK2.png?imageslim" alt="mark"></p><table><thead><tr><th></th><th>Kafka</th><th>Pulsar</th></tr></thead><tbody><tr><td>概念</td><td>生产者 - 主题 - 消费者群体 - 消费者</td><td>生产者 - 主题 - 订阅 - 消费者</td></tr><tr><td>消费</td><td>更专注于分区上的流式传输、独占消息传递，没有共享消费。</td><td>统一消息传递模型和API。1通过独占的故障转移订阅进行流式传输 2通过共享订阅队列</td></tr><tr><td>Acking</td><td>简单的偏移offset管理 1在Kafka 0.8之前，偏移量存储在ZooKeeper中 2在Kafka 0.8之后，偏移量存储在偏移主题上</td><td>统一消息传递模型和API。通过独占的故障转移订阅进行流式传输通过共享订阅队列</td></tr><tr><td>Retention</td><td>根据保留删除消息，如果消费者在保留期之前未读取消息，则会丢失数据。</td><td>1消息仅在所有订阅消耗后删除，即使订阅的消费者长时间down，也没有数据丢失。2即使所有订阅都使用消息，也允许消息保留一段配置的保留期。</td></tr><tr><td>TTL</td><td>没有TTL支持</td><td>支持消息TTL</td></tr></tbody></table><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Plusar作为下一代分布式消息队列，拥有非常多吸引人的特性，也弥补了一些其他竞品的短板，例如地域复制、多租户、扩展性、读写隔离等等。</p><p>./bin/pulsar-admin functions create \<br>–py mg_function.py \<br>–inputs persistent://public/default/honeypots \<br>–output persistent://public/default/honeypots-2 \<br>–calssname mg_function.ExclamationFunction</p><p>bin/pulsar-admin functions localrun \<br>–py mg_function.py \<br>–classname mg_function.ExclamationFunction \<br>–inputs persistent://public/default/honeypots \<br>–output persistent://public/default/honeypots-2</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Apache Pulsar是一个企业级的分布式消息系统，最初由Yahoo开发并在2016年开源，目前正在Apache基金会下孵化。Plusar已经在Yahoo的生产环境使用了三年多，主要服务于Mail、Finance、Sports、 Flickr、 the Gemini Ads platform、 Sherpa以及Yahoo的KV存储。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>2020必须是突破的一年</title>
@@ -168,9 +190,9 @@
     
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="挖洞" scheme="http://austfish.cn/tags/%E6%8C%96%E6%B4%9E/"/>
-    
       <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="挖洞" scheme="http://austfish.cn/tags/%E6%8C%96%E6%B4%9E/"/>
     
   </entry>
   
@@ -331,9 +353,9 @@
     </summary>
     
     
-      <category term="python" scheme="http://austfish.cn/tags/python/"/>
-    
       <category term="docker" scheme="http://austfish.cn/tags/docker/"/>
+    
+      <category term="python" scheme="http://austfish.cn/tags/python/"/>
     
   </entry>
   
