@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://qiniu.austfish.cn/blog/20200108/7IHRn8im495s.png?imageslim">
 <meta property="og:image" content="http://qiniu.austfish.cn/blog/20200108/vvGDAIxetu3f.png?imageslim">
 <meta property="og:image" content="http://qiniu.austfish.cn/blog/20200108/rSiJQ640PaK2.png?imageslim">
-<meta property="og:updated_time" content="2020-01-09T08:23:28.218Z">
+<meta property="og:updated_time" content="2020-01-09T08:27:59.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="下一代分布式消息队列-Pulsar">
 <meta name="twitter:description" content="Apache Pulsar是一个企业级的分布式消息系统，最初由Yahoo开发并在2016年开源，目前正在Apache基金会下孵化。Plusar已经在Yahoo的生产环境使用了三年多，主要服务于Mail、Finance、Sports、 Flickr、 the Gemini Ads platform、 Sherpa以及Yahoo的KV存储。">
@@ -274,8 +274,9 @@ var _hmt = _hmt || [];
 </tbody>
 </table>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Plusar作为下一代分布式消息队列，拥有非常多吸引人的特性，也弥补了一些其他竞品的短板，例如地域复制、多租户、扩展性、读写隔离等等。</p>
-<p>./bin/pulsar-admin functions create \<br>–py mg_function.py \<br>–inputs persistent://public/default/honeypots \<br>–output persistent://public/default/honeypots-2 \<br>–calssname mg_function.ExclamationFunction</p>
-<p>bin/pulsar-admin functions localrun \<br>–py mg_function.py \<br>–classname mg_function.ExclamationFunction \<br>–inputs persistent://public/default/honeypots \<br>–output persistent://public/default/honeypots-2</p>
+<h2 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h2><p>Pulsar Function 上传</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./bin/pulsar-admin functions create \</span><br><span class="line">--py mg_function.py \</span><br><span class="line">--inputs persistent://public/default/honeypots \</span><br><span class="line">--output persistent://public/default/honeypots-2 \</span><br><span class="line">--calssname mg_function.ExclamationFunction</span><br></pre></td></tr></table></figure>
+<p>Pulsar Function 启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bin/pulsar-admin functions localrun \</span><br><span class="line">--py mg_function.py \ </span><br><span class="line">--classname mg_function.ExclamationFunction \ </span><br><span class="line">--inputs persistent://public/default/honeypots \ </span><br><span class="line">--output persistent://public/default/honeypots-2</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -393,6 +394,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/02/06/HFish蜜罐搭建与测试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HFish蜜罐搭建与测试
+        
+      </div>
+    </a>
   
   
     <a href="/2020/01/02/2020必须是突破的一年/" id="article-nav-older" class="article-nav-link-wrap">
@@ -531,11 +541,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">蜜罐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">wp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">渗透</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,15 +577,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,6 +593,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
              
@@ -579,15 +605,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+                <a href="javascript:void(0)" class="js-tag color3">社工</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">挖洞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,14 +618,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">渗透</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">社工</a>
               </li>
              
               <li class="article-tag-list-item">

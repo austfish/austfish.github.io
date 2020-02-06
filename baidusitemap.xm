@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2020/02/06/HFish%E8%9C%9C%E7%BD%90%E6%90%AD%E5%BB%BA%E4%B8%8E%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2020-02-06</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2020/01/09/%E4%B8%8B%E4%B8%80%E4%BB%A3%E5%88%86%E5%B8%83%E5%BC%8F%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-Pulsar/</loc>
     <lastmod>2020-01-09</lastmod>
   </url>  <url>
