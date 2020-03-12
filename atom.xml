@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2020-02-06T05:36:46.654Z</updated>
+  <updated>2020-03-12T07:31:25.857Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络资产探测技术调研</title>
+    <link href="http://austfish.cn/2020/03/12/%E7%BD%91%E7%BB%9C%E8%B5%84%E4%BA%A7%E6%8E%A2%E6%B5%8B%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94/"/>
+    <id>http://austfish.cn/2020/03/12/网络资产探测技术调研/</id>
+    <published>2020-03-12T07:23:58.000Z</published>
+    <updated>2020-03-12T07:31:25.857Z</updated>
+    
+    <content type="html"><![CDATA[<p>网络资产探测是指追踪、掌握网络资产情况的过程,通常包括主机发现、操作系统识别、服务识别等,是实现网络安全管理的重要前提, 在网络安全相关工作中具有广泛的应用价值。</p><a id="more"></a><h2 id="0X01-简述"><a href="#0X01-简述" class="headerlink" title="0X01 简述"></a>0X01 简述</h2><p>网络资产探测是指追踪、掌握网络资产情况的过程,通常包括主机发现、操作系统识别、服务识别等,是实现网络安全管理的重要前提, 在网络安全相关工作中具有广泛的应用价值。</p><h2 id="0X02-作用"><a href="#0X02-作用" class="headerlink" title="0X02 作用"></a>0X02 作用</h2><p> 一方面，从网络资产管理角度，网络资产探测能够为统一软硬件版本、更新升级软件和设备等工作提供信息基础。 通过网络资产探测可以发现旧版本的软件，根据最新的威胁情报准确地启动响应措施，避免其存在的漏洞带来威胁；还可以发现非法资产，为及时分析、处理提供便利，最大限度地降低安全问题带来的损失。</p><p> 网络资产探测不仅为网络安全监控、威胁态势感知提供了系统认知基础，而且在提高入侵检测系统的效率、安全威胁分析等方面也有较多应用。根据掌握的网络资产情况,可以为入侵检测系统去掉不相关的规则、缩小匹配规则库、提高检测效率，也可对告警信息进行过滤，减轻网络安全管理人员的告警分析压力，把更多精力放在处理有效攻击上。同时，面对日益加剧的新型高级持续性(Advanced Persistent Threat) 攻击，大规模网络的安全管理人员可在网络资产探测结果的基础上，综合网络资产、网络拓扑结构、漏洞等信息，基于攻击图技术对可能的高危攻击路径进行评估，根据评估结果采取重点防御和响应措施，从而提高防御的针对性。   </p><p> 另一方面，从安全渗透测试(或攻击)的角度看，网络资产探测也可用于渗透(或攻击)前的信息收集，通过网络资产探测，了解目标网络内主机的操作系统类型、开放端口及其后所运行的应用程序类型和版本信息。掌握目标网络的安全状况，有助于选取高效的渗透(或攻击)方法。</p><h2 id="0X03-新型网络资产探测"><a href="#0X03-新型网络资产探测" class="headerlink" title="0X03 新型网络资产探测"></a>0X03 新型网络资产探测</h2><p>从探测基础数据来源分类：</p><ul><li>主动     </li><li>被动     </li><li>基于搜索引擎<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAyMDAzMTIvaDBUWEd0TU9welZZLnBuZw?x-oss-process=image/format,png" alt="mark"><h2 id="0X04-探测方法"><a href="#0X04-探测方法" class="headerlink" title="0X04 探测方法"></a>0X04 探测方法</h2></li></ul><p><strong>主动探测</strong><br>主动探测类方法是指通过主动向目标网络资产发送构造的数据包，并从返回数据包的相关信息(包括各层协议内容、 包重传时间等)中提取目标指纹，与指纹进库中的指纹进行比对，来实现对开放端口、操作系统、服务及应用类型的探测。根据使用的指纹信息类型，主动探测类方法主要分为基于响应协议栈指纹的主动探测 方法和基于单包响应时延统计两类。</p><p><strong>被动探测</strong><br>被动探测方法是指采集目标网络的流量，对流量中应用层HTTP,FTP,SMTP 等协议数据包中的特殊字段banner或IP、TCP三次握手、DHCP等协议数据包的指纹特征进行分析，从而实现对网络资产信息的被动探测。</p><p><strong>基于搜索引擎的非入侵式探测</strong><br> 随着大数据、云计算等新技术的引入，搜索引擎的功能得到了加强和拓展，远超出了传统的网页检索，类型也日趋多样，除了常见的谷歌、百度、Bing等通用搜索引擎之外，还出现了Shodan、Censys及 ZoomEye等网络安全专用的搜索引擎。搜索引擎技术的发展为实现基于搜索引擎的非入侵式网络资产探测提供了基础。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3Fpbml1LmF1c3RmaXNoLmNuL2Jsb2cvMjAyMDAzMTIvVVRDVm5vYkNERU9KLnBuZw?x-oss-process=image/format,png" alt="mark"></p><h2 id="0X05-快速探测技术"><a href="#0X05-快速探测技术" class="headerlink" title="0X05 快速探测技术"></a>0X05 快速探测技术</h2><p><strong><em>高速网络扫描技术的三大特点：扫描机制、扫描地址生成、并行化加速。</em></strong></p><p><strong>扫描机制方面</strong>，传统TCP SYN 扫描中，扫描器通常需要建立完整的TCP会话，为完成三次握手过程，CPU需要为其划分专门的数据区，如果探测整个IPv４地址空间，将耗费大量的系统资源。高速网络扫描技术则不完成三次握手，只发送第一个SYN，而后RST取消连接，并对该次探测地址进行Hash，将值保存在缓存中，对方回复的SYNＧACK则由专门的接收模块负责等待接收。这种无状态保持的设计，可能会因网络原因丢失一定比例的数据，从实验结果看，，这个比例仅占２％左右，但极大地减少了状态记录的开销。ZMap使用商用硬件和Gbit级网络速率，能在４５min内完成整个IPv４地址空间的扫描，比传统Nmap最激进的默认条件设置下都快1300倍。类似的工具Masscan使用双端口１０Gbit 级的网卡则仅用３min就能完成全网扫描。</p><p><strong>扫描地址生成方面</strong>，新型高速网络扫描工具使用了基于素数域原根(ZMap)或加密算法(Masscan)的地址生成策略，增加了相邻扫描地址的随机性，减少了扫描对同一IP地址段内目标网络的压力，不仅实现了高效的资源(带宽、计算)利用，而且对扫描行为起到了一定的隐蔽作用。</p><p><strong>并行化加速方面</strong>，ZMap，Masscan以及 Nmap的集群式改进版DNmap均支持多主机分布式扫描。在ZMap的基础上开发的ZippierZMap、对 基于素数域原根的扫描地址生成进行了分片处理，不同分片的扫描地址集合都是迭代生成的互为不相关的子集，利于地址生成策略的并行化执行，同时其结合了黑名单数据结构、数据包传输机制等其他改进，适应了10Gbps环境下更高速的扫描。</p><h2 id="0X06-网络流量分析技术"><a href="#0X06-网络流量分析技术" class="headerlink" title="0X06 网络流量分析技术"></a>0X06 网络流量分析技术</h2><p> 从 TCP/IP体系使用的４层结构看，网络接口层(包括物理层和数据链路层)指纹主要体现了硬件设备间的差别，可用于识别网络资产类别，但只限于在本地局域网内获取和分析； 网络层和传输层的数据可以更加便捷地在广域网络上传播，其参数一般用于操作系统的类型和版本的识别；在不考虑目标网络数据隐私保护的前提下，基于深度包检测技术(DPI)，结合软件版本与操作系统版本的映射关系，对应用层及以上协议中的特征字段或负载数据进行深度分析，可以实现软件版本的检测   </p><p> 根据流量采集深度的不同，用于被动资产发现的网络流量分析工具通常可分为流量管理类和入侵检测类。NetFlow是流量管理类的典型代表，是 Cisco为其设备(交换机和路由器)开发的一款网络流量管理工具。其由一个流量出口、 收集器及二者之间的专线组成，能够有效帮助管理员进行流量镜像、审计等工作。一种基于NetFlow的被动资产探测方法，是通过对采集的流量特征信息加载不同的过滤规则可以实现资产探测。但由于该工具是为流量审计设计的，仅保留了网络流量的一些基础信息，因此其难以进行深入分析，且对于一些非标准端口背后的服务及其版本信息更是无能为力。</p><h2 id="0X07-网络资产指纹识别技术"><a href="#0X07-网络资产指纹识别技术" class="headerlink" title="0X07 网络资产指纹识别技术"></a>0X07 网络资产指纹识别技术</h2><p><strong><em>常见的指纹识别方法主要有常规特征匹配和基于机器学习算法的特征匹配两种。</em></strong></p><p><strong>常规指纹特征匹配</strong><br>常用的操作系统指纹识别特征有：IP头中的总长度(toＧ tallength)、标志(ID)、是否分片(DF)、生存时间(TTL)字段等，TCP头中的可选项，TCP 头部的窗口大小(wsize)、可选项等，以及ICMP、UDP协议指纹、SYN-ACK 包重传时延等。    </p><p>在匹配方法上，除了最基础的精确匹配外，考虑到网络延时、动态配置等现实因素，类似正则表达式的模糊匹配方法也被广泛应用，如目前最新版的 p0fv3指纹库将操作系统指纹分为两类(specified,generic)，增加了用于模糊匹配的g类，在s类无法精确匹配的情况下，为避免直接给出未知的结果，对 mss，wsize，scale等字段均允许使用“∗”进行模糊匹配，进而粗略地给出目标操作系统所属的大类；SinFP中的启发 式匹配机制也是一种分层次的模糊匹配。    </p><p>此外，还有采用了综合加权匹配的方法，如 Nmap的指纹评分表对各响应数据项的指纹识别能力进行了量化评分，在 计算响应同该条指纹的匹配率时，引入各数据项的评分作为加权，从而进一步提高识别的准确率。</p><p><strong>基于机器学习的特征匹配</strong><br>随着数据挖掘技术的发展，国内外很多研究人员将机器学习方法引入到操作系统指纹识别领域，提高了指纹匹配的能力。引入朴素贝叶斯分类器进行操作系统指 纹识别，实现了对未精确匹配指纹的识别，但其结果的准确性受限于样本分布的情况，具有 一 定的不确定性。利用 Nmap指纹库训练的神经网络模型识别操作系统指纹，比Nmap自身识别的准确率要高，但由于需要使用RPC服务识别版本，其适用范围受到限制。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;网络资产探测是指追踪、掌握网络资产情况的过程,通常包括主机发现、操作系统识别、服务识别等,是实现网络安全管理的重要前提, 在网络安全相关工作中具有广泛的应用价值。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="记录" scheme="http://austfish.cn/tags/%E8%AE%B0%E5%BD%95/"/>
+    
+  </entry>
   
   <entry>
     <title>HFish蜜罐搭建与测试</title>
@@ -76,9 +98,9 @@
     </summary>
     
     
-      <category term="生活" scheme="http://austfish.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
       <category term="计划" scheme="http://austfish.cn/tags/%E8%AE%A1%E5%88%92/"/>
+    
+      <category term="生活" scheme="http://austfish.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
@@ -188,9 +210,9 @@
     </summary>
     
     
-      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -210,9 +232,9 @@
     </summary>
     
     
-      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
     
       <category term="挖洞" scheme="http://austfish.cn/tags/%E6%8C%96%E6%B4%9E/"/>
     
@@ -331,9 +353,9 @@
     </summary>
     
     
-      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -353,9 +375,9 @@
     </summary>
     
     
-      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="Python" scheme="http://austfish.cn/tags/Python/"/>
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -472,9 +494,9 @@
     </summary>
     
     
-      <category term="生活" scheme="http://austfish.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
       <category term="计划" scheme="http://austfish.cn/tags/%E8%AE%A1%E5%88%92/"/>
+    
+      <category term="生活" scheme="http://austfish.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
