@@ -6,19 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Fisher&#39;s 安全日记</title>
+  <title>浅析社会工程学 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力，微信公众号：austfish">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/page/2/index.html">
+  <meta name="description" content="“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。">
+<meta name="keywords" content="社工">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析社会工程学">
+<meta property="og:url" content="http://austfish.cn/2020/03/26/浅析社会工程学/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
+<meta property="og:description" content="“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/MRndseNzc1Ky.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/XpK97xDknosK.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/CJWTJsRXaAJd.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/3rbPHuxN3a3E.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/Q586pAHYD7fB.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/7lB1i9JxsESc.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/QTdtI4RhQbh5.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/2R7mIvSBc9N2.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20200326/uc0NIBt7kzL9.png?imageslim">
+<meta property="og:updated_time" content="2020-03-31T05:52:32.575Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
+<meta name="twitter:title" content="浅析社会工程学">
+<meta name="twitter:description" content="“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/blog/20200326/MRndseNzc1Ky.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -162,34 +173,88 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-CTF-Web-Do-you-know-upload？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-浅析社会工程学" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/14/CTF-Web-Do-you-know-upload？/">CTF-Web-Do you know upload？</a>
+    <h1 class="article-title" itemprop="name">
+      浅析社会工程学
     </h1>
   
 
         
-        <a href="/2019/11/14/CTF-Web-Do-you-know-upload？/" class="archive-article-date">
-  	<time datetime="2019-11-14T08:08:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-14</time>
+        <a href="/2020/03/26/浅析社会工程学/" class="archive-article-date">
+  	<time datetime="2020-03-26T05:50:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>背景：迫于挖洞挖不dao，练练CTF，复习复习。<br>
-        
-          <a class="article-more-a" href="/2019/11/14/CTF-Web-Do-you-know-upload？/#more">more >></a>
-        
+        <p><strong>“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。</strong><br><a id="more"></a></p>
+<h4 id="0×01前言"><a href="#0×01前言" class="headerlink" title="0×01前言"></a>0×01前言</h4><blockquote>
+<p>15岁仅凭借一台电脑和一部老式的调制解调器黑进北美防空司令部的大佬，他的传奇生涯被翻拍成电影，《骇客追缉令》、《战争游戏》和《自由停工期》三部黑客电影的原型都是他，甚至连主角的名字都没换</p>
+</blockquote>
+<p><img src="http://qiniu.austfish.cn/blog/20200326/MRndseNzc1Ky.png?imageslim" alt="mark"></p>
+<p>凯文·米特尼克（Kevin David Mitnick），1963年8月6日出生于美国洛杉矶，第一个被美国联邦调查局通缉的黑客。有评论称他为世界上“头号电脑黑客”，其传奇的黑客经历足以令全世界为之震惊。现职业是网络安全咨询师，出版过《反欺骗的艺术》、《反入侵的艺术》、《线上幽灵：世界头号黑客米特尼克自传》。</p>
+<p><strong>「社会工程学」这个概念就是由他提出来的！</strong></p>
+<h4 id="0×02社会工程学"><a href="#0×02社会工程学" class="headerlink" title="0×02社会工程学"></a>0×02社会工程学</h4><p>社会工程学是一种通过对受害者心理弱点、本能反应、好奇心、信任、贪婪等心理陷阱进行诸如欺骗、伤害等危害手段；是一种黑客攻击方法，利用欺骗等手段骗取对方信任，获取机密情报；是一种利用人性脆弱点、贪婪等等的心理表现进行攻击，是防不胜防的。所有社会工程学攻击都建立在使人决断产生认知偏差的基础上，熟练的社会工程师都是擅长进行信息收集的身体力行者。</p>
+<p>有一本书很出名，估计很多人都有听说过，叫做《欺骗的艺术》，其实社会工程学就是米特尼克在这本书中提出的，不过其初始目的是让全球的网民们能够懂得网络安全，提高警惕，防止没必要的个人损失，但是现在真正的应用似乎不是这样的</p>
+<h4 id="0×03社工库"><a href="#0×03社工库" class="headerlink" title="0×03社工库"></a>0×03社工库</h4><p><strong>社工库，就是社会工程学中所利用的数据库。</strong></p>
+<p>上面提到了，社会工程学的一个维度就是信息搜集，比如指定一个手机号，就能获取到这个手机号背后的主人信息，包括姓名、邮箱、身份证、籍贯、社交账号等等信息，这些信息就是社工库。</p>
+<p>这些信息数据，少则几百万，多则上亿，主要来源是各大公司的安全漏洞，导致数据被黑客窃取。社工库是从2011年开始，呈现了爆发式增长，归其原因，这一年有大量的用户数据泄露。这是我得到的信息，2011年就有上亿数据泄露：</p>
+<blockquote>
+<p>2011.03-多玩游戏网-800万-txt.rar<br>2011.03-织梦CMS官网数据库-34万-sql.zip<br>2011.04-766游戏网-12万-sql.rar<br>2011.04-IS语音-969万-txt.zip<br>2011.04-亚马逊中国买家信息-20万.zip<br>2011.04-凡客诚品买家信息-20万-Excel.zip<br>2011.04-当当网买家信息-101万-Excel.zip<br>2011.04-爱拍游戏网-1100万-txt.zip<br>2011.04-猴岛游戏社区-2683万-txt.rar<br>2011.05-上海市银行大额客户-21万-xls.rar<br>2011.05-木蚂蚁-13万-sql.zip<br>2011.07-土木在线-540万-sql.zip<br>2011.10-178游戏网-1000万-txt.rar<br>2011.10-CSDN.NET-600万-sql.rar<br>2011.10-嘟嘟牛-66277-txt.rar<br>2011.11-7k7k小游戏-2000万-txt.rar<br>2011.11-人人网-500万-txt.rar<br>2011.12-天涯社区-4000万-txt.rar<br>2011.12-淘宝买家卖家邮箱-2500万-txt.zip</p>
+</blockquote>
+<p><strong>再到近些年</strong><br><img src="http://qiniu.austfish.cn/blog/20200326/XpK97xDknosK.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20200326/CJWTJsRXaAJd.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20200326/3rbPHuxN3a3E.png?imageslim" alt="mark"></p>
+<p>该用户贴出了社工库系统使用效果<br><img src="http://qiniu.austfish.cn/blog/20200326/Q586pAHYD7fB.png?imageslim" alt="mark"></p>
+<p>可以这么理解，社工库就是一个黑客们将各个系统泄漏的用户数据整合分析，然后集中存储的一个地方。</p>
+<p>这些用户数据大部分来自以前黑客拖库撞库获得的数据文件，包含的数据类型除了账号密码外，还包含被攻击网站所属不同行业所带来的附加数据。</p>
+<p>黑客可以在社工库里查询个人的账号、密码及其他个人信息，达到快速获取个人信息、及其他非法获利的目的。也是黑客们进行人肉搜索的一种途径。</p>
+<h4 id="0×04数据泄露（微博数据泄露）"><a href="#0×04数据泄露（微博数据泄露）" class="headerlink" title="0×04数据泄露（微博数据泄露）"></a>0×04数据泄露（微博数据泄露）</h4><blockquote>
+<p>3月19日上午，有微博名为“安全_云舒”的用户转发微博时称：“很多人的手机号码泄露了，根据微博账号就能查到手机号……已经有人通过微博泄露查到我的手机号码，来加我微信了。”</p>
+<p>随后，该网友在微博下的留言中进一步表示，他通过技术查询，发现不少人的手机号已被泄露，当中涉及不少微博认证的明星、官员、企业家。“来总的手机号也被泄露了，我昨晚查过。”（“来总”代指微博CEO 王高飞）</p>
+</blockquote>
+<p><img src="http://qiniu.austfish.cn/blog/20200326/7lB1i9JxsESc.png?imageslim" alt="mark"><br>3月4日，有暗网用户发布了一则名为“5.38亿微博用户绑定手机号数据，其中1.72亿有账号基本信息”的交易信息，售价1388美元。其中绑定手机数据包括用户ID和手机号，账号基本信息包括昵称、头像、粉丝数、所在地等。</p>
+<p><img src="http://qiniu.austfish.cn/blog/20200326/QTdtI4RhQbh5.png?imageslim" alt="mark"></p>
+<p><img src="http://qiniu.austfish.cn/blog/20200326/2R7mIvSBc9N2.png?imageslim" alt="mark"></p>
+<p>据工信部官网3月24日消息，3月21日，针对媒体报道的新浪微博因用户查询接口被恶意调用导致App数据泄露问题，工业和信息化部网络安全管理局对新浪微博相关负责人进行了问询约谈。<br><img src="http://qiniu.austfish.cn/blog/20200326/uc0NIBt7kzL9.png?imageslim" alt="mark"></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -200,11 +265,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">wp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">社工</a>
         		</li>
       		
 		</ul>
@@ -213,16 +274,84 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/14/CTF-Web-Do-you-know-upload？/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aSXKDQBAEQP3/0/gB2qp6kCMYkpNCJmBSh3Zvj0d8HU/X8/fJnc+f373l8YsLAwPjsozj45Xf8+7Jn3n5z/TlvRgYGDdgJIf4fE8SNNtwnL8XAwMDI0nX8qMnVAwMDIwVxiwd/PwNBgYGRsJIitikHM2D8qx5d0ItjoGBcUHG7PX/8/kn8w0MDIxLMY7ymqWJ+bGO0YWBgbE3o22lnZUgrgdcDAyM+zDyNn3eJlsJ2UlZ++LtGBgYt2HMUrp8maz9UYpAjIGBsTUjD6yz0WPOywec9SATAwNjI0YSatvhYjuS/JICrv8nwcDAuCCjbevnoXOlVTccYWJgYGzNmI0q29ZbkvwN01MMDIytGbN07dyRZH70aNkCAwNjO0bb9spb+bMyuE1b6/kGBgbGFox8haJlzxY4klNhYGDszZgVpbNEsF3saItqDAyMXRltS6sNiLN+fl5CvxhhYmBgbMo4dz1rZRgwexcGBsbejDaZK1pg8ZPz5xflKwYGxqaMPGj+T/pYDycwMDBuw5iVlPma10pQPmFnBAMD4+KMPFyul77twlmxcoGBgbEdYxZqZ39tF8KKEhcDA2NrRhva2vWv9WSx3hnBwMDYlJGHyAT2i/IVAwMDo22itSPM9WWOE5YtMDAwbsZIAnF+6JUnLwVcDAyMrRlJ+ZoPPvMy+EvxjIGBcQPGeru/Ddbn9vYxMDD2ZtTbGXH5Ohsw/KL0xcDAuCzjD2kRslD0vDUzAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/03/31/weblogic部分漏洞分析（1）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          weblogic部分漏洞分析（1）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/19/越权操作漏洞的思考与复现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">越权操作漏洞的思考与复现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -242,751 +371,21 @@ var _hmt = _hmt || [];
 
 
 
-
-  
-    <article id="post-渗透初期准备工作-信息收集方法总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/10/渗透初期准备工作-信息收集方法总结/">渗透初期准备工作-信息收集方法总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/10/渗透初期准备工作-信息收集方法总结/" class="archive-article-date">
-  	<time datetime="2019-10-10T09:04:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。那么具体的信息收集工作应如何实施呢？接下来我会用一此虚构的案例结合原理来进行说明，如有不足之处或有更多更好的信息收集方法或工具，恳请在评论处指正和留下其它信息收集的方法进行技术交流。信息收集是渗透测试中第二阶段的工作，也是非常重要的一项。所收集到的情报信息，能直接影响下一阶段的工作及效果。那么具体的信息收集工作应如何实施呢？</p>
-        
-          <a class="article-more-a" href="/2019/10/10/渗透初期准备工作-信息收集方法总结/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/10/渗透初期准备工作-信息收集方法总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-如何挖信息泄密漏洞" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/10/如何挖信息泄密漏洞/">如何挖信息泄密漏洞</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/10/如何挖信息泄密漏洞/" class="archive-article-date">
-  	<time datetime="2019-10-10T08:43:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.随缘找信息泄密<br>2.如何构造语法<br>3.指定站点的Google hacking语法<br>
-        
-          <a class="article-more-a" href="/2019/10/10/如何挖信息泄密漏洞/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">挖洞</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/10/如何挖信息泄密漏洞/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Git常用操作指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/10/Git常用操作指南/">Git常用操作指南</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/10/Git常用操作指南/" class="archive-article-date">
-  	<time datetime="2019-10-10T03:28:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Git常用命令<br>团队协作git操作流程<br>git工作流<br>Git命令大全<br>
-        
-          <a class="article-more-a" href="/2019/10/10/Git常用操作指南/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">手册</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/10/Git常用操作指南/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Gitlab详细操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/Gitlab详细操作/">Gitlab详细操作</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/Gitlab详细操作/" class="archive-article-date">
-  	<time datetime="2019-09-19T06:52:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>基本操作、远程仓库、进阶操作、分支管理、标签管理、协同开发实例、常见问题<br>
-        
-          <a class="article-more-a" href="/2019/09/19/Gitlab详细操作/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">手册</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/Gitlab详细操作/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python项目管理工具：虚拟环境venv使用方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/Python项目管理工具：虚拟环境venv使用方法/">Python项目管理工具：虚拟环境venv使用方法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/Python项目管理工具：虚拟环境venv使用方法/" class="archive-article-date">
-  	<time datetime="2019-09-19T06:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>众所周知，项目的环境管理一直是比较头疼的问题，如果有两个项目，一个用的是 a 库的 v1 版本，一个用的是 a 库的 v2 版本，那么如果 a 库是安装在系统环境下的，就会出现项目所依赖的库文件版本不对的问题。</p>
-<p>Python 社区为了解决这个问题，提出了虚拟环境的概念。也就是人为的创建一个虚拟环境供项目运行，而该项目需要什么库文件，则自行在这个虚拟环境中下载安装，而在虚拟环境中下载安装的库文件，是不会影响到系统环境中的库文件的。有了虚拟环境的概念， Python 的项目管理也就不那么麻烦了。</p>
-<p>接下来，我来总结下如何使用 Python 的虚拟环境。</p>
-<p>ps: 以下的讲解都是在 Python3 的前提之下。</p>
-        
-          <a class="article-more-a" href="/2019/09/19/Python项目管理工具：虚拟环境venv使用方法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/Python项目管理工具：虚拟环境venv使用方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo博客文章发布流程记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/Hexo博客文章发布流程记录/">Hexo博客文章发布流程记录</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/Hexo博客文章发布流程记录/" class="archive-article-date">
-  	<time datetime="2019-09-19T03:52:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Hexo博客发布文章步骤：<br>1.新建文章<br>2.编辑内容<br>3.发布</p>
-        
-          <a class="article-more-a" href="/2019/09/19/Hexo博客文章发布流程记录/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">记录</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">手册</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/Hexo博客文章发布流程记录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-搜索引擎语法-网络空间搜索and在线web工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/30/搜索引擎语法-网络空间搜索and在线web工具/">搜索引擎语法-网络空间搜索and在线web工具</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/30/搜索引擎语法-网络空间搜索and在线web工具/" class="archive-article-date">
-  	<time datetime="2019-08-30T04:04:00.470Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="你用过哪些搜索引擎呢？"><a href="#你用过哪些搜索引擎呢？" class="headerlink" title="你用过哪些搜索引擎呢？"></a>你用过哪些搜索引擎呢？</h2><p><strong>百度     bing   Google ?</strong><br>
-        
-          <a class="article-more-a" href="/2019/08/30/搜索引擎语法-网络空间搜索and在线web工具/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/30/搜索引擎语法-网络空间搜索and在线web工具/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python工具库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/Python工具库/">Python工具库</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/29/Python工具库/" class="archive-article-date">
-  	<time datetime="2019-08-29T07:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>漏洞及渗透练习平台<br>花式扫描器/信息搜集工具/WEB/windows域渗透工具<br>Fuzz/漏洞利用及攻击框架/漏洞POC&amp;EXP/中间人攻击及钓鱼<br>密码破解/二进制及代码分析工具/二进制静态分析工具（python）<br>EXP编写框架及工具/隐写/各类CTF资源/各类编程资源/Python<br>科学上网/福利/甲方安全工程师生存指南/蜜罐/远控</strong><br>
-        
-          <a class="article-more-a" href="/2019/08/29/Python工具库/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/Python工具库/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python完整项目打包Docker入坑记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/22/python完整项目打包Docker入坑记录/">python完整项目打包Docker入坑记录</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/22/python完整项目打包Docker入坑记录/" class="archive-article-date">
-  	<time datetime="2019-08-22T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>第一个问题：为什么用docker<br>第二个问题：docker是什么<br>第三个问题：怎么用docker<br>第四个问题：怎么安装docker（linux）<br>第五个问题：将python打包到docker上<br>第六个问题：docker运行项目的相关操作<br>第七个问题：生成镜像报错后的none镜像怎么删除<br>
-        
-          <a class="article-more-a" href="/2019/08/22/python完整项目打包Docker入坑记录/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/22/python完整项目打包Docker入坑记录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+  <div id="SOHUCS" sid="浅析社会工程学" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyuoyyRfG"; 
+var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
   
 
 
@@ -1015,8 +414,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
