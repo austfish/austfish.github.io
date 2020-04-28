@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2020/04/28/%E5%88%9D%E8%AF%86%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2020/03/31/weblogic%E9%83%A8%E5%88%86%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%881%EF%BC%89/</loc>
     <lastmod>2020-03-31</lastmod>
   </url>  <url>
