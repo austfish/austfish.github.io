@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Fisher&#39;s 安全日记</title>
+  <title>验证码的姿势学习 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力，微信公众号：austfish">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/index.html">
+  <meta name="description" content="验证码怎么玩？">
+<meta name="keywords" content="安全,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="验证码的姿势学习">
+<meta property="og:url" content="http://austfish.cn/2020/04/30/验证码的姿势学习/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
+<meta property="og:description" content="验证码怎么玩？">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-04-30T08:02:02.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
+<meta name="twitter:title" content="验证码的姿势学习">
+<meta name="twitter:description" content="验证码怎么玩？">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -162,96 +163,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Google-Hack语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-验证码的姿势学习" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/30/Google-Hack语法/">Google_Hack语法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/30/Google-Hack语法/" class="archive-article-date">
-  	<time datetime="2020-04-30T07:58:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Google是一个伟大的信息收集工具。<br>
-        
-          <a class="article-more-a" href="/2020/04/30/Google-Hack语法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">社工</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/30/Google-Hack语法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-验证码的姿势学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/30/验证码的姿势学习/">验证码的姿势学习</a>
+    <h1 class="article-title" itemprop="name">
+      验证码的姿势学习
     </h1>
   
 
@@ -264,12 +183,79 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>验证码怎么玩？<br>
-        
-          <a class="article-more-a" href="/2020/04/30/验证码的姿势学习/#more">more >></a>
-        
+        <p>验证码怎么玩？<br><a id="more"></a></p>
+<h4 id="0×01-前言"><a href="#0×01-前言" class="headerlink" title="0×01 前言"></a>0×01 前言</h4><p><strong>验证码机制</strong></p>
+<ol>
+<li>客户端发起请求</li>
+<li>服务端响应并创建一个新的SessionID同时生成随机验证码，将验证码和SessionID一并返回给客户端</li>
+<li>客户端提交验证码连同SessionID给服务端</li>
+<li>服务端验证验证码同时销毁当前会话，返回给客户端结果。</li>
+</ol>
+<h4 id="0×02-客户端安全问题"><a href="#0×02-客户端安全问题" class="headerlink" title="0×02 客户端安全问题"></a>0×02 客户端安全问题</h4><ol>
+<li>有的网站验证码由本地js生成仅仅在本地用js验证。可以在本地禁用js，用burp把验证字段删除。</li>
+<li>有的网站把验证码输出到客户端html中，送到客户端Cookie或response headers。</li>
+<li>有些网站默认不显示验证码，而是在输入错误一定数量之后才需要验证验证码，开发人员可能在Cookie中写入一个标记loginErr，用来记录错误数量，则可以不更新Cookie中的loginErr值反复提交，验证码就不会出现。</li>
+</ol>
+<h4 id="0×03-服务端安全问题"><a href="#0×03-服务端安全问题" class="headerlink" title="0×03 服务端安全问题"></a>0×03 服务端安全问题</h4><ol>
+<li>验证码不过期，没有及时销毁会话导致同一验证码反复可用。攻击者可以在Cookie中带固定的sessionID和固定的验证码字符串。</li>
+<li>没有对验证码进行非空判断，导致可以直接删除验证码参数。</li>
+<li>产生的验证码问题有限</li>
+</ol>
+<h4 id="0×04-验证码问题汇总"><a href="#0×04-验证码问题汇总" class="headerlink" title="0×04 验证码问题汇总"></a>0×04 验证码问题汇总</h4><h5 id="4-1-验证码不刷新"><a href="#4-1-验证码不刷新" class="headerlink" title="4.1 验证码不刷新"></a>4.1 验证码不刷新</h5><p>导致验证码不刷新（固定）的原因是：登录密码错误之后，session中的值没有更新，验证码不变。验证码不刷新通常有以下两种情况：无条件不刷新、有条件不刷新。</p>
+<p><strong>4.1.1 无条件不刷新</strong><br>无条件不刷新是指在某一时间段内，无论登录失败多少次，只要不刷新页面，就可以无限次的使用同一个验证码来对一个或多个用户帐号进行暴力猜解。</p>
+<blockquote>
+<p>【测试案例 1】测试人员登录并抓取请求包，在不改变验证码的情况下，多次发送请求包，响应包中内容都是“用户名或密码错误”<br>【安全建议】建议针对一次请求生成的验证码只能用一次，用完立即过期。每次生成的验证码不允许跨会话和请求使用。</p>
+</blockquote>
+<p><strong>4.1.2 有条件不刷新</strong><br>有条件不刷新多见于如下情况：登录失败之后，系统会打开一个新页面或者弹出一个新的警告窗口，提示用户登录失败，点击确定后返回登录界面且验证码刷新。这种情况下，只要我们不关闭新窗口或弹窗，配合使用Burpsuite的intruder模块就可以进行暴力破解了。</p>
+<blockquote>
+<p>【测试案例 2】来看下某系统的验证码鉴权流程：</p>
+<p>用户输入账户信息+验证码(刷新页面或手动刷新验证码会从服务器获取验证码，但该验证码缓存于session中)，服务端接收到账户信息+验证后会先校验验证码是否正确，若不正确则，返回反之与数据库做对比，符合则返回，客户端接收服务端的请求，若成功则跳转，返回根据不同的错误码提示相应信息，并重新获取服务端生成的新验证码，重新缓存。</p>
+<p>【问题描述】看完流程可以很容易想到一个问题：验证码此时并不会重置，一切重置验证码的操作都在浏览器，所以在Session不失效的时效内，可以无限重用验证码，这时就可以使用BurpSuite进行暴力破解了，验证码形同虚设。</p>
+</blockquote>
+<h5 id="4-2-验证码前端可获取"><a href="#4-2-验证码前端可获取" class="headerlink" title="4.2 验证码前端可获取"></a>4.2 验证码前端可获取</h5><p>这种情况在早期的一些网站中比较常见，主要是因为程序员在写代码的时候安全意识不足导致的。验证码通常会被他们隐藏在网站的源码中或者高级一点的隐藏在请求的Cookie中，但这两种情况都可以被攻击者轻松绕过。</p>
+<p><strong>4.2.1 验证码隐藏在源码中</strong><br>验证这种情况很简单，我们只需要记住验证码，然后右键打开网站源代码，Ctrl+F搜索，输入刚才的验证码，如果可以成功匹配到，那恭喜你，接下来就可以写工具，提取源码中的验证码并将其放入每次请求的报文中，来进行帐号破解，这里推荐使用python。</p>
+<p><strong>4.2.2 验证码隐藏在Cookie中</strong><br>这种情况，我们可以在提交登录的时候抓包，然后分析一下包中的Cookie字段，看看其中有没有相匹配的验证码，或者是经过了一些简单加密后的验证码。</p>
+<h5 id="4-3-验证码空值绕过"><a href="#4-3-验证码空值绕过" class="headerlink" title="4.3 验证码空值绕过"></a>4.3 验证码空值绕过</h5><p>验证码空值绕过，是在日常的渗透测试中很容易被我们忽略的一点，实际应用中我们可以通过直接删除验证码参数或者Cookie中的一些值来绕过判断，进行暴力破解。</p>
+<h5 id="4-4-验证码易识别"><a href="#4-4-验证码易识别" class="headerlink" title="4.4 验证码易识别"></a>4.4 验证码易识别</h5><p>在平常的漏洞挖掘过程中，如果我们发现登录的验证码非常简单且易于识别，那我们就可以尝试使用自动化工具来进行登录破解了，如PKAV的HTTP Fuzzer。5. 存在无验证码页面经过测试，如果我们发现网站验证码自身并不存在缺陷，那我们接下来就可以尝试寻找一些其他的登录页面或接口来尝试暴力破解。</p>
+<h5 id="5-5隐藏的页面"><a href="#5-5隐藏的页面" class="headerlink" title="5.5隐藏的页面"></a>5.5隐藏的页面</h5><p>这种页面通常是留给测试人员使用的，或者是一些忘记删除的老界面，利用的前提是该界面依旧可用，一般情况下，我们可以通过扫描器来发现这种页面。</p>
+<h5 id="5-6-微信公众号、APP登录页面"><a href="#5-6-微信公众号、APP登录页面" class="headerlink" title="5.6 微信公众号、APP登录页面"></a>5.6 微信公众号、APP登录页面</h5><p>很多网站的web登录页面已经做的相当完善了，但是却在微信公众后的绑定接口或者是APP的登录界面上面栽了跟头，在渗透测试的过程中，一定不要忘了对公众号和APP的测试。</p>
+<h5 id="5-7-其他绕过方法"><a href="#5-7-其他绕过方法" class="headerlink" title="5.7. 其他绕过方法"></a>5.7. 其他绕过方法</h5><p><strong>5.71万能验证码</strong><br>渗透测试的过程中，有时候会出现这种情况，系统存在一个万能验证码，如000000，只要输入万能验证码，就可以无视验证码进行暴力破解。</p>
+<p><strong>5.7.2验证码无效</strong><br>这种情况下，无论我们输入什么数据，验证码都会判断通过，验证码形同虚设，这种情况我只遇到过一次。</p>
+<p><strong>5.7.3验证码数量有限</strong><br>多见于计算类型的验证码，如1+8=？，这种类型的验证码严格意义上来说不能叫做验证码，多刷新几次验证码，我们可能会发现系统中的算数题目只有那么几道，这种情况下只要将验证码全部下载下来，生成一个md5库，然后将前端生成的验证码与本地文件进行对比即可。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -293,16 +279,84 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/30/验证码的姿势学习/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aSY7DMAwF0dz/0ul1o2OpPpk2YKq8MjJIfl4Q4vB64ev957r6dr3C+nOyTuuSIUPGYxnv5UU2q92nsPWrlCFDxgmMdLl0G/751f3mmWXIkCFjHexK/0rDtAwZMmSQByJpLTrGNfaVIUPGyQySxKYBNL1uysVlyJDxQAavut9//y/9DRkyZDyK0QmLvGRGHq4TrGXIkDGb0W868iLaGpw2IT6sL0OGjAMYtaZjLdFNBy9Q+ipDhoyhDJ5G8iSzU0rjYfrXL2XIkDGawRuK/fL9t3ibFypDhoxxDF4US7fhbc5OkJUhQ8ZpDJ5e1uJ6jU0aCTJkyDiZkY5f1BqfvBW6qRfKkCFjNCPNd2sHvrQJSgAfZkZkyJAxlEFSRx4uO23R2myqDBkyTmPwA1mnVcCbBKg5IUOGjNGM2pgpCcpkBRJwg1KgDBkyhjJIOYwfE9MSW63NeTknIkOGjNEMkqDyoJkGU36svHwGGTJkHMzgxzt+sCMrxK9DhgwZoxn8ZJWWxngJrxaOZciQcQ6DjFmQBLV2HORtgM36MmTIGM0ISlqlR+SM2niHDBkyTmB0hiFqAbqz/ibUypAhYyijFhZJOtppG/D1Y5IMGTIey0iD4D1RjjRKZciQcRojLcfzbb41fCZDhgwZaRmOwNLUl8Auv5UhQ4aMMLD2W54EI0OGjNMYaRLbKZzVmqNockSGDBlDGTx1JOWwWhugE75lyJAxmvED98EUGbLreSgAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/30/Google-Hack语法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Google_Hack语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/28/初识自动化渗透工具/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初识自动化渗透工具</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -322,648 +376,21 @@ var _hmt = _hmt || [];
 
 
 
-
-  
-    <article id="post-初识自动化渗透工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/28/初识自动化渗透工具/">初识自动化渗透工具</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/28/初识自动化渗透工具/" class="archive-article-date">
-  	<time datetime="2020-04-28T03:42:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自动化渗透测试，在渗透测试中，安全专业人士在系统和应用中执行蓄意攻击，以确定是否可能获得未经授权的访问权限。<br>
-        
-          <a class="article-more-a" href="/2020/04/28/初识自动化渗透工具/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/28/初识自动化渗透工具/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-weblogic部分漏洞分析（1）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/31/weblogic部分漏洞分析（1）/">weblogic部分漏洞分析（1）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/31/weblogic部分漏洞分析（1）/" class="archive-article-date">
-  	<time datetime="2020-03-31T05:53:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>WebLogic是美国Oracle公司出品的一个application server，确切的说是一个基于JAVAEE架构的中间件，<br>
-        
-          <a class="article-more-a" href="/2020/03/31/weblogic部分漏洞分析（1）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/31/weblogic部分漏洞分析（1）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-浅析社会工程学" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/26/浅析社会工程学/">浅析社会工程学</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/26/浅析社会工程学/" class="archive-article-date">
-  	<time datetime="2020-03-26T05:50:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。<br>
-        
-          <a class="article-more-a" href="/2020/03/26/浅析社会工程学/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">社工</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/26/浅析社会工程学/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-越权操作漏洞的思考与复现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/19/越权操作漏洞的思考与复现/">越权操作漏洞的思考与复现</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/19/越权操作漏洞的思考与复现/" class="archive-article-date">
-  	<time datetime="2020-03-19T06:32:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>多数WEB应用都具备权限划分和控制，但是如果权限控制功能设计存在缺陷，那么攻击者就可以通过这些缺陷来访问未经授权的功能或数据，这就是我们通常说的越权漏洞。攻击者越权后就可以进行一些操作，例如查看敏感信息、进行一些增删改查的操作等等。</p>
-        
-          <a class="article-more-a" href="/2020/03/19/越权操作漏洞的思考与复现/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">记录</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/19/越权操作漏洞的思考与复现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-网络资产探测技术调研" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/12/网络资产探测技术调研/">网络资产探测技术调研</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/12/网络资产探测技术调研/" class="archive-article-date">
-  	<time datetime="2020-03-12T07:23:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>网络资产探测是指追踪、掌握网络资产情况的过程,通常包括主机发现、操作系统识别、服务识别等,是实现网络安全管理的重要前提, 在网络安全相关工作中具有广泛的应用价值。</p>
-        
-          <a class="article-more-a" href="/2020/03/12/网络资产探测技术调研/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">记录</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/12/网络资产探测技术调研/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HFish蜜罐搭建与测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/06/HFish蜜罐搭建与测试/">HFish蜜罐搭建与测试</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/06/HFish蜜罐搭建与测试/" class="archive-article-date">
-  	<time datetime="2020-02-06T05:35:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>HFish</strong>是一种基于<strong>Golang</strong>开发的跨平台多功能主动诱导型开源蜜罐框架系统，为企业安全防护所做的精心打造，全程记录黑客攻击手段，实现防护自主化。</p>
-        
-          <a class="article-more-a" href="/2020/02/06/HFish蜜罐搭建与测试/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">蜜罐</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/06/HFish蜜罐搭建与测试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-下一代分布式消息队列-Pulsar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/09/下一代分布式消息队列-Pulsar/">下一代分布式消息队列-Pulsar</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/09/下一代分布式消息队列-Pulsar/" class="archive-article-date">
-  	<time datetime="2020-01-09T08:22:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Apache Pulsar是一个企业级的分布式消息系统，最初由Yahoo开发并在2016年开源，目前正在Apache基金会下孵化。Plusar已经在Yahoo的生产环境使用了三年多，主要服务于Mail、Finance、Sports、 Flickr、 the Gemini Ads platform、 Sherpa以及Yahoo的KV存储。<br>
-        
-          <a class="article-more-a" href="/2020/01/09/下一代分布式消息队列-Pulsar/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">手册</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/09/下一代分布式消息队列-Pulsar/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020必须是突破的一年" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/02/2020必须是突破的一年/">2020必须是突破的一年</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/02/2020必须是突破的一年/" class="archive-article-date">
-  	<time datetime="2020-01-02T02:06:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>塞尔维亚的僧侣撒迪厄斯说：“我们的想法决定我们的生活。”<br>无论是积极的信念还是消极的信念，都会对生活经历产生巨大影响。明白这个事实，就代表你已经迈上了最好的一年的第一级台阶。<br>
-        
-          <a class="article-more-a" href="/2020/01/02/2020必须是突破的一年/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/02/2020必须是突破的一年/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+  <div id="SOHUCS" sid="验证码的姿势学习" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyuoyyRfG"; 
+var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
   
 
 
@@ -992,8 +419,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

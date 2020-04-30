@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2020-04-28T03:44:28.769Z</updated>
+  <updated>2020-04-30T08:00:18.451Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Google_Hack语法</title>
+    <link href="http://austfish.cn/2020/04/30/Google-Hack%E8%AF%AD%E6%B3%95/"/>
+    <id>http://austfish.cn/2020/04/30/Google-Hack语法/</id>
+    <published>2020-04-30T07:58:51.000Z</published>
+    <updated>2020-04-30T08:00:18.451Z</updated>
+    
+    <content type="html"><![CDATA[<p>Google是一个伟大的信息收集工具。<br><a id="more"></a></p><h4 id="0×01-前言"><a href="#0×01-前言" class="headerlink" title="0×01 前言"></a>0×01 前言</h4><p><strong>验证码机制</strong></p><p>Google是一个伟大的信息收集工具，在如今的互联网时代，想想看一个人可以轻易的从搜索引擎中获取你详细的个人信息是件多么叫人激动又害怕的事情。Google也可以当作我们的第二个“社工库”。</p><h4 id="0×02-Google基本关键词"><a href="#0×02-Google基本关键词" class="headerlink" title="0×02 Google基本关键词"></a>0×02 Google基本关键词</h4><ul><li>Intext： 搜索出现的关键词</li><li>Inurl： 搜索包含关键词的url</li><li>Intitle： 搜索包含关键词的标题</li><li>Site： 搜索包含关键词的站点</li><li>filetype： 搜索包含关键词的文件类型</li><li>Link： 对于页面包含的外部链接搜索</li><li>Daterange： 搜索特定的日期范围</li></ul><h4 id="0×02-Google基本规则"><a href="#0×02-Google基本规则" class="headerlink" title="0×02 Google基本规则"></a>0×02 Google基本规则</h4><ul><li>Google 不分大小写</li><li>Google 可以使用通配符：*表示一个词/字</li><li>Google 会智能地保留一些内容，比如一些过时的词，一些不适合呈现的内容（比如违法信息）最常用的：”关键字” ，双引号会使Google强制搜索包含关键字的内容布尔操作符：AND(+) NOT(-) OR(|)，AND 现在已不需要，多个关键字google会都匹配到</li></ul><h4 id="0×03-常用示例"><a href="#0×03-常用示例" class="headerlink" title="0×03 常用示例"></a>0×03 常用示例</h4><p><strong>1、目录列表查找</strong><br>目录列表能列出存在于一个web服务器上的文件和目录<br>查找目录列表</p><blockquote><p>实例：<br>intitle:index.of 这里的休止符代表的是单个字母的通配符<br>更优化的查找<br>实例：<br>intitle:index.of “parent directory”<br>intitle:index.of name size</p></blockquote><p><strong>2、特定版本的服务器</strong><br>能被攻击者用来决定攻击web服务器最佳方法的一小段信息，就是确切的服务器版本</p><blockquote><p>实例：<br>intitle:index.of “server at”<br>intitle:index.of “Apache/1.3.27 Server at”</p></blockquote><p><strong>3、扩展遍历技术</strong><br>经常会出现web页面的备份文件，他们有泄露源码的倾向。常常在配置错误的时候出现这种问题，把php代码备份到不是以php结尾的文件中，比如bak</p><blockquote><p>实例：<br>intitle:index.of index.php.bak<br>inurl:index.php.bak</p></blockquote><p><strong>4、配置文件的查找</strong><br>配置文件的存在说明服务就在附近</p><blockquote><p>实例：<br>filetype:conf inurl:firewall<br>如果你能知道配置文件的名字也是一个非常好的搜索方式，当然你可以从配置文件中抽取特定的字符串来查询，如果能再配上软件名字的话就效果更好了</p></blockquote><p><strong>5、日志文件的查找</strong><br>日志文件中也记录着日志很多的敏感信息<br>日志文件也有一个默认的名字可以被我们用作基础的搜索，最常见的扩展名就是log了</p><blockquote><p>实例：<br>filetype:log inurl:log<br>ext log log<br>filetype:log username putty</p></blockquote><p><strong>6、office文档实例：</strong></p><blockquote><p>filetype:xls inurl:password.xls<br>filetype:xls username password email</p></blockquote><p><strong>7、登录入口</strong><br>登录入口是第一道防线，很容易泄露软硬件的信息<br>查找入口一般使用关键字login<br>大的厂商一般会把版权的注意事项放在页面的底部</p><blockquote><p>实例：<br>intitle:login intext:版权信息</p></blockquote><p><strong>8、错误消息</strong><br>数据库的错误消息能够用来分析操作系统和web服务器的版本，还可能更多<br>SQL command not properly ended<br>这个表示没有在sql语句的最后找到正确的终止符，所以可能会被用于注入攻击</p><p><strong>9、真实的数据库文件</strong><br>攻击者还能直接搜索到数据库本身，并不适合所有的数据库系统，只适合哪些有着特定名字或者扩展名的数据库,因为是二进制文件，所以没法在里面搜索字符</p><blockquote><p>实例：<br>filetype:mdb inurl:com</p></blockquote><h4 id="0×04-Google-hack导图"><a href="#0×04-Google-hack导图" class="headerlink" title="0×04 Google hack导图"></a>0×04 Google hack导图</h4><p><img src="http://qiniu.austfish.cn/blog/20200430/RQCinpQ773ap.png?imageslim" alt="mark"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Google是一个伟大的信息收集工具。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="社工" scheme="http://austfish.cn/tags/%E7%A4%BE%E5%B7%A5/"/>
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>验证码的姿势学习</title>
+    <link href="http://austfish.cn/2020/04/30/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9A%84%E5%A7%BF%E5%8A%BF%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://austfish.cn/2020/04/30/验证码的姿势学习/</id>
+    <published>2020-04-30T07:58:18.000Z</published>
+    <updated>2020-04-30T08:02:02.980Z</updated>
+    
+    <content type="html"><![CDATA[<p>验证码怎么玩？<br><a id="more"></a></p><h4 id="0×01-前言"><a href="#0×01-前言" class="headerlink" title="0×01 前言"></a>0×01 前言</h4><p><strong>验证码机制</strong></p><ol><li>客户端发起请求</li><li>服务端响应并创建一个新的SessionID同时生成随机验证码，将验证码和SessionID一并返回给客户端</li><li>客户端提交验证码连同SessionID给服务端</li><li>服务端验证验证码同时销毁当前会话，返回给客户端结果。</li></ol><h4 id="0×02-客户端安全问题"><a href="#0×02-客户端安全问题" class="headerlink" title="0×02 客户端安全问题"></a>0×02 客户端安全问题</h4><ol><li>有的网站验证码由本地js生成仅仅在本地用js验证。可以在本地禁用js，用burp把验证字段删除。</li><li>有的网站把验证码输出到客户端html中，送到客户端Cookie或response headers。</li><li>有些网站默认不显示验证码，而是在输入错误一定数量之后才需要验证验证码，开发人员可能在Cookie中写入一个标记loginErr，用来记录错误数量，则可以不更新Cookie中的loginErr值反复提交，验证码就不会出现。</li></ol><h4 id="0×03-服务端安全问题"><a href="#0×03-服务端安全问题" class="headerlink" title="0×03 服务端安全问题"></a>0×03 服务端安全问题</h4><ol><li>验证码不过期，没有及时销毁会话导致同一验证码反复可用。攻击者可以在Cookie中带固定的sessionID和固定的验证码字符串。</li><li>没有对验证码进行非空判断，导致可以直接删除验证码参数。</li><li>产生的验证码问题有限</li></ol><h4 id="0×04-验证码问题汇总"><a href="#0×04-验证码问题汇总" class="headerlink" title="0×04 验证码问题汇总"></a>0×04 验证码问题汇总</h4><h5 id="4-1-验证码不刷新"><a href="#4-1-验证码不刷新" class="headerlink" title="4.1 验证码不刷新"></a>4.1 验证码不刷新</h5><p>导致验证码不刷新（固定）的原因是：登录密码错误之后，session中的值没有更新，验证码不变。验证码不刷新通常有以下两种情况：无条件不刷新、有条件不刷新。</p><p><strong>4.1.1 无条件不刷新</strong><br>无条件不刷新是指在某一时间段内，无论登录失败多少次，只要不刷新页面，就可以无限次的使用同一个验证码来对一个或多个用户帐号进行暴力猜解。</p><blockquote><p>【测试案例 1】测试人员登录并抓取请求包，在不改变验证码的情况下，多次发送请求包，响应包中内容都是“用户名或密码错误”<br>【安全建议】建议针对一次请求生成的验证码只能用一次，用完立即过期。每次生成的验证码不允许跨会话和请求使用。</p></blockquote><p><strong>4.1.2 有条件不刷新</strong><br>有条件不刷新多见于如下情况：登录失败之后，系统会打开一个新页面或者弹出一个新的警告窗口，提示用户登录失败，点击确定后返回登录界面且验证码刷新。这种情况下，只要我们不关闭新窗口或弹窗，配合使用Burpsuite的intruder模块就可以进行暴力破解了。</p><blockquote><p>【测试案例 2】来看下某系统的验证码鉴权流程：</p><p>用户输入账户信息+验证码(刷新页面或手动刷新验证码会从服务器获取验证码，但该验证码缓存于session中)，服务端接收到账户信息+验证后会先校验验证码是否正确，若不正确则，返回反之与数据库做对比，符合则返回，客户端接收服务端的请求，若成功则跳转，返回根据不同的错误码提示相应信息，并重新获取服务端生成的新验证码，重新缓存。</p><p>【问题描述】看完流程可以很容易想到一个问题：验证码此时并不会重置，一切重置验证码的操作都在浏览器，所以在Session不失效的时效内，可以无限重用验证码，这时就可以使用BurpSuite进行暴力破解了，验证码形同虚设。</p></blockquote><h5 id="4-2-验证码前端可获取"><a href="#4-2-验证码前端可获取" class="headerlink" title="4.2 验证码前端可获取"></a>4.2 验证码前端可获取</h5><p>这种情况在早期的一些网站中比较常见，主要是因为程序员在写代码的时候安全意识不足导致的。验证码通常会被他们隐藏在网站的源码中或者高级一点的隐藏在请求的Cookie中，但这两种情况都可以被攻击者轻松绕过。</p><p><strong>4.2.1 验证码隐藏在源码中</strong><br>验证这种情况很简单，我们只需要记住验证码，然后右键打开网站源代码，Ctrl+F搜索，输入刚才的验证码，如果可以成功匹配到，那恭喜你，接下来就可以写工具，提取源码中的验证码并将其放入每次请求的报文中，来进行帐号破解，这里推荐使用python。</p><p><strong>4.2.2 验证码隐藏在Cookie中</strong><br>这种情况，我们可以在提交登录的时候抓包，然后分析一下包中的Cookie字段，看看其中有没有相匹配的验证码，或者是经过了一些简单加密后的验证码。</p><h5 id="4-3-验证码空值绕过"><a href="#4-3-验证码空值绕过" class="headerlink" title="4.3 验证码空值绕过"></a>4.3 验证码空值绕过</h5><p>验证码空值绕过，是在日常的渗透测试中很容易被我们忽略的一点，实际应用中我们可以通过直接删除验证码参数或者Cookie中的一些值来绕过判断，进行暴力破解。</p><h5 id="4-4-验证码易识别"><a href="#4-4-验证码易识别" class="headerlink" title="4.4 验证码易识别"></a>4.4 验证码易识别</h5><p>在平常的漏洞挖掘过程中，如果我们发现登录的验证码非常简单且易于识别，那我们就可以尝试使用自动化工具来进行登录破解了，如PKAV的HTTP Fuzzer。5. 存在无验证码页面经过测试，如果我们发现网站验证码自身并不存在缺陷，那我们接下来就可以尝试寻找一些其他的登录页面或接口来尝试暴力破解。</p><h5 id="5-5隐藏的页面"><a href="#5-5隐藏的页面" class="headerlink" title="5.5隐藏的页面"></a>5.5隐藏的页面</h5><p>这种页面通常是留给测试人员使用的，或者是一些忘记删除的老界面，利用的前提是该界面依旧可用，一般情况下，我们可以通过扫描器来发现这种页面。</p><h5 id="5-6-微信公众号、APP登录页面"><a href="#5-6-微信公众号、APP登录页面" class="headerlink" title="5.6 微信公众号、APP登录页面"></a>5.6 微信公众号、APP登录页面</h5><p>很多网站的web登录页面已经做的相当完善了，但是却在微信公众后的绑定接口或者是APP的登录界面上面栽了跟头，在渗透测试的过程中，一定不要忘了对公众号和APP的测试。</p><h5 id="5-7-其他绕过方法"><a href="#5-7-其他绕过方法" class="headerlink" title="5.7. 其他绕过方法"></a>5.7. 其他绕过方法</h5><p><strong>5.71万能验证码</strong><br>渗透测试的过程中，有时候会出现这种情况，系统存在一个万能验证码，如000000，只要输入万能验证码，就可以无视验证码进行暴力破解。</p><p><strong>5.7.2验证码无效</strong><br>这种情况下，无论我们输入什么数据，验证码都会判断通过，验证码形同虚设，这种情况我只遇到过一次。</p><p><strong>5.7.3验证码数量有限</strong><br>多见于计算类型的验证码，如1+8=？，这种类型的验证码严格意义上来说不能叫做验证码，多刷新几次验证码，我们可能会发现系统中的算数题目只有那么几道，这种情况下只要将验证码全部下载下来，生成一个md5库，然后将前端生成的验证码与本地文件进行对比即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;验证码怎么玩？&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="web" scheme="http://austfish.cn/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title>初识自动化渗透工具</title>
@@ -65,13 +109,13 @@
     <link href="http://austfish.cn/2020/03/26/%E6%B5%85%E6%9E%90%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/"/>
     <id>http://austfish.cn/2020/03/26/浅析社会工程学/</id>
     <published>2020-03-26T05:50:07.000Z</published>
-    <updated>2020-03-31T05:52:32.575Z</updated>
+    <updated>2020-04-28T03:45:58.369Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。</strong><br><a id="more"></a></p><h4 id="0×01前言"><a href="#0×01前言" class="headerlink" title="0×01前言"></a>0×01前言</h4><blockquote><p>15岁仅凭借一台电脑和一部老式的调制解调器黑进北美防空司令部的大佬，他的传奇生涯被翻拍成电影，《骇客追缉令》、《战争游戏》和《自由停工期》三部黑客电影的原型都是他，甚至连主角的名字都没换</p></blockquote><p><img src="http://qiniu.austfish.cn/blog/20200326/MRndseNzc1Ky.png?imageslim" alt="mark"></p><p>凯文·米特尼克（Kevin David Mitnick），1963年8月6日出生于美国洛杉矶，第一个被美国联邦调查局通缉的黑客。有评论称他为世界上“头号电脑黑客”，其传奇的黑客经历足以令全世界为之震惊。现职业是网络安全咨询师，出版过《反欺骗的艺术》、《反入侵的艺术》、《线上幽灵：世界头号黑客米特尼克自传》。</p><p><strong>「社会工程学」这个概念就是由他提出来的！</strong></p><h4 id="0×02社会工程学"><a href="#0×02社会工程学" class="headerlink" title="0×02社会工程学"></a>0×02社会工程学</h4><p>社会工程学是一种通过对受害者心理弱点、本能反应、好奇心、信任、贪婪等心理陷阱进行诸如欺骗、伤害等危害手段；是一种黑客攻击方法，利用欺骗等手段骗取对方信任，获取机密情报；是一种利用人性脆弱点、贪婪等等的心理表现进行攻击，是防不胜防的。所有社会工程学攻击都建立在使人决断产生认知偏差的基础上，熟练的社会工程师都是擅长进行信息收集的身体力行者。</p><p>有一本书很出名，估计很多人都有听说过，叫做《欺骗的艺术》，其实社会工程学就是米特尼克在这本书中提出的，不过其初始目的是让全球的网民们能够懂得网络安全，提高警惕，防止没必要的个人损失，但是现在真正的应用似乎不是这样的</p><h4 id="0×03社工库"><a href="#0×03社工库" class="headerlink" title="0×03社工库"></a>0×03社工库</h4><p><strong>社工库，就是社会工程学中所利用的数据库。</strong></p><p>上面提到了，社会工程学的一个维度就是信息搜集，比如指定一个手机号，就能获取到这个手机号背后的主人信息，包括姓名、邮箱、身份证、籍贯、社交账号等等信息，这些信息就是社工库。</p><p>这些信息数据，少则几百万，多则上亿，主要来源是各大公司的安全漏洞，导致数据被黑客窃取。社工库是从2011年开始，呈现了爆发式增长，归其原因，这一年有大量的用户数据泄露。这是我得到的信息，2011年就有上亿数据泄露：</p><blockquote><p>2011.03-多玩游戏网-800万-txt.rar<br>2011.03-织梦CMS官网数据库-34万-sql.zip<br>2011.04-766游戏网-12万-sql.rar<br>2011.04-IS语音-969万-txt.zip<br>2011.04-亚马逊中国买家信息-20万.zip<br>2011.04-凡客诚品买家信息-20万-Excel.zip<br>2011.04-当当网买家信息-101万-Excel.zip<br>2011.04-爱拍游戏网-1100万-txt.zip<br>2011.04-猴岛游戏社区-2683万-txt.rar<br>2011.05-上海市银行大额客户-21万-xls.rar<br>2011.05-木蚂蚁-13万-sql.zip<br>2011.07-土木在线-540万-sql.zip<br>2011.10-178游戏网-1000万-txt.rar<br>2011.10-CSDN.NET-600万-sql.rar<br>2011.10-嘟嘟牛-66277-txt.rar<br>2011.11-7k7k小游戏-2000万-txt.rar<br>2011.11-人人网-500万-txt.rar<br>2011.12-天涯社区-4000万-txt.rar<br>2011.12-淘宝买家卖家邮箱-2500万-txt.zip</p></blockquote><p><strong>再到近些年</strong><br><img src="http://qiniu.austfish.cn/blog/20200326/XpK97xDknosK.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20200326/CJWTJsRXaAJd.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20200326/3rbPHuxN3a3E.png?imageslim" alt="mark"></p><p>该用户贴出了社工库系统使用效果<br><img src="http://qiniu.austfish.cn/blog/20200326/Q586pAHYD7fB.png?imageslim" alt="mark"></p><p>可以这么理解，社工库就是一个黑客们将各个系统泄漏的用户数据整合分析，然后集中存储的一个地方。</p><p>这些用户数据大部分来自以前黑客拖库撞库获得的数据文件，包含的数据类型除了账号密码外，还包含被攻击网站所属不同行业所带来的附加数据。</p><p>黑客可以在社工库里查询个人的账号、密码及其他个人信息，达到快速获取个人信息、及其他非法获利的目的。也是黑客们进行人肉搜索的一种途径。</p><h4 id="0×04数据泄露（微博数据泄露）"><a href="#0×04数据泄露（微博数据泄露）" class="headerlink" title="0×04数据泄露（微博数据泄露）"></a>0×04数据泄露（微博数据泄露）</h4><blockquote><p>3月19日上午，有微博名为“安全_云舒”的用户转发微博时称：“很多人的手机号码泄露了，根据微博账号就能查到手机号……已经有人通过微博泄露查到我的手机号码，来加我微信了。”</p><p>随后，该网友在微博下的留言中进一步表示，他通过技术查询，发现不少人的手机号已被泄露，当中涉及不少微博认证的明星、官员、企业家。“来总的手机号也被泄露了，我昨晚查过。”（“来总”代指微博CEO 王高飞）</p></blockquote><p><img src="http://qiniu.austfish.cn/blog/20200326/7lB1i9JxsESc.png?imageslim" alt="mark"><br>3月4日，有暗网用户发布了一则名为“5.38亿微博用户绑定手机号数据，其中1.72亿有账号基本信息”的交易信息，售价1388美元。其中绑定手机数据包括用户ID和手机号，账号基本信息包括昵称、头像、粉丝数、所在地等。</p><p><img src="http://qiniu.austfish.cn/blog/20200326/QTdtI4RhQbh5.png?imageslim" alt="mark"></p><p><img src="http://qiniu.austfish.cn/blog/20200326/2R7mIvSBc9N2.png?imageslim" alt="mark"></p><p>据工信部官网3月24日消息，3月21日，针对媒体报道的新浪微博因用户查询接口被恶意调用导致App数据泄露问题，工业和信息化部网络安全管理局对新浪微博相关负责人进行了问询约谈。<br><img src="http://qiniu.austfish.cn/blog/20200326/uc0NIBt7kzL9.png?imageslim" alt="mark"></p>]]></content>
+    <content type="html"><![CDATA[<p>“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。<br><a id="more"></a></p><h4 id="0×01前言"><a href="#0×01前言" class="headerlink" title="0×01前言"></a>0×01前言</h4><blockquote><p>15岁仅凭借一台电脑和一部老式的调制解调器黑进北美防空司令部的大佬，他的传奇生涯被翻拍成电影，《骇客追缉令》、《战争游戏》和《自由停工期》三部黑客电影的原型都是他，甚至连主角的名字都没换</p></blockquote><p><img src="http://qiniu.austfish.cn/blog/20200326/MRndseNzc1Ky.png?imageslim" alt="mark"></p><p>凯文·米特尼克（Kevin David Mitnick），1963年8月6日出生于美国洛杉矶，第一个被美国联邦调查局通缉的黑客。有评论称他为世界上“头号电脑黑客”，其传奇的黑客经历足以令全世界为之震惊。现职业是网络安全咨询师，出版过《反欺骗的艺术》、《反入侵的艺术》、《线上幽灵：世界头号黑客米特尼克自传》。</p><p><strong>「社会工程学」这个概念就是由他提出来的！</strong></p><h4 id="0×02社会工程学"><a href="#0×02社会工程学" class="headerlink" title="0×02社会工程学"></a>0×02社会工程学</h4><p>社会工程学是一种通过对受害者心理弱点、本能反应、好奇心、信任、贪婪等心理陷阱进行诸如欺骗、伤害等危害手段；是一种黑客攻击方法，利用欺骗等手段骗取对方信任，获取机密情报；是一种利用人性脆弱点、贪婪等等的心理表现进行攻击，是防不胜防的。所有社会工程学攻击都建立在使人决断产生认知偏差的基础上，熟练的社会工程师都是擅长进行信息收集的身体力行者。</p><p>有一本书很出名，估计很多人都有听说过，叫做《欺骗的艺术》，其实社会工程学就是米特尼克在这本书中提出的，不过其初始目的是让全球的网民们能够懂得网络安全，提高警惕，防止没必要的个人损失，但是现在真正的应用似乎不是这样的</p><h4 id="0×03社工库"><a href="#0×03社工库" class="headerlink" title="0×03社工库"></a>0×03社工库</h4><p><strong>社工库，就是社会工程学中所利用的数据库。</strong></p><p>上面提到了，社会工程学的一个维度就是信息搜集，比如指定一个手机号，就能获取到这个手机号背后的主人信息，包括姓名、邮箱、身份证、籍贯、社交账号等等信息，这些信息就是社工库。</p><p>这些信息数据，少则几百万，多则上亿，主要来源是各大公司的安全漏洞，导致数据被黑客窃取。社工库是从2011年开始，呈现了爆发式增长，归其原因，这一年有大量的用户数据泄露。这是我得到的信息，2011年就有上亿数据泄露：</p><blockquote><p>2011.03-多玩游戏网-800万-txt.rar<br>2011.03-织梦CMS官网数据库-34万-sql.zip<br>2011.04-766游戏网-12万-sql.rar<br>2011.04-IS语音-969万-txt.zip<br>2011.04-亚马逊中国买家信息-20万.zip<br>2011.04-凡客诚品买家信息-20万-Excel.zip<br>2011.04-当当网买家信息-101万-Excel.zip<br>2011.04-爱拍游戏网-1100万-txt.zip<br>2011.04-猴岛游戏社区-2683万-txt.rar<br>2011.05-上海市银行大额客户-21万-xls.rar<br>2011.05-木蚂蚁-13万-sql.zip<br>2011.07-土木在线-540万-sql.zip<br>2011.10-178游戏网-1000万-txt.rar<br>2011.10-CSDN.NET-600万-sql.rar<br>2011.10-嘟嘟牛-66277-txt.rar<br>2011.11-7k7k小游戏-2000万-txt.rar<br>2011.11-人人网-500万-txt.rar<br>2011.12-天涯社区-4000万-txt.rar<br>2011.12-淘宝买家卖家邮箱-2500万-txt.zip</p></blockquote><p><strong>再到近些年</strong><br><img src="http://qiniu.austfish.cn/blog/20200326/XpK97xDknosK.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20200326/CJWTJsRXaAJd.png?imageslim" alt="mark"><br><img src="http://qiniu.austfish.cn/blog/20200326/3rbPHuxN3a3E.png?imageslim" alt="mark"></p><p>该用户贴出了社工库系统使用效果<br><img src="http://qiniu.austfish.cn/blog/20200326/Q586pAHYD7fB.png?imageslim" alt="mark"></p><p>可以这么理解，社工库就是一个黑客们将各个系统泄漏的用户数据整合分析，然后集中存储的一个地方。</p><p>这些用户数据大部分来自以前黑客拖库撞库获得的数据文件，包含的数据类型除了账号密码外，还包含被攻击网站所属不同行业所带来的附加数据。</p><p>黑客可以在社工库里查询个人的账号、密码及其他个人信息，达到快速获取个人信息、及其他非法获利的目的。也是黑客们进行人肉搜索的一种途径。</p><h4 id="0×04数据泄露（微博数据泄露）"><a href="#0×04数据泄露（微博数据泄露）" class="headerlink" title="0×04数据泄露（微博数据泄露）"></a>0×04数据泄露（微博数据泄露）</h4><blockquote><p>3月19日上午，有微博名为“安全_云舒”的用户转发微博时称：“很多人的手机号码泄露了，根据微博账号就能查到手机号……已经有人通过微博泄露查到我的手机号码，来加我微信了。”</p><p>随后，该网友在微博下的留言中进一步表示，他通过技术查询，发现不少人的手机号已被泄露，当中涉及不少微博认证的明星、官员、企业家。“来总的手机号也被泄露了，我昨晚查过。”（“来总”代指微博CEO 王高飞）</p></blockquote><p><img src="http://qiniu.austfish.cn/blog/20200326/7lB1i9JxsESc.png?imageslim" alt="mark"><br>3月4日，有暗网用户发布了一则名为“5.38亿微博用户绑定手机号数据，其中1.72亿有账号基本信息”的交易信息，售价1388美元。其中绑定手机数据包括用户ID和手机号，账号基本信息包括昵称、头像、粉丝数、所在地等。</p><p><img src="http://qiniu.austfish.cn/blog/20200326/QTdtI4RhQbh5.png?imageslim" alt="mark"></p><p><img src="http://qiniu.austfish.cn/blog/20200326/2R7mIvSBc9N2.png?imageslim" alt="mark"></p><p>据工信部官网3月24日消息，3月21日，针对媒体报道的新浪微博因用户查询接口被恶意调用导致App数据泄露问题，工业和信息化部网络安全管理局对新浪微博相关负责人进行了问询约谈。<br><img src="http://qiniu.austfish.cn/blog/20200326/uc0NIBt7kzL9.png?imageslim" alt="mark"></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。&lt;/strong&gt;&lt;br&gt;
+      &lt;p&gt;“社工库”是运用社会工程学进行渗透测试时候积累的各方面数据的结构化数据库。&lt;br&gt;
     
     </summary>
     
@@ -461,9 +505,9 @@
     </summary>
     
     
-      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="Python" scheme="http://austfish.cn/tags/Python/"/>
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -505,9 +549,9 @@
     </summary>
     
     
-      <category term="漏洞" scheme="http://austfish.cn/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="python" scheme="http://austfish.cn/tags/python/"/>
+    
+      <category term="漏洞" scheme="http://austfish.cn/tags/%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
@@ -558,9 +602,9 @@
     </summary>
     
     
-      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="社工" scheme="http://austfish.cn/tags/%E7%A4%BE%E5%B7%A5/"/>
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

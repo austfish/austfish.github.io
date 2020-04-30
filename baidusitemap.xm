@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://austfish.cn/2020/04/30/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9A%84%E5%A7%BF%E5%8A%BF%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2020-04-30</lastmod>
+  </url>  <url>
+    <loc>http://austfish.cn/2020/04/30/Google-Hack%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2020-04-30</lastmod>
+  </url>  <url>
+    <loc>http://austfish.cn/2020/03/26/%E6%B5%85%E6%9E%90%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2020/04/28/%E5%88%9D%E8%AF%86%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2020-04-28</lastmod>
   </url>  <url>
     <loc>http://austfish.cn/2020/03/31/weblogic%E9%83%A8%E5%88%86%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%EF%BC%881%EF%BC%89/</loc>
-    <lastmod>2020-03-31</lastmod>
-  </url>  <url>
-    <loc>http://austfish.cn/2020/03/26/%E6%B5%85%E6%9E%90%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/</loc>
     <lastmod>2020-03-31</lastmod>
   </url>  <url>
     <loc>http://austfish.cn/2020/03/19/%E8%B6%8A%E6%9D%83%E6%93%8D%E4%BD%9C%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%8E%E5%A4%8D%E7%8E%B0/</loc>
