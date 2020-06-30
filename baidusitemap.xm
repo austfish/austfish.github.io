@@ -4,6 +4,9 @@
     <loc>http://austfish.cn/2020/06/30/%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2%E7%B3%BB%E5%88%97-SQL%E6%B3%A8%E5%85%A5/</loc>
     <lastmod>2020-06-30</lastmod>
   </url>  <url>
+    <loc>http://austfish.cn/2020/06/30/%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2%E7%B3%BB%E5%88%97-%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E-%E4%B8%9A%E5%8A%A1%E6%BC%8F%E6%B4%9E/</loc>
+    <lastmod>2020-06-30</lastmod>
+  </url>  <url>
     <loc>http://austfish.cn/2020/06/12/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/</loc>
     <lastmod>2020-06-12</lastmod>
   </url>  <url>

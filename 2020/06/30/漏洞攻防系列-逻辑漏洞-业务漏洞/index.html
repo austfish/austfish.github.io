@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Tag: 挖洞 | Fisher&#39;s 安全日记</title>
+  <title>漏洞攻防系列-逻辑漏洞 / 业务漏洞 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力努力再努力，微信公众号：austfish">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.cn/tags/挖洞/index.html">
+  <meta name="description" content="逻辑漏洞应用在方方面面，主要是根据应用不通产生的逻辑方面漏洞不同。比如金融网站和互联网网站以及购物网站，挖掘逻辑漏洞方法完全不一样。">
+<meta name="keywords" content="漏洞,笔记,逻辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="漏洞攻防系列-逻辑漏洞 &#x2F; 业务漏洞">
+<meta property="og:url" content="http://austfish.cn/2020/06/30/漏洞攻防系列-逻辑漏洞-业务漏洞/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
+<meta property="og:description" content="逻辑漏洞应用在方方面面，主要是根据应用不通产生的逻辑方面漏洞不同。比如金融网站和互联网网站以及购物网站，挖掘逻辑漏洞方法完全不一样。">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-06-30T03:55:12.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher&#39;s 安全日记">
-<meta name="twitter:description" content="努力努力再努力，微信公众号：austfish">
+<meta name="twitter:title" content="漏洞攻防系列-逻辑漏洞 &#x2F; 业务漏洞">
+<meta name="twitter:description" content="逻辑漏洞应用在方方面面，主要是根据应用不通产生的逻辑方面漏洞不同。比如金融网站和互联网网站以及购物网站，挖掘逻辑漏洞方法完全不一样。">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -162,68 +163,300 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-漏洞攻防系列-逻辑漏洞-业务漏洞" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/10/如何挖信息泄密漏洞/" class="archive-article-date">
-  	<time datetime="2019-10-10T08:43:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/10/如何挖信息泄密漏洞/">如何挖信息泄密漏洞</a>
+    <h1 class="article-title" itemprop="name">
+      漏洞攻防系列-逻辑漏洞 / 业务漏洞
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/06/30/漏洞攻防系列-逻辑漏洞-业务漏洞/" class="archive-article-date">
+  	<time datetime="2020-06-30T03:53:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>逻辑漏洞应用在方方面面，主要是根据应用不通产生的逻辑方面漏洞不同。比如金融网站和互联网网站以及购物网站，挖掘逻辑漏洞方法完全不一样。<br><a id="more"></a></p>
+<h4 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h4><p>逻辑漏洞是指由于程序逻辑不严导致一些逻辑分支处理错误造成的漏洞。在实际开发中，因为开发者水平不一没有安全意识，而且业务发展迅速内部测试没有及时到位，所以常常会出现类似的漏洞。</p>
+<h4 id="0×01-安装逻辑"><a href="#0×01-安装逻辑" class="headerlink" title="0×01 安装逻辑"></a>0×01 安装逻辑</h4><ul>
+<li>查看能否绕过判定重新安装</li>
+<li>查看能否利用安装文件获取信息</li>
+<li>看能否利用更新功能获取信息</li>
+</ul>
+<h4 id="0×02-交易"><a href="#0×02-交易" class="headerlink" title="0×02 交易"></a>0×02 交易</h4><h5 id="2-1-购买"><a href="#2-1-购买" class="headerlink" title="2.1 购买"></a>2.1 购买</h5><ul>
+<li>修改支付的价格</li>
+<li>修改支付的状态</li>
+<li>修改购买数量为负数</li>
+<li>修改金额为负数</li>
+<li>重放成功的请求</li>
+<li>并发数据库锁处理不当</li>
+</ul>
+<h5 id="2-2-业务风控"><a href="#2-2-业务风控" class="headerlink" title="2.2 业务风控"></a>2.2 业务风控</h5><ul>
+<li>刷优惠券</li>
+<li>套现</li>
+</ul>
+<h4 id="0×03-账户"><a href="#0×03-账户" class="headerlink" title="0×03 账户"></a>0×03 账户</h4><h5 id="3-1-注册"><a href="#3-1-注册" class="headerlink" title="3.1 注册"></a>3.1 注册</h5><ul>
+<li>覆盖注册</li>
+<li>尝试重复用户名</li>
+<li>注册遍历猜解已有账号</li>
+</ul>
+<h5 id="3-2-邮箱用户名"><a href="#3-2-邮箱用户名" class="headerlink" title="3.2 邮箱用户名"></a>3.2 邮箱用户名</h5><ul>
+<li>前后空格</li>
+<li>大小写变换</li>
+</ul>
+<h5 id="3-3-手机号用户名"><a href="#3-3-手机号用户名" class="headerlink" title="3.3 手机号用户名"></a>3.3 手机号用户名</h5><ul>
+<li>前后空格</li>
+<li>+86</li>
+</ul>
+<h5 id="3-4-登录"><a href="#3-4-登录" class="headerlink" title="3.4 登录"></a>3.4 登录</h5><ul>
+<li>撞库</li>
+<li>账号劫持</li>
+<li>恶意尝试帐号密码锁死账户</li>
+</ul>
+<h5 id="3-5-找回密码"><a href="#3-5-找回密码" class="headerlink" title="3.5 找回密码"></a>3.5 找回密码</h5><ul>
+<li>重置任意用户密码密码</li>
+<li>重置后新密码在返回包中</li>
+<li>Token验证逻辑在前端</li>
+<li>X-Forwarded-Host处理不正确</li>
+</ul>
+<h5 id="3-6-修改密码"><a href="#3-6-修改密码" class="headerlink" title="3.6 修改密码"></a>3.6 修改密码</h5><ul>
+<li>越权修改密码</li>
+<li>修改密码没有旧密码验证</li>
+</ul>
+<h5 id="3-7-申诉"><a href="#3-7-申诉" class="headerlink" title="3.7 申诉"></a>3.7 申诉</h5><ul>
+<li>身份伪造</li>
+<li>逻辑绕过</li>
+</ul>
+<h4 id="0×04-2FA"><a href="#0×04-2FA" class="headerlink" title="0×04 2FA"></a>0×04 2FA</h4><ul>
+<li>重置密码后自动登录没有2FA</li>
+<li>OAuth登录没有启用2FA</li>
+<li>2FA可爆破</li>
+<li>2FA有条件竞争</li>
+<li>修改返回值绕过</li>
+<li>激活链接没有启用2FA</li>
+<li>可通过CSRF禁用2FA</li>
+</ul>
+<h4 id="0×05-验证码"><a href="#0×05-验证码" class="headerlink" title="0×05 验证码"></a>0×05 验证码</h4><p><a href="http://austfish.cn/2020/04/30/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9A%84%E5%A7%BF%E5%8A%BF%E5%AD%A6%E4%B9%A0/#more">验证码的姿势学习</a></p>
+<ul>
+<li>验证码可重用</li>
+<li>验证码可预测验</li>
+<li>证码强度不够</li>
+<li>验证码无时间限制或者失效时间长</li>
+<li>验证码无猜测次数限制</li>
+<li>验证码传递特殊的参数或不传递参数绕过</li>
+<li>验证码可从返回包中直接获取验证码</li>
+<li>不刷新或无效</li>
+<li>验证码数量有限</li>
+<li>验证码在数据包中返回</li>
+<li>修改Cookie绕过</li>
+<li>修改返回包绕过</li>
+<li>验证码在客户端生成或校验</li>
+<li>验证码可OCR或使用机器学习识别</li>
+<li>验证码用于手机短信/邮箱轰炸</li>
+</ul>
+<h4 id="0×06-Session"><a href="#0×06-Session" class="headerlink" title="0×06 Session"></a>0×06 Session</h4><ul>
+<li>Session机制</li>
+<li>Session猜测 / 爆破</li>
+<li>Session伪造</li>
+<li>Session泄漏</li>
+<li>Session Fixation</li>
+</ul>
+<h4 id="0×07-越权"><a href="#0×07-越权" class="headerlink" title="0×07 越权"></a>0×07 越权</h4><p><a href="http://austfish.cn/2020/03/19/%E8%B6%8A%E6%9D%83%E6%93%8D%E4%BD%9C%E6%BC%8F%E6%B4%9E%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%8E%E5%A4%8D%E7%8E%B0/">越权操作漏洞的思考与复现</a></p>
+<ul>
+<li>水平越权<ul>
+<li>攻击者可以访问与他拥有相同权限的用户的资源</li>
+<li>权限类型不变，ID改变</li>
+</ul>
+</li>
+<li>垂直越权<ul>
+<li>低级别攻击者可以访问高级别用户的资源权限ID不变，类型改变交叉越权</li>
+<li>权限ID改变，类型改变</li>
+</ul>
+</li>
+</ul>
+<h4 id="0×08随机数安全"><a href="#0×08随机数安全" class="headerlink" title="0×08随机数安全"></a>0×08随机数安全</h4><ul>
+<li>使用不安全的随机数发生器</li>
+<li>使用时间等易猜解的因素作为随机数种子</li>
+</ul>
+<h4 id="0×09其他"><a href="#0×09其他" class="headerlink" title="0×09其他"></a>0×09其他</h4><ul>
+<li>用户/订单/优惠券等ID生成有规律，可枚举</li>
+<li>接口无权限、次数限制</li>
+<li>加密算法实现误用</li>
+<li>执行顺序</li>
+<li>敏感信息泄露</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">挖洞</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">逻辑</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aQW4jMQwEwPz/01lgrxtPukXRyQI1pyA2NCodRJrkx0f8fP59ku/8+81X/8m/n+/h8MHDw8M72vqr59XWc/DzCs/4ZLXnw8LDw8Pb47WbS9jfvDg+4vxw8fDw8H4b73kryXbbMPO8Bzw8PLz/hZeHkPyib8sceHh4eL+Bl6ew7XYn+CS0XKu14OHh4U1v4zq1feffi/09PDw8vEFXvQ0SSRNrMkBQ7xYPDw9vgff8muIHfzwc0A4czEe+8PDw8O7y2sZVm7XmwSP/NF8ZDw8Pb4PXpr/5f85KunmYOUyp8fDw8Ma8W+WGeYC5VYb4Iu7h4eHhLfDm3bPndZJP2xJGdHB4eHh4C7zkZ387XJU3/s/GpJICRNEAw8PDwyt5kxdsXOv5GEEUzPDw8PAWeO12J8WFnJ2HmWg0AQ8PD2+Nl6TLSTiZFHznA1h4eHh47+TNN5cEj3aEKw8D39Ra8PDw8C7xzi7rvAF2NjiVB4Zvyhl4eHh4b+RNygFtsfizfIoBBTw8PLw1Xn7F56NabdMrb57lR4OHh4e3wbvVsjrDFKXYIFwVb8HDw8Mb8CZX8ORo5mHmcDoMDw8Pb8w7u3bP2Pk4QjtMUBwEHh4e3hpvcjUnR3PWBjtL0PHw8PA2eO3QVQ7YKFjU+8HDw8O7yjtbOk+L8+JvG0KilfHw8PCWee3FnQ9jJW9JCh9J0v9FxMPDw8O7yru1RJtw57y2CFIMXeHh4eEd8T7LJ2n8z1tlyWFFe8DDw8Nb4G00xtohgDZZzwsceHh4eHu8PBi0rbI8EZ+UietcGw8PD+8Sr51WujXXlB/x2dvx8PDwfpaXB4xbhYNJCRgPDw/vt/HypLktYZwVhV+GEzw8PLw13qQYcbd+nASVov6Ah4eHt8Cb10LvDkslKfhhSRcPDw9vyvsDF5q7YOkluMcAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/06/30/漏洞攻防系列-SQL注入/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">漏洞攻防系列-SQL注入</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="漏洞攻防系列-逻辑漏洞-业务漏洞" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyuoyyRfG"; 
+var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -252,9 +485,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
