@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2020-10-27T06:20:12.286Z</updated>
+  <updated>2020-11-13T02:29:52.188Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JOK3R-插件式渗透工具箱</title>
+    <link href="http://austfish.cn/2020/11/13/JOK3R-%E6%8F%92%E4%BB%B6%E5%BC%8F%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7%E7%AE%B1/"/>
+    <id>http://austfish.cn/2020/11/13/JOK3R-插件式渗透工具箱/</id>
+    <published>2020-11-13T02:28:42.000Z</published>
+    <updated>2020-11-13T02:29:52.188Z</updated>
+    
+    <content type="html"><![CDATA[<p>Jok3r是一个Python3 CLI应用程序，旨在帮助渗透测试人员进行网络基础设施和Web黑盒安全性测试。</p><a id="more"></a><h4 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h4><p>目标是通过自动执行尽可能多的安全测试来节省网络/网络渗透测试期间的尽可能多的时间，以便快速识别悬而未决的漏洞，然后将更多的时间花在更有趣和棘手的事情上！</p><p>基于这一观察，目前有许多针对通用网络服务的黑客入侵开源工具/脚本（来自各种来源），可以执行从指纹识别到利用的各种任务。因此，Jok3r的想法是以一种聪明的方式组合那些开源工具，以获得更相关的结果。</p><h2 id="0×01-项目描述"><a href="#0×01-项目描述" class="headerlink" title="0×01 项目描述"></a>0×01 项目描述</h2><h4 id="Pentest工具箱管理"><a href="#Pentest工具箱管理" class="headerlink" title="Pentest工具箱管理"></a>Pentest工具箱管理</h4><ul><li><strong>工具选择</strong>：汇编来自各种来源的50多种开源工具和脚本。</li><li><strong>基于Docker的应用程序</strong>：打包在运行Kali OS的Docker映像中的应用程序，可在Docker Hub上找到。</li><li><strong>即用型</strong>：安装了所有工具和依赖项，只需提取Docker映像并运行一个新容器即可。</li><li><strong>更新变得容易</strong>：仅运行一个命令即可轻松使整个工具箱保持最新状态。</li><li><strong>轻松自定义</strong>：轻松从简单的配置文件添加/删除工具。</li></ul><h4 id="网络基础设施安全评估"><a href="#网络基础设施安全评估" class="headerlink" title="网络基础设施安全评估"></a>网络基础设施安全评估</h4><ul><li><strong>许多受支持的服务</strong>：针对最常见的TCP / UDP服务（HTTP，FTP，SSH，SMB，Oracle，MS-SQL，MySQL，PostgreSQL，VNC等）。</li><li><strong>结合工具的力量</strong>：每个安全检查均由工具箱中的工具执行。通过链接安全检查来执行攻击。</li><li><strong>上下文意识</strong>：根据目标的上下文（即检测到的技术，凭据，漏洞等）来选择和调整要运行的安全检查。</li><li><strong>侦查</strong>：对目标服务执行自动指纹识别（产品检测）。</li><li><strong>CVE查找</strong>：检测到产品名称及其版本后，将在联机CVE数据库上执行漏洞查找（使用Vulners和CVE详细信息）。</li><li><strong>漏洞扫描</strong>：自动检查常见漏洞并尝试执行某些利用（自动拥有）。</li><li><strong>蛮力攻击</strong>：自动检查服务上的默认/通用凭据，并在必要时执行字典攻击。词表根据目标服务进行了优化。</li><li><strong>身份验证后测试</strong>：找到有效凭据后，会自动执行一些漏洞利用后检查。</li></ul><h4 id="网络安全评估网络安全评估"><a href="#网络安全评估网络安全评估" class="headerlink" title="网络安全评估网络安全评估"></a>网络安全评估网络安全评估</h4><ul><li><strong>重点关注HTTP</strong>：目前支持针对HTTP的60多种不同的安全检查。</li><li><strong>Web技术检测</strong>：在安全检查之前运行基于Wappalyzer的指纹引擎，从而可以检测：编程语言，框架，JS库，CMS，Web和应用程序服务器。</li><li><strong>服务器利用</strong>：自动扫描和/或利用Web和应用程序服务器（例如JBoss，Tomcat，Weblogic，Websphere，Jenkins等）上的最关键漏洞（例如RCE）。</li><li><strong>CMS漏洞扫描</strong>：在最常见的CMS（Wordpress，Drupal，Joomla等）上自动运行漏洞扫描程序。</li></ul><h4 id="本地数据库和报告"><a href="#本地数据库和报告" class="headerlink" title="本地数据库和报告"></a>本地数据库和报告</h4><ul><li><strong>本地数据库</strong>：与目标相关的数据通过任务（工作区）组织到本地Sqlite数据库中，该数据库在安全测试期间保持更新。</li><li><strong>类似于Metasploit的Interactive Shell</strong>：通过带有几个内置命令的交互式Shell访问数据库。</li><li><strong>从Nmap导入目标</strong>：手动或通过加载Nmap结果将目标添加到任务中。</li><li><strong>从Shodan导入目标</strong>：从shodan手动将目标添加到任务中（需要shodan API密钥）。</li><li><strong>访问所有结果</strong>：来自安全检查，检测到的凭据和漏洞的所有输出都存储在数据库中，并且可以轻松访问。</li><li><strong>报告</strong>：生成完整的HTML报告，其中包含目标摘要，Web屏幕截图以及来自安全测试的所有结果。</li></ul><h2 id="0×02-项目安装"><a href="#0×02-项目安装" class="headerlink" title="0×02 项目安装"></a>0×02 项目安装</h2><p>推荐的使用Jok3r的方法是拉Docker映像，因此您不必担心依赖关系问题并安装工具箱的各种黑客工具。一切都通过Docker Hub上可用的Docker容器进行了测试！</p><ol><li><p><strong>拉Jok3r Docker映像</strong>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull koutto/jok3r</span><br></pre></td></tr></table></figure></li><li><p><strong>运行新的Docker容器</strong>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -i -t --name jok3r-container -w /root/jok3r -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --shm-size <span class="number">2</span>g --net=host koutto/jok3r</span><br></pre></td></tr></table></figure></li><li><p><strong>要重新运行已停止的容器</strong>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker start -i jok3r-container</span><br></pre></td></tr></table></figure></li><li><p><strong>要在容器内打开多个外壳</strong>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker <span class="keyword">exec</span> -it jok3r-container bash</span><br></pre></td></tr></table></figure></li></ol><h2 id="0×03-项目更新"><a href="#0×03-项目更新" class="headerlink" title="0×03 项目更新"></a>0×03 项目更新</h2><p><strong>为了进行更新，只需从Docker Hub中提取最新的Docker映像，然后从该新映像运行一个新的容器：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull koutto/jok3r</span><br><span class="line"></span><br><span class="line">sudo docker run -i -t --name jok3r-container-updated -w /root/jok3r -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --shm-size <span class="number">2</span>g --net=host koutto/jok3r</span><br></pre></td></tr></table></figure></p><h2 id="0×04-快速使用"><a href="#0×04-快速使用" class="headerlink" title="0×04 快速使用"></a>0×04 快速使用</h2><h4 id="Pentest工具箱管理-1"><a href="#Pentest工具箱管理-1" class="headerlink" title="Pentest工具箱管理"></a>Pentest工具箱管理</h4><ul><li><p>显示工具箱中的所有工具：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --show-all</span><br></pre></td></tr></table></figure></li><li><p>在工具箱中安装所有工具（已在Docker容器中完成）：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --install-all --auto</span><br></pre></td></tr></table></figure></li><li><p>更新工具箱中的所有工具，并每次提示检查更新：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --update-all</span><br></pre></td></tr></table></figure></li><li><p>在没有任何提示的情况下更新工具箱中的所有工具：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --update-all --auto</span><br></pre></td></tr></table></figure></li></ul><h4 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h4><ul><li><p>列出支持的服务：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --services</span><br></pre></td></tr></table></figure></li><li><p>显示给定服务的安全检查：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --checks &lt;service&gt;</span><br></pre></td></tr></table></figure></li><li><p>显示给定服务支持的攻击配置文件：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --attack-profiles &lt;service&gt;</span><br></pre></td></tr></table></figure></li><li><p>显示所有服务支持的产品：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --products</span><br></pre></td></tr></table></figure></li></ul><h4 id="安全测试"><a href="#安全测试" class="headerlink" title="安全测试"></a>安全测试</h4><p>在本地数据库中创建一个新任务：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py db</span><br><span class="line"></span><br><span class="line">jok3rdb[default]&gt; mission -a mayhem</span><br><span class="line"></span><br><span class="line">[+] Mission <span class="string">"mayhem"</span> successfully added</span><br><span class="line">[*] Selected mission <span class="keyword">is</span> now mayhem</span><br><span class="line"></span><br><span class="line">jok3rdb[mayhem]&gt;</span><br></pre></td></tr></table></figure></p><h6 id="单一目标："><a href="#单一目标：" class="headerlink" title="单一目标："></a>单一目标：</h6><ul><li><p>以交互方式对URL运行所有安全检查，并将结果添加到“ mayhem”任务中：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -t https://www.example.com/ --add2db mayhem</span><br></pre></td></tr></table></figure></li><li><p>针对MS-SQL服务运行安全检查（无用户交互），并将结果添加到任务中：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -t <span class="number">192.168</span><span class="number">.1</span><span class="number">.42</span>:<span class="number">1433</span> -s mssql --add2db mayhem --fast</span><br></pre></td></tr></table></figure></li><li><p>针对FTP服务仅运行“ recon”和“ vulnscan”安全检查，并将结果添加到任务中：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -t <span class="number">192.168</span><span class="number">.1</span><span class="number">.142</span>:<span class="number">21</span> -s ftp --cat-only recon,vulnscan --add2db mayhem</span><br></pre></td></tr></table></figure></li></ul><h6 id="多个目标："><a href="#多个目标：" class="headerlink" title="多个目标："></a>多个目标：</h6><ul><li><p>在任务“ mayhem”中注册的所有服务上仅搜索“轻松获胜”（严重漏洞和易于利用）：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem --profile red-team --fast</span><br></pre></td></tr></table></figure></li><li><p>针对给定任务中的所有服务运行所有安全检查，并将结果存储在数据库中：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem --fast</span><br></pre></td></tr></table></figure></li><li><p>从任务中仅对在端口21 / tcp和2121 / tcp上运行的FTP服务运行安全性检查：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem -f <span class="string">"port=21,2121;service=ftp"</span> --fast</span><br></pre></td></tr></table></figure></li><li><p>对该任务仅对在端口2121 / tcp上运行的FTP服务和在192.168.1.42上的所有HTTP服务运行安全检查：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem -f <span class="string">"port=2121;service=ftp"</span> -f <span class="string">"ip=192.168.1.42;service=http"</span></span><br></pre></td></tr></table></figure></li></ul><h6 id="数据库访问和报告"><a href="#数据库访问和报告" class="headerlink" title="数据库访问和报告"></a>数据库访问和报告</h6><ul><li><p>选择一个任务：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py db</span><br><span class="line">jok3rdb[default]&gt; mission mayhem</span><br><span class="line">[*] Selected mission <span class="keyword">is</span> now mayhem</span><br></pre></td></tr></table></figure></li><li><p>将主机/服务从Nmap结果（XML）导入任务范围：</p></li><li><p>从Shodan结果（ip）导入主机/服务到任务范围：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; nmap results.xml</span><br></pre></td></tr></table></figure></li><li><p>显示在选定任务中注册的服务，主机，检测到的产品和凭据：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; services</span><br><span class="line">jok3rdb[mayhem]&gt; hosts</span><br><span class="line">jok3rdb[mayhem]&gt; products</span><br><span class="line">jok3rdb[mayhem]&gt; creds</span><br></pre></td></tr></table></figure></li><li><p>在检查结果中搜索字符串以选择任务：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; results --search <span class="string">'&lt;search_string&gt;'</span></span><br></pre></td></tr></table></figure></li><li><p>从选定任务中的检查输出中自动检测到的显示漏洞（实验性）：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; vulns</span><br></pre></td></tr></table></figure></li><li><p>为所选任务生成HTML报告：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; report</span><br></pre></td></tr></table></figure></li></ul><h2 id="0×05-典型用法示例"><a href="#0×05-典型用法示例" class="headerlink" title="0×05 典型用法示例"></a>0×05 典型用法示例</h2><h4 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h4><p><strong>您将在范围内的几台服务器上开始渗透测试。这是JoK3r用法的典型示例：</strong></p><ol><li>您在范围内的服务器上运行Nmap扫描。</li><li><p>您在本地数据库中创建一个新任务（假设为“ mayhem”）：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py db</span><br><span class="line">jok3rdb[default]&gt; mission -a mayhem</span><br><span class="line">[+] Mission <span class="string">"mayhem"</span> successfully added</span><br><span class="line">[*] Selected mission <span class="keyword">is</span> now mayhem</span><br><span class="line">jok3rdb[mayhem]&gt;</span><br></pre></td></tr></table></figure></li><li><p>您从数据库中的Nmap扫描导入结果：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb [mayhem]&gt; nmap results.xml</span><br></pre></td></tr></table></figure></li><li><p>然后，您可以快速了解范围内的所有服务和主机，添加一些注释，如果已经对目标有所了解（灰色框渗透测试），则可以添加一些凭据，等等。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; hosts</span><br><span class="line">[...]</span><br><span class="line">jok3rdb[mayhem]&gt; services</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure></li><li><p>现在，您可以对合并范围中的某些目标运行安全检查。例如，如果要对作用域中的所有Java-RMI服务运行检查，则可以运行以下命令：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem -f <span class="string">"service=java-rmi"</span> --fast</span><br></pre></td></tr></table></figure></li><li><p>您可以在执行工具时实时查看安全检查的全部结果，也可以稍后使用以下命令从数据库查看安全检查的全部结果</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; results</span><br></pre></td></tr></table></figure></li><li><p>在任何时候，都可以显示从安全检查输出中自动提取的数据，即检测到的产品，凭据和漏洞。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; products</span><br><span class="line">[...]</span><br><span class="line">jok3rdb[mayhem]&gt; creds</span><br><span class="line">[...]</span><br><span class="line">jok3rdb[mayhem]&gt; vulns</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure></li><li><p>您随时可以生成HTML报告，其中包含任务范围内所有目标的摘要，HTTP服务的网页屏幕截图以及已运行的所有安全检查的完整输出：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; report</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Jok3r是一个Python3 CLI应用程序，旨在帮助渗透测试人员进行网络基础设施和Web黑盒安全性测试。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透" scheme="http://austfish.cn/tags/%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>协程分析和demo</title>
@@ -236,9 +258,9 @@
     </summary>
     
     
-      <category term="社工" scheme="http://austfish.cn/tags/%E7%A4%BE%E5%B7%A5/"/>
-    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="社工" scheme="http://austfish.cn/tags/%E7%A4%BE%E5%B7%A5/"/>
     
   </entry>
   
@@ -592,9 +614,9 @@
     
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="git" scheme="http://austfish.cn/tags/git/"/>
-    
       <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+      <category term="git" scheme="http://austfish.cn/tags/git/"/>
     
   </entry>
   
@@ -616,9 +638,9 @@
     
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="git" scheme="http://austfish.cn/tags/git/"/>
-    
       <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+      <category term="git" scheme="http://austfish.cn/tags/git/"/>
     
   </entry>
   
@@ -665,9 +687,9 @@
     
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
-    
       <category term="记录" scheme="http://austfish.cn/tags/%E8%AE%B0%E5%BD%95/"/>
+    
+      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
     
   </entry>
   
@@ -709,9 +731,9 @@
     </summary>
     
     
-      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="Python" scheme="http://austfish.cn/tags/Python/"/>
+    
+      <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -806,9 +828,9 @@
     </summary>
     
     
-      <category term="社工" scheme="http://austfish.cn/tags/%E7%A4%BE%E5%B7%A5/"/>
-    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="社工" scheme="http://austfish.cn/tags/%E7%A4%BE%E5%B7%A5/"/>
     
   </entry>
   
