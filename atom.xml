@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2021-01-11T03:37:23.346Z</updated>
+  <updated>2021-01-11T03:42:42.309Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://austfish.cn/2021/01/10/%E6%95%8F%E6%84%9F%E8%B5%84%E4%BA%A7%E5%BF%AB%E9%80%9F%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%9AFNT-GH/"/>
     <id>http://austfish.cn/2021/01/10/敏感资产快速探测工具：FNT-GH/</id>
     <published>2021-01-10T03:28:12.000Z</published>
-    <updated>2021-01-11T03:37:23.346Z</updated>
+    <updated>2021-01-11T03:42:42.309Z</updated>
     
-    <content type="html"><![CDATA[<p>在红队作战中，信息收集是必不可少的环节，如何才能从大量的资产中快速收集敏感信息?<br><a id="more"></a></p><h2 id="0x01-FNT-GH"><a href="#0x01-FNT-GH" class="headerlink" title="0x01 FNT-GH"></a>0x01 FNT-GH</h2><blockquote><p>渔网工具集第一个工具</p></blockquote><p><strong>基于GoogleSearch的谷歌发现工具：FNT-GH</strong></p><p>是一款针对资产列表的快速敏感信息收集工具，通过调用Google配合敏感信息的语法集合，快速查询资产信息并检索相关泄露的文件、页面、错误提示、github、Pastebin、stackoverflow等网站泄露信息。</p><h2 id="0x02-Google-Hacking"><a href="#0x02-Google-Hacking" class="headerlink" title="0x02 Google Hacking"></a>0x02 Google Hacking</h2><p>Google Hack是google提供的搜索语法，如果熟练掌握，我们可以搜到许多意想不到的东西!</p><p><strong>googlesearch</strong>是一个Python库，可轻松爬取Google搜索结果。googlesearch使用requests和<br>BeautifulSoup4抓取Google，<a href="https://www.xugj520.cn/archives/googlesearch.html" title="详细介绍地址" target="_blank" rel="noopener">详细介绍地址</a>。</p><p><strong>googlehack 常用语法</strong></p><ul><li>site       指定域名</li><li>intext   正文中存在关键字的网页</li><li>intitle   标题中存在关键字的网页</li><li>info      一些基本信息</li><li>inurl    URL存在关键字的网页</li><li>filetype 搜索指定文件类型</li></ul><p><img src="http://10.0.36.99/server/index.php?s=/api/attachment/visitFile/sign/ede8ef7f37048e6ab311dd3275dfc9d1&amp;showdoc=.jpg" alt></p><h2 id="0x03-功能介绍"><a href="#0x03-功能介绍" class="headerlink" title="0x03 功能介绍"></a>0x03 功能介绍</h2><p><img src="http://10.0.36.99/server/index.php?s=/api/attachment/visitFile/sign/7d7a7f30a1f9bdf9fad5fabb494b0e01&amp;showdoc=.jpg" alt></p><ul><li>file<ul><li>公开披露的文件</li><li>目录列表漏洞</li><li>暴露的配置文件</li><li>暴露的数据库文件</li><li>暴露的日志文件</li><li>备份和旧文件</li></ul></li><li>info<ul><li>登录页面</li><li>注册页面</li><li>phpinfo（）</li></ul></li><li>error<ul><li>SQL错误</li><li>PHP错误/警告</li></ul></li><li>pastebin<ul><li>搜索Pastebin.com网站/粘贴网站</li></ul></li><li>github<ul><li>搜索Github.com网站以及Gitlab.com网站</li></ul></li><li>stackoverflow<ul><li>搜索Stackoverflow.com网站</li></ul></li></ul><h2 id="0x04-使用指南"><a href="#0x04-使用指南" class="headerlink" title="0x04 使用指南"></a>0x04 使用指南</h2><h4 id="敏感文件探测"><a href="#敏感文件探测" class="headerlink" title="敏感文件探测"></a>敏感文件探测</h4><p><code>python3 FntGoogleHack.py example.com -i</code></p><h4 id="敏感信息全探测"><a href="#敏感信息全探测" class="headerlink" title="敏感信息全探测"></a>敏感信息全探测</h4><p><code>python3 FntGoogleHack.py example.com -i -f -e -g -p -s</code></p>]]></content>
+    <content type="html"><![CDATA[<p>在红队作战中，信息收集是必不可少的环节，如何才能从大量的资产中快速收集敏感信息?<br><a id="more"></a></p><h2 id="0x01-FNT-GH"><a href="#0x01-FNT-GH" class="headerlink" title="0x01 FNT-GH"></a>0x01 FNT-GH</h2><blockquote><p>渔网工具集第一个工具</p></blockquote><p><strong>基于GoogleSearch的谷歌发现工具：</strong><a href="https://github.com/austfish/FNT-GH" title="FNT-GH" target="_blank" rel="noopener">FNT-GH</a></p><p>是一款针对资产列表的快速敏感信息收集工具，通过调用Google配合敏感信息的语法集合，快速查询资产信息并检索相关泄露的文件、页面、错误提示、github、Pastebin、stackoverflow等网站泄露信息。</p><h2 id="0x02-Google-Hacking"><a href="#0x02-Google-Hacking" class="headerlink" title="0x02 Google Hacking"></a>0x02 Google Hacking</h2><p>Google Hack是google提供的搜索语法，如果熟练掌握，我们可以搜到许多意想不到的东西!</p><p><strong>googlesearch</strong>是一个Python库，可轻松爬取Google搜索结果。googlesearch使用requests和<br>BeautifulSoup4抓取Google，<a href="https://www.xugj520.cn/archives/googlesearch.html" title="详细介绍地址" target="_blank" rel="noopener">详细介绍地址</a>。</p><p><strong>googlehack 常用语法</strong></p><ul><li>site       指定域名</li><li>intext   正文中存在关键字的网页</li><li>intitle   标题中存在关键字的网页</li><li>info      一些基本信息</li><li>inurl    URL存在关键字的网页</li><li>filetype 搜索指定文件类型</li></ul><p><img src="http://10.0.36.99/server/index.php?s=/api/attachment/visitFile/sign/ede8ef7f37048e6ab311dd3275dfc9d1&amp;showdoc=.jpg" alt></p><h2 id="0x03-功能介绍"><a href="#0x03-功能介绍" class="headerlink" title="0x03 功能介绍"></a>0x03 功能介绍</h2><p><img src="http://10.0.36.99/server/index.php?s=/api/attachment/visitFile/sign/7d7a7f30a1f9bdf9fad5fabb494b0e01&amp;showdoc=.jpg" alt></p><ul><li>file<ul><li>公开披露的文件</li><li>目录列表漏洞</li><li>暴露的配置文件</li><li>暴露的数据库文件</li><li>暴露的日志文件</li><li>备份和旧文件</li></ul></li><li>info<ul><li>登录页面</li><li>注册页面</li><li>phpinfo（）</li></ul></li><li>error<ul><li>SQL错误</li><li>PHP错误/警告</li></ul></li><li>pastebin<ul><li>搜索Pastebin.com网站/粘贴网站</li></ul></li><li>github<ul><li>搜索Github.com网站以及Gitlab.com网站</li></ul></li><li>stackoverflow<ul><li>搜索Stackoverflow.com网站</li></ul></li></ul><h2 id="0x04-使用指南"><a href="#0x04-使用指南" class="headerlink" title="0x04 使用指南"></a>0x04 使用指南</h2><h4 id="敏感文件探测"><a href="#敏感文件探测" class="headerlink" title="敏感文件探测"></a>敏感文件探测</h4><p><code>python3 FntGoogleHack.py example.com -i</code></p><h4 id="敏感信息全探测"><a href="#敏感信息全探测" class="headerlink" title="敏感信息全探测"></a>敏感信息全探测</h4><p><code>python3 FntGoogleHack.py example.com -i -f -e -g -p -s</code></p>]]></content>
     
     <summary type="html">
     
@@ -32,9 +32,9 @@
     </summary>
     
     
-      <category term="渗透" scheme="http://austfish.cn/tags/%E6%B8%97%E9%80%8F/"/>
-    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="渗透" scheme="http://austfish.cn/tags/%E6%B8%97%E9%80%8F/"/>
     
   </entry>
   
@@ -54,9 +54,9 @@
     </summary>
     
     
-      <category term="渗透" scheme="http://austfish.cn/tags/%E6%B8%97%E9%80%8F/"/>
-    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="渗透" scheme="http://austfish.cn/tags/%E6%B8%97%E9%80%8F/"/>
     
   </entry>
   
@@ -636,9 +636,9 @@
     
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
-    
       <category term="git" scheme="http://austfish.cn/tags/git/"/>
+    
+      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
     
   </entry>
   
@@ -660,9 +660,9 @@
     
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
-    
       <category term="git" scheme="http://austfish.cn/tags/git/"/>
+    
+      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
     
   </entry>
   
@@ -709,9 +709,9 @@
     
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="记录" scheme="http://austfish.cn/tags/%E8%AE%B0%E5%BD%95/"/>
-    
       <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+      <category term="记录" scheme="http://austfish.cn/tags/%E8%AE%B0%E5%BD%95/"/>
     
   </entry>
   
@@ -753,9 +753,9 @@
     </summary>
     
     
-      <category term="Python" scheme="http://austfish.cn/tags/Python/"/>
-    
       <category term="安全" scheme="http://austfish.cn/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="Python" scheme="http://austfish.cn/tags/Python/"/>
     
   </entry>
   
@@ -775,9 +775,9 @@
     </summary>
     
     
-      <category term="docker" scheme="http://austfish.cn/tags/docker/"/>
-    
       <category term="python" scheme="http://austfish.cn/tags/python/"/>
+    
+      <category term="docker" scheme="http://austfish.cn/tags/docker/"/>
     
   </entry>
   
@@ -797,9 +797,9 @@
     </summary>
     
     
-      <category term="漏洞" scheme="http://austfish.cn/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="python" scheme="http://austfish.cn/tags/python/"/>
+    
+      <category term="漏洞" scheme="http://austfish.cn/tags/%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
