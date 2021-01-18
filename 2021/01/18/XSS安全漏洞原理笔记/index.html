@@ -6,20 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://austfish.cn">
-  <title>Web渗透三字经 | Fisher&#39;s 安全日记</title>
+  <title>XSS安全漏洞原理笔记 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="网络上曾流传一段Web渗透三字经，如下：">
-<meta name="keywords" content="渗透,web">
+  <meta name="description" content="XSS(Cross Site Scripting)，即跨站脚本攻击，是一种常见的计算机安全漏洞。">
+<meta name="keywords" content="渗透,笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web渗透三字经">
-<meta property="og:url" content="http://austfish.cn/2017/04/10/web渗透三字经/index.html">
+<meta property="og:title" content="XSS安全漏洞原理笔记">
+<meta property="og:url" content="http://austfish.cn/2021/01/18/XSS安全漏洞原理笔记/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="网络上曾流传一段Web渗透三字经，如下：">
+<meta property="og:description" content="XSS(Cross Site Scripting)，即跨站脚本攻击，是一种常见的计算机安全漏洞。">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-30T08:46:17.474Z">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20210115/qYsPdVbXFn6u.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20210115/9V8hjYSVnO2L.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20210115/4msW0QIhOglB.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20210115/RAmISjNlkNcP.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20210115/7JxGmNpWLp4c.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20210115/siMD2JlobVtf.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20210115/mw0Yl1JBDeg0.png?imageslim">
+<meta property="og:updated_time" content="2021-01-18T02:12:15.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Web渗透三字经">
-<meta name="twitter:description" content="网络上曾流传一段Web渗透三字经，如下：">
+<meta name="twitter:title" content="XSS安全漏洞原理笔记">
+<meta name="twitter:description" content="XSS(Cross Site Scripting)，即跨站脚本攻击，是一种常见的计算机安全漏洞。">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/blog/20210115/qYsPdVbXFn6u.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -163,35 +171,55 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-web渗透三字经" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-XSS安全漏洞原理笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Web渗透三字经
+      XSS安全漏洞原理笔记
     </h1>
   
 
         
-        <a href="/2017/04/10/web渗透三字经/" class="archive-article-date">
-  	<time datetime="2017-04-10T01:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+        <a href="/2021/01/18/XSS安全漏洞原理笔记/" class="archive-article-date">
+  	<time datetime="2021-01-18T02:10:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>网络上曾流传一段Web渗透三字经，如下：</strong></p>
-<a id="more"></a>
-<blockquote>
-<p>  用搜索<br>  找注入<br>  没注入<br>  就旁注<br>  没旁注<br>  用0day<br>  没0day<br>  扫目录<br>  找后台<br>  爆账户<br>  传小马<br>  放大马<br>  拿权限<br>  挂页面<br>  放暗链<br>  清数据<br>  清日志<br>  留后门</p>
-</blockquote>
-<p><strong>然后我对它做了简单的分析</strong></p>
-<blockquote>
-<p>用搜索 ：使用搜索引擎去找目标站点的注入点或漏洞（百度高级搜索 Google hack ）<br>找注入 ：通过web漏洞扫描工具或者一些公开漏洞库去寻找相关注入点<br>就旁注 ：通过bing英文去搜索目标站点的相关网站 借助其他网站进入主机内部<br>用0day ： 找到漏洞点就可以去找漏洞的破解利用脚本 程序等<br>扫目录 ：利用御剑或者其他扫描工具去扫描站点目录<br>找后台 ：在站点目录中确定到后台登陆界面<br>爆账户 ：对管理员账户进行暴力破解<br>传小马 ：通过后台管理界面 找到插入一句话木马的地方 用中国菜刀连接<br>放大马 ：通过中国菜刀上传webshell 大马<br>​拿权限 ：如果是普通用户权限 就需要工具或脚本提权root<br>挂页面  :在网站后台上传黑页等恶意网页<br>放暗链 ：在目标站点的网页源码中插入恶意网址<br>清数据 : 把后台操作的相关改动回复<br>清日志 ：清除服务器日志文件的登陆与操作记录<br>留后门 ：利用webshell隐藏在某个目录下 方便以后快速登陆后台</p>
-</blockquote>
+        <p>XSS(Cross Site Scripting)，即跨站脚本攻击，是一种常见的计算机安全漏洞。<br><a id="more"></a></p>
+<h3 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h3><p>XSS通过在用户端注入恶意的可运行脚本，若服务器端对用户输入不进行处理，直接将用户输入输出到浏览器，则浏览器将会执行用户注入的脚本。<br><strong>XSS攻击流程</strong><br><img src="http://qiniu.austfish.cn/blog/20210115/qYsPdVbXFn6u.png?imageslim" alt="mark"></p>
+<h3 id="0x02-分类"><a href="#0x02-分类" class="headerlink" title="0x02 分类"></a>0x02 分类</h3><p>一般XSS可以分为如下几种常见类型：<br>    1.反射性XSS;<br>    2.存储型XSS;<br>    3.DOM型XSS;<br>XSS漏洞一直被评估为web漏洞中危害较大的漏洞，在OWASP TOP10的排名中一直属于前三的江湖地位。</p>
+<p>XSS是一种发生在前端浏览器端的漏洞，所以其危害的对象也是前端用户。</p>
+<p>形成XSS漏洞的主要原因是程序对输入和输出没有做合适的处理，导致“精心构造”的字符输出在前端时被浏览器当作有效代码解析执行从而产生危害。</p>
+<p>因此在XSS漏洞的防范上，一般会采用“对输入进行过滤”和“输出进行转义”的方式进行处理:</p>
+<ul>
+<li>输入过滤：对输入进行过滤，不允许可能导致XSS攻击的字符输入;</li>
+<li>输出转义：根据输出点的位置对输出到前端的内容进行适当转义;</li>
+</ul>
+<h3 id="0x03-XSStrike-高级XSS检测套件"><a href="#0x03-XSStrike-高级XSS检测套件" class="headerlink" title="0x03 XSStrike-高级XSS检测套件"></a>0x03 XSStrike-高级XSS检测套件</h3><p>XSStrike是一个Cross Site Scripting检测套件，配备四个手写解析器，一个智能有效载荷生成器，一个强大的模糊引擎和一个非常快速的爬虫。</p>
+<p>XSStrike不是像其他工具一样注入有效载荷并检查它的工作原理，而是通过多个解析器分析响应，然后通过与模糊引擎集成的上下文分析来保证有效载荷。以下是XSStrike生成的有效负载的一些示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#125;]&#125;;(confirm)()//\&lt;A%0aONMouseOvER%0d=%0d[8].find(confirm)&gt;z  </span><br><span class="line">&lt;/tiTlE/&gt;&lt;a%0donpOintErentER%0d=%0d(prompt)``&gt;z   </span><br><span class="line">&lt;/SCRiPT/&gt;&lt;DETAILs/+/onpoINTERenTEr%0a=%0aa=prompt,a()//</span><br></pre></td></tr></table></figure></p>
+<p>除此之外，XSStrike还具有爬行，模糊测试，参数发现，WAF检测功能。它还会扫描DOM XSS漏洞。</p>
+<h3 id="0x04-Pikachu漏洞练习平台"><a href="#0x04-Pikachu漏洞练习平台" class="headerlink" title="0x04 Pikachu漏洞练习平台"></a>0x04 Pikachu漏洞练习平台</h3><h5 id="4-1-反射型xss-get-post"><a href="#4-1-反射型xss-get-post" class="headerlink" title="4.1 反射型xss(get)/(post)"></a>4.1 反射型xss(get)/(post)</h5><p><img src="http://qiniu.austfish.cn/blog/20210115/9V8hjYSVnO2L.png?imageslim" alt="mark"></p>
+<p><strong>修改输入框最大输出限制</strong><br><code>maxlength=&quot;200&quot;</code></p>
+<p><img src="http://qiniu.austfish.cn/blog/20210115/4msW0QIhOglB.png?imageslim" alt="mark"><br><strong>源HTML</strong><br><code>&lt;p class=&quot;notice&quot;&gt;who is 132,i don&#39;t care!&lt;/p&gt;</code><br><strong>构造XSS</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/p&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;p&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="4-2-存储型xss"><a href="#4-2-存储型xss" class="headerlink" title="4.2 存储型xss"></a>4.2 存储型xss</h5><p><strong>审查元素</strong><br><img src="http://qiniu.austfish.cn/blog/20210115/RAmISjNlkNcP.png?imageslim" alt="mark"><br><strong>构造XSS</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/p&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>既可以实现每次打开该页面并弹窗</p>
+<h5 id="4-3-DOM型xss"><a href="#4-3-DOM型xss" class="headerlink" title="4.3 DOM型xss"></a>4.3 DOM型xss</h5><p><img src="http://qiniu.austfish.cn/blog/20210115/7JxGmNpWLp4c.png?imageslim" alt="mark"></p>
+<p>还可以看到一段JS代码<br><img src="http://qiniu.austfish.cn/blog/20210115/siMD2JlobVtf.png?imageslim" alt="mark"></p>
+<p><strong>构造XSS</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos; onclick=&quot;alert(&apos;xss&apos;)&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>构造结果</strong><br><code>&lt;a href=&quot;&quot; onclick=&quot;alert(&#39;xss&#39;)&quot;&gt;&#39;&amp;gt;what do you see?&lt;/a&gt;</code></p>
+<p>DOM型xss-x<br><img src="http://qiniu.austfish.cn/blog/20210115/mw0Yl1JBDeg0.png?imageslim" alt="mark"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos; onclick=&quot;alert(&apos;xss&apos;)&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.freebuf.com/articles/web/226367.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/226367.html</a></p>
+<h3 id="0x05-辅助"><a href="#0x05-辅助" class="headerlink" title="0x05 辅助"></a>0x05 辅助</h3><p><a href="https://github.com/s0md3v/XSStrike/wiki/Usage" target="_blank" rel="noopener">XSStrike用法</a></p>
+<p><a href="http://xssor.io/" target="_blank" rel="noopener">辅助检测工具</a></p>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection" target="_blank" rel="noopener">Payloads大全</a></p>
+<p><a href="https://raw.githubusercontent.com/LucaBongiorni/XSS.png/master/XSS2.png" target="_blank" rel="noopener">XSS全景图</a></p>
 
       
 
@@ -240,7 +268,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		
 		</ul>
@@ -296,7 +324,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay24DIQwF0P7/T6dSV93M5F6TVho4rKLJAw4Lx9h8fcXj9TOunty/+/vJ/fOrz3xsYGBgPJbxuh1Xi76frF3W/bwRFQMD4wDGfZBtw+t9qG23LPkDwMDAwMiD7MoW3JMwMDAw2mUl4TJP/vLjMQYGxsmMZHH3JbP14t0/ncUxMDAeyGgn/s/Xf9jfwMDAeAjjtTxmwbQNrG9+AQMDY2tGXkpLCmRJeS4v4eXHYwwMjBMY+ZdXErv26ljbFsXAwNiV0RblP5Uazq5oXM6FgYFxDCNJ7/KLXLMLFsM0EQMD4xjGrAK/kj7mi37zLQwMjMMYsyc5eLZlS4dYDAyMhzNmwa4tirX4thWKgYGxN2PWjEwSvvWjb3HcxcDAOJ7RFtHapbSXPIYBFwMD47GMdhFJGtemgO0WvJkFAwNjU0bbvGyTwlkprd5cDAyMTRkrFyxmwbRuTyazYGBgHMNISvz54XalrFY3RzEwMLZm5IX+fOlte6AtzGFgYGCsNxTzaxmzLfuTGh4GBsajGG1Zrb2KkaeD7e9jYGDszWgbluux7lOFvPqjGBgYD2S8ytFeg5gV2vKG6GXVEAMDYyNGPtYPnHmoXdkUDAyMXRnrR9M8TOeMOuBiYGAcwEhCZHvNYtZ+aC98YGBgYMyOo22ozVuhS5VCDAyMAxj5InJM/u7HAi4GBsZjGflCZ+FydkAtmgEYGBhbM1YuYawcfdsCX50sYmBg7MD4BiGa+giKK9dQAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aQW7DMAwFUd//0i7QVTa255MKWlOjVeAmqZ4WDCnyOPA6f9f9688nn+vqU/efPb6xZMiQ8VrGebvuN8EZV2xyZPd7kyFDxj6M9OvIQZCQzcP0w55lyJAhI3xPP1jLkCFDxjcCblqOXm1ahgwZMjpFLL8+I09S2LJaXIYMGS9krGoMfOP1H/Q3ZMiQ8c8YZ7hIutZpYRZ3JUOGjNGM+xKUl7U8yavhUTiWIUPGUAa5UONlJyk+eduADJDJkCFjN0Y6ErG25UnaD5ffIEOGjG0Ya6/j1w5+PYRgGTJkjGbwf7C2zcnHOHgyKkOGjKmM2pBEbUO1A0LHJEOGjNEMnniR5+l70hIa/W7IkCFjHCNtQ6aDp51LuuLMiAwZMsYx0q3Uxi9q7UwedmXIkDGbQZKz2nVYkJn225wyZMgYzeCpXq0oJckfH+zg4ViGDBmTGGnCV2s91tLBACZDhowNGJ1JjRqGtCfJL4MMGTJ2YPCr+XSArFaC1poQMmTImM2olaO80ZhurvZXGTJk7MAgT9K0Ly1HeRErQ4aM3Rh8kCItZfngxYHXQxCXIUPGUMYZLnQqjWBdLHRlyJAxmtEJdjywpr8A5PqvFrJlyJDxXkYtyC5uQOIEtNUekCFDxssZtSCblrWd9E6GDBkyeAKXhtFOYyA4CBkyZMgApSZPGdMmAToIGTJkbMDopHq80OVFb9yQkCFDxmjG2sZA2vjkYxk8lMuQIWMQ4wceHsdlwlACZQAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -310,18 +338,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/04/28/《白帽子讲Web安全》读后感/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          《白帽子讲Web安全》读后感
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/09/漏扫工具AWVS配合sqlmap注入点测试/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">漏扫工具AWVS配合sqlmap注入点测试</div>
+    <a href="/2021/01/10/敏感资产快速探测工具：FNT-GH/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">敏感资产快速探测工具：FNT-GH</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -351,7 +370,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="web渗透三字经" ></div> 
+  <div id="SOHUCS" sid="XSS安全漏洞原理笔记" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyuoyyRfG"; 
