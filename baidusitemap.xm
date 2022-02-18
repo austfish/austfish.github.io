@@ -41,10 +41,6 @@
     <lastmod>2022-02-18</lastmod>
   </url>
   <url>
-    <loc>http://austfish.cn/2022/02/18/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E8%AF%AD%E6%B3%95-%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2and%E5%9C%A8%E7%BA%BFweb%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2022-02-18</lastmod>
-  </url>
-  <url>
     <loc>http://austfish.cn/2019/10/10/%E5%A6%82%E4%BD%95%E6%8C%96%E4%BF%A1%E6%81%AF%E6%B3%84%E5%AF%86%E6%BC%8F%E6%B4%9E/</loc>
     <lastmod>2022-02-18</lastmod>
   </url>
