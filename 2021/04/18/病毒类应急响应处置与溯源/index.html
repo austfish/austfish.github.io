@@ -16,14 +16,14 @@
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
 <meta property="og:description" content="目前，在日常安全运营和HW中，遇到比较多的安全事件主要有挖矿病毒、勒索病毒等。在应急响应过程中如何查、如何处置、如何溯源需要理清楚并建立完整思路和流程。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/690043/1614840773000-eefe3135-8f54-4a2a-a958-807f74a394d9.png#align=left&display=inline&height=400&margin=%5Bobject%20Object%5D&name=image.png&originHeight=400&originWidth=519&size=179215&status=done&style=none&width=519">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/690043/1614842373673-1c66650e-4aef-4835-988b-0ea12108904e.png#align=left&display=inline&height=380&margin=%5Bobject%20Object%5D&name=image.png&originHeight=380&originWidth=590&size=174535&status=done&style=none&width=590">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/690043/1614842450671-f6a41196-1456-4102-b201-95762fb0943b.png#align=left&display=inline&height=638&margin=%5Bobject%20Object%5D&name=image.png&originHeight=638&originWidth=549&size=144074&status=done&style=none&width=549">
-<meta property="og:updated_time" content="2022-02-18T03:50:45.007Z">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20220218/dhfLEiSRKoew.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20220218/pBIk3y9sbmi1.png?imageslim">
+<meta property="og:image" content="http://qiniu.austfish.cn/blog/20220218/JB4MR4dsAoH1.png?imageslim">
+<meta property="og:updated_time" content="2022-02-18T05:48:31.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="病毒类应急响应处置与溯源">
 <meta name="twitter:description" content="目前，在日常安全运营和HW中，遇到比较多的安全事件主要有挖矿病毒、勒索病毒等。在应急响应过程中如何查、如何处置、如何溯源需要理清楚并建立完整思路和流程。">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/690043/1614840773000-eefe3135-8f54-4a2a-a958-807f74a394d9.png#align=left&display=inline&height=400&margin=%5Bobject%20Object%5D&name=image.png&originHeight=400&originWidth=519&size=179215&status=done&style=none&width=519">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/blog/20220218/dhfLEiSRKoew.png?imageslim">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -251,12 +251,8 @@ var _hmt = _hmt || [];
 <li>任务管理器：WIn+X/Win+R输入eventvwr.,sc</li>
 </ol>
 <h2 id="0x02-病毒类应急响应处置与溯源"><a href="#0x02-病毒类应急响应处置与溯源" class="headerlink" title="0x02 病毒类应急响应处置与溯源"></a>0x02 病毒类应急响应处置与溯源</h2><h3 id="2-1-挖矿病毒"><a href="#2-1-挖矿病毒" class="headerlink" title="2.1 挖矿病毒"></a>2.1 挖矿病毒</h3><ol>
-<li><strong>挖矿病毒执行流程</strong></li>
-</ol>
-<ul>
-<li><img src="https://cdn.nlark.com/yuque/0/2021/png/690043/1614840773000-eefe3135-8f54-4a2a-a958-807f74a394d9.png#align=left&amp;display=inline&amp;height=400&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=400&amp;originWidth=519&amp;size=179215&amp;status=done&amp;style=none&amp;width=519" alt="image.png"></li>
-</ul>
-<ol start="2">
+<li><p><strong>挖矿病毒执行流程</strong><br><img src="http://qiniu.austfish.cn/blog/20220218/dhfLEiSRKoew.png?imageslim" alt="mark"></p>
+</li>
 <li><p><strong>挖矿病毒类处置常见手法</strong></p>
 <ol>
 <li>安全设备是否有告警？</li>
@@ -276,17 +272,25 @@ var _hmt = _hmt || [];
 <li>异常用户</li>
 <li>驱动注入</li>
 <li>开机自启动？系统配置、注册表</li>
-<li>日志<h3 id="2-2-勒索病毒"><a href="#2-2-勒索病毒" class="headerlink" title="2.2 勒索病毒"></a>2.2 勒索病毒</h3></li>
+<li>日志</li>
 </ol>
 </li>
-<li><p><strong>勒索病毒执行流程</strong></p>
-<ol>
-<li><strong>STOP<img src="https://cdn.nlark.com/yuque/0/2021/png/690043/1614842373673-1c66650e-4aef-4835-988b-0ea12108904e.png#align=left&amp;display=inline&amp;height=380&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=380&amp;originWidth=590&amp;size=174535&amp;status=done&amp;style=none&amp;width=590" alt="image.png"></strong></li>
-<li><strong>GandCrab<img src="https://cdn.nlark.com/yuque/0/2021/png/690043/1614842450671-f6a41196-1456-4102-b201-95762fb0943b.png#align=left&amp;display=inline&amp;height=638&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=638&amp;originWidth=549&amp;size=144074&amp;status=done&amp;style=none&amp;width=549" alt="image.png"></strong></li>
 </ol>
+<h3 id="2-2-勒索病毒"><a href="#2-2-勒索病毒" class="headerlink" title="2.2 勒索病毒"></a>2.2 勒索病毒</h3><ol>
+<li><strong>勒索病毒执行流程</strong></li>
+</ol>
+<ul>
+<li>STOP<ul>
+<li><img src="http://qiniu.austfish.cn/blog/20220218/pBIk3y9sbmi1.png?imageslim" alt="mark"></li>
+</ul>
 </li>
-<li><p><strong>勒索病毒处置常见手法</strong></p>
-<ol>
+<li>GandCrab<ul>
+<li><img src="http://qiniu.austfish.cn/blog/20220218/JB4MR4dsAoH1.png?imageslim" alt="mark"></li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>勒索病毒处置常见手法</strong><ol>
 <li>对于关闭的设备<ol>
 <li>把网线后开机</li>
 <li>排查加固</li>
@@ -334,11 +338,13 @@ var _hmt = _hmt || [];
 <li>对于未中招的主机<ol>
 <li>根据应急响应的结果，统计出可能扩散的主机，网段，以及端口</li>
 <li>断网线之后开机</li>
-<li>使用杀毒软件进行查杀<h3 id="2-3-蠕虫病毒"><a href="#2-3-蠕虫病毒" class="headerlink" title="2.3 蠕虫病毒"></a>2.3 蠕虫病毒</h3></li>
+<li>使用杀毒软件进行查杀</li>
 </ol>
 </li>
 </ol>
 </li>
+</ol>
+<h3 id="2-3-蠕虫病毒"><a href="#2-3-蠕虫病毒" class="headerlink" title="2.3 蠕虫病毒"></a>2.3 蠕虫病毒</h3><ol>
 <li><p><strong>蠕虫病毒执行流程</strong></p>
 <ol>
 <li>熊猫烧香<ol>
@@ -360,7 +366,6 @@ var _hmt = _hmt || [];
 </li>
 <li>incaseformt蠕虫病毒<ol>
 <li>生成C:\windows\tsay.exe</li>
-<li></li>
 </ol>
 </li>
 </ol>
@@ -398,57 +403,57 @@ var _hmt = _hmt || [];
 <li>抓包分析流量</li>
 <li>签名异常</li>
 <li>杀毒</li>
-<li>日志<h2 id="0x03-工具总结"><a href="#0x03-工具总结" class="headerlink" title="0x03 工具总结"></a>0x03 工具总结</h2><h3 id="3-1-在线病毒扫描"><a href="#3-1-在线病毒扫描" class="headerlink" title="3.1 在线病毒扫描"></a>3.1 在线病毒扫描</h3></li>
+<li>日志</li>
 </ol>
 </li>
 </ol>
-<ul>
+<h2 id="0x03-工具总结"><a href="#0x03-工具总结" class="headerlink" title="0x03 工具总结"></a>0x03 工具总结</h2><h3 id="3-1-在线病毒扫描"><a href="#3-1-在线病毒扫描" class="headerlink" title="3.1 在线病毒扫描"></a>3.1 在线病毒扫描</h3><ul>
 <li><a href="https://www.virustotal.com/gui/" target="_blank" rel="noopener">VirusTotal</a></li>
 <li><a href="https://virusscan.jotti.org/" target="_blank" rel="noopener">Jotti</a></li>
-<li><p><a href="https://virscan.org/" target="_blank" rel="noopener">VirSCAN</a></p>
-<h3 id="3-2-病毒查杀及清楚工具"><a href="#3-2-病毒查杀及清楚工具" class="headerlink" title="3.2 病毒查杀及清楚工具"></a>3.2 病毒查杀及清楚工具</h3></li>
-<li><p><a href="https://sd.360.cn/" target="_blank" rel="noopener">360杀毒</a></p>
-</li>
+<li><a href="https://virscan.org/" target="_blank" rel="noopener">VirSCAN</a></li>
+</ul>
+<h3 id="3-2-病毒查杀及清楚工具"><a href="#3-2-病毒查杀及清楚工具" class="headerlink" title="3.2 病毒查杀及清楚工具"></a>3.2 病毒查杀及清楚工具</h3><ul>
+<li><a href="https://sd.360.cn/" target="_blank" rel="noopener">360杀毒</a></li>
 <li><a href="https://www.huorong.cn/" target="_blank" rel="noopener">火绒安全软件</a></li>
 <li><a href="https://www.clamav.net/" target="_blank" rel="noopener">ClamAV</a></li>
 <li><a href="https://www.kaspersky.com.cn/" target="_blank" rel="noopener">卡巴斯基</a></li>
-<li><p>Rootkit后门检测工具</p>
-<ul>
+<li>Rootkit后门检测工具<ul>
 <li><a href="http://www.chkrootkit.org/" target="_blank" rel="noopener">chkrootkit</a></li>
-<li><a href="http://rkhunter.sourceforge.net/" target="_blank" rel="noopener">rkhunter</a><h3 id="3-3-勒索病毒搜索引擎"><a href="#3-3-勒索病毒搜索引擎" class="headerlink" title="3.3 勒索病毒搜索引擎"></a>3.3 勒索病毒搜索引擎</h3></li>
+<li><a href="http://rkhunter.sourceforge.net/" target="_blank" rel="noopener">rkhunter</a></li>
 </ul>
 </li>
-<li><p><a href="https://www.venuseye.com.cn/" target="_blank" rel="noopener">启明VenusEye</a></p>
-</li>
+</ul>
+<h3 id="3-3-勒索病毒搜索引擎"><a href="#3-3-勒索病毒搜索引擎" class="headerlink" title="3.3 勒索病毒搜索引擎"></a>3.3 勒索病毒搜索引擎</h3><ul>
+<li><a href="https://www.venuseye.com.cn/" target="_blank" rel="noopener">启明VenusEye</a></li>
 <li><a href="https://guanjia.qq.com/pr/ls/" target="_blank" rel="noopener">腾讯</a></li>
 <li><a href="https://lesuobingdu.360.cn/" target="_blank" rel="noopener">360</a></li>
 <li><a href="https://lesuobingdu.qianxin.com/" target="_blank" rel="noopener">奇安信</a></li>
-<li><p><a href="https://edr.sangfor.com.cn/#/information/ransom_search" target="_blank" rel="noopener">深信服</a></p>
-<h3 id="3-4-在线沙箱"><a href="#3-4-在线沙箱" class="headerlink" title="3.4 在线沙箱"></a>3.4 在线沙箱</h3></li>
-<li><p><a href="https://s.threatbook.cn/" target="_blank" rel="noopener">微步云沙箱</a></p>
-</li>
+<li><a href="https://edr.sangfor.com.cn/#/information/ransom_search" target="_blank" rel="noopener">深信服</a></li>
+</ul>
+<h3 id="3-4-在线沙箱"><a href="#3-4-在线沙箱" class="headerlink" title="3.4 在线沙箱"></a>3.4 在线沙箱</h3><ul>
+<li><a href="https://s.threatbook.cn/" target="_blank" rel="noopener">微步云沙箱</a></li>
 <li><a href="https://www.virustotal.com/gui/" target="_blank" rel="noopener">VirusTotal</a></li>
 <li><a href="https://habo.qq.com/" target="_blank" rel="noopener">腾讯哈勃分析系统</a></li>
 <li><a href="https://ata.360.cn/dashboard" target="_blank" rel="noopener">360沙箱云</a></li>
 <li><a href="https://sandbox.ti.qianxin.com/sandbox/page" target="_blank" rel="noopener">奇安信沙箱</a></li>
 <li><a href="https://www.joesandbox.com/#windows" target="_blank" rel="noopener">Joe Sanbox</a></li>
 <li><a href="https://mac-cloud.riskivy.com/?theme=vulbox" target="_blank" rel="noopener">大圣云沙箱</a></li>
-<li><p><a href="https://app.any.run/" target="_blank" rel="noopener">Any.Run</a></p>
-<h3 id="3-5-安全分析工具"><a href="#3-5-安全分析工具" class="headerlink" title="3.5 安全分析工具"></a>3.5 安全分析工具</h3></li>
-<li><p><a href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/" target="_blank" rel="noopener">SysinternalsSuite</a>:</p>
-</li>
+<li><a href="https://app.any.run/" target="_blank" rel="noopener">Any.Run</a></li>
+</ul>
+<h3 id="3-5-安全分析工具"><a href="#3-5-安全分析工具" class="headerlink" title="3.5 安全分析工具"></a>3.5 安全分析工具</h3><ul>
+<li><a href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/" target="_blank" rel="noopener">SysinternalsSuite</a>:</li>
 <li><a href="https://www.52pojie.cn/thread-1037841-1-1.html" target="_blank" rel="noopener">PCHunter</a></li>
-<li><p><a href="https://processhacker.sourceforge.io/" target="_blank" rel="noopener">Process Hacker</a></p>
-<h3 id="3-6-流量分析工具和反汇编工具"><a href="#3-6-流量分析工具和反汇编工具" class="headerlink" title="3.6 流量分析工具和反汇编工具"></a>3.6 流量分析工具和反汇编工具</h3></li>
-<li><p><a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">Wireshark</a></p>
-</li>
+<li><a href="https://processhacker.sourceforge.io/" target="_blank" rel="noopener">Process Hacker</a></li>
+</ul>
+<h3 id="3-6-流量分析工具和反汇编工具"><a href="#3-6-流量分析工具和反汇编工具" class="headerlink" title="3.6 流量分析工具和反汇编工具"></a>3.6 流量分析工具和反汇编工具</h3><ul>
+<li><a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">Wireshark</a></li>
 <li><a href="https://docs.microsoft.com/en-us/sysinternals/downloads/tcpview" target="_blank" rel="noopener">TCPView</a>：一个查看端口和线程的小工具</li>
 <li><a href="https://www.hex-rays.com/products/ida/" target="_blank" rel="noopener">IDA Pro</a></li>
 <li><a href="http://www.ollydbg.de/" target="_blank" rel="noopener">OllyDbg</a></li>
-<li><p><a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools" target="_blank" rel="noopener">WinDbg</a></p>
-<h3 id="3-7-日志分析工具"><a href="#3-7-日志分析工具" class="headerlink" title="3.7 日志分析工具"></a>3.7 日志分析工具</h3></li>
-<li><p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=24659" target="_blank" rel="noopener">Log Parser</a></p>
-</li>
+<li><a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools" target="_blank" rel="noopener">WinDbg</a></li>
+</ul>
+<h3 id="3-7-日志分析工具"><a href="#3-7-日志分析工具" class="headerlink" title="3.7 日志分析工具"></a>3.7 日志分析工具</h3><ul>
+<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=24659" target="_blank" rel="noopener">Log Parser</a></li>
 <li><a href="https://www.elastic.co/cn/what-is/elk-stack" target="_blank" rel="noopener">ELK</a></li>
 <li><a href="https://www.splunk.com/zh-hans_cn" target="_blank" rel="noopener">splunk</a></li>
 </ul>
