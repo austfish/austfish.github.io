@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://austfish.cn/"/>
-  <updated>2022-02-18T05:48:31.239Z</updated>
+  <updated>2022-02-18T05:56:25.016Z</updated>
   <id>http://austfish.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>APT事件应急响应处置与溯源</title>
+    <link href="http://austfish.cn/2021/04/18/APT%E4%BA%8B%E4%BB%B6%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%A4%84%E7%BD%AE%E4%B8%8E%E6%BA%AF%E6%BA%90/"/>
+    <id>http://austfish.cn/2021/04/18/APT事件应急响应处置与溯源/</id>
+    <published>2021-04-18T07:01:09.000Z</published>
+    <updated>2022-02-18T05:56:25.016Z</updated>
+    
+    <content type="html"><![CDATA[<p>APT事件比较复杂，一般是综合性攻击事件，主要学习一下应急手法，一些隐蔽性攻击的应急方案。</p><a id="more"></a><h2 id="0x01-APT事件与应急响应"><a href="#0x01-APT事件与应急响应" class="headerlink" title="0x01 APT事件与应急响应"></a>0x01 APT事件与应急响应</h2><h3 id="1-1-为什么讲APT"><a href="#1-1-为什么讲APT" class="headerlink" title="1.1 为什么讲APT"></a>1.1 为什么讲APT</h3><p>APT攻击逐年上升</p><h3 id="1-2-APT攻击特点以及常见手法"><a href="#1-2-APT攻击特点以及常见手法" class="headerlink" title="1.2 APT攻击特点以及常见手法"></a>1.2 APT攻击特点以及常见手法</h3><ol><li><strong>特点</strong><ul><li>高度目的性</li><li>高度隐蔽性</li><li>极强的持续性</li><li>高度危害性</li></ul></li><li><strong>手法</strong><ul><li>侦察或制作武器<ul><li>信息收集</li><li>网站收集</li></ul></li><li>武器投递<ul><li>钓鱼邮件</li><li>攻击网站</li><li>供应链攻击</li></ul></li><li>漏洞利用<ul><li>在内网使用大量主机或者插件漏洞</li><li>直接攻击暴露在公网上的威胁面</li><li>内网扩散</li></ul></li><li>安装和持久化<ul><li>使用powershell进行持久化</li><li>建立隧道</li></ul></li><li>命令和控制<ul><li>CC</li><li>矿池</li></ul></li><li>收益<ul><li>挖矿</li><li>窃密<h3 id="1-3-APT攻击之供应链攻击"><a href="#1-3-APT攻击之供应链攻击" class="headerlink" title="1.3 APT攻击之供应链攻击"></a>1.3 APT攻击之供应链攻击</h3></li></ul></li></ul></li></ol><ul><li><strong>案例</strong><ul><li>xCodeGhost</li><li>SolarWinds</li><li>思科后门事件</li><li>中文版Putty后门事件</li><li>xshell事件</li></ul></li></ul><ul><li><strong>针对供应链攻击常用手法</strong><ul><li>盗取开发者账号</li><li>向开源软件仓库投毒</li><li>入侵官方网站替换下载链接</li><li>投毒污染下载节点缓存、CDN缓存</li></ul></li></ul><ul><li><strong>供应链攻击带给应急响应的影响</strong><ul><li>关于自研或第三方开发软件检测的必要性<h3 id="1-4-APT攻击之钓鱼邮件"><a href="#1-4-APT攻击之钓鱼邮件" class="headerlink" title="1.4 APT攻击之钓鱼邮件"></a>1.4 APT攻击之钓鱼邮件</h3></li></ul></li></ul><ol><li><strong>钓鱼四步走</strong><ul><li>根据不同国家或地区，看看当前国情和时事</li><li>选择特点的目标人群</li><li>制作具有诱惑性的文件</li><li>投放最后等待鱼上钩</li></ul></li><li><strong>常见思路</strong><ul><li>针对时事的攻击</li><li>针对平台账号的攻击</li><li>针对特定用户的攻击</li><li>针对特定行为的攻击</li></ul></li><li><strong>在应急响应中如何排查钓鱼网站</strong><ul><li>查看最近下载的文件</li><li>游览器下载统计</li><li>操作系统下载</li><li>查看游览器最近访问记录</li></ul></li><li><strong>如何正确处理钓鱼邮件事件</strong><ol><li>确定钓鱼邮件来源</li><li>查看邮件服务器，确定钓鱼邮件范围</li><li>简单分析样本，及时截断</li><li>可以使用wireshark、火绒剑等分析网络进行及时截断</li><li>后场进行样本分析，进行之后的溯源分析<h3 id="1-5-APT攻击之隧道"><a href="#1-5-APT攻击之隧道" class="headerlink" title="1.5 APT攻击之隧道"></a>1.5 APT攻击之隧道</h3><strong>隧道</strong></li></ol></li></ol><ul><li>网络层<ul><li>IPv6</li><li>ICMP</li><li>GRE</li></ul></li><li>传输层<ul><li>TCP</li><li>UDP</li><li>常规端口转发</li></ul></li><li>应用层<ul><li>SSH</li><li>HTTP/S</li><li>DNS</li></ul></li><li><p>SOCK5代理</p><h2 id="0x02-APT事件应急响应注意点"><a href="#0x02-APT事件应急响应注意点" class="headerlink" title="0x02 APT事件应急响应注意点"></a>0x02 APT事件应急响应注意点</h2><h3 id="2-1-隐藏账号"><a href="#2-1-隐藏账号" class="headerlink" title="2.1 隐藏账号"></a>2.1 隐藏账号</h3></li><li><p>账户隐藏的方法</p></li><li>检测方法<h3 id="2-2-隐藏服务"><a href="#2-2-隐藏服务" class="headerlink" title="2.2 隐藏服务"></a>2.2 隐藏服务</h3></li></ul><ol><li>注册服务</li><li>隐藏服务</li><li>原理</li><li>防御</li><li>实验<h3 id="2-3-隐藏注册列表"><a href="#2-3-隐藏注册列表" class="headerlink" title="2.3 隐藏注册列表"></a>2.3 隐藏注册列表</h3><h3 id="2-4-隐藏进程"><a href="#2-4-隐藏进程" class="headerlink" title="2.4 隐藏进程"></a>2.4 隐藏进程</h3>基于API HOOK<br>基于DLL<br>Rootkit<h3 id="2-5-Bash命令隐藏"><a href="#2-5-Bash命令隐藏" class="headerlink" title="2.5 Bash命令隐藏"></a>2.5 Bash命令隐藏</h3>History隐藏方法<br>检测</li></ol><ul><li>set +o history</li><li>set -o history</li><li>history -c</li><li>export HISTFILESIZE=10</li><li><p>history -r</p><h3 id="2-6-内存分析"><a href="#2-6-内存分析" class="headerlink" title="2.6 内存分析"></a>2.6 内存分析</h3></li><li><p>查看网络连接</p></li><li>查看进程（进程注入）</li><li>提取文件</li><li>查看&amp;提取DLL</li><li>查看cmd历史命令</li><li>查看注册表（启动项、用户）</li><li>查看服务</li><li>查看内核驱动模块</li><li>查看rootkit隐藏文件</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;APT事件比较复杂，一般是综合性攻击事件，主要学习一下应急手法，一些隐蔽性攻击的应急方案。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="应急响应" scheme="http://austfish.cn/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
+    
+      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>病毒类应急响应处置与溯源</title>
@@ -32,9 +54,9 @@
     </summary>
     
     
-      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
-    
       <category term="应急响应" scheme="http://austfish.cn/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
+    
+      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
     
   </entry>
   
@@ -250,9 +272,9 @@
     </summary>
     
     
-      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -294,9 +316,9 @@
     </summary>
     
     
-      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="docker" scheme="http://austfish.cn/tags/docker/"/>
     
@@ -430,9 +452,9 @@
     </summary>
     
     
-      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="git" scheme="http://austfish.cn/tags/git/"/>
     
@@ -454,9 +476,9 @@
     </summary>
     
     
-      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
+      <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="git" scheme="http://austfish.cn/tags/git/"/>
     
@@ -503,11 +525,11 @@
     </summary>
     
     
+      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
+    
       <category term="工具" scheme="http://austfish.cn/tags/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="记录" scheme="http://austfish.cn/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-      <category term="手册" scheme="http://austfish.cn/tags/%E6%89%8B%E5%86%8C/"/>
     
   </entry>
   
