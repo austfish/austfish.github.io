@@ -15,13 +15,13 @@
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
 <meta property="og:description" content="0×01 前言Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。然而 Shell 的功能是能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等。 0×02 shell 和反弹 shell正常 shell  需要先在客户端（攻击端）开机情况下开启程序,然">
 <meta property="og:locale">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FrQOczpKjSPL2UxR8ZKxW7X10GRo.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866358914-bd1ff8c7-4554-4b00-a200-de87a279d7c9.png#align=left&display=inline&height=350&margin=%5Bobject%20Object%5D&originHeight=350&originWidth=417&size=0&status=done&style=none&width=417">
 <meta property="article:published_time" content="2021-04-08T07:19:13.000Z">
-<meta property="article:modified_time" content="2022-08-20T15:25:14.179Z">
+<meta property="article:modified_time" content="2022-08-20T15:47:21.778Z">
 <meta property="article:author" content="Fisher">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qiniu.austfish.cn/yuque/FrQOczpKjSPL2UxR8ZKxW7X10GRo.png">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866358914-bd1ff8c7-4554-4b00-a200-de87a279d7c9.png#align=left&display=inline&height=350&margin=%5Bobject%20Object%5D&originHeight=350&originWidth=417&size=0&status=done&style=none&width=417">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
 <li>先启用服务端（攻击端）,再启用客户端(被攻击端)</li>
 <li>就是控制端监听在某 TCP&#x2F;UDP 端口，被控端发起请求到该端口，并将其命令行的输入输出转到控制端。reverse shell 与 telnet，ssh 等标准 shell 对应，本质上是网络概念的客户端与服务端的角色反转。</li>
 </ul>
-<p><img src="http://qiniu.austfish.cn/yuque/FrQOczpKjSPL2UxR8ZKxW7X10GRo.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866358914-bd1ff8c7-4554-4b00-a200-de87a279d7c9.png#align=left&display=inline&height=350&margin=%5Bobject%20Object%5D&originHeight=350&originWidth=417&size=0&status=done&style=none&width=417"></p>
 <h2 id="0×03-为什么要反弹-shell"><a href="#0×03-为什么要反弹-shell" class="headerlink" title="0×03 为什么要反弹 shell"></a>0×03 为什么要反弹 shell</h2><p>当我们在渗透 Linux 主机时，反弹一个交互的 shell 是非常有必要的。反弹 shell 通常用于被控端因防火墙受限、权限不足、端口被占用等情形导致连接失败。</p>
 <blockquote>
 <p>假设我们攻击了一台机器，打开了该机器的一个端口，攻击者在自己的机器去连接目标机器（目标 ip：目标机器端口），这是比较常规的形式，我们叫做正向连接。远程桌面，web 服务，ssh，telnet 等等，都是正向连接。那么什么情况下正向连接不太好用了呢？</p>

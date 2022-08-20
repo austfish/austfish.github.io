@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
 <meta property="og:description" content="0x01 前言Masscan 号称是最快的互联网端口扫描器，最快可以在六分钟内扫遍互联网。 masscan 使用的是无状态扫描的方法,TCP 连接是有状态的，需要对 SYN-ACK 包进行 seq number 的校验这个等待连接的过程需要在缓冲区占用很大的资源，因此限制了扫描的速度。 masscan 无状态的扫描则是 masscan 与目标主机不建立完整的 TCP 连接，扫描者主机先向目标主机发">
 <meta property="og:locale">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FgQd_m1CY9uDeHKslq7b7E0LHc5k.png">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FrSAwc-yieABIX4ZvRosOZrfR_xl.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867984117-8b807d56-dc2d-4e85-9626-7c6b9b8b9f75.png#align=left&display=inline&height=470&margin=%5Bobject%20Object%5D&originHeight=470&originWidth=713&size=0&status=done&style=none&width=713">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867983979-1bebc4f7-9fd0-4f80-bb34-a314551d3f9f.png#align=left&display=inline&height=374&margin=%5Bobject%20Object%5D&originHeight=374&originWidth=553&size=0&status=done&style=none&width=553">
 <meta property="article:published_time" content="2021-04-08T07:46:03.000Z">
-<meta property="article:modified_time" content="2022-08-20T15:25:13.831Z">
+<meta property="article:modified_time" content="2022-08-20T15:47:21.774Z">
 <meta property="article:author" content="Fisher">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qiniu.austfish.cn/yuque/FgQd_m1CY9uDeHKslq7b7E0LHc5k.png">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867984117-8b807d56-dc2d-4e85-9626-7c6b9b8b9f75.png#align=left&display=inline&height=470&margin=%5Bobject%20Object%5D&originHeight=470&originWidth=713&size=0&status=done&style=none&width=713">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -201,7 +201,7 @@ var _hmt = _hmt || [];
 <li>服务端收到数据包，检测到了标志位的 syn 标志，知道这是客户端发来的建立连接的请求包，服务端会回复一个数据包，同时设置 syn 和 ack 标志位，服务器随机生成一个数字填充到 seq 字段。并将客户端发送的 seq 数据包+1 填充到 ack 确认号上。</li>
 <li>在收到 syn 和 ack 后，我们返回一个 rst 来结束这个连接，如图所示</li>
 </ol>
-<p><img src="http://qiniu.austfish.cn/yuque/FgQd_m1CY9uDeHKslq7b7E0LHc5k.png"><br><img src="http://qiniu.austfish.cn/yuque/FrSAwc-yieABIX4ZvRosOZrfR_xl.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867984117-8b807d56-dc2d-4e85-9626-7c6b9b8b9f75.png#align=left&display=inline&height=470&margin=%5Bobject%20Object%5D&originHeight=470&originWidth=713&size=0&status=done&style=none&width=713"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867983979-1bebc4f7-9fd0-4f80-bb34-a314551d3f9f.png#align=left&display=inline&height=374&margin=%5Bobject%20Object%5D&originHeight=374&originWidth=553&size=0&status=done&style=none&width=553"></p>
 <p>masscan 无状态扫描原理，就是利用了这一步，因为 seq 是可以自定义的，所以在发送数据包时填充一个特定的数字，而在返回包中可以获得相应的响应状态，即是无状态扫描的思路了。</p>
 <h5 id="4-2-随机化地址扫描"><a href="#4-2-随机化地址扫描" class="headerlink" title="4.2 随机化地址扫描"></a>4.2 随机化地址扫描</h5><p>在读取地址后，如果进行顺序扫描，伪代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="built_in">range</span>; i++) &#123;</span><br><span class="line">    scan(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
