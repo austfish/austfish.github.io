@@ -67,7 +67,7 @@
       this.data.front = (this.data.front + 1) % N;
       this.data.buf[this.data.front] = item;
       str = "存入产品" + this.data.buf[this.data.front] + "到缓冲区" + this.data.front;
-      $("<p class="desPro">" + str + "</p>").insertBefore($("#des p:first"));
+      $("<p class='desPro'>" + str + "</p>").insertBefore($("#des p:first"));
       return $($('.bufCover')[this.data.front]).animate({
         "height": "50px"
       });
@@ -78,7 +78,7 @@
       this.data.rear = (this.data.rear + 1) % N;
       this.data.buf[this.data.rear] = 'e';
       str = "取出产品" + this.data.buf[this.data.rear] + "从缓冲区" + this.data.rear;
-      $("<p class="desCon">" + str + "</p>").insertBefore($("#des p:first"));
+      $("<p class='desCon'>" + str + "</p>").insertBefore($("#des p:first"));
       return $($('.bufCover')[this.data.rear]).animate({
         "height": "0px"
       });
@@ -87,7 +87,7 @@
     ProCon.prototype.producer = function() {
       var item;
       if (this.data.full === N) {
-        $("<p class="desSpe">缓冲区已全满</p>").insertBefore($("#des p:first"));
+        $("<p class='desSpe'>缓冲区已全满</p>").insertBefore($("#des p:first"));
         return;
       }
       item = this.produceItem();
@@ -100,7 +100,7 @@
 
     ProCon.prototype.consumer = function() {
       if (this.data.empty === N) {
-        $("<p class="desSpe">缓冲区已空</p>").insertBefore($("#des p:first"));
+        $("<p class='desSpe'>缓冲区已空</p>").insertBefore($("#des p:first"));
         return;
       }
       this.data.full = this.p(this.data.full);
