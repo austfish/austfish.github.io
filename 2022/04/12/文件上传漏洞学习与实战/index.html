@@ -8,20 +8,21 @@
   <link rel="dns-prefetch" href="https://austfish.cn">
   <title>文件上传漏洞学习与实战 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x01 前言1.1 什么是文件上传漏洞？文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。未能正确执行这些限制可能意味着即使是基本的图像上传功能也可用于上传任意且具有潜在危险的文件。这甚至可以包括启用远程代码执行的服务器端脚本文件。 在某些情况下，上传文件的行为本身就足以造成损害。其他攻击可能涉及对文件的后续 HTTP 请求，通">
+  <meta name="description" content="文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传漏洞学习与实战">
 <meta property="og:url" content="https://austfish.cn/2022/04/12/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="0x01 前言1.1 什么是文件上传漏洞？文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。未能正确执行这些限制可能意味着即使是基本的图像上传功能也可用于上传任意且具有潜在危险的文件。这甚至可以包括启用远程代码执行的服务器端脚本文件。 在某些情况下，上传文件的行为本身就足以造成损害。其他攻击可能涉及对文件的后续 HTTP 请求，通">
+<meta property="og:description" content="文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/jpeg/10388730/1649731649104-ffda448c-4216-4c85-9646-8e4ad674f575.jpeg#clientId=u8716a428-432f-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=u516f1e92&margin=%5Bobject%20Object%5D&name=file-upload-vulnerabilities.jpg&originHeight=376&originWidth=837&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=78345&status=done&style=none&taskId=u6a265635-865c-4884-ae40-7fb290141fc&title=">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FntYvQUNvLtYV9M_MNOfvUs2uS1g.jpeg">
 <meta property="article:published_time" content="2022-04-12T02:23:14.000Z">
-<meta property="article:modified_time" content="2022-08-20T15:47:21.774Z">
+<meta property="article:modified_time" content="2022-08-20T15:59:35.885Z">
 <meta property="article:author" content="Fisher">
-<meta property="article:tag" content="学习">
+<meta property="article:tag" content="文件上传">
+<meta property="article:tag" content="漏洞">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/jpeg/10388730/1649731649104-ffda448c-4216-4c85-9646-8e4ad674f575.jpeg#clientId=u8716a428-432f-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=u516f1e92&margin=%5Bobject%20Object%5D&name=file-upload-vulnerabilities.jpg&originHeight=376&originWidth=837&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=78345&status=done&style=none&taskId=u6a265635-865c-4884-ae40-7fb290141fc&title=">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/yuque/FntYvQUNvLtYV9M_MNOfvUs2uS1g.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -181,7 +182,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><h2 id="1-1-什么是文件上传漏洞？"><a href="#1-1-什么是文件上传漏洞？" class="headerlink" title="1.1 什么是文件上传漏洞？"></a>1.1 什么是文件上传漏洞？</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/10388730/1649731649104-ffda448c-4216-4c85-9646-8e4ad674f575.jpeg#clientId=u8716a428-432f-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=u516f1e92&margin=%5Bobject%20Object%5D&name=file-upload-vulnerabilities.jpg&originHeight=376&originWidth=837&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=78345&status=done&style=none&taskId=u6a265635-865c-4884-ae40-7fb290141fc&title=" alt="file-upload-vulnerabilities.jpg"><br>文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。未能正确执行这些限制可能意味着即使是基本的图像上传功能也可用于上传任意且具有潜在危险的文件。这甚至可以包括启用远程代码执行的服务器端脚本文件。</p>
+        <p>文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。</p>
+<span id="more"></span>
+
+<h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><h2 id="1-1-什么是文件上传漏洞？"><a href="#1-1-什么是文件上传漏洞？" class="headerlink" title="1.1 什么是文件上传漏洞？"></a>1.1 什么是文件上传漏洞？</h2><p><img src="http://qiniu.austfish.cn/yuque/FntYvQUNvLtYV9M_MNOfvUs2uS1g.jpeg"><br>文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。未能正确执行这些限制可能意味着即使是基本的图像上传功能也可用于上传任意且具有潜在危险的文件。这甚至可以包括启用远程代码执行的服务器端脚本文件。</p>
 <p>在某些情况下，上传文件的行为本身就足以造成损害。其他攻击可能涉及对文件的后续 HTTP 请求，通常是为了触发服务器执行该文件。</p>
 <h2 id="1-2-文件上传漏洞有什么影响？"><a href="#1-2-文件上传漏洞有什么影响？" class="headerlink" title="1.2 文件上传漏洞有什么影响？"></a>1.2 文件上传漏洞有什么影响？</h2><p>文件上传漏洞的影响一般取决于两个关键因素：</p>
 <ul>
@@ -313,7 +317,33 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件上传</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/漏洞笔记/" class="article-tag-list-link color5">漏洞笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -523,11 +553,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">wsl2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">nps</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">AI</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BUAA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">甲方安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
             
             <div class="clearfix"></div>

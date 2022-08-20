@@ -414,29 +414,29 @@ var _hmt = _hmt || [];
 <p><code>nmap -sS 192.168.1.1</code></p>
 <p>该方式发送 SYN 到目标端口，如果收到 SYN&#x2F;ACK 回复，那么判断端口是开放的；如果收到 RST 包，说明该端口是关闭的。如果没有收到回复，那么判断该端口被屏蔽（Filtered）。</p>
 <p>因为该方式仅发送 SYN 包对目标主机的特定端口，但不建立的完整的 TCP 连接，所以相对比较隐蔽，而且效率比较高，适用范围广。</p>
-<p><strong>TCP SYN 探测到端口关闭：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014920-4e2be61b-8742-47a4-bb1a-1e2d1f18a38b.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>TCP SYN 探测到端口开放：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014957-8fa7dd5e-3c05-4ecd-aed4-cdd35e92e406.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
+<p><strong>TCP SYN 探测到端口关闭：</strong><br><img src="http://qiniu.austfish.cn/yuque/FoyHl9iGfnuiceN360ptmMdjagWn.png"></p>
+<p><strong>TCP SYN 探测到端口开放：</strong><br><img src="http://qiniu.austfish.cn/yuque/FmgNYHJlUjue43F9EZ7utNRni27w.png"></p>
 <h5 id="3-2-TCP-connect-scanning"><a href="#3-2-TCP-connect-scanning" class="headerlink" title="3.2 TCP connect scanning"></a>3.2 TCP connect scanning</h5><p>TCP connect 方式使用系统网络 API connect 向目标主机的端口发起连接，如果无法连接，说明该端口关闭。</p>
 <p><code>nmap -sT 192.168.1.1</code></p>
 <p>该方式扫描速度比较慢，而且由于建立完整的 TCP 连接会在目标机上留下记录信息，不够隐蔽。所以，TCP connect 是 TCP SYN 无法使用才考虑选择的方式。</p>
-<p><strong>TCP connect 探测到端口关闭：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014971-b67c0865-fd56-44f6-b8d4-23c6be334c9d.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>TCP connect 探测到端口开放：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014965-28e2ce36-9def-4cbc-a137-b43e7df80e4d.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
+<p><strong>TCP connect 探测到端口关闭：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fv4_BY0ENXb04HEd5538wLYI1cTJ.png"></p>
+<p><strong>TCP connect 探测到端口开放：</strong><br><img src="http://qiniu.austfish.cn/yuque/FqTJ0tHemWWAeNvyhpNuhNUZEtHu.png"></p>
 <h5 id="3-3-TCP-ACK-scanning"><a href="#3-3-TCP-ACK-scanning" class="headerlink" title="3.3 TCP ACK scanning"></a>3.3 TCP ACK scanning</h5><p>向目标主机的端口发送 ACK 包，如果收到 RST 包，说明该端口没有被防火墙屏蔽；没有收到 RST 包，说明被屏蔽。</p>
 <p><code>nmap -sA 192.168.1.1</code></p>
 <p>该方式只能用于确定防火墙是否屏蔽某个端口，可以辅助 TCP SYN 的方式来判断目标主机防火墙的状况。</p>
-<p><strong>TCP ACK 探测到端口被屏蔽：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014955-590bb262-741c-498b-82ba-34c231eb47e9.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=406&size=0&status=done&style=none&width=406"></p>
-<p><strong>TCP ACK 探测到端口未被屏蔽：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868057092-bacf9a6f-33d6-4e58-8dd1-9047041b4356.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&name=UjQe1jprhn8r.png&originHeight=149&originWidth=406&size=40007&status=done&style=none&width=406" alt="UjQe1jprhn8r.png"></p>
+<p><strong>TCP ACK 探测到端口被屏蔽：</strong><br><img src="http://qiniu.austfish.cn/yuque/FkRvAWMfNZEo7tJIoDR-aojEggaQ.png"></p>
+<p><strong>TCP ACK 探测到端口未被屏蔽：</strong><br><img src="http://qiniu.austfish.cn/yuque/FsVcr82NKf62XiEw07xFKIgpWdLv.png"></p>
 <h5 id="3-4-TCP-FIN-x2F-Xmas-x2F-NULL-scanning"><a href="#3-4-TCP-FIN-x2F-Xmas-x2F-NULL-scanning" class="headerlink" title="3.4 TCP FIN&#x2F;Xmas&#x2F;NULL scanning"></a>3.4 TCP FIN&#x2F;Xmas&#x2F;NULL scanning</h5><p>这三种扫描方式被称为秘密扫描（Stealthy Scan），因为相对比较隐蔽。FIN 扫描向目标主机的端口发送的 TCP FIN 包或 Xmas tree 包&#x2F;Null 包，如果收到对方 RST 回复包，那么说明该端口是关闭的；没有收到 RST 包说明端口可能是开放的或被屏蔽的（open|filtered），FIN 扫描发送的包只包含 FIN 标识，NULL 扫描不发送数据包上的任何字节，XMAS 扫描发送 FIN、PSH 和 URG 标识的数据包。</p>
 <p><code>nmap -sF 110.130.1.43</code><br><code>nmap -sX 110.130.1.43</code><br><code>nmap -sN 110.130.1.43</code></p>
 <p>其中 Xmas tree 包是指 flags 中 FIN URG PUSH 被置为 1 的 TCP 包；NULL 包是指所有 flags 都为 0 的 TCP 包。</p>
-<p><strong>TCP FIN 探测到主机端口是关闭的：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015502-537a4e4d-7139-4b25-81ed-ab855f8f9bc2.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>TCP FIN 探测到主机端口是开放或屏蔽的：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015352-ea61bc0f-0fa0-4f5b-a439-3b99b0eb0f8f.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
+<p><strong>TCP FIN 探测到主机端口是关闭的：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fntf-tguV0L-tJ-E34bjbRJMN-r7.png"></p>
+<p><strong>TCP FIN 探测到主机端口是开放或屏蔽的：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fhzr4wiom_IhsI5hsz760zDpNiw_.png"></p>
 <h5 id="3-5-UDP-scanning"><a href="#3-5-UDP-scanning" class="headerlink" title="3.5 UDP scanning"></a>3.5 UDP scanning</h5><p>UDP 扫描方式用于判断 UDP 端口的情况。</p>
 <p><code>nmap -sU 192.168.1.1</code></p>
 <p>向目标主机的 UDP 端口发送探测包，如果收到回复“ICMP port unreachable”就说明该端口是关闭的；如果没有收到回复，那说明 UDP 端口可能是开放的或屏蔽的。</p>
 <p>因此，通过反向排除法的方式来断定哪些 UDP 端口是可能出于开放状态。</p>
-<p><strong>UDP 端口关闭：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015300-c73b6625-5488-4b1a-a069-9b4dfdbd0bd7.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>UDP 端口开放或被屏蔽：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015355-65ce6b68-88c8-444e-bc10-b82fc7ffec32.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
+<p><strong>UDP 端口关闭：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fn-WL9kYoVaUlHFGpmOy3GEg9SX3.png"></p>
+<p><strong>UDP 端口开放或被屏蔽：</strong><br><img src="http://qiniu.austfish.cn/yuque/FneToWDnlGstcrlengNbCcy7utHn.png"></p>
 
       
 
@@ -518,7 +518,7 @@ var _hmt = _hmt || [];
 <li>服务端收到数据包，检测到了标志位的 syn 标志，知道这是客户端发来的建立连接的请求包，服务端会回复一个数据包，同时设置 syn 和 ack 标志位，服务器随机生成一个数字填充到 seq 字段。并将客户端发送的 seq 数据包+1 填充到 ack 确认号上。</li>
 <li>在收到 syn 和 ack 后，我们返回一个 rst 来结束这个连接，如图所示</li>
 </ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867984117-8b807d56-dc2d-4e85-9626-7c6b9b8b9f75.png#align=left&display=inline&height=470&margin=%5Bobject%20Object%5D&originHeight=470&originWidth=713&size=0&status=done&style=none&width=713"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867983979-1bebc4f7-9fd0-4f80-bb34-a314551d3f9f.png#align=left&display=inline&height=374&margin=%5Bobject%20Object%5D&originHeight=374&originWidth=553&size=0&status=done&style=none&width=553"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FgQd_m1CY9uDeHKslq7b7E0LHc5k.png"><br><img src="http://qiniu.austfish.cn/yuque/FrSAwc-yieABIX4ZvRosOZrfR_xl.png"></p>
 <p>masscan 无状态扫描原理，就是利用了这一步，因为 seq 是可以自定义的，所以在发送数据包时填充一个特定的数字，而在返回包中可以获得相应的响应状态，即是无状态扫描的思路了。</p>
 <h5 id="4-2-随机化地址扫描"><a href="#4-2-随机化地址扫描" class="headerlink" title="4.2 随机化地址扫描"></a>4.2 随机化地址扫描</h5><p>在读取地址后，如果进行顺序扫描，伪代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="built_in">range</span>; i++) &#123;</span><br><span class="line">    scan(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -604,8 +604,8 @@ var _hmt = _hmt || [];
 <li>inurl    URL 存在关键字的网页</li>
 <li>filetype 搜索指定文件类型</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867919961-5c3975c1-6b7e-4ed0-b5eb-58ae3e975a42.png#align=left&display=inline&height=348&margin=%5Bobject%20Object%5D&name=5ff57f1244cac.png&originHeight=348&originWidth=610&size=22196&status=done&style=none&width=610" alt="5ff57f1244cac.png"></p>
-<h2 id="0x03-功能介绍"><a href="#0x03-功能介绍" class="headerlink" title="0x03 功能介绍"></a>0x03 功能介绍</h2><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867927001-13359a3c-0eaf-40ba-a22d-6f0cbf67fa45.png#align=left&display=inline&height=203&margin=%5Bobject%20Object%5D&name=5ff57f69bf2a4.png&originHeight=203&originWidth=860&size=26418&status=done&style=none&width=860" alt="5ff57f69bf2a4.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fmjor8OyV9dJ0GISQ5ZzjHQhWp3q.png"></p>
+<h2 id="0x03-功能介绍"><a href="#0x03-功能介绍" class="headerlink" title="0x03 功能介绍"></a>0x03 功能介绍</h2><p><img src="http://qiniu.austfish.cn/yuque/FlLhINvnuz7eI-4a2c5j53uBsH6Q.png"></p>
 <ul>
 <li>file<ul>
 <li>公开披露的文件</li>
@@ -995,7 +995,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="0×01-并发与并行的区别是什么？"><a href="#0×01-并发与并行的区别是什么？" class="headerlink" title="0×01 并发与并行的区别是什么？"></a>0×01 并发与并行的区别是什么？</h2><p>Erlang 之父 Joe Armstrong 用一张 5 岁小孩都能看懂的图解释了并发与并行的区别</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866851476-cc551d89-da27-4b94-89ee-299e094fddf6.png#align=left&display=inline&height=451&margin=%5Bobject%20Object%5D&name=5f72a088d2432.png&originHeight=451&originWidth=600&size=94254&status=done&style=none&width=600" alt="5f72a088d2432.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FuHtYCuoyT70yZgdCc0ohr7Lh-hS.png"></p>
 <p>Erlang 之父 Joe Armstrong 用一张 5 岁小孩都能看懂的图解释了并发与并行的区别</p>
 <p><strong>提问：并发是不是一个线程，并行是多个线程？</strong><br><strong>回答：并发和并行都可以是很多个线程，就看这些线程能不能同时被（多个）CPU 执行，如果说可以就说明是并行，而并发是多个线程（一个）CPU 轮流切换着执行。</strong></p>
 <h2 id="0×02-线程"><a href="#0×02-线程" class="headerlink" title="0×02 线程"></a>0×02 线程</h2><p><strong>概念</strong>:线程是应用程序中工作的最小单元，或者又称之为微进程。</p>
@@ -1191,7 +1191,7 @@ var _hmt = _hmt || [];
 <li>Win2K3 为内网域成员主机，</li>
 <li>WinSever 2008 R2 为内网域控主机。</li>
 </ol>
-<h3 id="2-网络拓扑及-IP-规划"><a href="#2-网络拓扑及-IP-规划" class="headerlink" title="2 网络拓扑及 IP 规划"></a>2 网络拓扑及 IP 规划</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612111-84fab1b9-cd8c-4c11-b294-c82f48d7b588.png#align=left&display=inline&height=291&margin=%5Bobject%20Object%5D&originHeight=291&originWidth=802&size=0&status=done&style=none&width=802"></p>
+<h3 id="2-网络拓扑及-IP-规划"><a href="#2-网络拓扑及-IP-规划" class="headerlink" title="2 网络拓扑及 IP 规划"></a>2 网络拓扑及 IP 规划</h3><p><img src="http://qiniu.austfish.cn/yuque/FigxpihUpbzXo3FWHrPOCYH1_125.png"></p>
 <ul>
 <li>Kail 攻击机只有外网网卡——外网 IP：10.0.19.107</li>
 <li>Windows 7 有双网卡，也就是内外网 IP<ul>
@@ -1209,38 +1209,38 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 <h3 id="3-靶机服务启动"><a href="#3-靶机服务启动" class="headerlink" title="3 靶机服务启动"></a>3 靶机服务启动</h3><p>在 Win7 主机上开启 phpstuday，使用 kali 攻击机访问</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612237-60e73412-2abb-4307-af4d-e42fd578dd7c.png#align=left&display=inline&height=336&margin=%5Bobject%20Object%5D&originHeight=336&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612196-f0373706-9be5-482c-aadc-12f6206fbd5d.png#align=left&display=inline&height=810&margin=%5Bobject%20Object%5D&originHeight=810&originWidth=936&size=0&status=done&style=none&width=936"></p>
-<h2 id="0×03-漏洞利用"><a href="#0×03-漏洞利用" class="headerlink" title="0×03 漏洞利用"></a>0×03 漏洞利用</h2><h3 id="1-信息收集"><a href="#1-信息收集" class="headerlink" title="1 信息收集"></a>1 信息收集</h3><h4 id="1-1-首先使用-nmap-探测活跃主机地址"><a href="#1-1-首先使用-nmap-探测活跃主机地址" class="headerlink" title="1.1 首先使用 nmap 探测活跃主机地址"></a>1.1 首先使用 nmap 探测活跃主机地址</h4><p>发现多个端口以及对应的服务<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612106-2db55c3c-820d-49bf-8e3e-f5a3f9e3cc87.png#align=left&display=inline&height=329&margin=%5Bobject%20Object%5D&originHeight=329&originWidth=466&size=0&status=done&style=none&width=466"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fkkuy1FtBH-mOuqSjLCXghOUHau-.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fll4gjKZo7I8bVq7-MN8Iwk8uz-u.png"></p>
+<h2 id="0×03-漏洞利用"><a href="#0×03-漏洞利用" class="headerlink" title="0×03 漏洞利用"></a>0×03 漏洞利用</h2><h3 id="1-信息收集"><a href="#1-信息收集" class="headerlink" title="1 信息收集"></a>1 信息收集</h3><h4 id="1-1-首先使用-nmap-探测活跃主机地址"><a href="#1-1-首先使用-nmap-探测活跃主机地址" class="headerlink" title="1.1 首先使用 nmap 探测活跃主机地址"></a>1.1 首先使用 nmap 探测活跃主机地址</h4><p>发现多个端口以及对应的服务<br><img src="http://qiniu.austfish.cn/yuque/Fq4-10JwCqakuK7Zxn0y0tUSPvhv.png"></p>
 <h5 id="1-2-发现主机开启-80-端口，尝试访问"><a href="#1-2-发现主机开启-80-端口，尝试访问" class="headerlink" title="1.2 发现主机开启 80 端口，尝试访问"></a>1.2 发现主机开启 80 端口，尝试访问</h5><ul>
 <li>得到了管理员邮箱，可以使用社工攻击或钓鱼邮件等</li>
 <li>一些版本信息，可以搜集对应版本是否存在漏洞等，</li>
 <li>绝对路径，可以用于 SQL 注入写入一句话木马</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612117-698ca85b-c4d7-4382-9acc-ebf02de5c97c.png#align=left&display=inline&height=314&margin=%5Bobject%20Object%5D&originHeight=314&originWidth=946&size=0&status=done&style=none&width=946"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FvcTE3er9paP_TlCTTo99P18fqj2.png"></p>
 <h5 id="1-3-使用-dirsearch-御剑进行目录扫描"><a href="#1-3-使用-dirsearch-御剑进行目录扫描" class="headerlink" title="1.3 使用 dirsearch+御剑进行目录扫描"></a>1.3 使用 dirsearch+御剑进行目录扫描</h5><ul>
 <li>得到 phpmyadmin 数据库登录界面，</li>
 <li>beifen.rar 解压后猜测为 YXcms 网站管理系统的备份文件，尝试访问。</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612061-5496052e-1c5a-47b7-8abd-b5f7e57b949a.png#align=left&display=inline&height=620&margin=%5Bobject%20Object%5D&originHeight=620&originWidth=566&size=0&status=done&style=none&width=566"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612521-2fcb9c68-15c6-4864-ad7a-8b4b8137d197.png#align=left&display=inline&height=203&margin=%5Bobject%20Object%5D&originHeight=203&originWidth=776&size=0&status=done&style=none&width=776"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612507-6066ac34-7323-421e-8420-df04d6280d38.png#align=left&display=inline&height=605&margin=%5Bobject%20Object%5D&originHeight=605&originWidth=1242&size=0&status=done&style=none&width=1242"><br><strong>获得相关敏感信息</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612980-f610c178-9781-445b-b151-ae531623eb07.png#align=left&display=inline&height=460&margin=%5Bobject%20Object%5D&originHeight=460&originWidth=786&size=0&status=done&style=none&width=786"></p>
-<h4 id="2-漏洞利用"><a href="#2-漏洞利用" class="headerlink" title="2 漏洞利用"></a>2 漏洞利用</h4><h5 id="2-1-YXCMS-弱口令"><a href="#2-1-YXCMS-弱口令" class="headerlink" title="2.1 YXCMS 弱口令"></a>2.1 YXCMS 弱口令</h5><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613595-039e58f5-6048-4605-bf88-b13c81207512.png#align=left&display=inline&height=874&margin=%5Bobject%20Object%5D&originHeight=874&originWidth=1200&size=0&status=done&style=none&width=1200"><br><strong>默认弱口令进入后台</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612711-236dcb09-b28f-4a12-934a-d5c547fda259.png#align=left&display=inline&height=514&margin=%5Bobject%20Object%5D&originHeight=514&originWidth=1679&size=0&status=done&style=none&width=1679"></p>
-<h5 id="2-2-PHPMYADMIN-弱口令"><a href="#2-2-PHPMYADMIN-弱口令" class="headerlink" title="2.2 PHPMYADMIN 弱口令"></a>2.2 PHPMYADMIN 弱口令</h5><p>root&#x2F;root 弱口令登录成功<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613032-cc4e6b20-fb9b-4815-b0d6-719fb9834cca.png#align=left&display=inline&height=646&margin=%5Bobject%20Object%5D&originHeight=646&originWidth=1674&size=0&status=done&style=none&width=1674"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fnbyh0HobCxWBl2R_PdVIg760erR.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FtcsWAxGBnBHpeCWhyy_vj6DN6If.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fo32ONRPYFY4c9YwDNvWMQNaqYiA.png"><br><strong>获得相关敏感信息</strong><br><img src="http://qiniu.austfish.cn/yuque/FmqxDc2iFsUR8-pHhsvri_6L8YeN.png"></p>
+<h4 id="2-漏洞利用"><a href="#2-漏洞利用" class="headerlink" title="2 漏洞利用"></a>2 漏洞利用</h4><h5 id="2-1-YXCMS-弱口令"><a href="#2-1-YXCMS-弱口令" class="headerlink" title="2.1 YXCMS 弱口令"></a>2.1 YXCMS 弱口令</h5><p><img src="http://qiniu.austfish.cn/yuque/Fvv9X6cs4i8XrgVSFeaqNKQwd9ob.png"><br><strong>默认弱口令进入后台</strong><br><img src="http://qiniu.austfish.cn/yuque/FppzFItzjMbzsQISoOwyeFgril6c.png"></p>
+<h5 id="2-2-PHPMYADMIN-弱口令"><a href="#2-2-PHPMYADMIN-弱口令" class="headerlink" title="2.2 PHPMYADMIN 弱口令"></a>2.2 PHPMYADMIN 弱口令</h5><p>root&#x2F;root 弱口令登录成功<br><img src="http://qiniu.austfish.cn/yuque/FuXWT0DICkQjXkGvcyFsNNE26phv.png"></p>
 <h5 id="2-3-YXCMS-后台任意文件读写漏洞"><a href="#2-3-YXCMS-后台任意文件读写漏洞" class="headerlink" title="2.3 YXCMS 后台任意文件读写漏洞"></a>2.3 YXCMS 后台任意文件读写漏洞</h5><ol>
-<li>直接在前台模板创建新的模板，内容为一句话木马<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612874-0616b1a8-4208-4e9c-9b91-f568eabea055.png#align=left&display=inline&height=256&margin=%5Bobject%20Object%5D&originHeight=256&originWidth=684&size=0&status=done&style=none&width=684"></li>
+<li>直接在前台模板创建新的模板，内容为一句话木马<br><img src="http://qiniu.austfish.cn/yuque/FiTrOZxJWXUjj6j8JvS1j64DDAZA.png"></li>
 </ol>
-<p>2.根据备份文件获取文件路径<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613375-474f5867-e79a-4306-a5a5-b8fc887143db.png#align=left&display=inline&height=455&margin=%5Bobject%20Object%5D&originHeight=455&originWidth=728&size=0&status=done&style=none&width=728"></p>
-<p>3.中国蚂剑连接小马<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613181-c994f428-f2f4-4722-93a6-e4476e77ae72.png#align=left&display=inline&height=699&margin=%5Bobject%20Object%5D&originHeight=699&originWidth=1040&size=0&status=done&style=none&width=1040"></p>
-<h5 id="2-4-反弹-shell，MSF-监听"><a href="#2-4-反弹-shell，MSF-监听" class="headerlink" title="2.4 反弹 shell，MSF 监听"></a>2.4 反弹 shell，MSF 监听</h5><p><strong>生成相关恶意代码</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613489-58935e3b-2899-4abf-b6fa-1d2a3db098f5.png#align=left&display=inline&height=314&margin=%5Bobject%20Object%5D&originHeight=314&originWidth=683&size=0&status=done&style=none&width=683"><br><strong>上传脚本</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613404-bb5d37e7-27e6-4f50-bd2d-1190194744b0.png#align=left&display=inline&height=640&margin=%5Bobject%20Object%5D&originHeight=640&originWidth=1024&size=0&status=done&style=none&width=1024"></p>
-<h2 id="0×04-内网渗透"><a href="#0×04-内网渗透" class="headerlink" title="0×04 内网渗透"></a>0×04 内网渗透</h2><h3 id="1-Cobalt-Strike-监听上线"><a href="#1-Cobalt-Strike-监听上线" class="headerlink" title="1 Cobalt Strike 监听上线"></a>1 Cobalt Strike 监听上线</h3><h4 id="1-1-监听"><a href="#1-1-监听" class="headerlink" title="1.1 监听"></a>1.1 监听</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613622-d5077639-beb8-4375-b002-352c3f3b403c.png#align=left&display=inline&height=68&margin=%5Bobject%20Object%5D&originHeight=68&originWidth=781&size=0&status=done&style=none&width=781"></p>
-<h4 id="1-2-上传木马"><a href="#1-2-上传木马" class="headerlink" title="1.2 上传木马"></a>1.2 上传木马</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613677-7135db36-86bc-46ce-aa89-14c80887ccf8.png#align=left&display=inline&height=640&margin=%5Bobject%20Object%5D&originHeight=640&originWidth=1024&size=0&status=done&style=none&width=1024"></p>
-<h4 id="1-3-运行木马"><a href="#1-3-运行木马" class="headerlink" title="1.3 运行木马"></a>1.3 运行木马</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613901-226cd6a5-8a65-46ad-b837-fb3b0d35474a.png#align=left&display=inline&height=335&margin=%5Bobject%20Object%5D&originHeight=335&originWidth=670&size=0&status=done&style=none&width=670"></p>
-<h4 id="1-4-目标上线"><a href="#1-4-目标上线" class="headerlink" title="1.4 目标上线"></a>1.4 目标上线</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614029-601f658f-3bcc-41e6-8d5b-358293106b43.png#align=left&display=inline&height=222&margin=%5Bobject%20Object%5D&originHeight=222&originWidth=783&size=0&status=done&style=none&width=783"></p>
-<h3 id="2-Cobalt-Strike-提权"><a href="#2-Cobalt-Strike-提权" class="headerlink" title="2 Cobalt Strike 提权"></a>2 Cobalt Strike 提权</h3><h4 id="2-1-选择-beacon，右键，执行–-gt-提权"><a href="#2-1-选择-beacon，右键，执行–-gt-提权" class="headerlink" title="2.1 选择 beacon，右键，执行–&gt;提权"></a>2.1 选择 beacon，右键，执行–&gt;提权</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614701-829591aa-276f-474c-9a65-3cf2062d40df.png#align=left&display=inline&height=306&margin=%5Bobject%20Object%5D&originHeight=306&originWidth=778&size=0&status=done&style=none&width=778"></p>
-<h4 id="2-2-hashdump"><a href="#2-2-hashdump" class="headerlink" title="2.2 hashdump"></a>2.2 hashdump</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614003-52bfd1ad-80ff-42d7-a4a8-5a2a368a8438.png#align=left&display=inline&height=153&margin=%5Bobject%20Object%5D&originHeight=153&originWidth=711&size=0&status=done&style=none&width=711"></p>
+<p>2.根据备份文件获取文件路径<br><img src="http://qiniu.austfish.cn/yuque/FjhMGC_z3XrB5rHHEigMiUf3Zayg.png"></p>
+<p>3.中国蚂剑连接小马<br><img src="http://qiniu.austfish.cn/yuque/Fk3e5ALEiEQS5SU5o8M3-cRXSFTj.png"></p>
+<h5 id="2-4-反弹-shell，MSF-监听"><a href="#2-4-反弹-shell，MSF-监听" class="headerlink" title="2.4 反弹 shell，MSF 监听"></a>2.4 反弹 shell，MSF 监听</h5><p><strong>生成相关恶意代码</strong><br><img src="http://qiniu.austfish.cn/yuque/Fl0_68XLziVUvO4OrYO1EWu8ap7u.png"><br><strong>上传脚本</strong><br><img src="http://qiniu.austfish.cn/yuque/Fgp8NV1E3ymfHgnm5aGFlCcm7ZRC.png"></p>
+<h2 id="0×04-内网渗透"><a href="#0×04-内网渗透" class="headerlink" title="0×04 内网渗透"></a>0×04 内网渗透</h2><h3 id="1-Cobalt-Strike-监听上线"><a href="#1-Cobalt-Strike-监听上线" class="headerlink" title="1 Cobalt Strike 监听上线"></a>1 Cobalt Strike 监听上线</h3><h4 id="1-1-监听"><a href="#1-1-监听" class="headerlink" title="1.1 监听"></a>1.1 监听</h4><p><img src="http://qiniu.austfish.cn/yuque/FhhCB_m22cBoAh6YQdt-JsC3Y1Sv.png"></p>
+<h4 id="1-2-上传木马"><a href="#1-2-上传木马" class="headerlink" title="1.2 上传木马"></a>1.2 上传木马</h4><p><img src="http://qiniu.austfish.cn/yuque/FoU4F1XFw4A59oeXoHFUCGGu7iZj.png"></p>
+<h4 id="1-3-运行木马"><a href="#1-3-运行木马" class="headerlink" title="1.3 运行木马"></a>1.3 运行木马</h4><p><img src="http://qiniu.austfish.cn/yuque/Fh7JLfU9jvKMRNZI5eQjZH61Xog7.png"></p>
+<h4 id="1-4-目标上线"><a href="#1-4-目标上线" class="headerlink" title="1.4 目标上线"></a>1.4 目标上线</h4><p><img src="http://qiniu.austfish.cn/yuque/Fs_Z4wpA8-kp1Ozqp9SpmWK_yvkg.png"></p>
+<h3 id="2-Cobalt-Strike-提权"><a href="#2-Cobalt-Strike-提权" class="headerlink" title="2 Cobalt Strike 提权"></a>2 Cobalt Strike 提权</h3><h4 id="2-1-选择-beacon，右键，执行–-gt-提权"><a href="#2-1-选择-beacon，右键，执行–-gt-提权" class="headerlink" title="2.1 选择 beacon，右键，执行–&gt;提权"></a>2.1 选择 beacon，右键，执行–&gt;提权</h4><p><img src="http://qiniu.austfish.cn/yuque/Ftq0P7ZFME2w2l9tmOQE4Dwlrn5L.png"></p>
+<h4 id="2-2-hashdump"><a href="#2-2-hashdump" class="headerlink" title="2.2 hashdump"></a>2.2 hashdump</h4><p><img src="http://qiniu.austfish.cn/yuque/Fv9ECUVDvQ-1cW43343Ee3mJPj8y.png"></p>
 <h4 id="2-3-判断网络"><a href="#2-3-判断网络" class="headerlink" title="2.3 判断网络"></a>2.3 判断网络</h4><p><code>模拟内网：192.168.52.143</code><br><code>模拟外网：10.0.19.36</code></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614152-bc2081c5-1712-4cbb-89c2-16555dbe5da5.png#align=left&display=inline&height=711&margin=%5Bobject%20Object%5D&originHeight=711&originWidth=781&size=0&status=done&style=none&width=781"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Frvmi_JFgn2MRz0VC2TMY_ktrdwh.png"></p>
 <h3 id="3-判断是否有域"><a href="#3-判断是否有域" class="headerlink" title="3 判断是否有域"></a>3 判断是否有域</h3><h4 id="3-1-whoami"><a href="#3-1-whoami" class="headerlink" title="3.1 whoami:"></a>3.1 whoami:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">beacon&gt; </span><span class="language-bash">shell <span class="built_in">whoami</span></span></span><br><span class="line">[*] Tasked beacon to run: whoami</span><br><span class="line">[+] host called home, sent: 37 bytes</span><br><span class="line">[+] received output:</span><br><span class="line">nt authority\system</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-2-hostname"><a href="#3-2-hostname" class="headerlink" title="3.2 hostname"></a>3.2 hostname</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">beacon&gt; </span><span class="language-bash">shell hostname</span></span><br><span class="line">[*] Tasked beacon to run: hostname</span><br><span class="line">[+] host called home, sent: 39 bytes</span><br><span class="line">[+] received output:</span><br><span class="line">stu1</span><br></pre></td></tr></table></figure>
@@ -1289,9 +1289,9 @@ var _hmt = _hmt || [];
 <h3 id="5-查找域控"><a href="#5-查找域控" class="headerlink" title="5 查找域控"></a>5 查找域控</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">域用户权限</span></span><br><span class="line">net time /domain</span><br><span class="line">net group &quot;domain controllers&quot; /domain</span><br></pre></td></tr></table></figure>
 
 <h3 id="6-横向移动"><a href="#6-横向移动" class="headerlink" title="6 横向移动"></a>6 横向移动</h3><h4 id="6-1-SMB-Beacon"><a href="#6-1-SMB-Beacon" class="headerlink" title="6.1 SMB Beacon"></a>6.1 SMB Beacon</h4><p>因为 192.168.52.0&#x2F;24 段不能直接连接到 192.168.72.129(kali 地址)，所以需要 CS 派生 smb beacon。让内网的主机连接到 win7 上。</p>
-<p>SMB Beacon 使用命名管道通过父级 Beacon 进行通讯，当两个 Beacons 链接后，子 Beacon 从父 Beacon 获取到任务并发送。因为链接的 Beacons 使用 Windows 命名管道进行通信，此流量封装在 SMB 协议中，所以 SMB Beacon 相对隐蔽，绕防火墙时可能发挥奇效。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614285-8a116777-3718-49cf-aa8a-4f262fddc055.png#align=left&display=inline&height=356&margin=%5Bobject%20Object%5D&originHeight=356&originWidth=1303&size=0&status=done&style=none&width=1303"></p>
-<h4 id="6-2-psexec"><a href="#6-2-psexec" class="headerlink" title="6.2 psexec"></a>6.2 psexec</h4><p>显示目标<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614541-4980d239-b4c8-4620-8ac2-dbac19a647a3.png#align=left&display=inline&height=257&margin=%5Bobject%20Object%5D&originHeight=257&originWidth=1069&size=0&status=done&style=none&width=1069"><br>登录<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614428-59bafade-fb0c-4da9-a4b6-c96c5889285d.png#align=left&display=inline&height=316&margin=%5Bobject%20Object%5D&originHeight=316&originWidth=755&size=0&status=done&style=none&width=755"><br>导入口令<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866615050-e2b5f1d7-0b0b-40b5-8fb1-f9659301a7b8.png#align=left&display=inline&height=395&margin=%5Bobject%20Object%5D&originHeight=395&originWidth=567&size=0&status=done&style=none&width=567"><br>上线<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614813-a4222c08-138f-47db-850b-c3bacd8793b9.png#align=left&display=inline&height=264&margin=%5Bobject%20Object%5D&originHeight=264&originWidth=1587&size=0&status=done&style=none&width=1587"></p>
-<h4 id="7-拿下域控"><a href="#7-拿下域控" class="headerlink" title="7 拿下域控"></a>7 拿下域控</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614870-c3c4d062-71a5-461b-98f4-97f8d1703c9d.png#align=left&display=inline&height=853&margin=%5Bobject%20Object%5D&originHeight=853&originWidth=1056&size=0&status=done&style=none&width=1056"></p>
+<p>SMB Beacon 使用命名管道通过父级 Beacon 进行通讯，当两个 Beacons 链接后，子 Beacon 从父 Beacon 获取到任务并发送。因为链接的 Beacons 使用 Windows 命名管道进行通信，此流量封装在 SMB 协议中，所以 SMB Beacon 相对隐蔽，绕防火墙时可能发挥奇效。<br><img src="http://qiniu.austfish.cn/yuque/FlzgG6v4J_6W0sckJtHimS_nGNWz.png"></p>
+<h4 id="6-2-psexec"><a href="#6-2-psexec" class="headerlink" title="6.2 psexec"></a>6.2 psexec</h4><p>显示目标<br><img src="http://qiniu.austfish.cn/yuque/FovFsxstGgzKj063KXEzFGJwre62.png"><br>登录<br><img src="http://qiniu.austfish.cn/yuque/FpqrNyEpV46ckc0tVyaG9oBPQ3hE.png"><br>导入口令<br><img src="http://qiniu.austfish.cn/yuque/Flhre8b51MZL2_uyAVfMGMGOhV8y.png"><br>上线<br><img src="http://qiniu.austfish.cn/yuque/FiGVCMvQuplg0CkETQ6byhyCvUns.png"></p>
+<h4 id="7-拿下域控"><a href="#7-拿下域控" class="headerlink" title="7 拿下域控"></a>7 拿下域控</h4><p><img src="http://qiniu.austfish.cn/yuque/Fp_1DP6ihIIBJLiiIfej-tQ_5d74.png"></p>
 
       
 
@@ -1546,11 +1546,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">wsl2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">nps</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">AI</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">BUAA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">甲方安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
             
             <div class="clearfix"></div>
