@@ -6,26 +6,70 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://austfish.github.io">
-  <title>通用脚本命令行启动工具 | Fisher&#39;s 安全日记</title>
+  <title>损失函数与最优化 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00 背景安全测试过程中，有很多脚本工具，在进行编写的时候，难以复用、集成等问题。在快速调用过程中，需要重新写命令行调用工具，效率低下。所以通过通用的命令行启动脚本，使得在工具开发的过程中，关注工具的功能、参数即可，调用逻辑将统一，在批量调用多个工具时、更容易适配。应用结构参考W5 SOAR应用格式，可以无缝衔接使用，上传至 W5 即可实现 Web 页面调用应用，实现页面使用、命令行使用两种方">
+  <meta name="description" content="title: 损失函数与最优化tags: [AI,机器学习]categories: [AI,机器学习]cover: #文章Covertop_img: false #是否启用顶部大图copyright_author_href: #作者网站keywords:损失函数description: 希望线性分类器能够准确地对图像进行分类，要有一套优化其权重参数的方法，损失函数与最优化相关的知识。  0x00">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通用脚本命令行启动工具">
-<meta property="og:url" content="http://austfish.github.io/2022/01/04/%E9%80%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:title" content="损失函数与最优化">
+<meta property="og:url" content="http://austfish.github.io/2022/08/20/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9C%80%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="0x00 背景安全测试过程中，有很多脚本工具，在进行编写的时候，难以复用、集成等问题。在快速调用过程中，需要重新写命令行调用工具，效率低下。所以通过通用的命令行启动脚本，使得在工具开发的过程中，关注工具的功能、参数即可，调用逻辑将统一，在批量调用多个工具时、更容易适配。应用结构参考W5 SOAR应用格式，可以无缝衔接使用，上传至 W5 即可实现 Web 页面调用应用，实现页面使用、命令行使用两种方">
+<meta property="og:description" content="title: 损失函数与最优化tags: [AI,机器学习]categories: [AI,机器学习]cover: #文章Covertop_img: false #是否启用顶部大图copyright_author_href: #作者网站keywords:损失函数description: 希望线性分类器能够准确地对图像进行分类，要有一套优化其权重参数的方法，损失函数与最优化相关的知识。  0x00">
 <meta property="og:locale">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FkATGmOmg-hBvWiLVdWBp4xJQ8uc.png">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FgLT4G0FUlgxjGUu9-Q0TJWE-ftN.png">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FqtHpCCrnpCYEv4zgu9QBUdEGnTu.png">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FjovELs2b65pxNwhKO2o6BS-CXEI.png">
-<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FlWEZiR8wahLoP3Bwsn8nPM-y7hu.png">
-<meta property="article:published_time" content="2022-01-04T06:24:06.000Z">
-<meta property="article:modified_time" content="2022-08-20T14:04:51.745Z">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fikj0-R5FGZvyckPjKfQCU0x06M7.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fikj0-R5FGZvyckPjKfQCU0x06M7.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FoN3Pf4XBvx1SI6O2RfDEVEYSkRt.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FhmBMp5fmk5OvSeHYA_eze51-bam.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FoTTFj0EpdO0kVQB8H7bIuw1CBRi.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FsTVU8ln0LRyxzJKZM7B78J8WdJG.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fkg9C9Zw4Kd3IiP-0-uzwo85k0mX.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FoN3Pf4XBvx1SI6O2RfDEVEYSkRt.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FhwyARJrFoMTfqC2jstjV0cNz0gO.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FilfNApziYEbYOV0Vo5RqOR9rrpN.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fki0a-n7o4V9Z5U6FraO9XJIWcHG.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FgiUDL_dyhcPPZWsZ6Yeqe9D-BaD.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FgiUDL_dyhcPPZWsZ6Yeqe9D-BaD.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FtzLUsPkYulc6wI1eT6Dyv8MV1bz.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fkg9C9Zw4Kd3IiP-0-uzwo85k0mX.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FuxEXNfY4QA9yrYTxFCoWmSZV0x_.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fq3z6zrUzecZ2fIAwDLbgPXpaYYo.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FsTVU8ln0LRyxzJKZM7B78J8WdJG.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fr_tB9QJ4S-xiTbTSVzl_PPqh4M-.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FvQmwA8kh2bAuEno4dGtf4js1el2.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FvCUWk6QWHIkrbmbGPbRPKQGb4zX.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FoTTFj0EpdO0kVQB8H7bIuw1CBRi.svg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/svg/10388730/1660964476430-e9b68443-fbc7-49da-a87b-def18e7e4bb2.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FnVRmgm3W2lRYW_QiNBjb8NmdBmf.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FoHZ8OZWJHj0wAMnExPI604BQY0g.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FrsCRIPRNLM90ON-plvudwAf61Pn.svg">
+<meta property="og:image" content="http://qiniu.austfish.cn/yuque/FgYCKUUKBXjL-W6-BGQvqEaOHb-5.svg">
+<meta property="article:published_time" content="2022-08-20T13:47:13.000Z">
+<meta property="article:modified_time" content="2022-08-20T14:05:07.011Z">
 <meta property="article:author" content="Fisher">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qiniu.austfish.cn/yuque/FkATGmOmg-hBvWiLVdWBp4xJQ8uc.png">
+<meta name="twitter:image" content="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
   
@@ -165,177 +209,66 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-通用脚本命令行启动工具" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-损失函数与最优化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      通用脚本命令行启动工具
+      损失函数与最优化
     </h1>
   
 
         
-        <a href="/2022/01/04/%E9%80%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8%E5%B7%A5%E5%85%B7/" class="archive-article-date">
-  	<time datetime="2022-01-04T06:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-04</time>
+        <a href="/2022/08/20/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9C%80%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2022-08-20T13:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="0x00-背景"><a href="#0x00-背景" class="headerlink" title="0x00 背景"></a>0x00 背景</h1><p>安全测试过程中，有很多脚本工具，在进行编写的时候，难以复用、集成等问题。在快速调用过程中，需要重新写命令行调用工具，效率低下。<br>所以通过通用的命令行启动脚本，使得在工具开发的过程中，关注工具的功能、参数即可，调用逻辑将统一，在批量调用多个工具时、更容易适配。<br>应用结构参考<a target="_blank" rel="noopener" href="https://github.com/w5teams/w5">W5 SOAR</a>应用格式，可以无缝衔接使用，上传至 W5 即可实现 Web 页面调用应用，实现页面使用、命令行使用两种方式。</p>
-<h1 id="0x01-安装使用"><a href="#0x01-安装使用" class="headerlink" title="0x01 安装使用"></a>0x01 安装使用</h1><h2 id="1-1-下载项目"><a href="#1-1-下载项目" class="headerlink" title="1.1 下载项目"></a>1.1 下载项目</h2><p><code>git clone git@github.com:austfish/GeneralCommandLine-Tools.git</code><br><strong>安装依赖</strong><br><code>pip install -r requirements.txt</code></p>
-<h2 id="1-2-定制应用"><a href="#1-2-定制应用" class="headerlink" title="1.2 定制应用"></a>1.2 定制应用</h2><ol>
-<li>**app **目录下编写应用文档</li>
-<li><strong>app.json</strong> 配置文件更改脚本名称、类型、参数、函数名称、参数配置</li>
-<li><strong>main.py</strong> 文件编写功能函数</li>
-</ol>
-<p><strong>1.3 使用工具</strong><br><code>python start.py -h</code><br><code>python start.py get_asset_scope 127.0.0.1:5003 123456</code></p>
-<h1 id="0x02-脚本应用开发"><a href="#0x02-脚本应用开发" class="headerlink" title="0x02 脚本应用开发"></a>0x02 脚本应用开发</h1><h2 id="2-1-开发规范"><a href="#2-1-开发规范" class="headerlink" title="2.1 开发规范"></a>2.1 开发规范</h2><h3 id="2-1-1-基本规范"><a href="#2-1-1-基本规范" class="headerlink" title="2.1.1 基本规范"></a>2.1.1 基本规范</h3><ul>
-<li>APP 参数不能用 result ，此为系统变量</li>
-<li>app.json 必须包含 identification</li>
-<li>APP 开发文件只能有一个脚本 run.py</li>
-<li>请用 async , await 开启异步，提升性能</li>
-<li>HTTP 请求库，推荐使用 requests</li>
-</ul>
-<h3 id="2-1-3-try-except"><a href="#2-1-3-try-except" class="headerlink" title="2.1.3 try except"></a>2.1.3 try except</h3><p>为了保证 APP 的稳定性，请使用 try except 语法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-4-导入第三方模块"><a href="#2-1-4-导入第三方模块" class="headerlink" title="2.1.4 导入第三方模块"></a>2.1.4 导入第三方模块</h3><p>防止用户没安装第三方模块，为了达到友好的提示，请在函数里 import 库</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># encoding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> loguru <span class="keyword">import</span> logger</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> nmap</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        logger.info(<span class="string">&quot;[Hello World] 导入 nmap 模块失败, 请输入命令 pip install nmap&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>:<span class="number">2</span>,<span class="string">&quot;result&quot;</span>:<span class="string">&quot;导入 nmap 失败&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">    logger.info(<span class="string">&quot;[Hello World] 该 APP 执行参数为: &#123;name&#125;&quot;</span>, name=name)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>:<span class="number">0</span>,<span class="string">&quot;result&quot;</span>:<span class="string">&quot;Hello,&quot;</span> + name&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-5-返回值说明"><a href="#2-1-5-返回值说明" class="headerlink" title="2.1.5 返回值说明"></a>2.1.5 返回值说明</h3><p>返回数据结构为：字典</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 列：</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;status&quot;</span>:<span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;result&quot;</span>:<span class="string">&quot;执行成功&quot;</span>,</span><br><span class="line">    <span class="string">&quot;html&quot;</span>:<span class="string">&quot;&lt;span style=&#x27;color:#333;&#x27;&gt;执行成功&lt;/span&gt;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><table>
-<thead>
-<tr>
-<th><strong>key</strong></th>
-<th><strong>是否必写</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>status</strong></td>
-<td>是</td>
-<td>执行状态</td>
-</tr>
-<tr>
-<td><strong>result</strong></td>
-<td>是</td>
-<td>执行结果，原始数据</td>
-</tr>
-<tr>
-<td><strong>html</strong></td>
-<td>否</td>
-<td>可视化报告用，筛选过的数据，支持 HTML+CSS 语法 ，此项不写默认为 result 数据</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th><strong>状态码</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0</td>
-<td>正常</td>
-</tr>
-<tr>
-<td>1</td>
-<td>警告</td>
-</tr>
-<tr>
-<td>2</td>
-<td>异常</td>
-</tr>
-<tr>
-<td>3</td>
-<td>威胁</td>
-</tr>
-</tbody></table>
-<h2 id="2-2-HelloWord-Demo"><a href="#2-2-HelloWord-Demo" class="headerlink" title="2.2 HelloWord Demo"></a>2.2 HelloWord Demo</h2><h3 id="2-2-1-创建项目格式"><a href="#2-2-1-创建项目格式" class="headerlink" title="2.2.1 创建项目格式"></a>2.2.1 创建项目格式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├── helloworld       <span class="comment"># APP 目录名</span></span><br><span class="line">│   ├── app.json    <span class="comment"># APP 配置文件</span></span><br><span class="line">│   ├── icon.png    <span class="comment"># APP 图标</span></span><br><span class="line">│   ├── main       <span class="comment"># APP 代码</span></span><br><span class="line">|   |   └── run.py  <span class="comment"># APP 入口文件</span></span><br><span class="line">│   └── readme.md   <span class="comment"># APP 说明文件</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-2-编写代码"><a href="#2-2-2-编写代码" class="headerlink" title="2.2.2 编写代码"></a>2.2.2 编写代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># encoding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> loguru <span class="keyword">import</span> logger <span class="comment"># 导入日记库，没有请先安装 pip install loguru</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了保证性能，使用了 async await 开启异步携程，Python 3.7+ 的特性</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="comment"># 输出日记，生产环境会输出到指定目录</span></span><br><span class="line">    logger.info(<span class="string">&quot;[Hello World] 该 APP 执行参数为: &#123;name&#125;&quot;</span>, name=name)</span><br><span class="line">    <span class="comment"># 返回值，格式为： 状态码，返回内容</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>: <span class="number">0</span>, <span class="string">&quot;result&quot;</span>: <span class="string">&quot;Hello,&quot;</span> + name&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>async</strong> , <strong>await</strong> 使用 Demo</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># encoding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> loguru <span class="keyword">import</span> logger</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> requests</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        logger.info(<span class="string">&quot;[Hello World] 导入 requests 模块失败, 请输入命令 pip install requests&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>, <span class="string">&quot;缺少 requests 模块&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 await</span></span><br><span class="line">    r = <span class="keyword">await</span> requests.get(url=<span class="string">&quot;https://w5.io&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(r)</span><br><span class="line"></span><br><span class="line">    logger.info(<span class="string">&quot;[Hello World] 该 APP 执行参数为: &#123;name&#125;&quot;</span>, name=name)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>:<span class="number">0</span>,<span class="string">&quot;result&quot;</span>:<span class="string">&quot;Hello,&quot;</span> + name,<span class="string">&quot;html&quot;</span>: <span class="string">&#x27;&#x27;&#x27;&lt;span style=&quot;color:red&quot;&gt;&#123;name&#125;&lt;/span&gt;&#x27;&#x27;&#x27;</span>.<span class="built_in">format</span>(name=<span class="string">&quot;Hello,&quot;</span> + name)&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-3-APP-测试"><a href="#2-2-3-APP-测试" class="headerlink" title="2.2.3 APP 测试"></a>2.2.3 APP 测试</h3><p>使用 <strong>asyncio</strong> 运行测试，正式发布后请删除 <strong>main</strong> 入口函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># encoding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> loguru <span class="keyword">import</span> logger  <span class="comment"># 导入日记库，没有请先安装 pip install loguru</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了保证性能，使用了 async await 开启异步，Python 3.7+ 的特性</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="comment"># 输出日记，生产环境会输出到指定目录</span></span><br><span class="line">    logger.info(<span class="string">&quot;[Hello World] 该 APP 执行参数为: &#123;name&#125;&quot;</span>, name=name)</span><br><span class="line">    <span class="comment"># 返回值，格式为： 状态码，返回内容</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>: <span class="number">0</span>, <span class="string">&quot;result&quot;</span>: <span class="string">&quot;Hello,&quot;</span> + name&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 导入异步库</span></span><br><span class="line">    <span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 测试函数</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">        result = <span class="keyword">await</span> hello_world(<span class="string">&quot;W5&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加入异步队列</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>(): <span class="keyword">await</span> asyncio.gather(test())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动执行</span></span><br><span class="line">    asyncio.run(main())</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-3-APP-配置文件"><a href="#2-3-APP-配置文件" class="headerlink" title="2.3 APP 配置文件"></a>2.3 APP 配置文件</h2><p><strong>注意：</strong></p>
+        <hr>
+<p>title: 损失函数与最优化<br>tags: [AI,机器学习]<br>categories: [AI,机器学习]<br>cover: #文章Cover<br>top_img: false #是否启用顶部大图<br>copyright_author_href: #作者网站<br>keywords:损失函数<br>description: 希望线性分类器能够准确地对图像进行分类，要有一套优化其权重参数的方法，损失函数与最优化相关的知识。</p>
+<hr>
+<h1 id="0x00-👌-一句话主题描述"><a href="#0x00-👌-一句话主题描述" class="headerlink" title="0x00 👌 一句话主题描述"></a>0x00 👌 一句话主题描述</h1><p>希望线性分类器能够准确地对图像进行分类，要有一套优化其权重参数的方法，损失函数与最优化相关的知识。</p>
+<h1 id="0x01-😎-调研"><a href="#0x01-😎-调研" class="headerlink" title="0x01 😎 调研"></a>0x01 😎 调研</h1><h2 id="1-1-线性分类：损失函数"><a href="#1-1-线性分类：损失函数" class="headerlink" title="1.1 线性分类：损失函数"></a>1.1 线性分类：损失函数</h2><p><strong>损失函数</strong>（Loss Function）（有时也叫<strong>代价函数 Cost Function</strong> 或<strong>目标函数 Objective</strong>） <img src="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg"> 来衡量对预估结果的「不满意程度」。当评分函数输出结果与真实结果之间差异越大，损失函数越大，反之越小。<br>对于有 <img src="http://qiniu.austfish.cn/yuque/Fikj0-R5FGZvyckPjKfQCU0x06M7.svg"> 个训练样本对应 <img src="http://qiniu.austfish.cn/yuque/Fikj0-R5FGZvyckPjKfQCU0x06M7.svg"> 个标签的训练集数据 <img src="http://qiniu.austfish.cn/yuque/FoN3Pf4XBvx1SI6O2RfDEVEYSkRt.svg">，损失函数定义为：<br><img src="http://qiniu.austfish.cn/yuque/FhmBMp5fmk5OvSeHYA_eze51-bam.svg"></p>
 <ul>
-<li>不能有 result 的参数，默认为 APP 结果变量</li>
-<li>动作参数顺序，要保证和函数的参数顺序一致</li>
+<li>即每个样本损失函数求和取平均。目标就是找到一个合适的 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 使 <img src="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg"> 最小。</li>
+<li><strong>注意</strong>：真正的损失函数 <img src="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg"> 还有一项正则损失 <img src="http://qiniu.austfish.cn/yuque/FoTTFj0EpdO0kVQB8H7bIuw1CBRi.svg">，下面会有说明。</li>
 </ul>
-<h3 id="2-3-1-app-json"><a href="#2-3-1-app-json" class="headerlink" title="2.3.1 app.json"></a>2.3.1 app.json</h3><p>APP 配置文件</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;identification&quot;</span><span class="punctuation">:</span> <span class="string">&quot;w5soar&quot;</span><span class="punctuation">,</span> <span class="comment">// w5soar 签名，无需更改，必须存在</span></span><br><span class="line">  <span class="attr">&quot;is_public&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 是否为公开 APP，设置 false 为私有 APP</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Hello World&quot;</span><span class="punctuation">,</span> <span class="comment">// APP 名称</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.1&quot;</span><span class="punctuation">,</span> <span class="comment">// APP 版本</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;W5 SOAR - Hello World&quot;</span><span class="punctuation">,</span> <span class="comment">// APP 描述</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;基本应用&quot;</span><span class="punctuation">,</span> <span class="comment">// APP 分类</span></span><br><span class="line">  <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="comment">// APP 动作列表</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HelloWorld&quot;</span><span class="punctuation">,</span> <span class="comment">// APP 动作名称</span></span><br><span class="line">      <span class="attr">&quot;func&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hello_world&quot;</span> <span class="comment">// 动作对应的函数名</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 动作参数</span></span><br><span class="line">    <span class="attr">&quot;hello_world&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="comment">// 动作对应的函数名</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span> <span class="comment">// 动作参数名</span></span><br><span class="line">        <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span> <span class="comment">// 动作参数类型</span></span><br><span class="line">        <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="comment">// 是否是必填项</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-2-多个动作"><a href="#2-3-2-多个动作" class="headerlink" title="2.3.2 多个动作"></a>2.3.2 多个动作</h3><p>修改 action 字段</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>                              <span class="comment">// APP 动作列表</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HelloWorld&quot;</span><span class="punctuation">,</span>                 <span class="comment">// APP 动作名称</span></span><br><span class="line">    <span class="attr">&quot;func&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hello_world&quot;</span>                 <span class="comment">// 动作对应的函数名</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test&quot;</span><span class="punctuation">,</span>                      <span class="comment">// APP 动作名称</span></span><br><span class="line">    <span class="attr">&quot;func&quot;</span><span class="punctuation">:</span> <span class="string">&quot;app_test&quot;</span>                   <span class="comment">// 动作对应的函数名</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;demo&quot;</span><span class="punctuation">,</span>                      <span class="comment">// APP 动作名称</span></span><br><span class="line">    <span class="attr">&quot;func&quot;</span><span class="punctuation">:</span> <span class="string">&quot;app_demo&quot;</span>                   <span class="comment">// 动作对应的函数名</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-3-动作参数"><a href="#2-3-3-动作参数" class="headerlink" title="2.3.3 动作参数"></a>2.3.3 动作参数</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>                                 <span class="comment">// 动作参数</span></span><br><span class="line">   <span class="attr">&quot;hello_world&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>                         <span class="comment">// 动作对应的函数名</span></span><br><span class="line">     <span class="punctuation">&#123;</span></span><br><span class="line">       <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span>                      <span class="comment">// 动作参数名</span></span><br><span class="line">       <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span>                     <span class="comment">// 动作参数类型</span></span><br><span class="line">       <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">     <span class="punctuation">&#125;</span></span><br><span class="line">   <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;app_test&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>                           <span class="comment">// 动作对应的函数名</span></span><br><span class="line">     <span class="punctuation">&#123;</span></span><br><span class="line">       <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span>                      <span class="comment">// 动作参数名</span></span><br><span class="line">       <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span>                     <span class="comment">// 动作参数类型</span></span><br><span class="line">       <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">     <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">     <span class="punctuation">&#123;</span></span><br><span class="line">       <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sex&quot;</span><span class="punctuation">,</span>                       <span class="comment">// 动作参数名</span></span><br><span class="line">       <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span>                     <span class="comment">// 动作参数类型</span></span><br><span class="line">       <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">     <span class="punctuation">&#125;</span></span><br><span class="line">   <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;app_demo&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>                           <span class="comment">// 动作对应的函数名</span></span><br><span class="line">     <span class="punctuation">&#123;</span></span><br><span class="line">       <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span>                      <span class="comment">// 动作参数名</span></span><br><span class="line">       <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span>                     <span class="comment">// 动作参数类型</span></span><br><span class="line">       <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">     <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">     <span class="punctuation">&#123;</span></span><br><span class="line">       <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;age&quot;</span><span class="punctuation">,</span>                       <span class="comment">// 动作参数名</span></span><br><span class="line">       <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span>                     <span class="comment">// 动作参数类型</span></span><br><span class="line">       <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span>                   <span class="comment">// 是否是必填项</span></span><br><span class="line">     <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">     <span class="punctuation">&#123;</span></span><br><span class="line">       <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test&quot;</span><span class="punctuation">,</span>                      <span class="comment">// 动作参数名</span></span><br><span class="line">       <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span>                     <span class="comment">// 动作参数类型</span></span><br><span class="line">       <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span>                   <span class="comment">// 是否是必填项</span></span><br><span class="line">     <span class="punctuation">&#125;</span></span><br><span class="line">   <span class="punctuation">]</span></span><br><span class="line"> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-4-参数类型"><a href="#2-3-4-参数类型" class="headerlink" title="2.3.4 参数类型"></a>2.3.4 参数类型</h3><p>为了提高用户体验，可以设置参数类型</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>                                 <span class="comment">// 动作参数</span></span><br><span class="line">  <span class="attr">&quot;app_demo&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>                           <span class="comment">// 动作对应的函数名</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span>                      <span class="comment">// 动作参数名</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;text&quot;</span><span class="punctuation">,</span>                     <span class="comment">// 动作参数类型</span></span><br><span class="line">      <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;W5&quot;</span><span class="punctuation">,</span>                    <span class="comment">// 参数默认值，不写默认为空</span></span><br><span class="line">      <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;age&quot;</span><span class="punctuation">,</span>                       <span class="comment">// 动作参数名</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;number&quot;</span><span class="punctuation">,</span>                   <span class="comment">// 动作参数类型</span></span><br><span class="line">      <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="number">18</span><span class="punctuation">,</span>                      <span class="comment">// 参数默认值，不写默认为空</span></span><br><span class="line">      <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;desc&quot;</span><span class="punctuation">,</span>                      <span class="comment">// 动作参数名</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;textarea&quot;</span><span class="punctuation">,</span>                 <span class="comment">// 动作参数类型</span></span><br><span class="line">      <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;type&quot;</span><span class="punctuation">,</span>                      <span class="comment">// 动作参数名</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;select&quot;</span><span class="punctuation">,</span>                   <span class="comment">// 动作参数类型</span></span><br><span class="line">      <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test&quot;</span><span class="punctuation">,</span>                  <span class="comment">// 参数默认值，不写默认不选择</span></span><br><span class="line">      <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>                           <span class="comment">// 下拉列表</span></span><br><span class="line">        <span class="string">&quot;test&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;test2&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;test3&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;test4&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span>                    <span class="comment">// 是否是必填项</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>目前支持 5 种类型</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>类型</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>text</strong></td>
-<td>文本输入框</td>
-</tr>
-<tr>
-<td><strong>password</strong></td>
-<td>密码输入框</td>
-</tr>
-<tr>
-<td><strong>textarea</strong></td>
-<td>多行文本输入框</td>
-</tr>
-<tr>
-<td><strong>number</strong></td>
-<td>数字输入框</td>
-</tr>
-<tr>
-<td><strong>select</strong></td>
-<td>下拉选择框</td>
-</tr>
-</tbody></table>
-<h2 id="2-4-其他配置"><a href="#2-4-其他配置" class="headerlink" title="2.4 其他配置"></a>2.4 其他配置</h2><h3 id="2-4-1-icon-png"><a href="#2-4-1-icon-png" class="headerlink" title="2.4.1 icon.png"></a>2.4.1 icon.png</h3><p>图标名称 icon.png 不可改变<br>图标大小 200 x 200</p>
-<h3 id="2-4-2-readme-md"><a href="#2-4-2-readme-md" class="headerlink" title="2.4.2 readme.md"></a>2.4.2 readme.md</h3><p>APP 使用文档，下面为文档 Demo</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## APP 说明</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; W5 SOAR Hello World</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 动作列表</span></span><br><span class="line"></span><br><span class="line"><span class="section">### HellWorld</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**参数：**</span></span><br><span class="line"></span><br><span class="line">| 参数     | 类型   | 必填 | 备注 |</span><br><span class="line">| -------- | ------ | ---- | ---- |</span><br><span class="line">| <span class="strong">**name**</span> | string | <span class="code">`是`</span> | 名字 |</span><br><span class="line"></span><br><span class="line"><span class="strong">**返回值：**</span></span><br><span class="line"></span><br><span class="line">Hello,&#123;&#123;name&#125;&#125; !&quot;</span><br></pre></td></tr></table></figure>
-
-<h1 id="0x03-通用启动工具"><a href="#0x03-通用启动工具" class="headerlink" title="0x03 通用启动工具"></a>0x03 通用启动工具</h1><p>将启动脚本放入应用同级目录下，即可实现调用。<br>本项目下的 APP 应用是<a target="_blank" rel="noopener" href="https://github.com/TophantTechnology/ARL">灯塔资产</a>API 调用工具</p>
-<h3 id="3-1-启动-Banner"><a href="#3-1-启动-Banner" class="headerlink" title="3.1 启动 Banner"></a>3.1 启动 Banner</h3><p><img src="http://qiniu.austfish.cn/yuque/FkATGmOmg-hBvWiLVdWBp4xJQ8uc.png"></p>
-<h3 id="3-2-帮助信息"><a href="#3-2-帮助信息" class="headerlink" title="3.2 帮助信息"></a>3.2 帮助信息</h3><p><img src="http://qiniu.austfish.cn/yuque/FgLT4G0FUlgxjGUu9-Q0TJWE-ftN.png"><br>Help 帮助信息，展示该应用支持的 COMMANDS</p>
+<h3 id="1-2-多类支持-向量机损失-Multiclass-Support-Vector-Machine-Loss"><a href="#1-2-多类支持-向量机损失-Multiclass-Support-Vector-Machine-Loss" class="headerlink" title="1.2 多类支持 向量机损失 (Multiclass Support Vector Machine Loss)"></a>1.2 多类支持 向量机损失 (Multiclass Support Vector Machine Loss)</h3><h4 id="1-数据损失（data-loss）"><a href="#1-数据损失（data-loss）" class="headerlink" title="1) 数据损失（data loss）"></a>1) 数据损失（data loss）</h4><p>SVM 的损失函数想要 SVM 在正确分类上的得分始终比不正确分类上的得分高出一个边界值 <img src="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">。<br>我们先看一条数据样本（一张图片）上的损失函数 <img src="http://qiniu.austfish.cn/yuque/FsTVU8ln0LRyxzJKZM7B78J8WdJG.svg"> 如何定义，根据之前的描述，第 <img src="http://qiniu.austfish.cn/yuque/Fkg9C9Zw4Kd3IiP-0-uzwo85k0mX.svg"> 个数据 <img src="http://qiniu.austfish.cn/yuque/FoN3Pf4XBvx1SI6O2RfDEVEYSkRt.svg"> )中包含图像 <img src="http://qiniu.austfish.cn/yuque/FhwyARJrFoMTfqC2jstjV0cNz0gO.svg"> 的像素和代表正确类别的标签 <img src="http://qiniu.austfish.cn/yuque/FilfNApziYEbYOV0Vo5RqOR9rrpN.svg">。给评分函数输入像素数据，然后通过公式 <img src="http://qiniu.austfish.cn/yuque/Fki0a-n7o4V9Z5U6FraO9XJIWcHG.svg"> )来计算不同分类类别的分值。<br>这里我们将所有分值存放到 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg"> 中，第 <img src="http://qiniu.austfish.cn/yuque/FgiUDL_dyhcPPZWsZ6Yeqe9D-BaD.svg"> 个类别的得分就是 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg"> 的第 <img src="http://qiniu.austfish.cn/yuque/FgiUDL_dyhcPPZWsZ6Yeqe9D-BaD.svg"> 个元素： <img src="http://qiniu.austfish.cn/yuque/FtzLUsPkYulc6wI1eT6Dyv8MV1bz.svg">。针对第 <img src="http://qiniu.austfish.cn/yuque/Fkg9C9Zw4Kd3IiP-0-uzwo85k0mX.svg"> 条数据样本的多类 SVM 的损失函数定义如下：<br><img src="http://qiniu.austfish.cn/yuque/FuxEXNfY4QA9yrYTxFCoWmSZV0x_.svg"><br>直观来看，就是如果评分函数给真实标签的分数比其他某个标签的分数高出 <img src="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">，则对该其他标签的损失为 <img src="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">；否则损失就是 <img src="http://qiniu.austfish.cn/yuque/Fq3z6zrUzecZ2fIAwDLbgPXpaYYo.svg">。要对所有不正确的分类循环一遍。</p>
+<h4 id="2-正则化损失（regularization-loss）"><a href="#2-正则化损失（regularization-loss）" class="headerlink" title="2) 正则化损失（regularization loss）"></a>2) 正则化损失（regularization loss）</h4><p>假设有 1 个数据集和 1 组权重 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 能够正确地分类每个数据，即所有 <img src="http://qiniu.austfish.cn/yuque/FsTVU8ln0LRyxzJKZM7B78J8WdJG.svg"> 都为 <img src="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">，这样的 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 是否唯一？其实只要是任意 <img src="http://qiniu.austfish.cn/yuque/Fr_tB9QJ4S-xiTbTSVzl_PPqh4M-.svg">，<img src="http://qiniu.austfish.cn/yuque/FvQmwA8kh2bAuEno4dGtf4js1el2.svg"> 都可以满足 <img src="http://qiniu.austfish.cn/yuque/FvCUWk6QWHIkrbmbGPbRPKQGb4zX.svg">，因为把差值放大 <img src="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg"> 倍后，仍然会大于 <img src="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">。<br>所以，我们希望对某些 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 添加一些偏好，让我们的 W 更趋向于希望的形式，一个常见的做法是向损失函数增加一个<strong>正则化惩罚</strong>（<strong>regularization penalty</strong>） <img src="http://qiniu.austfish.cn/yuque/FoTTFj0EpdO0kVQB8H7bIuw1CBRi.svg"> ，它同时也能让模型更加泛化。<br>结合上述思路我们得到完整的多类 SVM 损失函数，它由两个部分组成：<strong>数据损失</strong>（<strong>data loss</strong>），即所有样例的平均损失，以及**正则化损失****（regularization loss**）。完整公式如下：<br><img src="https://cdn.nlark.com/yuque/0/2022/svg/10388730/1660964476430-e9b68443-fbc7-49da-a87b-def18e7e4bb2.svg"></p>
+<h3 id="1-3-Softmax-分类器损失"><a href="#1-3-Softmax-分类器损失" class="headerlink" title="1.3 Softmax 分类器损失"></a>1.3 Softmax 分类器损失</h3><p>SVM 是最常用的分类器之一，另一个常用的是 Softmax 分类器。Softmax 分类器可以理解为逻辑回归分类器面对多个分类的一般化归纳，又称为<strong>多项式逻辑回归</strong>（<strong>Multinomial Logistic Regression</strong>）。</p>
+<h3 id="1-4-Softmax-和-SVM-比较"><a href="#1-4-Softmax-和-SVM-比较" class="headerlink" title="1.4 Softmax 和 SVM 比较"></a>1.4 Softmax 和 SVM 比较</h3><h5 id="①-计算上有差异"><a href="#①-计算上有差异" class="headerlink" title="① 计算上有差异"></a>① 计算上有差异</h5><p>SVM 和 Softmax 分类器对于数据有不同的处理方式。两个分类器都计算了同样的分值向量 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg">（本节中是通过矩阵乘来实现）。不同之处在于对 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg"> 中分值的解释：</p>
 <ul>
-<li>add_site_tag</li>
-<li>get_asset_scope</li>
-<li>get_asset_scope_site</li>
+<li><strong>SVM 分类器将它们看做是类别评分，它的损失函数鼓励正确的类别（本例中是蓝色的类别 2）的分值比其他类别的分值高出至少一个安全边界值</strong>。</li>
+<li><strong>Softmax 分类器将这些数值看做是每个类别没有归一化的对数概率，鼓励正确分类的归一化的对数概率变高，其余的变低</strong>。</li>
 </ul>
-<h3 id="3-3-使用演示"><a href="#3-3-使用演示" class="headerlink" title="3.3 使用演示"></a>3.3 使用演示</h3><p><img src="http://qiniu.austfish.cn/yuque/FqtHpCCrnpCYEv4zgu9QBUdEGnTu.png"></p>
-<h1 id="0x04-Web-自动化调用工具"><a href="#0x04-Web-自动化调用工具" class="headerlink" title="0x04 Web 自动化调用工具"></a>0x04 Web 自动化调用工具</h1><h2 id="4-1-基于-W5"><a href="#4-1-基于-W5" class="headerlink" title="4.1 基于 W5"></a>4.1 基于 W5</h2><p>W5 是一个面向企业安全与运维设计的 <strong>低代码</strong> 自动化平台，可以让团队降低 人工成本，提升 工作效率。可以把代码 图形化、可视化、可编排。让不同的系统，不同的组件通过 APP 进行封装形成平台能力，通过剧本画出你想要的逻辑过程，利用多种 Trigger 去实现自动化执行。<br>W5 适应用于多个方向，例：Devops、安全运营、自动化渗透、工作流程等<br><a target="_blank" rel="noopener" href="https://w5soar.com/help/#w5-%E4%BB%8B%E7%BB%8D">参考文档</a></p>
-<h2 id="4-2-使用演示"><a href="#4-2-使用演示" class="headerlink" title="4.2 使用演示"></a>4.2 使用演示</h2><h3 id="4-2-1-WEB-上传"><a href="#4-2-1-WEB-上传" class="headerlink" title="4.2.1 WEB 上传"></a>4.2.1 WEB 上传</h3><p>应用中心 - 》 导入 APP<br><img src="http://qiniu.austfish.cn/yuque/FjovELs2b65pxNwhKO2o6BS-CXEI.png"></p>
+<p>SVM 的最终的损失值是 <img src="http://qiniu.austfish.cn/yuque/FnVRmgm3W2lRYW_QiNBjb8NmdBmf.svg">，Softmax 的最终的损失值是 <img src="http://qiniu.austfish.cn/yuque/FoHZ8OZWJHj0wAMnExPI604BQY0g.svg">，注意这两个数值大小没有可比性。只在给定同样数据，在同样的分类器的损失值计算中，损失之间比较才有意义。</p>
+<h5 id="②-损失的绝对数值不可以直接解释"><a href="#②-损失的绝对数值不可以直接解释" class="headerlink" title="② 损失的绝对数值不可以直接解释"></a>② 损失的绝对数值不可以直接解释</h5><p>SVM 的计算是无标定的，而且难以针对所有分类的评分值给出直观解释。Softmax 分类器则不同，它允许我们计算出对于所有分类标签的 「概率」。<br>但这里要注意，「不同类别概率」 分布的集中或离散程度是由正则化参数 <img src="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg"> 直接决定的。随着正则化参数 <img src="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg"> 不断增强，权重数值会越来越小，最后输出的概率会接近于均匀分布。<br>也就是说，Softmax 分类器算出来的概率可以某种程度上视作一种对于分类正确性的自信。和 SVM 一样，数字间相互比较得出的大小顺序是可以解释的，但其绝对值则难以直观解释。</p>
+<h5 id="③-实际应用时，SVM-和-Softmax-是相似的"><a href="#③-实际应用时，SVM-和-Softmax-是相似的" class="headerlink" title="③ 实际应用时，SVM 和 Softmax 是相似的"></a>③ 实际应用时，SVM 和 Softmax 是相似的</h5><p>两种分类器的表现差别很小。</p>
 <ul>
-<li>必须进入 <strong>私有 APP</strong> 目录下进行压缩，文件层级要符合规范</li>
-<li><strong>APPS</strong> 下的目录，根据压缩包的名字创建，所以命名不能重复，必须唯一</li>
-<li>必须包含 icon.png， readme.md 等文件</li>
+<li>相对于 Softmax 分类器，SVM 更加 「局部目标化（local objective）」，只要看到正确分类相较于不正确分类，已经得到了比边界值还要高的分数，它就会认为损失值是 <img src="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">，对于数字个体的细节是不关心的。</li>
+<li>Softmax 分类器对于分数是永不满足的：正确分类总能得到更高的概率，错误分类总能得到更低的概率，损失值总是能够更小。</li>
 </ul>
-<h3 id="4-2-2-灯塔应用使用"><a href="#4-2-2-灯塔应用使用" class="headerlink" title="4.2.2 灯塔应用使用"></a>4.2.2 灯塔应用使用</h3><p><img src="http://qiniu.austfish.cn/yuque/FlWEZiR8wahLoP3Bwsn8nPM-y7hu.png"></p>
-<h1 id="0x05-参考"><a href="#0x05-参考" class="headerlink" title="0x05 参考"></a>0x05 参考</h1><h2 id="5-1-参考项目"><a href="#5-1-参考项目" class="headerlink" title="5.1 参考项目"></a>5.1 参考项目</h2><p><a target="_blank" rel="noopener" href="https://github.com/TophantTechnology/ARL">ARL(Asset Reconnaissance Lighthouse)资产侦察灯塔系统</a><br><a target="_blank" rel="noopener" href="https://w5soar.com/help/">W5 SOAR 使用文档</a></p>
-<h2 id="5-2-参考文档"><a href="#5-2-参考文档" class="headerlink" title="5.2 参考文档"></a>5.2 参考文档</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1568138">python 动态加载模块、类、函数</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17550379/article/details/79943740">python fire 使用指南</a><br><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_14246112/3141757">Python 动态类和动态方法的创建和调用</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039773026">[Python]解决 python3 中关于 import 的疑难杂症</a></p>
-
+<h3 id="1-5-优化策略（Optimization-Strategy）"><a href="#1-5-优化策略（Optimization-Strategy）" class="headerlink" title="1.5 优化策略（Optimization Strategy）"></a>1.5 优化策略（Optimization Strategy）</h3><p>**优化策略的目标是：找到能够最小化损失函数值的权重 **<img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">。</p>
+<h4 id="1-策略一：随机搜索（Random-search）"><a href="#1-策略一：随机搜索（Random-search）" class="headerlink" title="1) 策略一：随机搜索（Random search）"></a>1) 策略一：随机搜索（Random search）</h4><p>随机尝试很多不同的权重，然后看其中哪个最好。这是一个差劲的初始方案。</p>
+<h4 id="2-策略二：随机本地搜索"><a href="#2-策略二：随机本地搜索" class="headerlink" title="2) 策略二：随机本地搜索"></a>2) 策略二：随机本地搜索</h4><p>第一个策略可以看做是每走一步都尝试几个随机方向，如果是上山方向就停在原地，如果是下山方向，就向该方向走一步。这次我们从一个随机 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 开始，然后生成一个随机的扰动 <img src="http://qiniu.austfish.cn/yuque/FrsCRIPRNLM90ON-plvudwAf61Pn.svg">，只有当 <img src="http://qiniu.austfish.cn/yuque/FgYCKUUKBXjL-W6-BGQvqEaOHb-5.svg"> 的损失值变低，我们才会更新。</p>
+<h4 id="3-策略三：跟随梯度"><a href="#3-策略三：跟随梯度" class="headerlink" title="3) 策略三：跟随梯度"></a>3) 策略三：跟随梯度</h4><p>前两个策略关键点都是在权重空间中找到合适的方向，使得沿其调整能降低损失函数的损失值。其实不需要随机寻找方向，我们可以直接计算出最好的方向，这个方向就是损失函数的<strong>梯度</strong>（<strong>gradient</strong>）。这个方法就好比是感受我们脚下山体的倾斜程度，然后向着最陡峭的下降方向下山。</p>
+<h3 id="1-6-梯度计算"><a href="#1-6-梯度计算" class="headerlink" title="1.6 梯度计算"></a>1.6 梯度计算</h3><p>计算梯度有两种方法：</p>
+<ul>
+<li>缓慢的近似方法（<strong>数值梯度法</strong>），但实现相对简单。</li>
+<li><strong>分析梯度法</strong>，计算迅速，结果精确，但是实现时容易出错，且需要使用微分。</li>
+</ul>
+<h1 id="0x02-🤔-整理和总结"><a href="#0x02-🤔-整理和总结" class="headerlink" title="0x02 🤔 整理和总结"></a>0x02 🤔 整理和总结</h1><ul>
+<li>损失函数，包括数据损失与正则损失</li>
+<li>多类 SVM 损失与 Softmax 损失比较</li>
+<li>梯度计算方法（数值梯度与解析梯度）</li>
+<li>梯度下降优化算法</li>
+</ul>
+<h1 id="0x03-😶‍🌫️-头脑风暴"><a href="#0x03-😶‍🌫️-头脑风暴" class="headerlink" title="0x03 😶‍🌫️ 头脑风暴"></a>0x03 😶‍🌫️ 头脑风暴</h1>
       
 
       
@@ -424,7 +357,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://austfish.github.io/2022/01/04/%E9%80%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8%E5%B7%A5%E5%85%B7/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://austfish.github.io/2022/08/20/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9C%80%E4%BC%98%E5%8C%96/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -438,18 +371,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2022/04/12/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E6%88%98/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          文件上传漏洞学习与实战
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/04/08/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">网络空间探测工具调研</div>
+    <a href="/2022/07/04/%E6%B5%85%E6%9E%90%E6%BC%8F%E6%B4%9E%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅析漏洞全生命周期管理</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -479,7 +403,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="通用脚本命令行启动工具" ></div> 
+  <div id="SOHUCS" sid="损失函数与最优化" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyuoyyRfG"; 

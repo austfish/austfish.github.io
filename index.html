@@ -159,6 +159,107 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-损失函数与最优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/20/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9C%80%E4%BC%98%E5%8C%96/">损失函数与最优化</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/20/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9C%80%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2022-08-20T13:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: 损失函数与最优化<br>tags: [AI,机器学习]<br>categories: [AI,机器学习]<br>cover: #文章Cover<br>top_img: false #是否启用顶部大图<br>copyright_author_href: #作者网站<br>keywords:损失函数<br>description: 希望线性分类器能够准确地对图像进行分类，要有一套优化其权重参数的方法，损失函数与最优化相关的知识。</p>
+<hr>
+<h1 id="0x00-👌-一句话主题描述"><a href="#0x00-👌-一句话主题描述" class="headerlink" title="0x00 👌 一句话主题描述"></a>0x00 👌 一句话主题描述</h1><p>希望线性分类器能够准确地对图像进行分类，要有一套优化其权重参数的方法，损失函数与最优化相关的知识。</p>
+<h1 id="0x01-😎-调研"><a href="#0x01-😎-调研" class="headerlink" title="0x01 😎 调研"></a>0x01 😎 调研</h1><h2 id="1-1-线性分类：损失函数"><a href="#1-1-线性分类：损失函数" class="headerlink" title="1.1 线性分类：损失函数"></a>1.1 线性分类：损失函数</h2><p><strong>损失函数</strong>（Loss Function）（有时也叫<strong>代价函数 Cost Function</strong> 或<strong>目标函数 Objective</strong>） <img src="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg"> 来衡量对预估结果的「不满意程度」。当评分函数输出结果与真实结果之间差异越大，损失函数越大，反之越小。<br>对于有 <img src="http://qiniu.austfish.cn/yuque/Fikj0-R5FGZvyckPjKfQCU0x06M7.svg"> 个训练样本对应 <img src="http://qiniu.austfish.cn/yuque/Fikj0-R5FGZvyckPjKfQCU0x06M7.svg"> 个标签的训练集数据 <img src="http://qiniu.austfish.cn/yuque/FoN3Pf4XBvx1SI6O2RfDEVEYSkRt.svg">，损失函数定义为：<br><img src="http://qiniu.austfish.cn/yuque/FhmBMp5fmk5OvSeHYA_eze51-bam.svg"></p>
+<ul>
+<li>即每个样本损失函数求和取平均。目标就是找到一个合适的 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 使 <img src="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg"> 最小。</li>
+<li><strong>注意</strong>：真正的损失函数 <img src="http://qiniu.austfish.cn/yuque/FqDtkwIffYPrSdL33N2CS4967jJG.svg"> 还有一项正则损失 <img src="http://qiniu.austfish.cn/yuque/FoTTFj0EpdO0kVQB8H7bIuw1CBRi.svg">，下面会有说明。</li>
+</ul>
+<h3 id="1-2-多类支持-向量机损失-Multiclass-Support-Vector-Machine-Loss"><a href="#1-2-多类支持-向量机损失-Multiclass-Support-Vector-Machine-Loss" class="headerlink" title="1.2 多类支持 向量机损失 (Multiclass Support Vector Machine Loss)"></a>1.2 多类支持 向量机损失 (Multiclass Support Vector Machine Loss)</h3><h4 id="1-数据损失（data-loss）"><a href="#1-数据损失（data-loss）" class="headerlink" title="1) 数据损失（data loss）"></a>1) 数据损失（data loss）</h4><p>SVM 的损失函数想要 SVM 在正确分类上的得分始终比不正确分类上的得分高出一个边界值 <img src="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">。<br>我们先看一条数据样本（一张图片）上的损失函数 <img src="http://qiniu.austfish.cn/yuque/FsTVU8ln0LRyxzJKZM7B78J8WdJG.svg"> 如何定义，根据之前的描述，第 <img src="http://qiniu.austfish.cn/yuque/Fkg9C9Zw4Kd3IiP-0-uzwo85k0mX.svg"> 个数据 <img src="http://qiniu.austfish.cn/yuque/FoN3Pf4XBvx1SI6O2RfDEVEYSkRt.svg"> )中包含图像 <img src="http://qiniu.austfish.cn/yuque/FhwyARJrFoMTfqC2jstjV0cNz0gO.svg"> 的像素和代表正确类别的标签 <img src="http://qiniu.austfish.cn/yuque/FilfNApziYEbYOV0Vo5RqOR9rrpN.svg">。给评分函数输入像素数据，然后通过公式 <img src="http://qiniu.austfish.cn/yuque/Fki0a-n7o4V9Z5U6FraO9XJIWcHG.svg"> )来计算不同分类类别的分值。<br>这里我们将所有分值存放到 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg"> 中，第 <img src="http://qiniu.austfish.cn/yuque/FgiUDL_dyhcPPZWsZ6Yeqe9D-BaD.svg"> 个类别的得分就是 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg"> 的第 <img src="http://qiniu.austfish.cn/yuque/FgiUDL_dyhcPPZWsZ6Yeqe9D-BaD.svg"> 个元素： <img src="http://qiniu.austfish.cn/yuque/FtzLUsPkYulc6wI1eT6Dyv8MV1bz.svg">。针对第 <img src="http://qiniu.austfish.cn/yuque/Fkg9C9Zw4Kd3IiP-0-uzwo85k0mX.svg"> 条数据样本的多类 SVM 的损失函数定义如下：<br><img src="http://qiniu.austfish.cn/yuque/FuxEXNfY4QA9yrYTxFCoWmSZV0x_.svg"><br>直观来看，就是如果评分函数给真实标签的分数比其他某个标签的分数高出 <img src="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">，则对该其他标签的损失为 <img src="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">；否则损失就是 <img src="http://qiniu.austfish.cn/yuque/Fq3z6zrUzecZ2fIAwDLbgPXpaYYo.svg">。要对所有不正确的分类循环一遍。</p>
+<h4 id="2-正则化损失（regularization-loss）"><a href="#2-正则化损失（regularization-loss）" class="headerlink" title="2) 正则化损失（regularization loss）"></a>2) 正则化损失（regularization loss）</h4><p>假设有 1 个数据集和 1 组权重 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 能够正确地分类每个数据，即所有 <img src="http://qiniu.austfish.cn/yuque/FsTVU8ln0LRyxzJKZM7B78J8WdJG.svg"> 都为 <img src="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">，这样的 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 是否唯一？其实只要是任意 <img src="http://qiniu.austfish.cn/yuque/Fr_tB9QJ4S-xiTbTSVzl_PPqh4M-.svg">，<img src="http://qiniu.austfish.cn/yuque/FvQmwA8kh2bAuEno4dGtf4js1el2.svg"> 都可以满足 <img src="http://qiniu.austfish.cn/yuque/FvCUWk6QWHIkrbmbGPbRPKQGb4zX.svg">，因为把差值放大 <img src="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg"> 倍后，仍然会大于 <img src="http://qiniu.austfish.cn/yuque/Fl4ODqMRS12chNxVBvIY2d0hq2zE.svg">。<br>所以，我们希望对某些 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 添加一些偏好，让我们的 W 更趋向于希望的形式，一个常见的做法是向损失函数增加一个<strong>正则化惩罚</strong>（<strong>regularization penalty</strong>） <img src="http://qiniu.austfish.cn/yuque/FoTTFj0EpdO0kVQB8H7bIuw1CBRi.svg"> ，它同时也能让模型更加泛化。<br>结合上述思路我们得到完整的多类 SVM 损失函数，它由两个部分组成：<strong>数据损失</strong>（<strong>data loss</strong>），即所有样例的平均损失，以及**正则化损失****（regularization loss**）。完整公式如下：<br><img src="https://cdn.nlark.com/yuque/0/2022/svg/10388730/1660964476430-e9b68443-fbc7-49da-a87b-def18e7e4bb2.svg"></p>
+<h3 id="1-3-Softmax-分类器损失"><a href="#1-3-Softmax-分类器损失" class="headerlink" title="1.3 Softmax 分类器损失"></a>1.3 Softmax 分类器损失</h3><p>SVM 是最常用的分类器之一，另一个常用的是 Softmax 分类器。Softmax 分类器可以理解为逻辑回归分类器面对多个分类的一般化归纳，又称为<strong>多项式逻辑回归</strong>（<strong>Multinomial Logistic Regression</strong>）。</p>
+<h3 id="1-4-Softmax-和-SVM-比较"><a href="#1-4-Softmax-和-SVM-比较" class="headerlink" title="1.4 Softmax 和 SVM 比较"></a>1.4 Softmax 和 SVM 比较</h3><h5 id="①-计算上有差异"><a href="#①-计算上有差异" class="headerlink" title="① 计算上有差异"></a>① 计算上有差异</h5><p>SVM 和 Softmax 分类器对于数据有不同的处理方式。两个分类器都计算了同样的分值向量 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg">（本节中是通过矩阵乘来实现）。不同之处在于对 <img src="http://qiniu.austfish.cn/yuque/FjbUSI6LhLIPeR1Qer5CosvPCwIL.svg"> 中分值的解释：</p>
+<ul>
+<li><strong>SVM 分类器将它们看做是类别评分，它的损失函数鼓励正确的类别（本例中是蓝色的类别 2）的分值比其他类别的分值高出至少一个安全边界值</strong>。</li>
+<li><strong>Softmax 分类器将这些数值看做是每个类别没有归一化的对数概率，鼓励正确分类的归一化的对数概率变高，其余的变低</strong>。</li>
+</ul>
+<p>SVM 的最终的损失值是 <img src="http://qiniu.austfish.cn/yuque/FnVRmgm3W2lRYW_QiNBjb8NmdBmf.svg">，Softmax 的最终的损失值是 <img src="http://qiniu.austfish.cn/yuque/FoHZ8OZWJHj0wAMnExPI604BQY0g.svg">，注意这两个数值大小没有可比性。只在给定同样数据，在同样的分类器的损失值计算中，损失之间比较才有意义。</p>
+<h5 id="②-损失的绝对数值不可以直接解释"><a href="#②-损失的绝对数值不可以直接解释" class="headerlink" title="② 损失的绝对数值不可以直接解释"></a>② 损失的绝对数值不可以直接解释</h5><p>SVM 的计算是无标定的，而且难以针对所有分类的评分值给出直观解释。Softmax 分类器则不同，它允许我们计算出对于所有分类标签的 「概率」。<br>但这里要注意，「不同类别概率」 分布的集中或离散程度是由正则化参数 <img src="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg"> 直接决定的。随着正则化参数 <img src="http://qiniu.austfish.cn/yuque/Fkv1-Ts2tIRK5em8Spd2KQ02jtOz.svg"> 不断增强，权重数值会越来越小，最后输出的概率会接近于均匀分布。<br>也就是说，Softmax 分类器算出来的概率可以某种程度上视作一种对于分类正确性的自信。和 SVM 一样，数字间相互比较得出的大小顺序是可以解释的，但其绝对值则难以直观解释。</p>
+<h5 id="③-实际应用时，SVM-和-Softmax-是相似的"><a href="#③-实际应用时，SVM-和-Softmax-是相似的" class="headerlink" title="③ 实际应用时，SVM 和 Softmax 是相似的"></a>③ 实际应用时，SVM 和 Softmax 是相似的</h5><p>两种分类器的表现差别很小。</p>
+<ul>
+<li>相对于 Softmax 分类器，SVM 更加 「局部目标化（local objective）」，只要看到正确分类相较于不正确分类，已经得到了比边界值还要高的分数，它就会认为损失值是 <img src="http://qiniu.austfish.cn/yuque/FuBvnRLwUai3piqI-Typ7V3Z8h1C.svg">，对于数字个体的细节是不关心的。</li>
+<li>Softmax 分类器对于分数是永不满足的：正确分类总能得到更高的概率，错误分类总能得到更低的概率，损失值总是能够更小。</li>
+</ul>
+<h3 id="1-5-优化策略（Optimization-Strategy）"><a href="#1-5-优化策略（Optimization-Strategy）" class="headerlink" title="1.5 优化策略（Optimization Strategy）"></a>1.5 优化策略（Optimization Strategy）</h3><p>**优化策略的目标是：找到能够最小化损失函数值的权重 **<img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg">。</p>
+<h4 id="1-策略一：随机搜索（Random-search）"><a href="#1-策略一：随机搜索（Random-search）" class="headerlink" title="1) 策略一：随机搜索（Random search）"></a>1) 策略一：随机搜索（Random search）</h4><p>随机尝试很多不同的权重，然后看其中哪个最好。这是一个差劲的初始方案。</p>
+<h4 id="2-策略二：随机本地搜索"><a href="#2-策略二：随机本地搜索" class="headerlink" title="2) 策略二：随机本地搜索"></a>2) 策略二：随机本地搜索</h4><p>第一个策略可以看做是每走一步都尝试几个随机方向，如果是上山方向就停在原地，如果是下山方向，就向该方向走一步。这次我们从一个随机 <img src="http://qiniu.austfish.cn/yuque/Fv4FeNTgjq87fR8vn9hwEsysPQEC.svg"> 开始，然后生成一个随机的扰动 <img src="http://qiniu.austfish.cn/yuque/FrsCRIPRNLM90ON-plvudwAf61Pn.svg">，只有当 <img src="http://qiniu.austfish.cn/yuque/FgYCKUUKBXjL-W6-BGQvqEaOHb-5.svg"> 的损失值变低，我们才会更新。</p>
+<h4 id="3-策略三：跟随梯度"><a href="#3-策略三：跟随梯度" class="headerlink" title="3) 策略三：跟随梯度"></a>3) 策略三：跟随梯度</h4><p>前两个策略关键点都是在权重空间中找到合适的方向，使得沿其调整能降低损失函数的损失值。其实不需要随机寻找方向，我们可以直接计算出最好的方向，这个方向就是损失函数的<strong>梯度</strong>（<strong>gradient</strong>）。这个方法就好比是感受我们脚下山体的倾斜程度，然后向着最陡峭的下降方向下山。</p>
+<h3 id="1-6-梯度计算"><a href="#1-6-梯度计算" class="headerlink" title="1.6 梯度计算"></a>1.6 梯度计算</h3><p>计算梯度有两种方法：</p>
+<ul>
+<li>缓慢的近似方法（<strong>数值梯度法</strong>），但实现相对简单。</li>
+<li><strong>分析梯度法</strong>，计算迅速，结果精确，但是实现时容易出错，且需要使用微分。</li>
+</ul>
+<h1 id="0x02-🤔-整理和总结"><a href="#0x02-🤔-整理和总结" class="headerlink" title="0x02 🤔 整理和总结"></a>0x02 🤔 整理和总结</h1><ul>
+<li>损失函数，包括数据损失与正则损失</li>
+<li>多类 SVM 损失与 Softmax 损失比较</li>
+<li>梯度计算方法（数值梯度与解析梯度）</li>
+<li>梯度下降优化算法</li>
+</ul>
+<h1 id="0x03-😶‍🌫️-头脑风暴"><a href="#0x03-😶‍🌫️-头脑风暴" class="headerlink" title="0x03 😶‍🌫️ 头脑风暴"></a>0x03 😶‍🌫️ 头脑风暴</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/20/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9C%80%E4%BC%98%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-浅析漏洞全生命周期管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -179,14 +280,14 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="0x01-背景：漏洞归一、闭环运行"><a href="#0x01-背景：漏洞归一、闭环运行" class="headerlink" title="0x01 背景：漏洞归一、闭环运行"></a>0x01 背景：漏洞归一、闭环运行</h1><h2 id="1-1-安全背景"><a href="#1-1-安全背景" class="headerlink" title="1.1 安全背景"></a>1.1 安全背景</h2><p>如今年（2021）七月 Gartner 发布《Hype Cycle for Security Operations, 2021》（2021 安全运营技术成熟度曲线），漏洞管理已经成为安全运营中较为成熟的子领域，可以说一切安全运营活动的开始几乎都是从漏洞管理开始的，是安全工作中的基础也是重要组成部分。<br><img src="http://qiniu.austfish.cn/Fpfsstiwd-nV2VtxQ-cgNQH8tvWO#crop=0&crop=0&crop=1&crop=1&id=xLAXX&originHeight=458&originWidth=750&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+        <h1 id="0x01-背景：漏洞归一、闭环运行"><a href="#0x01-背景：漏洞归一、闭环运行" class="headerlink" title="0x01 背景：漏洞归一、闭环运行"></a>0x01 背景：漏洞归一、闭环运行</h1><h2 id="1-1-安全背景"><a href="#1-1-安全背景" class="headerlink" title="1.1 安全背景"></a>1.1 安全背景</h2><p>如今年（2021）七月 Gartner 发布《Hype Cycle for Security Operations, 2021》（2021 安全运营技术成熟度曲线），漏洞管理已经成为安全运营中较为成熟的子领域，可以说一切安全运营活动的开始几乎都是从漏洞管理开始的，是安全工作中的基础也是重要组成部分。<br><img src="http://qiniu.austfish.cn/yuque/Fpfsstiwd-nV2VtxQ-cgNQH8tvWO.cn/Fpfsstiwd-nV2VtxQ-cgNQH8tvWO"></p>
 <p>从合规方面，今年工业和信息化部、国家互联网信息办公室、公安部发布的《<a target="_blank" rel="noopener" href="http://www.gov.cn/zhengce/zhengceku/2021-07/14/content_5624965.htm">网络产品安全漏洞管理规定</a>》也对网络产品提供者和网络运营者提出了明确的要求，企业需要扩充原有合规清单来满足监管要求。（附：<a target="_blank" rel="noopener" href="https://wap.miit.gov.cn/zwgk/zcjd/art/2021/art_b189bf18a5d64e8aa4e1f7e61699f49f.html">官方解读</a>）</p>
 <h2 id="1-2-项目需求"><a href="#1-2-项目需求" class="headerlink" title="1.2 项目需求"></a>1.2 项目需求</h2><p><strong>事项：漏洞生命周期管理平台</strong><br><strong>内容：</strong></p>
 <ul>
 <li>对比开源漏洞系统关注漏洞录入、统计、流转、复测、关闭等状态</li>
 <li>完成搭建漏洞生命周期管理平台</li>
 </ul>
-<h1 id="0x02-漏洞管理实践"><a href="#0x02-漏洞管理实践" class="headerlink" title="0x02 漏洞管理实践"></a>0x02 漏洞管理实践</h1><h2 id="2-1-漏洞管理的三层架构"><a href="#2-1-漏洞管理的三层架构" class="headerlink" title="2.1 漏洞管理的三层架构"></a>2.1 漏洞管理的三层架构</h2><p><img src="http://qiniu.austfish.cn/Fn1okBL_SUtrVwC7nqJIUVsj-tLz#crop=0&crop=0&crop=1&crop=1&id=RZDdV&originHeight=378&originWidth=750&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h1 id="0x02-漏洞管理实践"><a href="#0x02-漏洞管理实践" class="headerlink" title="0x02 漏洞管理实践"></a>0x02 漏洞管理实践</h1><h2 id="2-1-漏洞管理的三层架构"><a href="#2-1-漏洞管理的三层架构" class="headerlink" title="2.1 漏洞管理的三层架构"></a>2.1 漏洞管理的三层架构</h2><p><img src="http://qiniu.austfish.cn/yuque/Fn1okBL_SUtrVwC7nqJIUVsj-tLz.cn/Fn1okBL_SUtrVwC7nqJIUVsj-tLz"></p>
 <h2 id="2-2-底层安全基建"><a href="#2-2-底层安全基建" class="headerlink" title="2.2 底层安全基建"></a>2.2 底层安全基建</h2><p>工欲善其事必先利其器，漏洞管理也不例外，一个好用的安全管理平台，能减少不少重复人力劳动，提高安全运营效率；另一方面，要想将发现的安全问题及时给到业务侧修复满足安全 SLA，资产管理也必不可少。</p>
 <p>以上两个主要部分就像是漏洞管理的基座。</p>
 <h3 id="2-2-1-安全管理平台"><a href="#2-2-1-安全管理平台" class="headerlink" title="2.2.1 安全管理平台"></a>2.2.1 安全管理平台</h3><p>为什么不称漏洞管理平台而是安全管理平台，因为漏洞管理是安全运营工作的一部分，一个整合了安全运营各工作环节的集中处置平台更利于提高工作效率。</p>
@@ -207,14 +308,14 @@ var _hmt = _hmt || [];
 <li><p><strong>数据分析和展示功能</strong>：不管是安全侧还是业务侧都有数据分析的诉求。</p>
 </li>
 </ul>
-<p><img src="http://qiniu.austfish.cn/FtfIAXt5qRUgX48Q278d--NBybDn#crop=0&crop=0&crop=1&crop=1&id=GOzYY&originHeight=397&originWidth=750&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FtfIAXt5qRUgX48Q278d--NBybDn.cn/FtfIAXt5qRUgX48Q278d--NBybDn"></p>
 <p>对于安全侧，定期的数据分析和统计是必要的，常见的例如 dashbord 页面，实时展示不同统计维度、多种漏洞数据情况，同时漏洞运营的监控指标也可以在这个页面实时显示，便于运营同学及时发现问题。</p>
 <p>为什么在业务侧也需要做数据分析，一方面是业务真的有这种诉求（这是安全意识较高的业务），他们希望了解每季度甚至每月对体系内部的安全风险情况；另一方面从安全的角度，让业务侧能看见这些“触目惊心”的漏洞数据，也是警示和提醒。</p>
 <h3 id="2-2-2-资产管理"><a href="#2-2-2-资产管理" class="headerlink" title="2.2.2 资产管理"></a>2.2.2 资产管理</h3><p>安全问题的处理自然离不开业务部门的参与，安全漏洞更需要细粒度到资产属主、定位到人，因此需要具备公司各类资产的全量接口，如：域名、IP、主机名、容器名、实例名等，以及各类资产之间的映射关系查询，以确保安全问题定位的准确性和实效性。</p>
 <p>除了上述提到的常见类型资产，指纹库、第三方组件库的建立也是很必要的，尤其是当 fastjson、struts 2 这类安全漏洞爆发时，如何在快速应急也是对安全的考验。</p>
-<p>由于资产的动态性，内部梳理是一部分，也需要外部视角的资产探测来做补充，也正是由于资产动态变化这个特性，这往往也是实际工作中的难点和痛点。<br><img src="http://qiniu.austfish.cn/Fu9IkEdrOt-KFB_Miaw7kbU46IqO#crop=0&crop=0&crop=1&crop=1&id=MqcHc&originHeight=307&originWidth=750&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<p>由于资产的动态性，内部梳理是一部分，也需要外部视角的资产探测来做补充，也正是由于资产动态变化这个特性，这往往也是实际工作中的难点和痛点。<br><img src="http://qiniu.austfish.cn/yuque/Fu9IkEdrOt-KFB_Miaw7kbU46IqO.cn/Fu9IkEdrOt-KFB_Miaw7kbU46IqO"></p>
 <h2 id="2-3-流程-amp-机制"><a href="#2-3-流程-amp-机制" class="headerlink" title="2.3 流程&amp;机制"></a>2.3 流程&amp;机制</h2><p>在平台建设的基础上，如何让整个系统良好的运转起来，是第二个部分——安全流程与协同机制需要关注的。</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1658716103788-3139090a-3bd5-46a1-b4e1-b08aa8ebf556.png#clientId=ue9d93cfe-a1b2-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=774&id=u518bf015&name=image.png&originHeight=774&originWidth=1422&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=87708&status=done&style=none&taskId=ub18dfea7-720e-425e-a86e-3f32479be32&title=&width=1422" alt="image.png"></h3><p>2.3.1 确保闭环<br>发现问题不是目的，如何解决问题降低安全风险才是最终目的。忽略漏洞修复结果的追踪，缺少标准化的流程来对漏洞的修复状态进行持续的追踪管理，将导致修复周期长、无法进行闭环跟踪。</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="http://qiniu.austfish.cn/yuque/Fnl2zxuST0QfNCQOdKf1i5pGcxG9.png"></h3><p>2.3.1 确保闭环<br>发现问题不是目的，如何解决问题降低安全风险才是最终目的。忽略漏洞修复结果的追踪，缺少标准化的流程来对漏洞的修复状态进行持续的追踪管理，将导致修复周期长、无法进行闭环跟踪。</p>
 <p>对于高、中、低不同等级的漏洞有不同的修复优先级和时效性要求，安全平台以工单形式自动化将问题下发至业务，通过邮件、IM、短信等通知渠道将工单状态的变更实时同步至业务和安全，若在规定时间内未修复还会将安全问题逐级上升至业务侧管理角色，督促整改，确保安全问题处置的时效性保证闭环率。此外，定期的数据统计和分析也是必不可少的，可以发现流程和机制上的 gap 点，及时改进。</p>
 <h3 id="2-3-2-协同机制"><a href="#2-3-2-协同机制" class="headerlink" title="2.3.2 协同机制"></a>2.3.2 协同机制</h3><p>由于双方视角和安全认知不同，如何让业务方重视安全问题、配合安全及时修复也是一个难题，“从上至下”的推进思路一般来讲会比“至下而上”更加事半功倍。</p>
 <p>首先是安全制度层面，明确各类资产、虚拟资源的安全职责，出了安全问题谁来担责（安全制度一定要经过高层 review 确认和背书，具备权威性）。</p>
@@ -232,7 +333,7 @@ var _hmt = _hmt || [];
 <h3 id="2-4-3-数据分析"><a href="#2-4-3-数据分析" class="headerlink" title="2.4.3 数据分析"></a>2.4.3 数据分析</h3><p>精细化运营少不了对数据的分析解读，对安全来说需要定期查看数据、指标，是否在阈值范围内，近期漏洞数量&#x2F;类型变化情况，安全是否需要采取新的控制措施；各业务线漏洞的分布情况，哪些业务目前安全风险较大，是否需要进一步了解等；</p>
 <p>另一方针对业务方，可以定期给业务线安全接口人&#x2F;负责人等管理角色推送安全数据以及风险评估报告。</p>
 <h1 id="0x03-开源漏洞管理调研"><a href="#0x03-开源漏洞管理调研" class="headerlink" title="0x03 开源漏洞管理调研"></a>0x03 开源漏洞管理调研</h1><h2 id="3-1-漏洞处理流程设计"><a href="#3-1-漏洞处理流程设计" class="headerlink" title="3.1 漏洞处理流程设计"></a>3.1 漏洞处理流程设计</h2><h3 id="3-1-1-漏洞修复过程责任分配"><a href="#3-1-1-漏洞修复过程责任分配" class="headerlink" title="3.1.1 漏洞修复过程责任分配"></a>3.1.1 漏洞修复过程责任分配</h3><p>明确的责任分配是漏洞响应能力的基础，首先需要分析组织中涉及漏洞修复的部门和第三方有哪些，各个业务的主管是谁，谁在开发，谁在运维。</p>
-<p>由组织的漏洞修复策略来说明各个责任部门的相关责任和漏洞修复的时间要求等。其次需要统一漏洞定义语言，所有漏洞生命周期涉及到的人员对漏洞相关的概念理解一致。<br><img src="http://qiniu.austfish.cn/Fh8YO3GNE8mepuxlP_sY_t-m6yl-#crop=0&crop=0&crop=1&crop=1&id=f3wqu&originHeight=700&originWidth=1046&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="><br><strong>各部门的主要责任：</strong></p>
+<p>由组织的漏洞修复策略来说明各个责任部门的相关责任和漏洞修复的时间要求等。其次需要统一漏洞定义语言，所有漏洞生命周期涉及到的人员对漏洞相关的概念理解一致。<br><img src="http://qiniu.austfish.cn/yuque/Fh8YO3GNE8mepuxlP_sY_t-m6yl-.cn/Fh8YO3GNE8mepuxlP_sY_t-m6yl-"><br><strong>各部门的主要责任：</strong></p>
 <p><strong>安全部门</strong></p>
 <ul>
 <li>提供漏洞管理相关培训；</li>
@@ -255,7 +356,7 @@ var _hmt = _hmt || [];
 <li>实施漏洞修复；</li>
 </ul>
 <p>漏洞的修复可能涉及第三方开发和运维，需要在合同中或补充条款中明确定义安全相关的责任，包括漏洞修复要求、保密要求等。</p>
-<h3 id="3-1-2-漏洞修复流程"><a href="#3-1-2-漏洞修复流程" class="headerlink" title="3.1.2 漏洞修复流程"></a>3.1.2 漏洞修复流程</h3><p><img src="http://qiniu.austfish.cn/FmONciz7UM0e6uRLNdpddfzH3UsM#crop=0&crop=0&crop=1&crop=1&id=VsTXQ&originHeight=508&originWidth=982&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="><br>可能漏洞的修复部署要走组织变更流程，组织可以根据自己的实际情况调整</p>
+<h3 id="3-1-2-漏洞修复流程"><a href="#3-1-2-漏洞修复流程" class="headerlink" title="3.1.2 漏洞修复流程"></a>3.1.2 漏洞修复流程</h3><p><img src="http://qiniu.austfish.cn/yuque/FmONciz7UM0e6uRLNdpddfzH3UsM.cn/FmONciz7UM0e6uRLNdpddfzH3UsM"><br>可能漏洞的修复部署要走组织变更流程，组织可以根据自己的实际情况调整</p>
 <h3 id="3-1-3-漏洞管理支持系统"><a href="#3-1-3-漏洞管理支持系统" class="headerlink" title="3.1.3 漏洞管理支持系统"></a>3.1.3 漏洞管理支持系统</h3><p>主要是支持漏洞发现和导入汇总、展示、告警和跟踪漏洞修复记录的系统，可以结合资产管理一起来做，另外常见漏洞的修复建议和修复步骤可以做成知识库共享给所有相关部门。最好结合自己组织的工单系统实现漏洞的自动化跟踪。</p>
 <p><strong>一些开源的漏洞管理系统：</strong></p>
 <ul>
@@ -268,7 +369,7 @@ var _hmt = _hmt || [];
 <li><a target="_blank" rel="noopener" href="https://gitee.com/gy071089/SecurityManageFramwork">SeMF</a>：企业内网安全管理平台，包含资产管理，漏洞管理，账号管理，知识库管、安全扫描自动化功能模块，可用于企业内部的安全管理。</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/austfish/dgM">DgM</a>：dragonM 漏洞管理和资产管理系统</li>
 </ul>
-<h2 id="3-2-开源漏洞管理支持系统分析"><a href="#3-2-开源漏洞管理支持系统分析" class="headerlink" title="3.2 开源漏洞管理支持系统分析"></a>3.2 开源漏洞管理支持系统分析</h2><h3 id="3-2-1-初步调研分析"><a href="#3-2-1-初步调研分析" class="headerlink" title="3.2.1 初步调研分析"></a>3.2.1 初步调研分析</h3><p>从项目的功能完整性、可维护性与最近更新时间等维度分析，选出三个待测试系统。<br><img src="http://qiniu.austfish.cn/FuTHmhD0eYCAEcAXDwSF1PtXn_nV#crop=0&crop=0&crop=1&crop=1&id=BCRh5&originHeight=416&originWidth=748&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h2 id="3-2-开源漏洞管理支持系统分析"><a href="#3-2-开源漏洞管理支持系统分析" class="headerlink" title="3.2 开源漏洞管理支持系统分析"></a>3.2 开源漏洞管理支持系统分析</h2><h3 id="3-2-1-初步调研分析"><a href="#3-2-1-初步调研分析" class="headerlink" title="3.2.1 初步调研分析"></a>3.2.1 初步调研分析</h3><p>从项目的功能完整性、可维护性与最近更新时间等维度分析，选出三个待测试系统。<br><img src="http://qiniu.austfish.cn/yuque/FuTHmhD0eYCAEcAXDwSF1PtXn_nV.cn/FuTHmhD0eYCAEcAXDwSF1PtXn_nV"></p>
 <h3 id="3-2-2-SeMF"><a href="#3-2-2-SeMF" class="headerlink" title="3.2.2 SeMF"></a>3.2.2 SeMF</h3><h4 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h4><ul>
 <li><strong>业务线管理</strong>： 对资产进行分组或根据企业业务线进行拆分，便于进行资产标记和责任人定位</li>
 <li><strong>资产管理</strong>： 该模块主要用于企业内部资产的管理，可根据需要进行资产类型自定义，无需动态组合资产属性和前端展示</li>
@@ -280,18 +381,18 @@ var _hmt = _hmt || [];
 <li><strong>POC 管理</strong>： 该模块因 POC 动态加载问题，进行了隐藏，但是保留了代码，希望进行 poc 管理共享的同学可以进进行改善</li>
 <li><strong>系统设置</strong>： 该模块可进行一些企业基础信息设置，如人员，部门，终端，扫描器设置等基础数据管理</li>
 </ul>
-<h4 id="界面说明"><a href="#界面说明" class="headerlink" title="界面说明"></a>界面说明</h4><p><strong>资产列表</strong><br><img src="http://qiniu.austfish.cn/FlxC9Ams4shPBrq3JwN5YuqdChff#crop=0&crop=0&crop=1&crop=1&id=vYySY&originHeight=859&originWidth=1899&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="><br><strong>漏洞管理</strong><br><img src="http://qiniu.austfish.cn/FlxC9Ams4shPBrq3JwN5YuqdChff#crop=0&crop=0&crop=1&crop=1&id=OoHMU&originHeight=859&originWidth=1899&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h4 id="界面说明"><a href="#界面说明" class="headerlink" title="界面说明"></a>界面说明</h4><p><strong>资产列表</strong><br><img src="http://qiniu.austfish.cn/yuque/FlxC9Ams4shPBrq3JwN5YuqdChff.cn/FlxC9Ams4shPBrq3JwN5YuqdChff"><br><strong>漏洞管理</strong><br><img src="http://qiniu.austfish.cn/yuque/FlxC9Ams4shPBrq3JwN5YuqdChff.cn/FlxC9Ams4shPBrq3JwN5YuqdChff"></p>
 <h3 id="3-2-3-洞察"><a href="#3-2-3-洞察" class="headerlink" title="3.2.3 洞察"></a>3.2.3 洞察</h3><h4 id="功能说明-1"><a href="#功能说明-1" class="headerlink" title="功能说明"></a>功能说明</h4><ul>
 <li>应用系统资产管理：对公司应用系统资产进行管理，包括系统名称、域名、重要级别、部门、负责人等。</li>
 <li>漏洞生命周期管理：对公司应用系统产生的安全漏洞进行线上提交、通告、知悉、复测、分类、风险计算、修复期限计算、邮件提醒、漏洞数据分析统计等。</li>
 <li>安全知识库管理：对安全知识、管理制度进行集中存放、线上学习、安全培训、知识传承等。</li>
 </ul>
-<h4 id="界面说明-1"><a href="#界面说明-1" class="headerlink" title="界面说明"></a>界面说明</h4><p><img src="http://qiniu.austfish.cn/Fhdvol41illt9XPRftKG6QxJ9Kxv#crop=0&crop=0&crop=1&crop=1&id=bGS7V&originHeight=422&originWidth=750&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="><br><strong>漏洞处理流程</strong><br><img src="http://qiniu.austfish.cn/FrfLHsGS_19kPgQAAPWDeb98bInu#crop=0&crop=0&crop=1&crop=1&id=tw3kZ&originHeight=296&originWidth=600&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h4 id="界面说明-1"><a href="#界面说明-1" class="headerlink" title="界面说明"></a>界面说明</h4><p><img src="http://qiniu.austfish.cn/yuque/Fhdvol41illt9XPRftKG6QxJ9Kxv.cn/Fhdvol41illt9XPRftKG6QxJ9Kxv"><br><strong>漏洞处理流程</strong><br><img src="http://qiniu.austfish.cn/yuque/FrfLHsGS_19kPgQAAPWDeb98bInu.cn/FrfLHsGS_19kPgQAAPWDeb98bInu"></p>
 <h3 id="3-2-4-dragonM"><a href="#3-2-4-dragonM" class="headerlink" title="3.2.4 dragonM"></a>3.2.4 dragonM</h3><h4 id="功能说明-2"><a href="#功能说明-2" class="headerlink" title="功能说明"></a>功能说明</h4><ul>
 <li>漏洞管理</li>
 <li>资产管理系统</li>
 </ul>
-<h4 id="界面说明-2"><a href="#界面说明-2" class="headerlink" title="界面说明"></a>界面说明</h4><p><img src="http://qiniu.austfish.cn/FoywKrNFejIcuevDshldteJ1Y7Of#crop=0&crop=0&crop=1&crop=1&id=a0y3R&originHeight=1080&originWidth=2014&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h4 id="界面说明-2"><a href="#界面说明-2" class="headerlink" title="界面说明"></a>界面说明</h4><p><img src="http://qiniu.austfish.cn/yuque/FoywKrNFejIcuevDshldteJ1Y7Of.cn/FoywKrNFejIcuevDshldteJ1Y7Of"></p>
 
       
 
@@ -355,7 +456,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="0x00-背景"><a href="#0x00-背景" class="headerlink" title="0x00 背景"></a>0x00 背景</h1><p>在跑一些开源项目和开放代码时，发现腾讯云上的主机 CPU 跑满，一直卡顿。就想着能不能把家中的 NUC11 32G 的小主机利用起来，起初想着装双系统，但是硬盘不太够，分盘够呛，就想着使用 WSL2 来做基础开放环境。</p>
-<h1 id="0x01-思路"><a href="#0x01-思路" class="headerlink" title="0x01 思路"></a>0x01 思路</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/10388730/1652773363950-363d07b7-b137-4684-a357-34e412c507f7.jpeg"></p>
+<h1 id="0x01-思路"><a href="#0x01-思路" class="headerlink" title="0x01 思路"></a>0x01 思路</h1><p><img src="http://qiniu.austfish.cn/yuque/FjHSWVd0Dtlm8KYDop0ZhhR6t_6S.jpeg"></p>
 <h1 id="0x02-NPS-内网穿透"><a href="#0x02-NPS-内网穿透" class="headerlink" title="0x02 NPS 内网穿透"></a>0x02 NPS 内网穿透</h1><h2 id="2-1-参考步骤"><a href="#2-1-参考步骤" class="headerlink" title="2.1 参考步骤"></a>2.1 参考步骤</h2><p>文档：<a target="_blank" rel="noopener" href="https://ehang-io.github.io/nps/#/install">https://ehang-io.github.io/nps/#/install</a></p>
 <h2 id="2-2-注意踩坑"><a href="#2-2-注意踩坑" class="headerlink" title="2.2 注意踩坑"></a>2.2 注意踩坑</h2><h3 id="2-2-1-服务端安装后位置变化"><a href="#2-2-1-服务端安装后位置变化" class="headerlink" title="2.2.1 服务端安装后位置变化"></a>2.2.1 服务端安装后位置变化</h3><p><strong>nps install 之后的 nps 不在原位置</strong>，请使用 whereis nps 查找具体目录覆盖 nps 二进制文件<br>我的是在 <strong>&#x2F;etc&#x2F;nps</strong><br>后期修改配置需要到这个目录下的 config</p>
 <h3 id="2-2-2-客户端安装最新版不能注册服务"><a href="#2-2-2-客户端安装最新版不能注册服务" class="headerlink" title="2.2.2 客户端安装最新版不能注册服务"></a>2.2.2 客户端安装最新版不能注册服务</h3><p>v0.26.10<br>改为 v0.26.9 后可以<br><code>sudo ./npc install -参数</code><br>注册后 可以使用 npc 启动<br>也可以用 Npc</p>
@@ -378,8 +479,8 @@ var _hmt = _hmt || [];
 <h3 id="4-使配置生效"><a href="#4-使配置生效" class="headerlink" title="4.使配置生效"></a>4.使配置生效</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -s</span><br><span class="line">$ source /etc/profile</span><br></pre></td></tr></table></figure>
 
 <h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p><a target="_blank" rel="noopener" href="https://github.com/MicrosoftDocs/WSL/issues/457%23issuecomment-751351142">https://github.com/MicrosoftDocs/WSL/issues/457%23issuecomment-751351142</a></p>
-<h1 id="0x04-内网穿透配置"><a href="#0x04-内网穿透配置" class="headerlink" title="0x04 内网穿透配置"></a>0x04 内网穿透配置</h1><h1 id="4-1-添加节点"><a href="#4-1-添加节点" class="headerlink" title="4.1 添加节点"></a>4.1 添加节点</h1><p><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1652774404926-63509aa3-b6b0-450e-95fd-5ce080775cfe.png#clientId=u922e5643-47c6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=738&id=uf90dff0b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=738&originWidth=449&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=29360&status=done&style=none&taskId=ubed98ae8-7cc5-44d3-af50-3a0cbdb2e11&title=&width=449" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1652774343966-9244327d-06d9-441e-ad75-4965f4286ac8.png#clientId=u922e5643-47c6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=260&id=u94ab701d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=260&originWidth=1608&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=33983&status=done&style=none&taskId=u75d9f1b7-d380-4b26-afad-8f17fe913a4&title=&width=1608" alt="image.png"><br>NPS 使用的思路是将节点端启动</p>
-<h2 id="4-1-添加隧道"><a href="#4-1-添加隧道" class="headerlink" title="4.1 添加隧道"></a>4.1 添加隧道</h2><p>点击对应节点的隧道按钮即可<br><strong>这里注意是目标的 IP:PORT 中的 IP 必须是 127.0.0.1</strong><br>这个很迷惑<br><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1652774463723-8cf13eb3-7a81-4c5b-ad05-8aacb8d19d6f.png#clientId=u922e5643-47c6-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=293&id=ube84f9ba&margin=%5Bobject%20Object%5D&name=image.png&originHeight=293&originWidth=1639&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=25071&status=done&style=none&taskId=u064f446b-f8ce-454a-bda9-29395ba333e&title=&width=1639" alt="image.png"></p>
+<h1 id="0x04-内网穿透配置"><a href="#0x04-内网穿透配置" class="headerlink" title="0x04 内网穿透配置"></a>0x04 内网穿透配置</h1><h1 id="4-1-添加节点"><a href="#4-1-添加节点" class="headerlink" title="4.1 添加节点"></a>4.1 添加节点</h1><p><img src="http://qiniu.austfish.cn/yuque/FrZcRwVm1YG3MKHk8A84gUUCvFAZ.png"><br><img src="http://qiniu.austfish.cn/yuque/Fk3oAmDZcVEttwOKkFvBm1cLTC17.png"><br>NPS 使用的思路是将节点端启动</p>
+<h2 id="4-1-添加隧道"><a href="#4-1-添加隧道" class="headerlink" title="4.1 添加隧道"></a>4.1 添加隧道</h2><p>点击对应节点的隧道按钮即可<br><strong>这里注意是目标的 IP:PORT 中的 IP 必须是 127.0.0.1</strong><br>这个很迷惑<br><img src="http://qiniu.austfish.cn/yuque/Fg0bKvCiXus9tAooO_yR5a6bx3tI.png"></p>
 
       
 
@@ -442,7 +543,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><h2 id="1-1-什么是文件上传漏洞？"><a href="#1-1-什么是文件上传漏洞？" class="headerlink" title="1.1 什么是文件上传漏洞？"></a>1.1 什么是文件上传漏洞？</h2><p><img src="https://cdn.nlark.com/yuque/0/2022/jpeg/10388730/1649731649104-ffda448c-4216-4c85-9646-8e4ad674f575.jpeg#clientId=u8716a428-432f-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=u516f1e92&margin=%5Bobject%20Object%5D&name=file-upload-vulnerabilities.jpg&originHeight=376&originWidth=837&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=78345&status=done&style=none&taskId=u6a265635-865c-4884-ae40-7fb290141fc&title=" alt="file-upload-vulnerabilities.jpg"><br>文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。未能正确执行这些限制可能意味着即使是基本的图像上传功能也可用于上传任意且具有潜在危险的文件。这甚至可以包括启用远程代码执行的服务器端脚本文件。</p>
+        <h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><h2 id="1-1-什么是文件上传漏洞？"><a href="#1-1-什么是文件上传漏洞？" class="headerlink" title="1.1 什么是文件上传漏洞？"></a>1.1 什么是文件上传漏洞？</h2><p><img src="http://qiniu.austfish.cn/yuque/FntYvQUNvLtYV9M_MNOfvUs2uS1g.jpeg"><br>文件上传漏洞是指 Web 服务器允许用户在没有充分验证文件名称、类型、内容或大小等内容的情况下将文件上传到其文件系统。未能正确执行这些限制可能意味着即使是基本的图像上传功能也可用于上传任意且具有潜在危险的文件。这甚至可以包括启用远程代码执行的服务器端脚本文件。</p>
 <p>在某些情况下，上传文件的行为本身就足以造成损害。其他攻击可能涉及对文件的后续 HTTP 请求，通常是为了触发服务器执行该文件。</p>
 <h2 id="1-2-文件上传漏洞有什么影响？"><a href="#1-2-文件上传漏洞有什么影响？" class="headerlink" title="1.2 文件上传漏洞有什么影响？"></a>1.2 文件上传漏洞有什么影响？</h2><p>文件上传漏洞的影响一般取决于两个关键因素：</p>
 <ul>
@@ -729,22 +830,22 @@ var _hmt = _hmt || [];
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## APP 说明</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; W5 SOAR Hello World</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 动作列表</span></span><br><span class="line"></span><br><span class="line"><span class="section">### HellWorld</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**参数：**</span></span><br><span class="line"></span><br><span class="line">| 参数     | 类型   | 必填 | 备注 |</span><br><span class="line">| -------- | ------ | ---- | ---- |</span><br><span class="line">| <span class="strong">**name**</span> | string | <span class="code">`是`</span> | 名字 |</span><br><span class="line"></span><br><span class="line"><span class="strong">**返回值：**</span></span><br><span class="line"></span><br><span class="line">Hello,&#123;&#123;name&#125;&#125; !&quot;</span><br></pre></td></tr></table></figure>
 
 <h1 id="0x03-通用启动工具"><a href="#0x03-通用启动工具" class="headerlink" title="0x03 通用启动工具"></a>0x03 通用启动工具</h1><p>将启动脚本放入应用同级目录下，即可实现调用。<br>本项目下的 APP 应用是<a target="_blank" rel="noopener" href="https://github.com/TophantTechnology/ARL">灯塔资产</a>API 调用工具</p>
-<h3 id="3-1-启动-Banner"><a href="#3-1-启动-Banner" class="headerlink" title="3.1 启动 Banner"></a>3.1 启动 Banner</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1641267103304-e7929164-4792-447c-81a4-ec544cdf713e.png#clientId=ua30bc171-ba60-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=254&id=uf7a16609&margin=%5Bobject%20Object%5D&name=image.png&originHeight=254&originWidth=522&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=11428&status=done&style=none&taskId=uf2b18a84-31dd-46cc-bbe2-e3f7b2187cc&title=&width=522" alt="image.png"></p>
-<h3 id="3-2-帮助信息"><a href="#3-2-帮助信息" class="headerlink" title="3.2 帮助信息"></a>3.2 帮助信息</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1641267156613-ea242592-5008-4710-a6de-a0862945c15e.png#clientId=ua30bc171-ba60-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=433&id=u7bd20b18&margin=%5Bobject%20Object%5D&name=image.png&originHeight=433&originWidth=316&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=14525&status=done&style=none&taskId=u0ec6d95d-a703-4468-9d97-96ec15203c3&title=&width=316" alt="image.png"><br>Help 帮助信息，展示该应用支持的 COMMANDS</p>
+<h3 id="3-1-启动-Banner"><a href="#3-1-启动-Banner" class="headerlink" title="3.1 启动 Banner"></a>3.1 启动 Banner</h3><p><img src="http://qiniu.austfish.cn/yuque/FkATGmOmg-hBvWiLVdWBp4xJQ8uc.png"></p>
+<h3 id="3-2-帮助信息"><a href="#3-2-帮助信息" class="headerlink" title="3.2 帮助信息"></a>3.2 帮助信息</h3><p><img src="http://qiniu.austfish.cn/yuque/FgLT4G0FUlgxjGUu9-Q0TJWE-ftN.png"><br>Help 帮助信息，展示该应用支持的 COMMANDS</p>
 <ul>
 <li>add_site_tag</li>
 <li>get_asset_scope</li>
 <li>get_asset_scope_site</li>
 </ul>
-<h3 id="3-3-使用演示"><a href="#3-3-使用演示" class="headerlink" title="3.3 使用演示"></a>3.3 使用演示</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1641267324428-07341981-2910-4b68-b985-8078f98bd13a.png#clientId=ua30bc171-ba60-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=450&id=u1e9d9847&margin=%5Bobject%20Object%5D&name=image.png&originHeight=450&originWidth=1541&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=76225&status=done&style=none&taskId=ua0322d26-bd60-4747-bad9-0d6d7c03f23&title=&width=1541" alt="image.png"></p>
+<h3 id="3-3-使用演示"><a href="#3-3-使用演示" class="headerlink" title="3.3 使用演示"></a>3.3 使用演示</h3><p><img src="http://qiniu.austfish.cn/yuque/FqtHpCCrnpCYEv4zgu9QBUdEGnTu.png"></p>
 <h1 id="0x04-Web-自动化调用工具"><a href="#0x04-Web-自动化调用工具" class="headerlink" title="0x04 Web 自动化调用工具"></a>0x04 Web 自动化调用工具</h1><h2 id="4-1-基于-W5"><a href="#4-1-基于-W5" class="headerlink" title="4.1 基于 W5"></a>4.1 基于 W5</h2><p>W5 是一个面向企业安全与运维设计的 <strong>低代码</strong> 自动化平台，可以让团队降低 人工成本，提升 工作效率。可以把代码 图形化、可视化、可编排。让不同的系统，不同的组件通过 APP 进行封装形成平台能力，通过剧本画出你想要的逻辑过程，利用多种 Trigger 去实现自动化执行。<br>W5 适应用于多个方向，例：Devops、安全运营、自动化渗透、工作流程等<br><a target="_blank" rel="noopener" href="https://w5soar.com/help/#w5-%E4%BB%8B%E7%BB%8D">参考文档</a></p>
-<h2 id="4-2-使用演示"><a href="#4-2-使用演示" class="headerlink" title="4.2 使用演示"></a>4.2 使用演示</h2><h3 id="4-2-1-WEB-上传"><a href="#4-2-1-WEB-上传" class="headerlink" title="4.2.1 WEB 上传"></a>4.2.1 WEB 上传</h3><p>应用中心 - 》 导入 APP<br><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1641274458795-02079644-07d1-4212-abf2-cea6d86c64e3.png#clientId=ua30bc171-ba60-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=ua7852ab4&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1594&originWidth=2874&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&size=531836&status=done&style=none&taskId=u5f75ee0c-b0b3-4cc2-87b5-10bb8cdf246&title=" alt="image.png"></p>
+<h2 id="4-2-使用演示"><a href="#4-2-使用演示" class="headerlink" title="4.2 使用演示"></a>4.2 使用演示</h2><h3 id="4-2-1-WEB-上传"><a href="#4-2-1-WEB-上传" class="headerlink" title="4.2.1 WEB 上传"></a>4.2.1 WEB 上传</h3><p>应用中心 - 》 导入 APP<br><img src="http://qiniu.austfish.cn/yuque/FjovELs2b65pxNwhKO2o6BS-CXEI.png"></p>
 <ul>
 <li>必须进入 <strong>私有 APP</strong> 目录下进行压缩，文件层级要符合规范</li>
 <li><strong>APPS</strong> 下的目录，根据压缩包的名字创建，所以命名不能重复，必须唯一</li>
 <li>必须包含 icon.png， readme.md 等文件</li>
 </ul>
-<h3 id="4-2-2-灯塔应用使用"><a href="#4-2-2-灯塔应用使用" class="headerlink" title="4.2.2 灯塔应用使用"></a>4.2.2 灯塔应用使用</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/10388730/1641274506530-0c06d306-e511-4959-92af-2f58739b9f93.png#clientId=ua30bc171-ba60-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=394&id=u8cdf5d06&margin=%5Bobject%20Object%5D&name=image.png&originHeight=394&originWidth=746&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=46392&status=done&style=none&taskId=u012943a1-9771-4e85-bdab-da2ef461aa2&title=&width=746" alt="image.png"></p>
+<h3 id="4-2-2-灯塔应用使用"><a href="#4-2-2-灯塔应用使用" class="headerlink" title="4.2.2 灯塔应用使用"></a>4.2.2 灯塔应用使用</h3><p><img src="http://qiniu.austfish.cn/yuque/FlWEZiR8wahLoP3Bwsn8nPM-y7hu.png"></p>
 <h1 id="0x05-参考"><a href="#0x05-参考" class="headerlink" title="0x05 参考"></a>0x05 参考</h1><h2 id="5-1-参考项目"><a href="#5-1-参考项目" class="headerlink" title="5.1 参考项目"></a>5.1 参考项目</h2><p><a target="_blank" rel="noopener" href="https://github.com/TophantTechnology/ARL">ARL(Asset Reconnaissance Lighthouse)资产侦察灯塔系统</a><br><a target="_blank" rel="noopener" href="https://w5soar.com/help/">W5 SOAR 使用文档</a></p>
 <h2 id="5-2-参考文档"><a href="#5-2-参考文档" class="headerlink" title="5.2 参考文档"></a>5.2 参考文档</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1568138">python 动态加载模块、类、函数</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17550379/article/details/79943740">python fire 使用指南</a><br><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_14246112/3141757">Python 动态类和动态方法的创建和调用</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039773026">[Python]解决 python3 中关于 import 的疑难杂症</a></p>
 
@@ -920,8 +1021,8 @@ var _hmt = _hmt || [];
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#错误返回</span><br><span class="line">&#123;</span><br><span class="line">    &quot;error&quot;: true,</span><br><span class="line">    &quot;errmsg&quot;: &quot;401 Unauthorized, make sure email and apikey is correct.&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4 代码实现"></a>4 代码实现</h5><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868372760-716f1336-a566-4cd6-a032-2b56086bf1d2.png#align=left&display=inline&height=763&margin=%5Bobject%20Object%5D&originHeight=763&originWidth=839&size=0&status=done&style=none&width=839"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868372844-14defdc5-73db-459e-8ead-89641501db8b.png#align=left&display=inline&height=445&margin=%5Bobject%20Object%5D&originHeight=445&originWidth=958&size=0&status=done&style=none&width=958"></p>
+<h5 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4 代码实现"></a>4 代码实现</h5><p><img src="http://qiniu.austfish.cn/yuque/FvbEceB3Mcq9Uw2thqEM4-dqr2Ec.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Ft0kvsqOqqPaacqAmU72Y90Vg47d.png"></p>
 <h4 id="0×04-SHODAN-搜索引擎"><a href="#0×04-SHODAN-搜索引擎" class="headerlink" title="0×04 SHODAN 搜索引擎"></a>0×04 SHODAN 搜索引擎</h4><h5 id="1-概述-1"><a href="#1-概述-1" class="headerlink" title="1 概述"></a>1 概述</h5><p>Shodan 是一个搜索互联网连接设备的搜索引擎，不同于谷歌、必应、百度这些搜索引擎。用户可以在 Shodan 上使用 Shodan 搜索语法查找连接到互联网的摄像头、路由器、服务器等设备信息。在渗透测试中，是个很不错的神器。</p>
 <h5 id="2-查询语法-1"><a href="#2-查询语法-1" class="headerlink" title="2 查询语法"></a>2 查询语法</h5><table>
 <thead>
@@ -974,9 +1075,9 @@ var _hmt = _hmt || [];
 <p>注册账号，获得 API Key</p>
 <p><strong>query</strong></p>
 <p>Shodan 搜索查询。<br>所提供的字符串用于搜索 Shodan 中的标语数据库，并带有附加选项以使用“ filter：value”格式在搜索查询中提供过滤器。<br>例如，以下搜索查询将找到位于德国的 Apache Web 服务器：”apache country：DE”。<br>当前支持以下过滤器：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868372886-14ff612b-6448-43ff-ab5e-7802aed27829.png#align=left&display=inline&height=845&margin=%5Bobject%20Object%5D&originHeight=845&originWidth=793&size=0&status=done&style=none&width=793"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868372889-280de599-308c-4afe-8463-a4e5d67c7cba.png#align=left&display=inline&height=514&margin=%5Bobject%20Object%5D&originHeight=514&originWidth=856&size=0&status=done&style=none&width=856"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868372971-5e2f26c5-baba-46fa-830e-3165d58545d1.png#align=left&display=inline&height=756&margin=%5Bobject%20Object%5D&originHeight=756&originWidth=856&size=0&status=done&style=none&width=856"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FmM01e6NnmmxgEMab0FUcKcFoLm3.png"><br><img src="http://qiniu.austfish.cn/yuque/FmNk2-p9WdZhgXdPmq3liXsGvIq5.png"><br><img src="http://qiniu.austfish.cn/yuque/FgQytKTceEjJXNYHNnWyhtrfrqGM.png"></p>
 <p><strong>facets</strong></p>
-<p>用逗号分隔的属性列表，以获取摘要信息。属性名称也可以采用”property：count”的格式，其中”count”是将为属性返回的构面数（即”country：100”将获得搜索查询的前 100 个国家&#x2F;地区）。当前支持以下方面：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868372860-2d80031f-7526-4dfd-9561-56e3b41a98b7.png#align=left&display=inline&height=870&margin=%5Bobject%20Object%5D&originHeight=870&originWidth=857&size=0&status=done&style=none&width=857"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868373147-0a6e1274-0920-4781-a39d-76efde6c56d2.png#align=left&display=inline&height=741&margin=%5Bobject%20Object%5D&originHeight=741&originWidth=856&size=0&status=done&style=none&width=856"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868373243-5f4b739c-12ed-4148-aad9-bfd7f5f8ef17.png#align=left&display=inline&height=741&margin=%5Bobject%20Object%5D&originHeight=741&originWidth=853&size=0&status=done&style=none&width=853"></p>
+<p>用逗号分隔的属性列表，以获取摘要信息。属性名称也可以采用”property：count”的格式，其中”count”是将为属性返回的构面数（即”country：100”将获得搜索查询的前 100 个国家&#x2F;地区）。当前支持以下方面：<br><img src="http://qiniu.austfish.cn/yuque/Fmk2cd6E9QQbobX4d4ntu1-cPeuB.png"><br><img src="http://qiniu.austfish.cn/yuque/FkFTqKhpzn4CXMy3FnzZ7NyK0N4k.png"><br><img src="http://qiniu.austfish.cn/yuque/FtOVKzYvpHunGfk_4m-KFe8u1Psm.png"></p>
 <p><strong>返回例子</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;matches&quot;: [</span><br><span class="line">  &#123;</span><br><span class="line">   &quot;os&quot;: null,</span><br><span class="line">   &quot;timestamp&quot;: &quot;2014-01-15T05:49:56.283713&quot;,</span><br><span class="line">   &quot;isp&quot;: &quot;Vivacom&quot;,</span><br><span class="line">   &quot;asn&quot;: &quot;AS8866&quot;,</span><br><span class="line">   &quot;hostnames&quot;: [ ],</span><br><span class="line">   &quot;location&quot;: &#123;</span><br><span class="line">    &quot;city&quot;: null,</span><br><span class="line">    &quot;region_code&quot;: null,</span><br><span class="line">    &quot;area_code&quot;: null,</span><br><span class="line">    &quot;longitude&quot;: 25,</span><br><span class="line">    &quot;country_code3&quot;: &quot;BGR&quot;,</span><br><span class="line">    &quot;country_name&quot;: &quot;Bulgaria&quot;,</span><br><span class="line">    &quot;postal_code&quot;: null,</span><br><span class="line">    &quot;dma_code&quot;: null,</span><br><span class="line">    &quot;country_code&quot;: &quot;BG&quot;,</span><br><span class="line">    &quot;latitude&quot;: 43</span><br><span class="line">   &#125;,</span><br><span class="line">   &quot;ip&quot;: 3579573318,</span><br><span class="line">   &quot;domains&quot;: [ ],</span><br><span class="line">   &quot;org&quot;: &quot;Vivacom&quot;,</span><br><span class="line">   &quot;data&quot;: &quot;@PJL INFO STATUS CODE=35078 DISPLAY=&quot;Power Saver&quot; ONLINE=TRUE &quot;,</span><br><span class="line">   &quot;port&quot;: 9100,</span><br><span class="line">   &quot;ip_str&quot;: &quot;213.91.244.70&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line"> ],</span><br><span class="line"> &quot;facets&quot;: &#123;</span><br><span class="line">  &quot;org&quot;: [</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 286,</span><br><span class="line">    &quot;value&quot;: &quot;Korea Telecom&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 229,</span><br><span class="line">    &quot;value&quot;: &quot;Comcast Cable&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 113,</span><br><span class="line">    &quot;value&quot;: &quot;Taiwan Academic Network&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 107,</span><br><span class="line">    &quot;value&quot;: &quot;University of Minnesota&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 104,</span><br><span class="line">    &quot;value&quot;: &quot;Tiawan Academic Network (TANet) Information Center&quot;</span><br><span class="line">   &#125;</span><br><span class="line">  ]</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;total&quot;: 12039&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1204,9 +1305,9 @@ var _hmt = _hmt || [];
 <p><strong>响应示例</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123; &quot;matches&quot;: [ &#123;</span><br><span class="line">    &quot;geoinfo&quot;: &#123;</span><br><span class="line">        &quot;asn&quot;: 45261,</span><br><span class="line">        &quot;city&quot;: &#123;</span><br><span class="line">            &quot;names&quot;: &#123;</span><br><span class="line">                &quot;en&quot;: &quot;Brisbane&quot;,</span><br><span class="line">                &quot;zh-CN&quot;: &quot;\u5e03\u91cc\u65af\u73ed&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;continent&quot;: &#123;</span><br><span class="line">            &quot;code&quot;: &quot;OC&quot;,</span><br><span class="line">            &quot;names&quot;: &#123;</span><br><span class="line">                &quot;en&quot;: &quot;Oceania&quot;,</span><br><span class="line">                &quot;zh-CN&quot;: &quot;\u5927\u6d0b\u6d32&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;country&quot;: &#123;</span><br><span class="line">            &quot;code&quot;: &quot;AU&quot;,</span><br><span class="line">            &quot;names&quot;: &#123;</span><br><span class="line">                &quot;en&quot;: &quot;Australia&quot;,</span><br><span class="line">                &quot;zh-CN&quot;: &quot;\u6fb3\u5927\u5229\u4e9a&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;location&quot;: &#123;</span><br><span class="line">            &quot;lat&quot;: -27.471,</span><br><span class="line">            &quot;lon&quot;: 153.0243</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;ip&quot;: &quot;192.168.1.1&quot;,</span><br><span class="line">    &quot;portinfo&quot;: &#123;</span><br><span class="line">        &quot;app&quot;: &quot;&quot;,</span><br><span class="line">        &quot;banner&quot;: &quot;+OK Hello there.\r\n-ERR Invalid command.\r\n\n&quot;,</span><br><span class="line">        &quot;device&quot;: &quot;&quot;,</span><br><span class="line">        &quot;extrainfo&quot;: &quot;&quot;,</span><br><span class="line">        &quot;hostname&quot;: &quot;&quot;,</span><br><span class="line">        &quot;os&quot;: &quot;&quot;,</span><br><span class="line">        &quot;port&quot;: 110,</span><br><span class="line">        &quot;service&quot;: &quot;&quot;,</span><br><span class="line">        &quot;version&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;timestamp&quot;: &quot;2016-03-09T16:14:04&quot;</span><br><span class="line">    &#125;, ... ...],</span><br><span class="line">   &quot;facets&quot;: &#123;</span><br><span class="line">   &#125;,</span><br><span class="line">    &quot;total&quot;: 28731397</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>HOST 固定属性</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868373284-72fe93e5-b47a-4250-8ad2-e31adaee1c2c.png#align=left&display=inline&height=704&margin=%5Bobject%20Object%5D&originHeight=704&originWidth=834&size=0&status=done&style=none&width=834"></p>
-<p><strong>WEB 固定属性</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868373386-8e2570ed-617d-4915-8d54-117ec3cf7467.png#align=left&display=inline&height=898&margin=%5Bobject%20Object%5D&originHeight=898&originWidth=833&size=0&status=done&style=none&width=833"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868373283-15b11070-3b85-47b4-bedc-e201bec72162.png#align=left&display=inline&height=509&margin=%5Bobject%20Object%5D&originHeight=509&originWidth=831&size=0&status=done&style=none&width=831"></p>
-<h5 id="4-代码调用-1"><a href="#4-代码调用-1" class="headerlink" title="4 代码调用"></a>4 代码调用</h5><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868373516-ae9aef99-1de8-4e42-96bd-07dfce631fd1.png#align=left&display=inline&height=397&margin=%5Bobject%20Object%5D&originHeight=397&originWidth=683&size=0&status=done&style=none&width=683"></p>
+<p><strong>HOST 固定属性</strong><br><img src="http://qiniu.austfish.cn/yuque/FhQdetAJ56WRXYRs0z1Xx6keuWCg.png"></p>
+<p><strong>WEB 固定属性</strong><br><img src="http://qiniu.austfish.cn/yuque/FkbKR84sUT6TUlxy35klF6TV6-i0.png"><br><img src="http://qiniu.austfish.cn/yuque/FkKxuFDJvTEa-g9w01V68jvkM8WB.png"></p>
+<h5 id="4-代码调用-1"><a href="#4-代码调用-1" class="headerlink" title="4 代码调用"></a>4 代码调用</h5><p><img src="http://qiniu.austfish.cn/yuque/FnPV7VAa1p4Mt2CE8o96OB3vGWvR.png"></p>
 <h4 id="0×05-探测资产对比"><a href="#0×05-探测资产对比" class="headerlink" title="0×05 探测资产对比"></a>0×05 探测资产对比</h4><table>
 <thead>
 <tr>
@@ -2415,177 +2516,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/04/08/%E7%BA%A2%E8%93%9D%E6%94%BB%E9%98%B2%E8%B5%84%E6%96%99%E5%90%88%E9%9B%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-扫描器Nmap-使用!扫描原理浅析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/08/%E6%89%AB%E6%8F%8F%E5%99%A8Nmap-%E4%BD%BF%E7%94%A8!%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/">扫描器Nmap-使用/扫描原理浅析</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/08/%E6%89%AB%E6%8F%8F%E5%99%A8Nmap-%E4%BD%BF%E7%94%A8!%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2021-04-08T07:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>Nmap 是一款网络扫描和主机检测的非常有用的工具。Nmap 是不局限于仅仅收集信息和枚举，同时可以用来作为一个漏洞探测器或安全扫描器。它可以适用于 winodws、linux、mac 等操作系统。</p>
-<p><a target="_blank" rel="noopener" href="http://www.nmap.com.cn/">nmap 中文网地址</a>:中文网里面也有比较全的使用手册。</p>
-<h2 id="0x01-安装"><a href="#0x01-安装" class="headerlink" title="0x01 安装"></a>0x01 安装</h2><p>编译安装最新版本 nmap</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar jxvf nmap-7.80.tar.bz2 -C /usr/src/        //解包</span><br><span class="line">cd /usr/src/nmap-7.60/</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install        //配置编译并安装</span><br><span class="line">mv /usr/local/bin/nmap /usr/bin/</span><br></pre></td></tr></table></figure>
-
-<h2 id="0x02-功能与快速使用"><a href="#0x02-功能与快速使用" class="headerlink" title="0x02 功能与快速使用"></a>0x02 功能与快速使用</h2><h5 id="2-1-功能"><a href="#2-1-功能" class="headerlink" title="2.1 功能"></a>2.1 功能</h5><ul>
-<li>主机存活扫描</li>
-<li>端口扫描</li>
-<li>服务扫描</li>
-<li>版本漏洞扫描</li>
-</ul>
-<h5 id="2-2-参数功能表"><a href="#2-2-参数功能表" class="headerlink" title="2.2 参数功能表"></a>2.2 参数功能表</h5><p><strong>目标输入</strong></p>
-<blockquote>
-<p>Nmap 支持主机名,ip,网段的表示方式例如:blah.highon.coffee, namp.org&#x2F;24, 192.168.0.1;10.0.0-25.1-254</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-iL filename                    从文件中读取待检测的目标,文件中的表示方法支持机名,ip,网段</span><br><span class="line">-iR hostnum                     随机选取,进行扫描.如果-iR指定为0,则是无休止的扫描</span><br><span class="line">--exclude host1[, host2]        从扫描任务中需要排除的主机</span><br><span class="line">--exculdefile exclude_file      排除文件中的IP,格式和-iL指定扫描文件的格式相同</span><br></pre></td></tr></table></figure>
-
-<p><strong>主机发现</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-sL                     仅仅是显示,扫描的IP数目,不会进行任何扫描</span><br><span class="line">-sn                     ping扫描,即主机发现</span><br><span class="line">-Pn                     不检测主机存活</span><br><span class="line">-PS/PA/PU/PY[portlist]  TCP SYN Ping/TCP ACK Ping/UDP Ping发现</span><br><span class="line">-PE/PP/PM               使用ICMP echo, timestamp and netmask 请求包发现主机</span><br><span class="line">-PO[prococol list]      使用IP协议包探测对方主机是否开启</span><br><span class="line">-n/-R                   不对IP进行域名反向解析/为所有的IP都进行域名的反响解析</span><br></pre></td></tr></table></figure>
-
-<p><strong>扫描技巧</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-sS/sT/sA/sW/sM                 TCP SYN/TCP connect()/ACK/TCP窗口扫描/TCP Maimon扫描</span><br><span class="line">-sU                             UDP扫描</span><br><span class="line">-sN/sF/sX                       TCP NullFINand Xmas扫描</span><br><span class="line">--scanflags                     自定义TCP包中的flags</span><br><span class="line">-sI zombie host[:probeport]     Idlescan</span><br><span class="line">-sY/sZ                          SCTP INIT/COOKIE-ECHO 扫描</span><br><span class="line">-sO                             使用IP protocol 扫描确定目标机支持的协议类型</span><br><span class="line">-b “FTP relay host”             使用FTP bounce scan</span><br></pre></td></tr></table></figure>
-
-<p><strong>指定端口和扫描顺序</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-p                      特定的端口 -p80,443 或者 -p1-65535</span><br><span class="line">-p U:PORT               扫描udp的某个端口, -p U:53</span><br><span class="line">-F                      快速扫描模式,比默认的扫描端口还少</span><br><span class="line">-r                      不随机扫描端口,默认是随机扫描的</span><br><span class="line">--top-ports &quot;number&quot;    扫描开放概率最高的number个端口,出现的概率需要参考nmap-services文件,ubuntu中该文件位于/usr/share/nmap.nmap默认扫前1000个</span><br><span class="line">--port-ratio &quot;ratio&quot;    扫描指定频率以上的端口</span><br></pre></td></tr></table></figure>
-
-<p><strong>服务版本识别</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-sV                             开放版本探测,可以直接使用-A同时打开操作系统探测和版本探测</span><br><span class="line">--version-intensity &quot;level&quot;     设置版本扫描强度,强度水平说明了应该使用哪些探测报文。数值越高服务越有可能被正确识别。默认是7</span><br><span class="line">--version-light                 打开轻量级模式,为--version-intensity 2的别名</span><br><span class="line">--version-all                   尝试所有探测,为--version-intensity 9的别名</span><br><span class="line">--version-trace                 显示出详细的版本侦测过程信息</span><br></pre></td></tr></table></figure>
-
-<p><strong>脚本扫描</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-sC                             根据端口识别的服务,调用默认脚本</span><br><span class="line">--script=”Lua scripts”          调用的脚本名</span><br><span class="line">--script-args=n1=v1,[n2=v2]     调用的脚本传递的参数</span><br><span class="line">--script-args-file=filename     使用文本传递参数</span><br><span class="line">--script-trace                  显示所有发送和接收到的数据</span><br><span class="line">--script-updatedb               更新脚本的数据库</span><br><span class="line">--script-help=”Lua script”      显示指定脚本的帮助</span><br></pre></td></tr></table></figure>
-
-<p><strong>OS 识别</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-O              启用操作系统检测,-A来同时启用操作系统检测和版本检测</span><br><span class="line">--osscan-limit  针对指定的目标进行操作系统检测(至少需确知该主机分别有一个open和closed的端口)</span><br><span class="line">--osscan-guess  推测操作系统检测结果,当Nmap无法确定所检测的操作系统时会尽可能地提供最相近的匹配Nmap默认进行这种匹配</span><br></pre></td></tr></table></figure>
-
-<p><strong>防火墙&#x2F;IDS 躲避和哄骗</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-f; --mtu value                 指定使用分片、指定数据包的MTU.</span><br><span class="line">-D decoy1,decoy2,ME             使用诱饵隐蔽扫描</span><br><span class="line">-S IP-ADDRESS                   源地址欺骗</span><br><span class="line">-e interface                    使用指定的接口</span><br><span class="line">-g/ --source-port PROTNUM       使用指定源端口</span><br><span class="line">--proxies url1,[url2],...       使用HTTP或者SOCKS4的代理</span><br><span class="line"></span><br><span class="line">--data-length NUM               填充随机数据让数据包长度达到NUM</span><br><span class="line">--ip-options OPTIONS            使用指定的IP选项来发送数据包</span><br><span class="line">--ttl VALUE                     设置IP time-to-live域</span><br><span class="line">--spoof-mac ADDR/PREFIX/VEBDOR  MAC地址伪装</span><br><span class="line">--badsum                        使用错误的checksum来发送数据包</span><br></pre></td></tr></table></figure>
-
-<p><strong>Nmap 输出</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-oN                     将标准输出直接写入指定的文件</span><br><span class="line">-oX                     输出xml文件</span><br><span class="line">-oS                     将所有的输出都改为大写</span><br><span class="line">-oG                     输出便于通过bash或者perl处理的格式,非xml</span><br><span class="line">-oA BASENAME            可将扫描结果以标准格式、XML格式和Grep格式一次性输出</span><br><span class="line">-v                      提高输出信息的详细度</span><br><span class="line">-d level                设置debug级别,最高是9</span><br><span class="line">--reason                显示端口处于带确认状态的原因</span><br><span class="line">--open                  只输出端口状态为open的端口</span><br><span class="line">--packet-trace          显示所有发送或者接收到的数据包</span><br><span class="line">--iflist                显示路由信息和接口,便于调试</span><br><span class="line">--log-errors            把日志等级为errors/warings的日志输出</span><br><span class="line">--append-output         追加到指定的文件</span><br><span class="line">--resume FILENAME       恢复已停止的扫描</span><br><span class="line">--stylesheet PATH/URL   设置XSL样式表转换XML输出</span><br><span class="line">--webxml                从namp.org得到XML的样式</span><br><span class="line">--no-sytlesheet         忽略XML声明的XSL样式表</span><br></pre></td></tr></table></figure>
-
-<p><strong>其他 nmap 选项</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-6                      开启IPv6</span><br><span class="line">-A                      OS识别,版本探测,脚本扫描和traceroute</span><br><span class="line">--datedir DIRNAME       说明用户Nmap数据文件位置</span><br><span class="line">--send-eth / --send-ip  使用原以太网帧发送/在原IP层发送</span><br><span class="line">--privileged            假定用户具有全部权限</span><br><span class="line">--unprovoleged          假定用户不具有全部权限,创建原始套接字需要root权限</span><br><span class="line">-V                      打印版本信息</span><br><span class="line">-h                      输出帮助</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-3-常用命令"><a href="#2-3-常用命令" class="headerlink" title="2.3 常用命令"></a>2.3 常用命令</h5><p><strong>1) 获取远程主机的系统类型及开放端口</strong><br>这里的 &lt; target &gt; 可以是单一 IP, 或主机名，或域名，或子网</p>
-<blockquote>
-<p>-sS TCP SYN 扫描 (又称半开放,或隐身扫描)<br>-P0 允许你关闭 ICMP pings.<br>-sV 打开系统版本检测<br>-O   尝试识别远程操作系统</p>
-</blockquote>
-<p>其它选项:</p>
-<blockquote>
-<p>-A 同时打开操作系统指纹和版本检测<br>-v 详细输出扫描情况.-v 详细输出扫描情况.</p>
-</blockquote>
-<p><code>nmap -sS -P0 -sV -O &lt;target&gt;</code><br><code>nmap -sS -P0 -A -v &lt; target &gt;</code></p>
-<p><strong>2) 列出开放了指定端口的主机列表</strong><br><code>nmap -sT -p 80 -oG – 192.168.1.* | grep open</code></p>
-<p><strong>3) 在网络寻找所有在线主机</strong><br><code>nmap -sP 192.168.1.*</code></p>
-<p>或者也可用以下命令指定 subnet<br><code>nmap -sP 192.168.1.0/24</code></p>
-<p>4**) Ping 指定范围内的 IP 地址**<br><code>nmap -sP 192.168.1.100-254</code></p>
-<p><strong>5) 在某段子网上查找未占用的 IP</strong><br><code>nmap -T4 -sP 192.168.2.0/24 &amp;&amp; egrep “00:00:00:00:00:00″ /proc/net/arp</code></p>
-<p><strong>6) 在局域网上扫找 Conficker 蠕虫病毒</strong><br><code>nmap -PN -T4 -p139,445 -n -v –script=smb-check-vulns –script-args safe=1 192.168.1.1-254</code></p>
-<p><strong>7) 扫描网络上的恶意接入点 （rogue APs）</strong><br><code>nmap -A -p1-85,113,443,8080-8100 -T4 –min-hostgroup 50 –max-rtt-timeout 2000 –initial-rtt-timeout 300 –max-retries 3 –host-timeout 20m –max-scan-delay 1000 -oA wapscan 10.0.0.0/8</code></p>
-<p><strong>8 ) 使用诱饵扫描方法来扫描主机端口</strong><br><code>nmap -sS 192.168.1.10 -D 192.168.1.2</code></p>
-<p><strong>9) 为一个子网列出反向 DNS 记录</strong><br><code>nmap -R -sL 209.85.229.99/27 | awk ‘&#123;if($3==”not”)print”(“$2″) no PTR”;else print$3″ is “$2&#125;’ | grep ‘(‘</code></p>
-<p><strong>10) 显示网络上共有多少台 Linux 及 Win 设备?</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap -F -O 192.168.1.1-255 | grep “Running: ” &gt; /tmp/os; echo “$(cat /tmp/os | grep Linux | wc -l) Linux</span><br><span class="line">device(s)”; echo “$(cat /tmp/os | grep Windows | wc -l) Window(s) device”</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-4-高级用法"><a href="#2-4-高级用法" class="headerlink" title="2.4 高级用法"></a>2.4 高级用法</h5><p>按照脚本分类进行扫描：<code>nmap --script 类别</code></p>
-<ul>
-<li>auth: 负责处理鉴权证书绕开鉴权的脚本</li>
-<li>broadcast: 在局域网内探查更多服务开启状况如 dhcp&#x2F;dns&#x2F;sqlserver 等服务</li>
-<li>brute: 提供暴力破解方式针对常见的应用如 http&#x2F;snmp 等</li>
-<li>default: 使用-sC 或-A 选项扫描时候默认的脚本提供基本脚本扫描能力</li>
-<li>discovery: 对网络进行更多的信息如 SMB 枚举、SNMP 查询等</li>
-<li>dos: 用于进行拒绝服务攻击</li>
-<li>exploit: 利用已知的漏洞入侵系统</li>
-<li>external: 利用第三方的数据库或资源例如进行 whois 解析</li>
-<li>fuzzer: 模糊测试的脚本发送异常的包到目标机探测出潜在漏洞</li>
-<li>intrusive: 入侵性的脚本此类脚本可能引发对方的 IDS&#x2F;IPS 的记录或屏蔽</li>
-<li>malware: 探测目标机是否感染了病毒、开启了后门等信息</li>
-<li>safe: 此类与 intrusive 相反属于安全性脚本</li>
-<li>version: 负责增强服务与版本扫描 Version Detection 功能的脚本</li>
-<li>vuln: 负责检查目标机是否有常见的漏洞 Vulnerability 如是否有 MS08_067</li>
-</ul>
-<h2 id="0x03-端口扫描原理浅析"><a href="#0x03-端口扫描原理浅析" class="headerlink" title="0x03 端口扫描原理浅析"></a>0x03 端口扫描原理浅析</h2><h5 id="3-1-TCP-SYN-scanning"><a href="#3-1-TCP-SYN-scanning" class="headerlink" title="3.1 TCP SYN scanning"></a>3.1 TCP SYN scanning</h5><p>这是 Nmap 默认的扫描方式，通常被称作半开放扫描（Half-open scanning）。</p>
-<p><code>nmap -sS 192.168.1.1</code></p>
-<p>该方式发送 SYN 到目标端口，如果收到 SYN&#x2F;ACK 回复，那么判断端口是开放的；如果收到 RST 包，说明该端口是关闭的。如果没有收到回复，那么判断该端口被屏蔽（Filtered）。</p>
-<p>因为该方式仅发送 SYN 包对目标主机的特定端口，但不建立的完整的 TCP 连接，所以相对比较隐蔽，而且效率比较高，适用范围广。</p>
-<p><strong>TCP SYN 探测到端口关闭：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014920-4e2be61b-8742-47a4-bb1a-1e2d1f18a38b.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>TCP SYN 探测到端口开放：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014957-8fa7dd5e-3c05-4ecd-aed4-cdd35e92e406.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<h5 id="3-2-TCP-connect-scanning"><a href="#3-2-TCP-connect-scanning" class="headerlink" title="3.2 TCP connect scanning"></a>3.2 TCP connect scanning</h5><p>TCP connect 方式使用系统网络 API connect 向目标主机的端口发起连接，如果无法连接，说明该端口关闭。</p>
-<p><code>nmap -sT 192.168.1.1</code></p>
-<p>该方式扫描速度比较慢，而且由于建立完整的 TCP 连接会在目标机上留下记录信息，不够隐蔽。所以，TCP connect 是 TCP SYN 无法使用才考虑选择的方式。</p>
-<p><strong>TCP connect 探测到端口关闭：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014971-b67c0865-fd56-44f6-b8d4-23c6be334c9d.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>TCP connect 探测到端口开放：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014965-28e2ce36-9def-4cbc-a137-b43e7df80e4d.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<h5 id="3-3-TCP-ACK-scanning"><a href="#3-3-TCP-ACK-scanning" class="headerlink" title="3.3 TCP ACK scanning"></a>3.3 TCP ACK scanning</h5><p>向目标主机的端口发送 ACK 包，如果收到 RST 包，说明该端口没有被防火墙屏蔽；没有收到 RST 包，说明被屏蔽。</p>
-<p><code>nmap -sA 192.168.1.1</code></p>
-<p>该方式只能用于确定防火墙是否屏蔽某个端口，可以辅助 TCP SYN 的方式来判断目标主机防火墙的状况。</p>
-<p><strong>TCP ACK 探测到端口被屏蔽：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868014955-590bb262-741c-498b-82ba-34c231eb47e9.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=406&size=0&status=done&style=none&width=406"></p>
-<p><strong>TCP ACK 探测到端口未被屏蔽：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868057092-bacf9a6f-33d6-4e58-8dd1-9047041b4356.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&name=UjQe1jprhn8r.png&originHeight=149&originWidth=406&size=40007&status=done&style=none&width=406" alt="UjQe1jprhn8r.png"></p>
-<h5 id="3-4-TCP-FIN-x2F-Xmas-x2F-NULL-scanning"><a href="#3-4-TCP-FIN-x2F-Xmas-x2F-NULL-scanning" class="headerlink" title="3.4 TCP FIN&#x2F;Xmas&#x2F;NULL scanning"></a>3.4 TCP FIN&#x2F;Xmas&#x2F;NULL scanning</h5><p>这三种扫描方式被称为秘密扫描（Stealthy Scan），因为相对比较隐蔽。FIN 扫描向目标主机的端口发送的 TCP FIN 包或 Xmas tree 包&#x2F;Null 包，如果收到对方 RST 回复包，那么说明该端口是关闭的；没有收到 RST 包说明端口可能是开放的或被屏蔽的（open|filtered），FIN 扫描发送的包只包含 FIN 标识，NULL 扫描不发送数据包上的任何字节，XMAS 扫描发送 FIN、PSH 和 URG 标识的数据包。</p>
-<p><code>nmap -sF 110.130.1.43</code><br><code>nmap -sX 110.130.1.43</code><br><code>nmap -sN 110.130.1.43</code></p>
-<p>其中 Xmas tree 包是指 flags 中 FIN URG PUSH 被置为 1 的 TCP 包；NULL 包是指所有 flags 都为 0 的 TCP 包。</p>
-<p><strong>TCP FIN 探测到主机端口是关闭的：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015502-537a4e4d-7139-4b25-81ed-ab855f8f9bc2.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>TCP FIN 探测到主机端口是开放或屏蔽的：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015352-ea61bc0f-0fa0-4f5b-a439-3b99b0eb0f8f.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<h5 id="3-5-UDP-scanning"><a href="#3-5-UDP-scanning" class="headerlink" title="3.5 UDP scanning"></a>3.5 UDP scanning</h5><p>UDP 扫描方式用于判断 UDP 端口的情况。</p>
-<p><code>nmap -sU 192.168.1.1</code></p>
-<p>向目标主机的 UDP 端口发送探测包，如果收到回复“ICMP port unreachable”就说明该端口是关闭的；如果没有收到回复，那说明 UDP 端口可能是开放的或屏蔽的。</p>
-<p>因此，通过反向排除法的方式来断定哪些 UDP 端口是可能出于开放状态。</p>
-<p><strong>UDP 端口关闭：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015300-c73b6625-5488-4b1a-a069-9b4dfdbd0bd7.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><strong>UDP 端口开放或被屏蔽：</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617868015355-65ce6b68-88c8-444e-bc10-b82fc7ffec32.png#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=402&size=0&status=done&style=none&width=402"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/08/%E6%89%AB%E6%8F%8F%E5%99%A8Nmap-%E4%BD%BF%E7%94%A8!%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/">展开全文 >></a>
         </p>
       
 

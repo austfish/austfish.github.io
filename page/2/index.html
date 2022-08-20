@@ -159,6 +159,177 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-扫描器Nmap-使用!扫描原理浅析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/08/%E6%89%AB%E6%8F%8F%E5%99%A8Nmap-%E4%BD%BF%E7%94%A8!%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/">扫描器Nmap-使用/扫描原理浅析</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/08/%E6%89%AB%E6%8F%8F%E5%99%A8Nmap-%E4%BD%BF%E7%94%A8!%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2021-04-08T07:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>Nmap 是一款网络扫描和主机检测的非常有用的工具。Nmap 是不局限于仅仅收集信息和枚举，同时可以用来作为一个漏洞探测器或安全扫描器。它可以适用于 winodws、linux、mac 等操作系统。</p>
+<p><a target="_blank" rel="noopener" href="http://www.nmap.com.cn/">nmap 中文网地址</a>:中文网里面也有比较全的使用手册。</p>
+<h2 id="0x01-安装"><a href="#0x01-安装" class="headerlink" title="0x01 安装"></a>0x01 安装</h2><p>编译安装最新版本 nmap</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar jxvf nmap-7.80.tar.bz2 -C /usr/src/        //解包</span><br><span class="line">cd /usr/src/nmap-7.60/</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install        //配置编译并安装</span><br><span class="line">mv /usr/local/bin/nmap /usr/bin/</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-功能与快速使用"><a href="#0x02-功能与快速使用" class="headerlink" title="0x02 功能与快速使用"></a>0x02 功能与快速使用</h2><h5 id="2-1-功能"><a href="#2-1-功能" class="headerlink" title="2.1 功能"></a>2.1 功能</h5><ul>
+<li>主机存活扫描</li>
+<li>端口扫描</li>
+<li>服务扫描</li>
+<li>版本漏洞扫描</li>
+</ul>
+<h5 id="2-2-参数功能表"><a href="#2-2-参数功能表" class="headerlink" title="2.2 参数功能表"></a>2.2 参数功能表</h5><p><strong>目标输入</strong></p>
+<blockquote>
+<p>Nmap 支持主机名,ip,网段的表示方式例如:blah.highon.coffee, namp.org&#x2F;24, 192.168.0.1;10.0.0-25.1-254</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-iL filename                    从文件中读取待检测的目标,文件中的表示方法支持机名,ip,网段</span><br><span class="line">-iR hostnum                     随机选取,进行扫描.如果-iR指定为0,则是无休止的扫描</span><br><span class="line">--exclude host1[, host2]        从扫描任务中需要排除的主机</span><br><span class="line">--exculdefile exclude_file      排除文件中的IP,格式和-iL指定扫描文件的格式相同</span><br></pre></td></tr></table></figure>
+
+<p><strong>主机发现</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-sL                     仅仅是显示,扫描的IP数目,不会进行任何扫描</span><br><span class="line">-sn                     ping扫描,即主机发现</span><br><span class="line">-Pn                     不检测主机存活</span><br><span class="line">-PS/PA/PU/PY[portlist]  TCP SYN Ping/TCP ACK Ping/UDP Ping发现</span><br><span class="line">-PE/PP/PM               使用ICMP echo, timestamp and netmask 请求包发现主机</span><br><span class="line">-PO[prococol list]      使用IP协议包探测对方主机是否开启</span><br><span class="line">-n/-R                   不对IP进行域名反向解析/为所有的IP都进行域名的反响解析</span><br></pre></td></tr></table></figure>
+
+<p><strong>扫描技巧</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-sS/sT/sA/sW/sM                 TCP SYN/TCP connect()/ACK/TCP窗口扫描/TCP Maimon扫描</span><br><span class="line">-sU                             UDP扫描</span><br><span class="line">-sN/sF/sX                       TCP NullFINand Xmas扫描</span><br><span class="line">--scanflags                     自定义TCP包中的flags</span><br><span class="line">-sI zombie host[:probeport]     Idlescan</span><br><span class="line">-sY/sZ                          SCTP INIT/COOKIE-ECHO 扫描</span><br><span class="line">-sO                             使用IP protocol 扫描确定目标机支持的协议类型</span><br><span class="line">-b “FTP relay host”             使用FTP bounce scan</span><br></pre></td></tr></table></figure>
+
+<p><strong>指定端口和扫描顺序</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-p                      特定的端口 -p80,443 或者 -p1-65535</span><br><span class="line">-p U:PORT               扫描udp的某个端口, -p U:53</span><br><span class="line">-F                      快速扫描模式,比默认的扫描端口还少</span><br><span class="line">-r                      不随机扫描端口,默认是随机扫描的</span><br><span class="line">--top-ports &quot;number&quot;    扫描开放概率最高的number个端口,出现的概率需要参考nmap-services文件,ubuntu中该文件位于/usr/share/nmap.nmap默认扫前1000个</span><br><span class="line">--port-ratio &quot;ratio&quot;    扫描指定频率以上的端口</span><br></pre></td></tr></table></figure>
+
+<p><strong>服务版本识别</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-sV                             开放版本探测,可以直接使用-A同时打开操作系统探测和版本探测</span><br><span class="line">--version-intensity &quot;level&quot;     设置版本扫描强度,强度水平说明了应该使用哪些探测报文。数值越高服务越有可能被正确识别。默认是7</span><br><span class="line">--version-light                 打开轻量级模式,为--version-intensity 2的别名</span><br><span class="line">--version-all                   尝试所有探测,为--version-intensity 9的别名</span><br><span class="line">--version-trace                 显示出详细的版本侦测过程信息</span><br></pre></td></tr></table></figure>
+
+<p><strong>脚本扫描</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-sC                             根据端口识别的服务,调用默认脚本</span><br><span class="line">--script=”Lua scripts”          调用的脚本名</span><br><span class="line">--script-args=n1=v1,[n2=v2]     调用的脚本传递的参数</span><br><span class="line">--script-args-file=filename     使用文本传递参数</span><br><span class="line">--script-trace                  显示所有发送和接收到的数据</span><br><span class="line">--script-updatedb               更新脚本的数据库</span><br><span class="line">--script-help=”Lua script”      显示指定脚本的帮助</span><br></pre></td></tr></table></figure>
+
+<p><strong>OS 识别</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-O              启用操作系统检测,-A来同时启用操作系统检测和版本检测</span><br><span class="line">--osscan-limit  针对指定的目标进行操作系统检测(至少需确知该主机分别有一个open和closed的端口)</span><br><span class="line">--osscan-guess  推测操作系统检测结果,当Nmap无法确定所检测的操作系统时会尽可能地提供最相近的匹配Nmap默认进行这种匹配</span><br></pre></td></tr></table></figure>
+
+<p><strong>防火墙&#x2F;IDS 躲避和哄骗</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-f; --mtu value                 指定使用分片、指定数据包的MTU.</span><br><span class="line">-D decoy1,decoy2,ME             使用诱饵隐蔽扫描</span><br><span class="line">-S IP-ADDRESS                   源地址欺骗</span><br><span class="line">-e interface                    使用指定的接口</span><br><span class="line">-g/ --source-port PROTNUM       使用指定源端口</span><br><span class="line">--proxies url1,[url2],...       使用HTTP或者SOCKS4的代理</span><br><span class="line"></span><br><span class="line">--data-length NUM               填充随机数据让数据包长度达到NUM</span><br><span class="line">--ip-options OPTIONS            使用指定的IP选项来发送数据包</span><br><span class="line">--ttl VALUE                     设置IP time-to-live域</span><br><span class="line">--spoof-mac ADDR/PREFIX/VEBDOR  MAC地址伪装</span><br><span class="line">--badsum                        使用错误的checksum来发送数据包</span><br></pre></td></tr></table></figure>
+
+<p><strong>Nmap 输出</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-oN                     将标准输出直接写入指定的文件</span><br><span class="line">-oX                     输出xml文件</span><br><span class="line">-oS                     将所有的输出都改为大写</span><br><span class="line">-oG                     输出便于通过bash或者perl处理的格式,非xml</span><br><span class="line">-oA BASENAME            可将扫描结果以标准格式、XML格式和Grep格式一次性输出</span><br><span class="line">-v                      提高输出信息的详细度</span><br><span class="line">-d level                设置debug级别,最高是9</span><br><span class="line">--reason                显示端口处于带确认状态的原因</span><br><span class="line">--open                  只输出端口状态为open的端口</span><br><span class="line">--packet-trace          显示所有发送或者接收到的数据包</span><br><span class="line">--iflist                显示路由信息和接口,便于调试</span><br><span class="line">--log-errors            把日志等级为errors/warings的日志输出</span><br><span class="line">--append-output         追加到指定的文件</span><br><span class="line">--resume FILENAME       恢复已停止的扫描</span><br><span class="line">--stylesheet PATH/URL   设置XSL样式表转换XML输出</span><br><span class="line">--webxml                从namp.org得到XML的样式</span><br><span class="line">--no-sytlesheet         忽略XML声明的XSL样式表</span><br></pre></td></tr></table></figure>
+
+<p><strong>其他 nmap 选项</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-6                      开启IPv6</span><br><span class="line">-A                      OS识别,版本探测,脚本扫描和traceroute</span><br><span class="line">--datedir DIRNAME       说明用户Nmap数据文件位置</span><br><span class="line">--send-eth / --send-ip  使用原以太网帧发送/在原IP层发送</span><br><span class="line">--privileged            假定用户具有全部权限</span><br><span class="line">--unprovoleged          假定用户不具有全部权限,创建原始套接字需要root权限</span><br><span class="line">-V                      打印版本信息</span><br><span class="line">-h                      输出帮助</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-常用命令"><a href="#2-3-常用命令" class="headerlink" title="2.3 常用命令"></a>2.3 常用命令</h5><p><strong>1) 获取远程主机的系统类型及开放端口</strong><br>这里的 &lt; target &gt; 可以是单一 IP, 或主机名，或域名，或子网</p>
+<blockquote>
+<p>-sS TCP SYN 扫描 (又称半开放,或隐身扫描)<br>-P0 允许你关闭 ICMP pings.<br>-sV 打开系统版本检测<br>-O   尝试识别远程操作系统</p>
+</blockquote>
+<p>其它选项:</p>
+<blockquote>
+<p>-A 同时打开操作系统指纹和版本检测<br>-v 详细输出扫描情况.-v 详细输出扫描情况.</p>
+</blockquote>
+<p><code>nmap -sS -P0 -sV -O &lt;target&gt;</code><br><code>nmap -sS -P0 -A -v &lt; target &gt;</code></p>
+<p><strong>2) 列出开放了指定端口的主机列表</strong><br><code>nmap -sT -p 80 -oG – 192.168.1.* | grep open</code></p>
+<p><strong>3) 在网络寻找所有在线主机</strong><br><code>nmap -sP 192.168.1.*</code></p>
+<p>或者也可用以下命令指定 subnet<br><code>nmap -sP 192.168.1.0/24</code></p>
+<p>4**) Ping 指定范围内的 IP 地址**<br><code>nmap -sP 192.168.1.100-254</code></p>
+<p><strong>5) 在某段子网上查找未占用的 IP</strong><br><code>nmap -T4 -sP 192.168.2.0/24 &amp;&amp; egrep “00:00:00:00:00:00″ /proc/net/arp</code></p>
+<p><strong>6) 在局域网上扫找 Conficker 蠕虫病毒</strong><br><code>nmap -PN -T4 -p139,445 -n -v –script=smb-check-vulns –script-args safe=1 192.168.1.1-254</code></p>
+<p><strong>7) 扫描网络上的恶意接入点 （rogue APs）</strong><br><code>nmap -A -p1-85,113,443,8080-8100 -T4 –min-hostgroup 50 –max-rtt-timeout 2000 –initial-rtt-timeout 300 –max-retries 3 –host-timeout 20m –max-scan-delay 1000 -oA wapscan 10.0.0.0/8</code></p>
+<p><strong>8 ) 使用诱饵扫描方法来扫描主机端口</strong><br><code>nmap -sS 192.168.1.10 -D 192.168.1.2</code></p>
+<p><strong>9) 为一个子网列出反向 DNS 记录</strong><br><code>nmap -R -sL 209.85.229.99/27 | awk ‘&#123;if($3==”not”)print”(“$2″) no PTR”;else print$3″ is “$2&#125;’ | grep ‘(‘</code></p>
+<p><strong>10) 显示网络上共有多少台 Linux 及 Win 设备?</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap -F -O 192.168.1.1-255 | grep “Running: ” &gt; /tmp/os; echo “$(cat /tmp/os | grep Linux | wc -l) Linux</span><br><span class="line">device(s)”; echo “$(cat /tmp/os | grep Windows | wc -l) Window(s) device”</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-4-高级用法"><a href="#2-4-高级用法" class="headerlink" title="2.4 高级用法"></a>2.4 高级用法</h5><p>按照脚本分类进行扫描：<code>nmap --script 类别</code></p>
+<ul>
+<li>auth: 负责处理鉴权证书绕开鉴权的脚本</li>
+<li>broadcast: 在局域网内探查更多服务开启状况如 dhcp&#x2F;dns&#x2F;sqlserver 等服务</li>
+<li>brute: 提供暴力破解方式针对常见的应用如 http&#x2F;snmp 等</li>
+<li>default: 使用-sC 或-A 选项扫描时候默认的脚本提供基本脚本扫描能力</li>
+<li>discovery: 对网络进行更多的信息如 SMB 枚举、SNMP 查询等</li>
+<li>dos: 用于进行拒绝服务攻击</li>
+<li>exploit: 利用已知的漏洞入侵系统</li>
+<li>external: 利用第三方的数据库或资源例如进行 whois 解析</li>
+<li>fuzzer: 模糊测试的脚本发送异常的包到目标机探测出潜在漏洞</li>
+<li>intrusive: 入侵性的脚本此类脚本可能引发对方的 IDS&#x2F;IPS 的记录或屏蔽</li>
+<li>malware: 探测目标机是否感染了病毒、开启了后门等信息</li>
+<li>safe: 此类与 intrusive 相反属于安全性脚本</li>
+<li>version: 负责增强服务与版本扫描 Version Detection 功能的脚本</li>
+<li>vuln: 负责检查目标机是否有常见的漏洞 Vulnerability 如是否有 MS08_067</li>
+</ul>
+<h2 id="0x03-端口扫描原理浅析"><a href="#0x03-端口扫描原理浅析" class="headerlink" title="0x03 端口扫描原理浅析"></a>0x03 端口扫描原理浅析</h2><h5 id="3-1-TCP-SYN-scanning"><a href="#3-1-TCP-SYN-scanning" class="headerlink" title="3.1 TCP SYN scanning"></a>3.1 TCP SYN scanning</h5><p>这是 Nmap 默认的扫描方式，通常被称作半开放扫描（Half-open scanning）。</p>
+<p><code>nmap -sS 192.168.1.1</code></p>
+<p>该方式发送 SYN 到目标端口，如果收到 SYN&#x2F;ACK 回复，那么判断端口是开放的；如果收到 RST 包，说明该端口是关闭的。如果没有收到回复，那么判断该端口被屏蔽（Filtered）。</p>
+<p>因为该方式仅发送 SYN 包对目标主机的特定端口，但不建立的完整的 TCP 连接，所以相对比较隐蔽，而且效率比较高，适用范围广。</p>
+<p><strong>TCP SYN 探测到端口关闭：</strong><br><img src="http://qiniu.austfish.cn/yuque/FoyHl9iGfnuiceN360ptmMdjagWn.png"></p>
+<p><strong>TCP SYN 探测到端口开放：</strong><br><img src="http://qiniu.austfish.cn/yuque/FmgNYHJlUjue43F9EZ7utNRni27w.png"></p>
+<h5 id="3-2-TCP-connect-scanning"><a href="#3-2-TCP-connect-scanning" class="headerlink" title="3.2 TCP connect scanning"></a>3.2 TCP connect scanning</h5><p>TCP connect 方式使用系统网络 API connect 向目标主机的端口发起连接，如果无法连接，说明该端口关闭。</p>
+<p><code>nmap -sT 192.168.1.1</code></p>
+<p>该方式扫描速度比较慢，而且由于建立完整的 TCP 连接会在目标机上留下记录信息，不够隐蔽。所以，TCP connect 是 TCP SYN 无法使用才考虑选择的方式。</p>
+<p><strong>TCP connect 探测到端口关闭：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fv4_BY0ENXb04HEd5538wLYI1cTJ.png"></p>
+<p><strong>TCP connect 探测到端口开放：</strong><br><img src="http://qiniu.austfish.cn/yuque/FqTJ0tHemWWAeNvyhpNuhNUZEtHu.png"></p>
+<h5 id="3-3-TCP-ACK-scanning"><a href="#3-3-TCP-ACK-scanning" class="headerlink" title="3.3 TCP ACK scanning"></a>3.3 TCP ACK scanning</h5><p>向目标主机的端口发送 ACK 包，如果收到 RST 包，说明该端口没有被防火墙屏蔽；没有收到 RST 包，说明被屏蔽。</p>
+<p><code>nmap -sA 192.168.1.1</code></p>
+<p>该方式只能用于确定防火墙是否屏蔽某个端口，可以辅助 TCP SYN 的方式来判断目标主机防火墙的状况。</p>
+<p><strong>TCP ACK 探测到端口被屏蔽：</strong><br><img src="http://qiniu.austfish.cn/yuque/FkRvAWMfNZEo7tJIoDR-aojEggaQ.png"></p>
+<p><strong>TCP ACK 探测到端口未被屏蔽：</strong><br><img src="http://qiniu.austfish.cn/yuque/FsVcr82NKf62XiEw07xFKIgpWdLv.png"></p>
+<h5 id="3-4-TCP-FIN-x2F-Xmas-x2F-NULL-scanning"><a href="#3-4-TCP-FIN-x2F-Xmas-x2F-NULL-scanning" class="headerlink" title="3.4 TCP FIN&#x2F;Xmas&#x2F;NULL scanning"></a>3.4 TCP FIN&#x2F;Xmas&#x2F;NULL scanning</h5><p>这三种扫描方式被称为秘密扫描（Stealthy Scan），因为相对比较隐蔽。FIN 扫描向目标主机的端口发送的 TCP FIN 包或 Xmas tree 包&#x2F;Null 包，如果收到对方 RST 回复包，那么说明该端口是关闭的；没有收到 RST 包说明端口可能是开放的或被屏蔽的（open|filtered），FIN 扫描发送的包只包含 FIN 标识，NULL 扫描不发送数据包上的任何字节，XMAS 扫描发送 FIN、PSH 和 URG 标识的数据包。</p>
+<p><code>nmap -sF 110.130.1.43</code><br><code>nmap -sX 110.130.1.43</code><br><code>nmap -sN 110.130.1.43</code></p>
+<p>其中 Xmas tree 包是指 flags 中 FIN URG PUSH 被置为 1 的 TCP 包；NULL 包是指所有 flags 都为 0 的 TCP 包。</p>
+<p><strong>TCP FIN 探测到主机端口是关闭的：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fntf-tguV0L-tJ-E34bjbRJMN-r7.png"></p>
+<p><strong>TCP FIN 探测到主机端口是开放或屏蔽的：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fhzr4wiom_IhsI5hsz760zDpNiw_.png"></p>
+<h5 id="3-5-UDP-scanning"><a href="#3-5-UDP-scanning" class="headerlink" title="3.5 UDP scanning"></a>3.5 UDP scanning</h5><p>UDP 扫描方式用于判断 UDP 端口的情况。</p>
+<p><code>nmap -sU 192.168.1.1</code></p>
+<p>向目标主机的 UDP 端口发送探测包，如果收到回复“ICMP port unreachable”就说明该端口是关闭的；如果没有收到回复，那说明 UDP 端口可能是开放的或屏蔽的。</p>
+<p>因此，通过反向排除法的方式来断定哪些 UDP 端口是可能出于开放状态。</p>
+<p><strong>UDP 端口关闭：</strong><br><img src="http://qiniu.austfish.cn/yuque/Fn-WL9kYoVaUlHFGpmOy3GEg9SX3.png"></p>
+<p><strong>UDP 端口开放或被屏蔽：</strong><br><img src="http://qiniu.austfish.cn/yuque/FneToWDnlGstcrlengNbCcy7utHn.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/08/%E6%89%AB%E6%8F%8F%E5%99%A8Nmap-%E4%BD%BF%E7%94%A8!%E6%89%AB%E6%8F%8F%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-扫描器Masscan-使用!扫描原理浅析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -198,7 +369,7 @@ var _hmt = _hmt || [];
 <li>服务端收到数据包，检测到了标志位的 syn 标志，知道这是客户端发来的建立连接的请求包，服务端会回复一个数据包，同时设置 syn 和 ack 标志位，服务器随机生成一个数字填充到 seq 字段。并将客户端发送的 seq 数据包+1 填充到 ack 确认号上。</li>
 <li>在收到 syn 和 ack 后，我们返回一个 rst 来结束这个连接，如图所示</li>
 </ol>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867984117-8b807d56-dc2d-4e85-9626-7c6b9b8b9f75.png#align=left&display=inline&height=470&margin=%5Bobject%20Object%5D&originHeight=470&originWidth=713&size=0&status=done&style=none&width=713"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867983979-1bebc4f7-9fd0-4f80-bb34-a314551d3f9f.png#align=left&display=inline&height=374&margin=%5Bobject%20Object%5D&originHeight=374&originWidth=553&size=0&status=done&style=none&width=553"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FgQd_m1CY9uDeHKslq7b7E0LHc5k.png"><br><img src="http://qiniu.austfish.cn/yuque/FrSAwc-yieABIX4ZvRosOZrfR_xl.png"></p>
 <p>masscan 无状态扫描原理，就是利用了这一步，因为 seq 是可以自定义的，所以在发送数据包时填充一个特定的数字，而在返回包中可以获得相应的响应状态，即是无状态扫描的思路了。</p>
 <h5 id="4-2-随机化地址扫描"><a href="#4-2-随机化地址扫描" class="headerlink" title="4.2 随机化地址扫描"></a>4.2 随机化地址扫描</h5><p>在读取地址后，如果进行顺序扫描，伪代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="built_in">range</span>; i++) &#123;</span><br><span class="line">    scan(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -284,8 +455,8 @@ var _hmt = _hmt || [];
 <li>inurl    URL 存在关键字的网页</li>
 <li>filetype 搜索指定文件类型</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867919961-5c3975c1-6b7e-4ed0-b5eb-58ae3e975a42.png#align=left&display=inline&height=348&margin=%5Bobject%20Object%5D&name=5ff57f1244cac.png&originHeight=348&originWidth=610&size=22196&status=done&style=none&width=610" alt="5ff57f1244cac.png"></p>
-<h2 id="0x03-功能介绍"><a href="#0x03-功能介绍" class="headerlink" title="0x03 功能介绍"></a>0x03 功能介绍</h2><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617867927001-13359a3c-0eaf-40ba-a22d-6f0cbf67fa45.png#align=left&display=inline&height=203&margin=%5Bobject%20Object%5D&name=5ff57f69bf2a4.png&originHeight=203&originWidth=860&size=26418&status=done&style=none&width=860" alt="5ff57f69bf2a4.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fmjor8OyV9dJ0GISQ5ZzjHQhWp3q.png"></p>
+<h2 id="0x03-功能介绍"><a href="#0x03-功能介绍" class="headerlink" title="0x03 功能介绍"></a>0x03 功能介绍</h2><p><img src="http://qiniu.austfish.cn/yuque/FlLhINvnuz7eI-4a2c5j53uBsH6Q.png"></p>
 <ul>
 <li>file<ul>
 <li>公开披露的文件</li>
@@ -675,7 +846,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="0×01-并发与并行的区别是什么？"><a href="#0×01-并发与并行的区别是什么？" class="headerlink" title="0×01 并发与并行的区别是什么？"></a>0×01 并发与并行的区别是什么？</h2><p>Erlang 之父 Joe Armstrong 用一张 5 岁小孩都能看懂的图解释了并发与并行的区别</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866851476-cc551d89-da27-4b94-89ee-299e094fddf6.png#align=left&display=inline&height=451&margin=%5Bobject%20Object%5D&name=5f72a088d2432.png&originHeight=451&originWidth=600&size=94254&status=done&style=none&width=600" alt="5f72a088d2432.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FuHtYCuoyT70yZgdCc0ohr7Lh-hS.png"></p>
 <p>Erlang 之父 Joe Armstrong 用一张 5 岁小孩都能看懂的图解释了并发与并行的区别</p>
 <p><strong>提问：并发是不是一个线程，并行是多个线程？</strong><br><strong>回答：并发和并行都可以是很多个线程，就看这些线程能不能同时被（多个）CPU 执行，如果说可以就说明是并行，而并发是多个线程（一个）CPU 轮流切换着执行。</strong></p>
 <h2 id="0×02-线程"><a href="#0×02-线程" class="headerlink" title="0×02 线程"></a>0×02 线程</h2><p><strong>概念</strong>:线程是应用程序中工作的最小单元，或者又称之为微进程。</p>
@@ -871,7 +1042,7 @@ var _hmt = _hmt || [];
 <li>Win2K3 为内网域成员主机，</li>
 <li>WinSever 2008 R2 为内网域控主机。</li>
 </ol>
-<h3 id="2-网络拓扑及-IP-规划"><a href="#2-网络拓扑及-IP-规划" class="headerlink" title="2 网络拓扑及 IP 规划"></a>2 网络拓扑及 IP 规划</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612111-84fab1b9-cd8c-4c11-b294-c82f48d7b588.png#align=left&display=inline&height=291&margin=%5Bobject%20Object%5D&originHeight=291&originWidth=802&size=0&status=done&style=none&width=802"></p>
+<h3 id="2-网络拓扑及-IP-规划"><a href="#2-网络拓扑及-IP-规划" class="headerlink" title="2 网络拓扑及 IP 规划"></a>2 网络拓扑及 IP 规划</h3><p><img src="http://qiniu.austfish.cn/yuque/FigxpihUpbzXo3FWHrPOCYH1_125.png"></p>
 <ul>
 <li>Kail 攻击机只有外网网卡——外网 IP：10.0.19.107</li>
 <li>Windows 7 有双网卡，也就是内外网 IP<ul>
@@ -889,38 +1060,38 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 <h3 id="3-靶机服务启动"><a href="#3-靶机服务启动" class="headerlink" title="3 靶机服务启动"></a>3 靶机服务启动</h3><p>在 Win7 主机上开启 phpstuday，使用 kali 攻击机访问</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612237-60e73412-2abb-4307-af4d-e42fd578dd7c.png#align=left&display=inline&height=336&margin=%5Bobject%20Object%5D&originHeight=336&originWidth=402&size=0&status=done&style=none&width=402"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612196-f0373706-9be5-482c-aadc-12f6206fbd5d.png#align=left&display=inline&height=810&margin=%5Bobject%20Object%5D&originHeight=810&originWidth=936&size=0&status=done&style=none&width=936"></p>
-<h2 id="0×03-漏洞利用"><a href="#0×03-漏洞利用" class="headerlink" title="0×03 漏洞利用"></a>0×03 漏洞利用</h2><h3 id="1-信息收集"><a href="#1-信息收集" class="headerlink" title="1 信息收集"></a>1 信息收集</h3><h4 id="1-1-首先使用-nmap-探测活跃主机地址"><a href="#1-1-首先使用-nmap-探测活跃主机地址" class="headerlink" title="1.1 首先使用 nmap 探测活跃主机地址"></a>1.1 首先使用 nmap 探测活跃主机地址</h4><p>发现多个端口以及对应的服务<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612106-2db55c3c-820d-49bf-8e3e-f5a3f9e3cc87.png#align=left&display=inline&height=329&margin=%5Bobject%20Object%5D&originHeight=329&originWidth=466&size=0&status=done&style=none&width=466"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fkkuy1FtBH-mOuqSjLCXghOUHau-.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fll4gjKZo7I8bVq7-MN8Iwk8uz-u.png"></p>
+<h2 id="0×03-漏洞利用"><a href="#0×03-漏洞利用" class="headerlink" title="0×03 漏洞利用"></a>0×03 漏洞利用</h2><h3 id="1-信息收集"><a href="#1-信息收集" class="headerlink" title="1 信息收集"></a>1 信息收集</h3><h4 id="1-1-首先使用-nmap-探测活跃主机地址"><a href="#1-1-首先使用-nmap-探测活跃主机地址" class="headerlink" title="1.1 首先使用 nmap 探测活跃主机地址"></a>1.1 首先使用 nmap 探测活跃主机地址</h4><p>发现多个端口以及对应的服务<br><img src="http://qiniu.austfish.cn/yuque/Fq4-10JwCqakuK7Zxn0y0tUSPvhv.png"></p>
 <h5 id="1-2-发现主机开启-80-端口，尝试访问"><a href="#1-2-发现主机开启-80-端口，尝试访问" class="headerlink" title="1.2 发现主机开启 80 端口，尝试访问"></a>1.2 发现主机开启 80 端口，尝试访问</h5><ul>
 <li>得到了管理员邮箱，可以使用社工攻击或钓鱼邮件等</li>
 <li>一些版本信息，可以搜集对应版本是否存在漏洞等，</li>
 <li>绝对路径，可以用于 SQL 注入写入一句话木马</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612117-698ca85b-c4d7-4382-9acc-ebf02de5c97c.png#align=left&display=inline&height=314&margin=%5Bobject%20Object%5D&originHeight=314&originWidth=946&size=0&status=done&style=none&width=946"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FvcTE3er9paP_TlCTTo99P18fqj2.png"></p>
 <h5 id="1-3-使用-dirsearch-御剑进行目录扫描"><a href="#1-3-使用-dirsearch-御剑进行目录扫描" class="headerlink" title="1.3 使用 dirsearch+御剑进行目录扫描"></a>1.3 使用 dirsearch+御剑进行目录扫描</h5><ul>
 <li>得到 phpmyadmin 数据库登录界面，</li>
 <li>beifen.rar 解压后猜测为 YXcms 网站管理系统的备份文件，尝试访问。</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612061-5496052e-1c5a-47b7-8abd-b5f7e57b949a.png#align=left&display=inline&height=620&margin=%5Bobject%20Object%5D&originHeight=620&originWidth=566&size=0&status=done&style=none&width=566"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612521-2fcb9c68-15c6-4864-ad7a-8b4b8137d197.png#align=left&display=inline&height=203&margin=%5Bobject%20Object%5D&originHeight=203&originWidth=776&size=0&status=done&style=none&width=776"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612507-6066ac34-7323-421e-8420-df04d6280d38.png#align=left&display=inline&height=605&margin=%5Bobject%20Object%5D&originHeight=605&originWidth=1242&size=0&status=done&style=none&width=1242"><br><strong>获得相关敏感信息</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612980-f610c178-9781-445b-b151-ae531623eb07.png#align=left&display=inline&height=460&margin=%5Bobject%20Object%5D&originHeight=460&originWidth=786&size=0&status=done&style=none&width=786"></p>
-<h4 id="2-漏洞利用"><a href="#2-漏洞利用" class="headerlink" title="2 漏洞利用"></a>2 漏洞利用</h4><h5 id="2-1-YXCMS-弱口令"><a href="#2-1-YXCMS-弱口令" class="headerlink" title="2.1 YXCMS 弱口令"></a>2.1 YXCMS 弱口令</h5><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613595-039e58f5-6048-4605-bf88-b13c81207512.png#align=left&display=inline&height=874&margin=%5Bobject%20Object%5D&originHeight=874&originWidth=1200&size=0&status=done&style=none&width=1200"><br><strong>默认弱口令进入后台</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612711-236dcb09-b28f-4a12-934a-d5c547fda259.png#align=left&display=inline&height=514&margin=%5Bobject%20Object%5D&originHeight=514&originWidth=1679&size=0&status=done&style=none&width=1679"></p>
-<h5 id="2-2-PHPMYADMIN-弱口令"><a href="#2-2-PHPMYADMIN-弱口令" class="headerlink" title="2.2 PHPMYADMIN 弱口令"></a>2.2 PHPMYADMIN 弱口令</h5><p>root&#x2F;root 弱口令登录成功<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613032-cc4e6b20-fb9b-4815-b0d6-719fb9834cca.png#align=left&display=inline&height=646&margin=%5Bobject%20Object%5D&originHeight=646&originWidth=1674&size=0&status=done&style=none&width=1674"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fnbyh0HobCxWBl2R_PdVIg760erR.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FtcsWAxGBnBHpeCWhyy_vj6DN6If.png"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Fo32ONRPYFY4c9YwDNvWMQNaqYiA.png"><br><strong>获得相关敏感信息</strong><br><img src="http://qiniu.austfish.cn/yuque/FmqxDc2iFsUR8-pHhsvri_6L8YeN.png"></p>
+<h4 id="2-漏洞利用"><a href="#2-漏洞利用" class="headerlink" title="2 漏洞利用"></a>2 漏洞利用</h4><h5 id="2-1-YXCMS-弱口令"><a href="#2-1-YXCMS-弱口令" class="headerlink" title="2.1 YXCMS 弱口令"></a>2.1 YXCMS 弱口令</h5><p><img src="http://qiniu.austfish.cn/yuque/Fvv9X6cs4i8XrgVSFeaqNKQwd9ob.png"><br><strong>默认弱口令进入后台</strong><br><img src="http://qiniu.austfish.cn/yuque/FppzFItzjMbzsQISoOwyeFgril6c.png"></p>
+<h5 id="2-2-PHPMYADMIN-弱口令"><a href="#2-2-PHPMYADMIN-弱口令" class="headerlink" title="2.2 PHPMYADMIN 弱口令"></a>2.2 PHPMYADMIN 弱口令</h5><p>root&#x2F;root 弱口令登录成功<br><img src="http://qiniu.austfish.cn/yuque/FuXWT0DICkQjXkGvcyFsNNE26phv.png"></p>
 <h5 id="2-3-YXCMS-后台任意文件读写漏洞"><a href="#2-3-YXCMS-后台任意文件读写漏洞" class="headerlink" title="2.3 YXCMS 后台任意文件读写漏洞"></a>2.3 YXCMS 后台任意文件读写漏洞</h5><ol>
-<li>直接在前台模板创建新的模板，内容为一句话木马<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866612874-0616b1a8-4208-4e9c-9b91-f568eabea055.png#align=left&display=inline&height=256&margin=%5Bobject%20Object%5D&originHeight=256&originWidth=684&size=0&status=done&style=none&width=684"></li>
+<li>直接在前台模板创建新的模板，内容为一句话木马<br><img src="http://qiniu.austfish.cn/yuque/FiTrOZxJWXUjj6j8JvS1j64DDAZA.png"></li>
 </ol>
-<p>2.根据备份文件获取文件路径<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613375-474f5867-e79a-4306-a5a5-b8fc887143db.png#align=left&display=inline&height=455&margin=%5Bobject%20Object%5D&originHeight=455&originWidth=728&size=0&status=done&style=none&width=728"></p>
-<p>3.中国蚂剑连接小马<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613181-c994f428-f2f4-4722-93a6-e4476e77ae72.png#align=left&display=inline&height=699&margin=%5Bobject%20Object%5D&originHeight=699&originWidth=1040&size=0&status=done&style=none&width=1040"></p>
-<h5 id="2-4-反弹-shell，MSF-监听"><a href="#2-4-反弹-shell，MSF-监听" class="headerlink" title="2.4 反弹 shell，MSF 监听"></a>2.4 反弹 shell，MSF 监听</h5><p><strong>生成相关恶意代码</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613489-58935e3b-2899-4abf-b6fa-1d2a3db098f5.png#align=left&display=inline&height=314&margin=%5Bobject%20Object%5D&originHeight=314&originWidth=683&size=0&status=done&style=none&width=683"><br><strong>上传脚本</strong><br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613404-bb5d37e7-27e6-4f50-bd2d-1190194744b0.png#align=left&display=inline&height=640&margin=%5Bobject%20Object%5D&originHeight=640&originWidth=1024&size=0&status=done&style=none&width=1024"></p>
-<h2 id="0×04-内网渗透"><a href="#0×04-内网渗透" class="headerlink" title="0×04 内网渗透"></a>0×04 内网渗透</h2><h3 id="1-Cobalt-Strike-监听上线"><a href="#1-Cobalt-Strike-监听上线" class="headerlink" title="1 Cobalt Strike 监听上线"></a>1 Cobalt Strike 监听上线</h3><h4 id="1-1-监听"><a href="#1-1-监听" class="headerlink" title="1.1 监听"></a>1.1 监听</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613622-d5077639-beb8-4375-b002-352c3f3b403c.png#align=left&display=inline&height=68&margin=%5Bobject%20Object%5D&originHeight=68&originWidth=781&size=0&status=done&style=none&width=781"></p>
-<h4 id="1-2-上传木马"><a href="#1-2-上传木马" class="headerlink" title="1.2 上传木马"></a>1.2 上传木马</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613677-7135db36-86bc-46ce-aa89-14c80887ccf8.png#align=left&display=inline&height=640&margin=%5Bobject%20Object%5D&originHeight=640&originWidth=1024&size=0&status=done&style=none&width=1024"></p>
-<h4 id="1-3-运行木马"><a href="#1-3-运行木马" class="headerlink" title="1.3 运行木马"></a>1.3 运行木马</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866613901-226cd6a5-8a65-46ad-b837-fb3b0d35474a.png#align=left&display=inline&height=335&margin=%5Bobject%20Object%5D&originHeight=335&originWidth=670&size=0&status=done&style=none&width=670"></p>
-<h4 id="1-4-目标上线"><a href="#1-4-目标上线" class="headerlink" title="1.4 目标上线"></a>1.4 目标上线</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614029-601f658f-3bcc-41e6-8d5b-358293106b43.png#align=left&display=inline&height=222&margin=%5Bobject%20Object%5D&originHeight=222&originWidth=783&size=0&status=done&style=none&width=783"></p>
-<h3 id="2-Cobalt-Strike-提权"><a href="#2-Cobalt-Strike-提权" class="headerlink" title="2 Cobalt Strike 提权"></a>2 Cobalt Strike 提权</h3><h4 id="2-1-选择-beacon，右键，执行–-gt-提权"><a href="#2-1-选择-beacon，右键，执行–-gt-提权" class="headerlink" title="2.1 选择 beacon，右键，执行–&gt;提权"></a>2.1 选择 beacon，右键，执行–&gt;提权</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614701-829591aa-276f-474c-9a65-3cf2062d40df.png#align=left&display=inline&height=306&margin=%5Bobject%20Object%5D&originHeight=306&originWidth=778&size=0&status=done&style=none&width=778"></p>
-<h4 id="2-2-hashdump"><a href="#2-2-hashdump" class="headerlink" title="2.2 hashdump"></a>2.2 hashdump</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614003-52bfd1ad-80ff-42d7-a4a8-5a2a368a8438.png#align=left&display=inline&height=153&margin=%5Bobject%20Object%5D&originHeight=153&originWidth=711&size=0&status=done&style=none&width=711"></p>
+<p>2.根据备份文件获取文件路径<br><img src="http://qiniu.austfish.cn/yuque/FjhMGC_z3XrB5rHHEigMiUf3Zayg.png"></p>
+<p>3.中国蚂剑连接小马<br><img src="http://qiniu.austfish.cn/yuque/Fk3e5ALEiEQS5SU5o8M3-cRXSFTj.png"></p>
+<h5 id="2-4-反弹-shell，MSF-监听"><a href="#2-4-反弹-shell，MSF-监听" class="headerlink" title="2.4 反弹 shell，MSF 监听"></a>2.4 反弹 shell，MSF 监听</h5><p><strong>生成相关恶意代码</strong><br><img src="http://qiniu.austfish.cn/yuque/Fl0_68XLziVUvO4OrYO1EWu8ap7u.png"><br><strong>上传脚本</strong><br><img src="http://qiniu.austfish.cn/yuque/Fgp8NV1E3ymfHgnm5aGFlCcm7ZRC.png"></p>
+<h2 id="0×04-内网渗透"><a href="#0×04-内网渗透" class="headerlink" title="0×04 内网渗透"></a>0×04 内网渗透</h2><h3 id="1-Cobalt-Strike-监听上线"><a href="#1-Cobalt-Strike-监听上线" class="headerlink" title="1 Cobalt Strike 监听上线"></a>1 Cobalt Strike 监听上线</h3><h4 id="1-1-监听"><a href="#1-1-监听" class="headerlink" title="1.1 监听"></a>1.1 监听</h4><p><img src="http://qiniu.austfish.cn/yuque/FhhCB_m22cBoAh6YQdt-JsC3Y1Sv.png"></p>
+<h4 id="1-2-上传木马"><a href="#1-2-上传木马" class="headerlink" title="1.2 上传木马"></a>1.2 上传木马</h4><p><img src="http://qiniu.austfish.cn/yuque/FoU4F1XFw4A59oeXoHFUCGGu7iZj.png"></p>
+<h4 id="1-3-运行木马"><a href="#1-3-运行木马" class="headerlink" title="1.3 运行木马"></a>1.3 运行木马</h4><p><img src="http://qiniu.austfish.cn/yuque/Fh7JLfU9jvKMRNZI5eQjZH61Xog7.png"></p>
+<h4 id="1-4-目标上线"><a href="#1-4-目标上线" class="headerlink" title="1.4 目标上线"></a>1.4 目标上线</h4><p><img src="http://qiniu.austfish.cn/yuque/Fs_Z4wpA8-kp1Ozqp9SpmWK_yvkg.png"></p>
+<h3 id="2-Cobalt-Strike-提权"><a href="#2-Cobalt-Strike-提权" class="headerlink" title="2 Cobalt Strike 提权"></a>2 Cobalt Strike 提权</h3><h4 id="2-1-选择-beacon，右键，执行–-gt-提权"><a href="#2-1-选择-beacon，右键，执行–-gt-提权" class="headerlink" title="2.1 选择 beacon，右键，执行–&gt;提权"></a>2.1 选择 beacon，右键，执行–&gt;提权</h4><p><img src="http://qiniu.austfish.cn/yuque/Ftq0P7ZFME2w2l9tmOQE4Dwlrn5L.png"></p>
+<h4 id="2-2-hashdump"><a href="#2-2-hashdump" class="headerlink" title="2.2 hashdump"></a>2.2 hashdump</h4><p><img src="http://qiniu.austfish.cn/yuque/Fv9ECUVDvQ-1cW43343Ee3mJPj8y.png"></p>
 <h4 id="2-3-判断网络"><a href="#2-3-判断网络" class="headerlink" title="2.3 判断网络"></a>2.3 判断网络</h4><p><code>模拟内网：192.168.52.143</code><br><code>模拟外网：10.0.19.36</code></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614152-bc2081c5-1712-4cbb-89c2-16555dbe5da5.png#align=left&display=inline&height=711&margin=%5Bobject%20Object%5D&originHeight=711&originWidth=781&size=0&status=done&style=none&width=781"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/Frvmi_JFgn2MRz0VC2TMY_ktrdwh.png"></p>
 <h3 id="3-判断是否有域"><a href="#3-判断是否有域" class="headerlink" title="3 判断是否有域"></a>3 判断是否有域</h3><h4 id="3-1-whoami"><a href="#3-1-whoami" class="headerlink" title="3.1 whoami:"></a>3.1 whoami:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">beacon&gt; </span><span class="language-bash">shell <span class="built_in">whoami</span></span></span><br><span class="line">[*] Tasked beacon to run: whoami</span><br><span class="line">[+] host called home, sent: 37 bytes</span><br><span class="line">[+] received output:</span><br><span class="line">nt authority\system</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-2-hostname"><a href="#3-2-hostname" class="headerlink" title="3.2 hostname"></a>3.2 hostname</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">beacon&gt; </span><span class="language-bash">shell hostname</span></span><br><span class="line">[*] Tasked beacon to run: hostname</span><br><span class="line">[+] host called home, sent: 39 bytes</span><br><span class="line">[+] received output:</span><br><span class="line">stu1</span><br></pre></td></tr></table></figure>
@@ -969,9 +1140,9 @@ var _hmt = _hmt || [];
 <h3 id="5-查找域控"><a href="#5-查找域控" class="headerlink" title="5 查找域控"></a>5 查找域控</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">域用户权限</span></span><br><span class="line">net time /domain</span><br><span class="line">net group &quot;domain controllers&quot; /domain</span><br></pre></td></tr></table></figure>
 
 <h3 id="6-横向移动"><a href="#6-横向移动" class="headerlink" title="6 横向移动"></a>6 横向移动</h3><h4 id="6-1-SMB-Beacon"><a href="#6-1-SMB-Beacon" class="headerlink" title="6.1 SMB Beacon"></a>6.1 SMB Beacon</h4><p>因为 192.168.52.0&#x2F;24 段不能直接连接到 192.168.72.129(kali 地址)，所以需要 CS 派生 smb beacon。让内网的主机连接到 win7 上。</p>
-<p>SMB Beacon 使用命名管道通过父级 Beacon 进行通讯，当两个 Beacons 链接后，子 Beacon 从父 Beacon 获取到任务并发送。因为链接的 Beacons 使用 Windows 命名管道进行通信，此流量封装在 SMB 协议中，所以 SMB Beacon 相对隐蔽，绕防火墙时可能发挥奇效。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614285-8a116777-3718-49cf-aa8a-4f262fddc055.png#align=left&display=inline&height=356&margin=%5Bobject%20Object%5D&originHeight=356&originWidth=1303&size=0&status=done&style=none&width=1303"></p>
-<h4 id="6-2-psexec"><a href="#6-2-psexec" class="headerlink" title="6.2 psexec"></a>6.2 psexec</h4><p>显示目标<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614541-4980d239-b4c8-4620-8ac2-dbac19a647a3.png#align=left&display=inline&height=257&margin=%5Bobject%20Object%5D&originHeight=257&originWidth=1069&size=0&status=done&style=none&width=1069"><br>登录<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614428-59bafade-fb0c-4da9-a4b6-c96c5889285d.png#align=left&display=inline&height=316&margin=%5Bobject%20Object%5D&originHeight=316&originWidth=755&size=0&status=done&style=none&width=755"><br>导入口令<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866615050-e2b5f1d7-0b0b-40b5-8fb1-f9659301a7b8.png#align=left&display=inline&height=395&margin=%5Bobject%20Object%5D&originHeight=395&originWidth=567&size=0&status=done&style=none&width=567"><br>上线<br><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614813-a4222c08-138f-47db-850b-c3bacd8793b9.png#align=left&display=inline&height=264&margin=%5Bobject%20Object%5D&originHeight=264&originWidth=1587&size=0&status=done&style=none&width=1587"></p>
-<h4 id="7-拿下域控"><a href="#7-拿下域控" class="headerlink" title="7 拿下域控"></a>7 拿下域控</h4><p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866614870-c3c4d062-71a5-461b-98f4-97f8d1703c9d.png#align=left&display=inline&height=853&margin=%5Bobject%20Object%5D&originHeight=853&originWidth=1056&size=0&status=done&style=none&width=1056"></p>
+<p>SMB Beacon 使用命名管道通过父级 Beacon 进行通讯，当两个 Beacons 链接后，子 Beacon 从父 Beacon 获取到任务并发送。因为链接的 Beacons 使用 Windows 命名管道进行通信，此流量封装在 SMB 协议中，所以 SMB Beacon 相对隐蔽，绕防火墙时可能发挥奇效。<br><img src="http://qiniu.austfish.cn/yuque/FlzgG6v4J_6W0sckJtHimS_nGNWz.png"></p>
+<h4 id="6-2-psexec"><a href="#6-2-psexec" class="headerlink" title="6.2 psexec"></a>6.2 psexec</h4><p>显示目标<br><img src="http://qiniu.austfish.cn/yuque/FovFsxstGgzKj063KXEzFGJwre62.png"><br>登录<br><img src="http://qiniu.austfish.cn/yuque/FpqrNyEpV46ckc0tVyaG9oBPQ3hE.png"><br>导入口令<br><img src="http://qiniu.austfish.cn/yuque/Flhre8b51MZL2_uyAVfMGMGOhV8y.png"><br>上线<br><img src="http://qiniu.austfish.cn/yuque/FiGVCMvQuplg0CkETQ6byhyCvUns.png"></p>
+<h4 id="7-拿下域控"><a href="#7-拿下域控" class="headerlink" title="7 拿下域控"></a>7 拿下域控</h4><p><img src="http://qiniu.austfish.cn/yuque/Fp_1DP6ihIIBJLiiIfej-tQ_5d74.png"></p>
 
       
 
@@ -1157,7 +1328,7 @@ var _hmt = _hmt || [];
 <li>先启用服务端（攻击端）,再启用客户端(被攻击端)</li>
 <li>就是控制端监听在某 TCP&#x2F;UDP 端口，被控端发起请求到该端口，并将其命令行的输入输出转到控制端。reverse shell 与 telnet，ssh 等标准 shell 对应，本质上是网络概念的客户端与服务端的角色反转。</li>
 </ul>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/10388730/1617866358914-bd1ff8c7-4554-4b00-a200-de87a279d7c9.png#align=left&display=inline&height=350&margin=%5Bobject%20Object%5D&originHeight=350&originWidth=417&size=0&status=done&style=none&width=417"></p>
+<p><img src="http://qiniu.austfish.cn/yuque/FrQOczpKjSPL2UxR8ZKxW7X10GRo.png"></p>
 <h2 id="0×03-为什么要反弹-shell"><a href="#0×03-为什么要反弹-shell" class="headerlink" title="0×03 为什么要反弹 shell"></a>0×03 为什么要反弹 shell</h2><p>当我们在渗透 Linux 主机时，反弹一个交互的 shell 是非常有必要的。反弹 shell 通常用于被控端因防火墙受限、权限不足、端口被占用等情形导致连接失败。</p>
 <blockquote>
 <p>假设我们攻击了一台机器，打开了该机器的一个端口，攻击者在自己的机器去连接目标机器（目标 ip：目标机器端口），这是比较常规的形式，我们叫做正向连接。远程桌面，web 服务，ssh，telnet 等等，都是正向连接。那么什么情况下正向连接不太好用了呢？</p>
