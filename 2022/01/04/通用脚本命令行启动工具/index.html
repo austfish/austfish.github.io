@@ -5,13 +5,13 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://austfish.github.io">
+  <link rel="dns-prefetch" href="https://austfish.github.io">
   <title>通用脚本命令行启动工具 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="0x00 背景安全测试过程中，有很多脚本工具，在进行编写的时候，难以复用、集成等问题。在快速调用过程中，需要重新写命令行调用工具，效率低下。所以通过通用的命令行启动脚本，使得在工具开发的过程中，关注工具的功能、参数即可，调用逻辑将统一，在批量调用多个工具时、更容易适配。应用结构参考W5 SOAR应用格式，可以无缝衔接使用，上传至 W5 即可实现 Web 页面调用应用，实现页面使用、命令行使用两种方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通用脚本命令行启动工具">
-<meta property="og:url" content="http://austfish.github.io/2022/01/04/%E9%80%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:url" content="https://austfish.github.io/2022/01/04/%E9%80%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
 <meta property="og:description" content="0x00 背景安全测试过程中，有很多脚本工具，在进行编写的时候，难以复用、集成等问题。在快速调用过程中，需要重新写命令行调用工具，效率低下。所以通过通用的命令行启动脚本，使得在工具开发的过程中，关注工具的功能、参数即可，调用逻辑将统一，在批量调用多个工具时、更容易适配。应用结构参考W5 SOAR应用格式，可以无缝衔接使用，上传至 W5 即可实现 Web 页面调用应用，实现页面使用、命令行使用两种方">
 <meta property="og:locale">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://qiniu.austfish.cn/yuque/FjovELs2b65pxNwhKO2o6BS-CXEI.png">
 <meta property="og:image" content="http://qiniu.austfish.cn/yuque/FlWEZiR8wahLoP3Bwsn8nPM-y7hu.png">
 <meta property="article:published_time" content="2022-01-04T06:24:06.000Z">
-<meta property="article:modified_time" content="2022-08-20T14:48:47.077Z">
+<meta property="article:modified_time" content="2022-08-20T15:00:54.451Z">
 <meta property="article:author" content="Fisher">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
@@ -424,7 +424,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://austfish.github.io/2022/01/04/%E9%80%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8%E5%B7%A5%E5%85%B7/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://austfish.github.io/2022/01/04/%E9%80%9A%E7%94%A8%E8%84%9A%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%AF%E5%8A%A8%E5%B7%A5%E5%85%B7/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -582,6 +582,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">AI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BUAA</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
