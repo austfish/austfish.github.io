@@ -159,6 +159,88 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SRC常见的思路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/08/SRC%E5%B8%B8%E8%A7%81%E7%9A%84%E6%80%9D%E8%B7%AF/">SRC常见的思路</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/08/SRC%E5%B8%B8%E8%A7%81%E7%9A%84%E6%80%9D%E8%B7%AF/" class="archive-article-date">
+  	<time datetime="2021-04-08T07:49:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SRC-常见的逻辑漏洞类型"><a href="#SRC-常见的逻辑漏洞类型" class="headerlink" title="SRC 常见的逻辑漏洞类型"></a>SRC 常见的逻辑漏洞类型</h1><h3 id="0X01-漏洞类型"><a href="#0X01-漏洞类型" class="headerlink" title="0X01 漏洞类型"></a>0X01 漏洞类型</h3><p>数据统计列举一下（BAT 的 SRC 和其他几个小众 src 的漏洞类型）<br>1.xss(反射 存储型 post xss)<br>2.iis 短文件泄露 3.物理路径泄露（框架没有自定义 404 页或者 php.ini 配置错误）<br>4.svn 泄露（.svn&#x2F;entries）<br>5.phpinfo.php,test.php,test.html 6.目录遍历 site:<a target="_blank" rel="noopener" href="http://qq.com/">http://qq.com</a> intitle:index of（google hacking 常见语法）(<a target="_blank" rel="noopener" href="https://pentest-tools.com/information-gathering/google-hacking#">https://pentest-tools.com/information-gathering/google-hacking#</a>)<br>7.?href&#x3D;  （url 跳转漏洞）<br>8.crossdomain.xml 文件的安全问题 9.淘宝产业链（卖账号的，薅羊毛的，以及恶意地址过检测的） 10.权限控制，直接访问后台<br>11.HTTP HOST 头攻击<br>12.CRLF 漏洞 13.逻辑漏洞 任意注册(app 注册时验证码可以爆破，和验证码直接在返回包里) 14.任意文件读取 %c0%ae 字符导致的 15.万能密码（admin’’or’&#x3D;’or) 16.编辑器 ckeditor xss(<a target="_blank" rel="noopener" href="https://packetstormsecurity.com/">https://packetstormsecurity.com/</a> … ath-Disclosure.html) 17.弱口令<br>18.discuz 物理路径泄露（uc_server&#x2F;control&#x2F;admin&#x2F;db.php）<br>19.phpmyadmin 万能密码（‘localhost’@‘@”）<br>20.struts2 漏洞 21.魔图漏洞 （ImageMagick）<br>22.Java 反序列化漏洞 23.压缩包下载（web.rar)<br>24.weblogic ssrf 探测目标内网(<a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/UjaqIbz">http://www.tuicool.com/articles/UjaqIbz</a>) 25.威胁情报（跟踪钓鱼团伙）<br>26.thinkphp 框架配置错误导致日志下载漏洞(<a target="_blank" rel="noopener" href="https://phpinfo.me/2016/09/09/1351.html">https://phpinfo.me/2016/09/09/1351.html</a>) 27.邮件伪造(<a target="_blank" rel="noopener" href="https://emkei.cz/">https://emkei.cz/</a>)<br>28.el 表达式(参考例子<a target="_blank" rel="noopener" href="http://wooyun.jozxing.cc/static/bugs/wooyun-2016-0195845.html">http://wooyun.jozxing.cc/static/bugs/wooyun-2016-0195845.html)</a>) 29.利用 wifi 万能钥匙获取所有 wifi 共享出来的弱密码（物理接触)<br>30.angularjs xss（<a target="_blank" rel="noopener" href="http://avlidienbrunn.se/angular.txt">http://avlidienbrunn.se/angular.txt</a>） 31.任意文件读取..&#x2F;etc&#x2F;passwd<br>32.php 解析漏洞 1.jpg&#x2F;.php<br>33.wpscan 对 wordpress 站点的检测,dzscan 对 discuz 站点进行检测<br>34.Apache tomcat session 操控漏洞 35.注入<br>36.github,ds_store 泄露(githack,ds_store_exp),(注：此列表有些漏洞确实鸡肋（你不提交怎么知道厂商不收呢），仅做数据分析统计）比如要挖 360src，可以学习别人的思路（关注标题）</p>
+<h3 id="0X02-涉及到工具"><a href="#0X02-涉及到工具" class="headerlink" title="0X02 涉及到工具"></a>0X02 涉及到工具</h3><p>awvs, appscan, safe3wvs, burpsuite ,k8 struts2 检测工具,Bugscan ,Pkav HTTP Fuzzer 1.5.6,御剑 1.5，IIS_shortname_Scanner，hackbar 插件，Wapplyzer 插件(指纹），Seay-svn 源代码备份漏洞利用工具（其实很多漏洞可以直接做成字典，方便以后针对性的检测，如敏感信息泄露和 svn 泄露，敏感压缩包，包括收集常用的字典撞库,加强效率）</p>
+<h1 id="SRC-漏洞挖掘小见解"><a href="#SRC-漏洞挖掘小见解" class="headerlink" title="SRC 漏洞挖掘小见解"></a>SRC 漏洞挖掘小见解</h1><p>链接: <a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1c4BvT8">http://pan.baidu.com/s/1c4BvT8</a> 密码: pdzf   深度测试企业应用安全经验谈 only_guest<br>个人认为逻辑是 SRC 出现最频繁的也是最容易挖到的漏洞，分类比较多，本文仅分析各种逻辑漏洞</p>
+<h3 id="0x01-0-元支付订单"><a href="#0x01-0-元支付订单" class="headerlink" title="0x01  0 元支付订单"></a>0x01  0 元支付订单</h3><p><strong>a、使用抓包软件（burpsuite、Fiddler…）抓包，通过分析向服务器传输的数据包，修改支付金额参数来达到欺骗服务器的效果，当然这只是最简单的思路，稍有安全意识此种漏洞几乎不会发生。</strong><br><strong>b、案例分析：同程机票支付漏洞，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/bugdetail?id=040057126240073192211042027138252087080136084116">漏洞实例传送门</a>： 此漏洞仅仅是在支付之前抓包，仅通过修改 bxprice 为负数，完成了 2 元巴厘岛旅游，再次膜拜大佬，2000RMB+巴厘岛豪华旅游就此到手。</p>
+<h3 id="0x02-越权查看信息"><a href="#0x02-越权查看信息" class="headerlink" title="0x02   越权查看信息"></a>0x02   越权查看信息</h3><p>何谓越权？越过自己能够行使的权利来行使其他权利，通俗来讲，看了自己不该看到的东西，做了自己不能做的事。      <strong>a、GET 请求可直接修改 URL 参数，POST 请求只能抓包，通过修改限定订单号的参数值，实现任意订单泄漏、开房记录泄漏，当然不一定是订单存在此漏洞，个人信息、账户详情等各种私密信息都可能存在此漏洞。</strong><br><strong>b、案例分析：酒店催房处的一处越权，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/BugDetail?id=252000086183010135060073226184197160190134107123">漏洞实例传送门</a>：洞主不愧为老司机，用小号批量请求大号能做的请求，如果请求成功，那不就是越权吗？好像又 GET 到了什么</p>
+<h3 id="0x03-越权添加或者删除信息"><a href="#0x03-越权添加或者删除信息" class="headerlink" title="0x03   越权添加或者删除信息"></a>0x03   越权添加或者删除信息</h3><p><strong>a、点击添加信息，抓包后更换账号，请求抓取的包数据，若能成功，则存在漏洞；删除信息同样可能存在越权。</strong><br><strong>b、案例分析：同程机票越权添加卡包，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/BugDetail?id=167225056174242138247150224042057206254063148243">漏洞实例传送门</a>：添加某项信息-&gt;抓取数据包-&gt;切换用户-&gt;复现数据包-&gt;成功操作-&gt;漏洞存在</p>
+<h3 id="0x04-用户密码重置"><a href="#0x04-用户密码重置" class="headerlink" title="0x04   用户密码重置"></a>0x04   用户密码重置</h3><p><strong>a、密码重置的姿势五花八门，不同的程序员可能做出的漏洞实例都不尽相同，说说我曾经遇到过的一些姿势吧：a、密码重置的姿势五花八门，不同的程序员可能做出的漏洞实例都不尽相同，说说我曾经遇到过的一些姿势吧：</strong></p>
+<ol>
+<li>修改密码的验证码返回到 Web 前端进行验证,也就是点击获取验证码后,验证码返回到网页的某个 hidden 属性的标签中.</li>
+<li>请求获取修改某账户密码时,修改发送验证码的手机号为自己的手机号,得到验证码,成功修改指定账户密码.</li>
+<li>修改密码处的验证码的验证次数或者验证码有效时间未做限制,导致可爆破验证码,当然,6 位验证码比较花时间,4 位秒破</li>
+<li>通过修改 URL 中的用户名参数,从而达到直接请求最终修改指定账户的密码.</li>
+<li>抓取关键步骤中的 POST 数据包,通过修改 POST 数据中的 UserName 参数实现任意密码重置.</li>
+<li>邮箱验证时,重置账户的 URL 重置密码规则有规律可循,导致重置任意用户密码.</li>
+</ol>
+<p><strong>b、漏洞分析：旅仓平台任意密码重置，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/BugDetail?id=079064078087124103206019249045164081132199016199">漏洞实例传送门</a>：此漏洞中重置密码共分为 4 步，洞主通过抓取第四步的 POST 数据包，从而实现只需要修改 phone 参数即可实现任意密码重置，厉害。</p>
+<h3 id="0x05-无验证码的撞库危害"><a href="#0x05-无验证码的撞库危害" class="headerlink" title="0x05   无验证码的撞库危害"></a>0x05   无验证码的撞库危害</h3><p>何谓撞库？可以使用其他泄露数据库的账户密码来登录另一个网站。<br>而我个人的理解是：用户登录接口未做限制，导致可无限爆破用户名及密码<br><strong>a、无可置否，无验证码的登录界面是每个人最愿意看到的，这样就可以展开开心的爆破了，就算无法爆破出正确的帐号密码，但是只要存在撞库危害，SRC 一般会给予通过，撞库的危害程度取决于业务是主要业务还是边缘业务</strong><br><strong>b、漏洞分析：同程某站点无验证码撞库危害，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/bugdetail?id=135117061114038121240092037083081014094068207009">漏洞实例传送门</a>：此漏洞为 YSRC 刚开启时的漏洞，所以存在无验证码的登录，存在撞库危害</p>
+<h3 id="0x06-验证码失效的撞库危害"><a href="#0x06-验证码失效的撞库危害" class="headerlink" title="0x06   验证码失效的撞库危害"></a>0x06   验证码失效的撞库危害</h3><p><strong>a、登录界面存在验证码，但是验证码只会在刷新当前 URL 时才会刷新，这会导致提交 POST 数据包时验证码的失效，从而导致绕过验证码的爆破</strong><br><strong>b、漏洞分析：同程某站点验证码无效导致可爆破，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/bugdetail?id=112195171227053035139145119019247147086179238203">漏洞实例传送门</a>：当我们尝试使用 burpsuite 爆破时，设置好爆破元素开始爆破时，如果验证码失效，每一次爆破的 Response 则会提示用户名或者密码错误，而不是验证码错误，可以尝试检测是否存在此种撞库危害。</p>
+<h3 id="0x07-短信接口未作限制"><a href="#0x07-短信接口未作限制" class="headerlink" title="0x07   短信接口未作限制"></a>0x07   短信接口未作限制</h3><p><strong>a、短信接口未做限制可导致短信轰炸，邮箱垃圾邮件轰炸，语音电话轰炸，危害系数较低。</strong><br><strong>b、漏洞分析：购物卡兑换处短信语音轰炸，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/bugdetail?id=041074113247105006058199239200236127208085195183">漏洞实例传送门</a>：此漏洞可手工检测，也可以抓包导入到 Repeater 复现数据包检测，常用的接口限口是：phone number 的发送短信次数</p>
+<h3 id="0x08-枚举注册用户"><a href="#0x08-枚举注册用户" class="headerlink" title="0x08   枚举注册用户"></a>0x08   枚举注册用户</h3><p><strong>a、当我们在登录处输入账户名时，点击网页的任意位置，网站会自动发送请求验证账户名是否正确的数据包，此时即可截获数据包进行用户名的枚举。</strong><br><strong>b、漏洞分析：同程某站找回密码用户枚举，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/bugdetail?id=087197063184147205102065133186047083096133108230">漏洞实例传送门</a>：找回密码处的验证码失效，导致可爆破用户名来枚举已注册用户</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/08/SRC%E5%B8%B8%E8%A7%81%E7%9A%84%E6%80%9D%E8%B7%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-红蓝攻防资料合集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1334,119 +1416,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Pocsuite3-快速上手" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/08/Pocsuite3-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">Pocsuite3-快速上手</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/08/Pocsuite3-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="archive-article-date">
-  	<time datetime="2021-04-08T07:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h1><p>Pocsuite3 是完全由 Python3 编写，支持 Windows&#x2F;Linux&#x2F;Mac OSX 等系统，在原 Pocsuite 的基础上进行了整体的重写与升级，使整个框架更具有操作性和灵活性。</p>
-<h1 id="0×01-使用"><a href="#0×01-使用" class="headerlink" title="0×01 使用"></a>0×01 使用</h1><p><strong>Options 常规选项</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-h 帮助</span><br><span class="line">--version 版本</span><br><span class="line">--updata 更新(使用未成功)</span><br><span class="line">-v verbose  等级:<span class="number">0</span>~<span class="number">6</span>（默认<span class="number">1</span>）(有啥特别功能未知)</span><br></pre></td></tr></table></figure>
-
-<p><strong>Target 加载目标</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-u URL</span><br><span class="line">-f url_file（多个url）</span><br><span class="line">-r POC 加载POCfile 或者 remote <span class="keyword">from</span> seebug websit</span><br><span class="line">-c configfile 加载选项<span class="keyword">from</span> a configuration INI file</span><br></pre></td></tr></table></figure>
-
-<p><strong>Mode 运行模式</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--verity 验证</span><br><span class="line">--attack 攻击</span><br><span class="line">--shell</span><br></pre></td></tr></table></figure>
-
-<p><strong>Requrst 统一请求</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--cookie</span><br><span class="line">--host</span><br><span class="line">--referer</span><br><span class="line">--user-agent</span><br><span class="line">--random-agent</span><br><span class="line">--proxy</span><br><span class="line">--proxy-cred</span><br><span class="line">--timeout</span><br><span class="line">--retry</span><br><span class="line">--delay</span><br><span class="line">--headers      extra headers (e.g.<span class="string">&quot;key1:value1\nkey2:value2&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><strong>Account Token 接口</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Telnet404 account options</span><br><span class="line">--login-user</span><br><span class="line">--login-<span class="keyword">pass</span></span><br><span class="line">--shodan-token</span><br><span class="line">--censys-uid</span><br></pre></td></tr></table></figure>
-
-<p><strong>Modules 一些模块接口</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--dork (默认为zoomeye搜索搜索引擎)</span><br><span class="line">--dork-zoomeye 搜过关键字</span><br><span class="line">--dork-shodan 搜索关键字</span><br><span class="line">--dork-censys 搜索关键字</span><br><span class="line">--<span class="built_in">max</span>-page 多少页</span><br><span class="line">--search-<span class="built_in">type</span>  搜索类型选择API,Web <span class="keyword">or</span> Host</span><br><span class="line">--vul-keyword seebug 关键词搜索</span><br><span class="line">--ssv-<span class="built_in">id</span> seebug 漏洞编号</span><br><span class="line">--lhost shell 模式反弹主机</span><br><span class="line">--lport shell 模式反弹端口</span><br><span class="line">--comparison 比较两个搜索引擎</span><br></pre></td></tr></table></figure>
-
-<p><strong>Optimization 其他选项</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--plugins 加载插件</span><br><span class="line">--pocs-path poc地址</span><br><span class="line">--threads 开启线程</span><br><span class="line">--batch 自动默认选项</span><br><span class="line">--requires 检测需要安装的模块</span><br><span class="line">--quiet 没有logger</span><br><span class="line">--ppt 隐藏敏感信息</span><br></pre></td></tr></table></figure>
-
-<p><strong>console 模式</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">python3 console.py进入console模式</span><br><span class="line">Global commands:</span><br><span class="line">      <span class="built_in">help</span>  帮助</span><br><span class="line">      use &lt;module&gt;  使用模块</span><br><span class="line">      search &lt;search term&gt; 搜索模块</span><br><span class="line">      <span class="built_in">list</span>|show <span class="built_in">all</span>   显示所有模块</span><br><span class="line">      exit 退出</span><br><span class="line">Module commands:</span><br><span class="line">      run  使用设置的参数运行选中的脚本</span><br><span class="line">      back 返回上一步</span><br><span class="line">      <span class="built_in">set</span> 参数名 参数值(当前模块)</span><br><span class="line">      setg 参数名 参数值(所有模块)</span><br><span class="line">      show info|options|<span class="built_in">all</span> 打印information,options</span><br><span class="line">      check 使用--verify模式</span><br><span class="line">      attack 使用--attack模式</span><br><span class="line">      exploit 使用--shell模式</span><br></pre></td></tr></table></figure>
-
-<h1 id="0×02-POC-编写"><a href="#0×02-POC-编写" class="headerlink" title="0×02 POC 编写"></a>0×02 POC 编写</h1><h5 id="1-编写-PoC-文件名"><a href="#1-编写-PoC-文件名" class="headerlink" title="1.编写 PoC 文件名"></a>1.编写 PoC 文件名</h5><p>PoC 命名分成 3 个部分组成漏洞应用名—版本号—漏洞类型名称 然后把文件名称中的所有字母改成小写,所有的符号改成_</p>
-<h5 id="2-编写-PoC-实现类"><a href="#2-编写-PoC-实现类" class="headerlink" title="2.编写 PoC 实现类"></a>2.编写 PoC 实现类</h5><p><code>DemoPOC</code>,继承自<code>PoCBase</code>类.</p>
-<h5 id="3-填写-PoC-信息字段"><a href="#3-填写-PoC-信息字段" class="headerlink" title="3.填写 PoC 信息字段"></a>3.填写 PoC 信息字段</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">vulID = <span class="string">&#x27;1571&#x27;</span>  <span class="comment"># ssvid ID 如果是提交漏洞的同时提交 PoC,则写成 0</span></span><br><span class="line">    version = <span class="string">&#x27;1&#x27;</span> <span class="comment">#默认为1</span></span><br><span class="line">    author = <span class="string">&#x27;seebug&#x27;</span> <span class="comment">#  PoC作者的大名</span></span><br><span class="line">    vulDate = <span class="string">&#x27;2014-10-16&#x27;</span> <span class="comment">#漏洞公开的时间,不知道就写今天</span></span><br><span class="line">    createDate = <span class="string">&#x27;2014-10-16&#x27;</span><span class="comment"># 编写 PoC 的日期</span></span><br><span class="line">    updateDate = <span class="string">&#x27;2014-10-16&#x27;</span><span class="comment"># PoC 更新的时间,默认和编写时间一样</span></span><br><span class="line">    references = [<span class="string">&#x27;https://www.sektioneins.de/en/blog/14-10-15-drupal-sql-injection-vulnerability.html&#x27;</span>]<span class="comment"># 漏洞地址来源,0day不用写</span></span><br><span class="line">    name = <span class="string">&#x27;Drupal 7.x /includes/database/database.inc SQL注入漏洞 PoC&#x27;</span><span class="comment"># PoC 名称</span></span><br><span class="line">    appPowerLink = <span class="string">&#x27;https://www.drupal.org/&#x27;</span><span class="comment"># 漏洞厂商主页地址</span></span><br><span class="line">    appName = <span class="string">&#x27;Drupal&#x27;</span><span class="comment"># 漏洞应用名称</span></span><br><span class="line">    appVersion = <span class="string">&#x27;7.x&#x27;</span><span class="comment"># 漏洞影响版本</span></span><br><span class="line">    vulType = <span class="string">&#x27;SQL Injection&#x27;</span><span class="comment">#漏洞类型,类型参考见 漏洞类型规范表</span></span><br><span class="line">    desc = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        Drupal 在处理 IN 语句时，展开数组时 key 带入 SQL 语句导致 SQL 注入，</span></span><br><span class="line"><span class="string">        可以添加管理员、造成信息泄露。</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span> <span class="comment"># 漏洞简要描述</span></span><br><span class="line">    samples = []<span class="comment"># 测试样列,就是用 PoC 测试成功的网站</span></span><br><span class="line">    install_requires = [] <span class="comment"># PoC 第三方模块依赖，请尽量不要使用第三方模块，必要时请参考《PoC第三方模块依赖说明》填写</span></span><br><span class="line">    pocDesc = <span class="string">&#x27;&#x27;&#x27; poc的用法描述 &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="4-options-函数-自定义字段"><a href="#4-options-函数-自定义字段" class="headerlink" title="4._options 函数-自定义字段"></a>4._options 函数-自定义字段</h5><p><strong>先导入包</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pocsuite3.api <span class="keyword">import</span> OptString,OptDict,OptIP,OptPort,OptBool,OptInteger,OptFloat,OptItems</span><br></pre></td></tr></table></figure>
-
-<p><strong>函数使用方法</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_options</span>(<span class="params">self</span>):</span><br><span class="line">        o = OrderedDict()</span><br><span class="line">        o[<span class="string">&quot;username&quot;</span>] = OptString(<span class="string">&#x27;&#x27;</span>, description=<span class="string">&#x27;这个poc需要用户登录，请输入登录账号&#x27;</span>, require=<span class="literal">True</span>)<span class="comment">#require是否为必选项;&#x27;&#x27;默认选项</span></span><br><span class="line">        o[<span class="string">&quot;password&quot;</span>] = OptString(<span class="string">&#x27;&#x27;</span>, description=<span class="string">&#x27;这个poc需要用户密码，请输出用户密码&#x27;</span>, require=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">return</span> o</span><br></pre></td></tr></table></figure>
-
-<p><strong>提取自定义字段</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.get_option(<span class="string">&quot;username&quot;</span>)<span class="comment">#或</span></span><br><span class="line">payload = <span class="string">&quot;username=&#123;0&#125;&amp;password=&#123;1&#125;&quot;</span>.<span class="built_in">format</span>(self.get_option(<span class="string">&quot;username&quot;</span>), self.get_option(<span class="string">&quot;password&quot;</span>))</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-verify-函数-验证模式"><a href="#5-verify-函数-验证模式" class="headerlink" title="5._verify 函数-验证模式"></a>5._verify 函数-验证模式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_verify</span>(<span class="params">self</span>):</span><br><span class="line">        output = Output(self)</span><br><span class="line">        <span class="comment"># 验证代码</span></span><br><span class="line">        <span class="keyword">if</span> result: <span class="comment"># result是返回结果</span></span><br><span class="line">            output.success(result)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            output.fail(<span class="string">&#x27;target is not vulnerable&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-attack-函数-攻击模式"><a href="#6-attack-函数-攻击模式" class="headerlink" title="6._attack 函数-攻击模式"></a>6._attack 函数-攻击模式</h5><p>攻击模式可以对目标进行 getshell,查询管理员帐号密码等操作.定义它的方法与检测模式类似</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_attack</span>(<span class="params">self</span>):</span><br><span class="line">    output = Output(self)</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="comment"># 攻击代码</span></span><br></pre></td></tr></table></figure>
-
-<p>和验证模式一样,攻击成功后需要把攻击得到结果赋值给 result 变量</p>
-<p>如果该 PoC 没有攻击模式,可以在 _attack()函数下加入一句 return self._verify() 这样你就无需再写 _attack 函数了。</p>
-<h5 id="7-shell-函数-shell-模式"><a href="#7-shell-函数-shell-模式" class="headerlink" title="7._shell 函数-shell 模式"></a>7._shell 函数-shell 模式</h5><p>pocsuite3 在 shell 模式 会默认监听 6666 端口， 编写对应的攻击代码，让目标执行反向连接，运行 pocsuite3 系统 IP 的 6666 端口即可得到一个 shell</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_shell</span>(<span class="params">self</span>):</span><br><span class="line">    cmd = REVERSE_PAYLOAD.BASH.<span class="built_in">format</span>(get_listener_ip(), get_listener_port())</span><br><span class="line">    <span class="comment"># 攻击代码 execute cmd</span></span><br></pre></td></tr></table></figure>
-
-<p>shell 模式下，只能运行单个 PoC 脚本，控制台会进入 shell 交互模式执行命令及输出</p>
-<h5 id="7-例子"><a href="#7-例子" class="headerlink" title="7.例子"></a>7.例子</h5><p>如果你需要编写一个可以交互参数的 poc 文件(例如有的 poc 脚本需要填写登录信息，或者任意命令执行时执行任意命令)，那么可以在 poc 文件中声明一个_options 方法。一个简单的例子如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pocsuite3.api <span class="keyword">import</span> Output, POCBase, POC_CATEGORY, register_poc, requests, VUL_TYPE</span><br><span class="line"><span class="keyword">from</span> pocsuite3.api <span class="keyword">import</span> OptString</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoPOC</span>(<span class="title class_ inherited__">POCBase</span>):</span><br><span class="line">    vulID = <span class="string">&#x27;00000&#x27;</span>  <span class="comment"># ssvid</span></span><br><span class="line">    version = <span class="string">&#x27;1.0&#x27;</span></span><br><span class="line">    author = [<span class="string">&#x27;knownsec.com&#x27;</span>]</span><br><span class="line">    vulDate = <span class="string">&#x27;2019-2-26&#x27;</span></span><br><span class="line">    createDate = <span class="string">&#x27;2019-2-26&#x27;</span></span><br><span class="line">    updateDate = <span class="string">&#x27;2019-2-25&#x27;</span></span><br><span class="line">    references = [<span class="string">&#x27;&#x27;</span>]</span><br><span class="line">    name = <span class="string">&#x27;自定义命令参数登录例子&#x27;</span></span><br><span class="line">    appPowerLink = <span class="string">&#x27;http://www.knownsec.com/&#x27;</span></span><br><span class="line">    appName = <span class="string">&#x27;test&#x27;</span></span><br><span class="line">    appVersion = <span class="string">&#x27;test&#x27;</span></span><br><span class="line">    vulType = VUL_TYPE.XSS</span><br><span class="line">    desc = <span class="string">&#x27;&#x27;&#x27;这个例子说明了你可以使用console模式设置一些参数或者使用命令中的&#x27;--&#x27;来设置自定义的参数&#x27;&#x27;&#x27;</span></span><br><span class="line">    samples = []</span><br><span class="line">    category = POC_CATEGORY.EXPLOITS.WEBAPP</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_options</span>(<span class="params">self</span>):</span><br><span class="line">        o = OrderedDict()</span><br><span class="line">        o[<span class="string">&quot;username&quot;</span>] = OptString(<span class="string">&#x27;&#x27;</span>, description=<span class="string">&#x27;这个poc需要用户登录，请输入登录账号&#x27;</span>, require=<span class="literal">True</span>)</span><br><span class="line">        o[<span class="string">&quot;password&quot;</span>] = OptString(<span class="string">&#x27;&#x27;</span>, description=<span class="string">&#x27;这个poc需要用户密码，请输出用户密码&#x27;</span>, require=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">return</span> o</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_verify</span>(<span class="params">self</span>):</span><br><span class="line">        result = &#123;&#125;</span><br><span class="line">        payload = <span class="string">&quot;username=&#123;0&#125;&amp;password=&#123;1&#125;&quot;</span>.<span class="built_in">format</span>(self.get_option(<span class="string">&quot;username&quot;</span>), self.get_option(<span class="string">&quot;password&quot;</span>))</span><br><span class="line">        r = requests.post(self.url, data=payload)</span><br><span class="line">        <span class="keyword">if</span> r.status_code == <span class="number">200</span>:</span><br><span class="line">            result[<span class="string">&#x27;VerifyInfo&#x27;</span>] = &#123;&#125;</span><br><span class="line">            result[<span class="string">&#x27;VerifyInfo&#x27;</span>][<span class="string">&#x27;URL&#x27;</span>] = self.url</span><br><span class="line">            result[<span class="string">&#x27;VerifyInfo&#x27;</span>][<span class="string">&#x27;Postdata&#x27;</span>] = payload</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.parse_output(result)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_attack</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self._verify()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse_output</span>(<span class="params">self, result</span>):</span><br><span class="line">        output = Output(self)</span><br><span class="line">        <span class="keyword">if</span> result:</span><br><span class="line">            output.success(result)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            output.fail(<span class="string">&#x27;target is not vulnerable&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> output</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">register_poc(DemoPOC)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/08/Pocsuite3-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1546,6 +1515,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wsl2</a>
               </li>
              
@@ -1579,10 +1556,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
             
             <div class="clearfix"></div>
