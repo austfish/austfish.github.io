@@ -1,1 +1,1 @@
-{"name":"yuque-blog"}
+{"name":"yuque-blog","headers":[{"source":"/(.*)","headers":[{"key":"Access-Control-Allow-Origin","value":"*"},{"key":"Access-Control-Allow-Headers","value":"content-type"},{"key":"Access-Control-Allow-Methods","value":"DELETE,PUT,POST,GET,OPTIONS"}]}],"rewrites":[{"source":"/webhook","destination":"/api/yuque"}]}
