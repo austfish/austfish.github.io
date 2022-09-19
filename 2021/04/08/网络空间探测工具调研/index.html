@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://austfish.cn">
   <title>网络空间探测工具调研 | Fisher&#39;s 安全日记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0×01 前言什么是网络探测网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。 0×02 网络探测技术分类网络环境信息包括网络拓扑结构、主机、主机开放的网络服务以及存在的漏洞等，对网络环境信息的获取工具可以按照其是否对目标发起主动的探测分为两大类：主动探测与被动探测。 主动探测是传统的扫描方式，它是通过给目标主机发送特定的包并收集回">
+  <meta name="description" content="网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络空间探测工具调研">
 <meta property="og:url" content="https://austfish.cn/2021/04/08/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E6%8E%A2%E6%B5%8B%E5%B7%A5%E5%85%B7%E8%B0%83%E7%A0%94/index.html">
 <meta property="og:site_name" content="Fisher&#39;s 安全日记">
-<meta property="og:description" content="0×01 前言什么是网络探测网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。 0×02 网络探测技术分类网络环境信息包括网络拓扑结构、主机、主机开放的网络服务以及存在的漏洞等，对网络环境信息的获取工具可以按照其是否对目标发起主动的探测分为两大类：主动探测与被动探测。 主动探测是传统的扫描方式，它是通过给目标主机发送特定的包并收集回">
+<meta property="og:description" content="网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。">
 <meta property="og:locale">
 <meta property="og:image" content="http://qiniu.austfish.cn/yuque/FvbEceB3Mcq9Uw2thqEM4-dqr2Ec.png">
 <meta property="og:image" content="http://qiniu.austfish.cn/yuque/Ft0kvsqOqqPaacqAmU72Y90Vg47d.png">
@@ -28,9 +28,10 @@
 <meta property="og:image" content="http://qiniu.austfish.cn/yuque/FkKxuFDJvTEa-g9w01V68jvkM8WB.png">
 <meta property="og:image" content="http://qiniu.austfish.cn/yuque/FnPV7VAa1p4Mt2CE8o96OB3vGWvR.png">
 <meta property="article:published_time" content="2021-04-08T07:52:35.000Z">
-<meta property="article:modified_time" content="2022-09-19T02:30:12.908Z">
+<meta property="article:modified_time" content="2022-09-19T08:09:17.026Z">
 <meta property="article:author" content="Fisher">
-<meta property="article:tag" content="学习">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="探测">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://qiniu.austfish.cn/yuque/FvbEceB3Mcq9Uw2thqEM4-dqr2Ec.png">
   
@@ -192,7 +193,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="0×01-前言"><a href="#0×01-前言" class="headerlink" title="0×01 前言"></a>0×01 前言</h4><p><strong>什么是网络探测</strong><br>网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。</p>
+        <p>网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。</p>
+<span id="more"></span>
+
+<h4 id="0×01-前言"><a href="#0×01-前言" class="headerlink" title="0×01 前言"></a>0×01 前言</h4><p><strong>什么是网络探测</strong><br>网络探测指对计算机网络或 DNS 服务器进行扫描，获取有效的地址、活动端口号、主机操作系统类型和安全弱点的攻击方式。</p>
 <h4 id="0×02-网络探测技术分类"><a href="#0×02-网络探测技术分类" class="headerlink" title="0×02 网络探测技术分类"></a>0×02 网络探测技术分类</h4><p>网络环境信息包括网络拓扑结构、主机、主机开放的网络服务以及存在的漏洞等，对网络环境信息的获取工具可以按照其是否对目标发起主动的探测分为两大类：<strong>主动探测与被动探测。</strong></p>
 <p>主动探测是传统的扫描方式，它是通过给目标主机发送特定的包并收集回应包来取得相关信息的，从而确定其操作系统、开启的端口以及存在的漏洞等信息(无响应本身也是信息，表明可能存在过滤设备将探测包或探测回应包过滤了)。属于此类的开源工具有 nmap 和 nessus。主动扫描的优势在于通常能较快获取信息，准确性也比较高。缺点在于一方面易于被发现，很难掩盖扫描痕迹；另一方面要成功实施主动扫描通常需要突破防火墙，但突破防火墙是很困难的。</p>
 <p>被动探测是通过监听网络包来取得信息。根据数据包中包含的指纹提取对应的一些网络环境信息，属于此类的开源工具有 p0f(被动操作系统辨识工具)和 pads(被动网络服务发现工具)。被动扫描一般只需要监听网络流量而不需要主动发送网络包，也不易受防火墙影响。该探测技术的主要优点是对它的检测几乎是不可能的。而其主要缺点在于速度较慢而且准确性较差，当目标不产生网络流量时，就无法得知目标的任何信息。</p>
@@ -829,7 +833,33 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">探测</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工具/" class="article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -1039,11 +1069,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color3">靶场</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">蜜罐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指南</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SRC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">思路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1055,6 +1113,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目录结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">协程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">AI</a>
               </li>
              
@@ -1063,11 +1133,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产扫描</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资产探测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">攻击</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">甲方安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">漏洞管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SQL注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">进程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1080,6 +1174,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">探测</a>
               </li>
             
             <div class="clearfix"></div>
